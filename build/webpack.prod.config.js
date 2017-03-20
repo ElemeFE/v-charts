@@ -4,13 +4,15 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.config')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var DeployPrefix = '/vue-echarts-components'
+var RewritePath = require('./rewrite-path')
 
 module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
     path: path.resolve(__dirname, '../docs'),
-    filename: 'vue-echarts-components/js/[name].[chunkhash:8].js',
-    chunkFilename: 'vue-echarts-components/js/[id].[chunkhash:8].js'
+    filename: 'js/[name].[chunkhash:8].js',
+    chunkFilename: 'js/[id].[chunkhash:8].js'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -23,13 +25,18 @@ module.exports = merge(baseWebpackConfig, {
       sourceMap: true
     }),
     new ExtractTextPlugin({
-      filename: 'vue-echarts-components/css/[name].[contenthash:8].css',
+      filename: 'css/[name].[contenthash:8].css',
       disable: false,
       allChunks: true
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './examples/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
       inject: true
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -43,6 +50,21 @@ module.exports = merge(baseWebpackConfig, {
           ) === 0
         )
       }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      vue: {
+        postcss: [
+            require('autoprefixer')(),
+        ],
+        loaders: {
+          css: ExtractTextPlugin.extract("css-loader"),
+          less: ExtractTextPlugin.extract("css-loader!less-loader")
+        }
+      }
+    }),
+    new RewritePath({
+      pathPrefix: DeployPrefix
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',

@@ -44,21 +44,11 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('./src'), resolve('./examples')]
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
     ]
-  },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      vue: {
-        postcss: [
-            require('autoprefixer')(),
-        ],
-        loaders: {
-          css: ExtractTextPlugin.extract("css-loader"),
-          less: ExtractTextPlugin.extract("css-loader!less-loader")
-        }
-      }
-    })
-  ]
+  }
 }

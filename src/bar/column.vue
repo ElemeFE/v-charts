@@ -5,10 +5,10 @@
 <script>
 import echarts from '../echarts-base'
 import 'echarts/lib/chart/bar'
-import { bar } from './bar'
+import { column } from './bar'
 import chartMixin from '../mixins'
 export default {
-  name: 'VeBar',
+  name: 'VeColumn',
   mixins: [chartMixin],
   methods: {
     init () {
@@ -17,7 +17,7 @@ export default {
     },
 
     dataHandler (data) {
-      const options = bar(data, this.settings)
+      const options = column(data, this.settings)
       this.echarts.setOption(options, true)
     }
   }

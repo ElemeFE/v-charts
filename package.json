@@ -21,7 +21,10 @@
   "homepage": "https://github.com/xiguaxigua/vue-echarts-components#readme",
   "dependencies": {
     "echarts": "3.4.0",
-    "vue": "2.2.4"
+    "normalize.css": "^5.0.0",
+    "prismjs": "^1.6.0",
+    "vue": "2.2.4",
+    "vue-router": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "6.24.0",

@@ -1,39 +1,66 @@
 <template>
-  <div class="page-app">
-    <ve-bar :data="barData" :settings="barSettings"></ve-bar>
+  <div id="app">
+    <div class="top-container">
+      <topbar></topbar>
+    </div>
+    <div class="main-container">
+      <div class="left-section">
+        <sidebar></sidebar>
+      </div>
+      <div class="right-section">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import VeBar from '../src/bar'
-
+import Topbar from './components/topbar'
+import Sidebar from './components/sidebar'
 export default {
   name: 'App',
 
-  data () {
-    this.barData = [
-      { '201603': 2.95, '201604': 2.1, 'name': '上海' },
-      { '201603': 1.95, '201604': 2.15, 'name': '北京' },
-      { '201603': 3.15, '201604': 2.4, 'name': '杭州' },
-      { '201603': 3.15, '201604': 2.4, 'name': '广州' },
-      { '201603': 3.15, '201604': 2.4, 'name': '深圳' }
-    ]
-    this.barSettings = {}
-    return {}
+  created () {
   },
 
   components: {
-    VeBar
+    Topbar,
+    Sidebar
   }
 }
 </script>
 
 <style lang="less">
-.page-app {
-  .ve-bar {
-    width: 100%;
-    height: 300px;
-    transform: translateX(50%);
+html, body {
+  height: 100%;
+}
+pre[class*="language-"] {
+  padding: 5px !important;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .top-container {
+    height: 60px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .main-container {
+    flex: 1;
+    display: flex;
+
+    .left-section {
+      width: 150px;
+      height: 100%;
+      border-right: 1px solid #ccc;
+    }
+
+    .right-section {
+      flex: 1;
+      overflow: auto;
+    }
   }
 }
 </style>

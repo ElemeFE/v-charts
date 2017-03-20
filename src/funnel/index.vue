@@ -4,11 +4,11 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/bar'
-import { bar } from './bar'
+import 'echarts/lib/chart/funnel'
+import { funnel } from './funnel'
 import chartMixin from '../mixins'
 export default {
-  name: 'VeBar',
+  name: 'VeFunnel',
   mixins: [chartMixin],
   methods: {
     init () {
@@ -17,7 +17,7 @@ export default {
     },
 
     dataHandler (data) {
-      const options = bar(data, this.settings)
+      const options = funnel(data, this.settings)
       this.echarts.setOption(options, true)
     }
   }

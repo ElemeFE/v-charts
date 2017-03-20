@@ -1,7 +1,9 @@
 const chartMixin = {
   props: {
     data: { type: [Object, Array], default: null },
-    settings: { type: Object, default () { return {} } }
+    settings: { type: Object, default () { return {} } },
+    width: { type: String, default: 'auto' },
+    height: { type: String, default: '400px' }
   },
 
   watch: {
@@ -13,6 +15,12 @@ const chartMixin = {
       } else {
         this.showLoading('data-empty')
       }
+    }
+  },
+
+  computed: {
+    canvasStyle () {
+      return { width: this.width, height: this.height }
     }
   },
 

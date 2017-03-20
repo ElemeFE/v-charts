@@ -4,11 +4,11 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/bar'
-import { bar } from './bar'
+import 'echarts/lib/chart/radar'
+import { radar } from './radar'
 import chartMixin from '../mixins'
 export default {
-  name: 'VeBar',
+  name: 'VeRadar',
   mixins: [chartMixin],
   methods: {
     init () {
@@ -17,7 +17,7 @@ export default {
     },
 
     dataHandler (data) {
-      const options = bar(data, this.settings)
+      const options = radar(data, this.settings)
       this.echarts.setOption(options, true)
     }
   }

@@ -4,6 +4,7 @@ import { getFormated } from '../util'
 const dataHandler = {
   getStackOptions (stackItems) {
     let stackOptions = {}
+
     Object.keys(stackItems).forEach(key => {
       stackItems[key].forEach(value => {
         stackOptions[value] = key
@@ -16,6 +17,7 @@ const dataHandler = {
   getBarLegends (data, axisOption, axisType, stack) {
     let legends = []
     const formatter = getLabelName
+
     if (!stack || !Object.keys(stack).length) {
       data.some(items => {
         legends = dataHandler.getBarLegendItem(items, axisOption, axisType)
@@ -24,16 +26,19 @@ const dataHandler = {
     } else {
       data.forEach(items => {
         const legendItem = dataHandler.getBarLegendItem(items, axisOption, axisType)
+
         legendItem.forEach(i => {
           if (legends.indexOf(i) === -1) legends.push(i)
         })
       })
     }
+
     return legends.length ? { data: legends, formatter } : false
   },
 
   getBarLegendItem (items, axisOption, axisType) {
     const legendTempArr = []
+
     Object.keys(items).forEach(item => {
       if (item !== 'name') {
         if (axisOption.top.indexOf(item) > -1) {
@@ -43,6 +48,7 @@ const dataHandler = {
         }
       }
     })
+
     return legendTempArr
   },
 
@@ -82,6 +88,7 @@ const dataHandler = {
 
   getBarSeries (data, axisOption, legend, stackOptions) {
     let series = []
+
     legend.data.forEach((legendItem, index) => {
       const legendItemName = legendItem.split(SIGN)[0]
       let legendData = data.map(item => item[legendItemName])
@@ -91,6 +98,7 @@ const dataHandler = {
         data: legendData,
         itemStyle: { normal: { label: { show: false } } }
       }
+
       seriesBase.xAxisIndex = axisOption.top.indexOf(legendItemName) > -1 ? 1 : 0
       if (stackOptions[legendItemName]) {
         seriesBase.stack = stackOptions[legendItemName]
@@ -106,6 +114,7 @@ const dataHandler = {
       trigger: 'axis',
       formatter (items) {
         let tpl = []
+
         tpl.push(`${String(items[0].name).split(SIGN)[0]}<br>`)
         items.forEach(item => {
           tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
@@ -113,6 +122,7 @@ const dataHandler = {
           tpl.push(getFormated(item.value, item.seriesName.split(SIGN)[1]))
           tpl.push('<br>')
         })
+
         return tpl.join('')
       }
     }
@@ -120,6 +130,7 @@ const dataHandler = {
 
   getColumnSeries (data, axisOption, legend, stackOptions) {
     let series = []
+
     legend.data.forEach((legendItem, index) => {
       const legendItemName = legendItem.split(SIGN)[0]
       let legendData = data.map(item => item[legendItemName])
@@ -129,12 +140,14 @@ const dataHandler = {
         data: legendData,
         itemStyle: { normal: { label: { show: false } } }
       }
+
       seriesBase.yAxisIndex = axisOption.right && axisOption.right.indexOf(legendItemName) > -1 ? 1 : 0
       if (stackOptions[legendItemName]) {
         seriesBase.stack = stackOptions[legendItemName]
       }
       series.push(seriesBase)
     })
+
     return series.length ? series : false
   }
 }
@@ -158,9 +171,6 @@ const dataHandler = {
  *   { '201603': 3.15, '201604': 2.4, 'name': '广州' },
  *   { '201603': 3.15, '201604': 2.4, 'name': '深圳' }
  * ]
- * @param {Object} data 原始数据
- * @param {Object} settings 配置项
- * @returns Object
  */
 const bar = (data, settings) => {
   const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {} } = settings
@@ -171,14 +181,12 @@ const bar = (data, settings) => {
   const series = dataHandler.getBarSeries(data, axisOption, legend, stackOptions)
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
+
   return options
 }
 /**
  * 柱状图
  * 配置同条形图
- * @param {Object} data 原始数据
- * @param {Object} settings 配置项
- * @returns Object
  */
 const column = (data, settings) => {
   const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {} } = settings
@@ -189,6 +197,7 @@ const column = (data, settings) => {
   const series = dataHandler.getColumnSeries(data, axisOption, legend, stackOptions)
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
+
   return options
 }
 

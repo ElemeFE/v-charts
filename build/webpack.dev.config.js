@@ -10,17 +10,18 @@ module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   devServer: {
     port: '8099',
+    hot: true,
     contentBase: path.join(__dirname, "dist")
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': '"development"'
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './examples/index.html',
       inject: true
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 })
