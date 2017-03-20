@@ -1,4 +1,6 @@
 var path = require('path')
+var webpack = require('webpack')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -16,7 +18,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': './src'
     }
   },
   module: {
@@ -43,5 +46,24 @@ module.exports = {
         include: [resolve('./src'), resolve('./examples')]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      vue: {
+        postcss: [
+            require('autoprefixer')(),
+        ],
+        loaders: {
+          css: ExtractTextPlugin.extract("css-loader"),
+          less: ExtractTextPlugin.extract("css-loader!less-loader")
+        }
+      }
+    }),
+    new ExtractTextPlugin({
+      filename: 'css/[name].[contenthash:8].css',
+      disable: false,
+      allChunks: true
+    }),
+  ]
 }
