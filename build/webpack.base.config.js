@@ -59,11 +59,6 @@ module.exports = {
           less: ExtractTextPlugin.extract("css-loader!less-loader")
         }
       }
-    }),
-    new ExtractTextPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      disable: false,
-      allChunks: true
-    }),
+    })
   ]
 }

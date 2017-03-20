@@ -3,13 +3,14 @@ var webpack = require('webpack')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.config')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
     path: path.resolve(__dirname, '../docs'),
-    filename: 'js/[name].[chunkhash:8].js',
-    chunkFilename: 'js/[id].[chunkhash:8].js'
+    filename: 'vue-echarts-components/js/[name].[chunkhash:8].js',
+    chunkFilename: 'vue-echarts-components/js/[id].[chunkhash:8].js'
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -20,6 +21,11 @@ module.exports = merge(baseWebpackConfig, {
         warnings: false
       },
       sourceMap: true
+    }),
+    new ExtractTextPlugin({
+      filename: 'vue-echarts-components/css/[name].[contenthash:8].css',
+      disable: false,
+      allChunks: true
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
