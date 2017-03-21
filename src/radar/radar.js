@@ -1,3 +1,4 @@
+import { tipPointStyle } from '../echarts-base'
 import { getFormated } from '../util'
 
 const dataHandler = {
@@ -20,7 +21,7 @@ const dataHandler = {
     return {
       formatter (item) {
         const tpl = []
-        tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+        tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
         tpl.push(`${item.seriesName}<br />`)
         item.data.forEach((val, index) => {
           tpl.push(`${nameTemp[index]}: ${getFormated(val, typeTemp[index])}<br />`)
@@ -58,6 +59,7 @@ const dataHandler = {
   },
 
   getRadarSeries (data, legend, radar) {
+    data = JSON.parse(JSON.stringify(data))
     let radarIndexObj = {}
     radar.indicator.forEach((item, index) => {
       radarIndexObj[item.name] = index

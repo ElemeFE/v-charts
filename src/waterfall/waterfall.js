@@ -37,7 +37,7 @@ const dataHandler = {
 
   getWaterfallSeries (data, dataType) {
     const seriesBase = { type: 'bar', stack: '总量' }
-    const dataSum = Object.keys(data).reduce((pre, cur) => pre + Number(data[cur]), 0)
+    const dataSum = Object.keys(data).reduce((pre, cur) => pre + Number(data[cur]), 0).toFixed(2)
     let dataSumTemp = dataSum
     const series = []
     series.push(Object.assign({

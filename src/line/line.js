@@ -1,4 +1,4 @@
-import { SIGN, getLabelName } from '../echarts-base'
+import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
 import { getFormated } from '../util'
 
 const dataHandler = {
@@ -64,7 +64,6 @@ const dataHandler = {
     for (let i = 0; i < 2; i++) {
       if (axisType[i]) {
         yAxis[i] = Object.assign({}, yAxisBase, {
-          name: axisName[i] || '',
           axisLabel: {
             formatter (val) {
               return getFormated(val, axisType[i])
@@ -72,8 +71,9 @@ const dataHandler = {
           }
         })
       } else {
-        yAxis[i] = yAxisBase
+        yAxis[i] = Object.assign({}, yAxisBase)
       }
+      yAxis[i].name = axisName[i] || ''
     }
     return yAxis
   },
@@ -87,7 +87,7 @@ const dataHandler = {
         items.forEach(item => {
           let showData
           showData = getFormated(item.data, item.seriesName.split(SIGN)[1])
-          tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+          tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
           tpl.push(`${item.seriesName.split(SIGN)[0]}: ${showData}`)
           tpl.push('<br>')
         })

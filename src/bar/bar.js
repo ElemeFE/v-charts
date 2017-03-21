@@ -1,4 +1,4 @@
-import { SIGN, getLabelName } from '../echarts-base'
+import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
 import { getFormated } from '../util'
 
 const dataHandler = {
@@ -41,7 +41,8 @@ const dataHandler = {
 
     Object.keys(items).forEach(item => {
       if (item !== 'name') {
-        if (axisOption.top.indexOf(item) > -1) {
+        if ((axisOption.top && axisOption.top.indexOf(item) > -1) ||
+          (axisOption.right && axisOption.right.indexOf(item) > -1)) {
           legendTempArr.push(`${item}${SIGN}${axisType[1]}`)
         } else {
           legendTempArr.push(`${item}${SIGN}${axisType[0]}`)
@@ -71,7 +72,6 @@ const dataHandler = {
     for (let i = 0; i < 2; i++) {
       if (axisType[i]) {
         xAxis[i] = Object.assign({}, xAxisBase, {
-          name: axisName[i] || '',
           axisLabel: {
             formatter (val) {
               return getFormated(val, axisType[i])
@@ -79,8 +79,9 @@ const dataHandler = {
           }
         })
       } else {
-        xAxis[i] = xAxisBase
+        xAxis[i] = Object.assign({}, xAxisBase)
       }
+      xAxis[i].name = axisName[i] || ''
     }
 
     return xAxis
@@ -117,7 +118,7 @@ const dataHandler = {
 
         tpl.push(`${String(items[0].name).split(SIGN)[0]}<br>`)
         items.forEach(item => {
-          tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+          tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
           tpl.push(`${item.seriesName.split(SIGN)[0]}: `)
           tpl.push(getFormated(item.value, item.seriesName.split(SIGN)[1]))
           tpl.push('<br>')
@@ -181,7 +182,6 @@ const bar = (data, settings) => {
   const series = dataHandler.getBarSeries(data, axisOption, legend, stackOptions)
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
-
   return options
 }
 /**
@@ -197,7 +197,6 @@ const column = (data, settings) => {
   const series = dataHandler.getColumnSeries(data, axisOption, legend, stackOptions)
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
-
   return options
 }
 

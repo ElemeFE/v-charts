@@ -39,6 +39,13 @@ echarts.registerTheme('ve-chart', {
 
 const SIGN = '@_@'
 const getLabelName = (item) => item.split(SIGN)[0]
+const tipPointStyle = [
+  'display: inline-block;',
+  'width: 10px;',
+  'height: 10px;',
+  'border-radius: 50%;',
+  'margin-right:2px;'
+].join('')
 
-export { SIGN, getLabelName }
+export { SIGN, getLabelName, tipPointStyle }
 export default echarts

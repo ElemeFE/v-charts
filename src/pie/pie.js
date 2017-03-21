@@ -1,13 +1,13 @@
-import { SIGN } from '../echarts-base'
+import { SIGN, tipPointStyle } from '../echarts-base'
 import { getFormated } from '../util'
-const pieRadius = 60
-const ringRadius = [50, 60]
-const pieOffset = 30
+const pieRadius = 100
+const ringRadius = [80, 100]
+const pieOffset = 260
 
 const dataHandler = {
-  getPieSeries (data, dataType, style, perType) {
+  getPieSeries (data, dataType, style, percentShow) {
     let radius = pieRadius
-    let centerY = '50%'
+    let centerY = pieOffset
 
     if (style) {
       centerY = Math.min(style.width, style.height) / 2 + 2 * pieOffset
@@ -20,7 +20,7 @@ const dataHandler = {
       data: [],
       center: ['50%', centerY]
     }
-    if (perType) {
+    if (percentShow) {
       series.label = {
         normal: {
           show: true,
@@ -55,7 +55,7 @@ const dataHandler = {
     return {
       formatter (item) {
         let tpl = []
-        tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+        tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
         tpl.push(`${item.name.split(SIGN)[0]}:`)
         tpl.push(getFormated(item.value, dataType))
         tpl.push(`(${item.percent}%)`)
@@ -64,7 +64,7 @@ const dataHandler = {
     }
   },
 
-  getRingSeries (data, dateType, style) {
+  getRingSeries (data, dataType, style, percentShow) {
     let radius = ringRadius
     let centerY = '50%'
     if (style) {
@@ -79,6 +79,22 @@ const dataHandler = {
       center: ['50%', centerY],
       data: []
     }]
+
+    if (percentShow) {
+      series[0].label = {
+        normal: {
+          show: true,
+          formatter (item) {
+            let tpl = []
+            tpl.push(`${item.name.split(SIGN)[0]}:`)
+            tpl.push(getFormated(item.value, dataType))
+            tpl.push(`(${item.percent}%)`)
+            return tpl.join(' ')
+          }
+        }
+      }
+    }
+
     Object.keys(data).forEach(key => {
       series[0].data.push({
         name: key,
@@ -103,8 +119,8 @@ const dataHandler = {
  * @returns Object
  */
 const pie = (data, settings, style) => {
-  const { dataType, perType } = settings
-  const series = dataHandler.getPieSeries(data, dataType, style, perType)
+  const { dataType, percentShow } = settings
+  const series = dataHandler.getPieSeries(data, dataType, style, percentShow)
   const legend = dataHandler.getPieLegend(data, dataType)
   const tooltip = dataHandler.getPieTooltip(dataType)
   const options = { series, legend, tooltip }
@@ -125,8 +141,8 @@ const pie = (data, settings, style) => {
  * @returns Object
  */
 const ring = (data, settings, style) => {
-  const { dataType } = settings
-  const series = dataHandler.getRingSeries(data, dataType, style)
+  const { dataType, percentShow } = settings
+  const series = dataHandler.getRingSeries(data, dataType, style, percentShow)
   const legend = dataHandler.getPieLegend(data, dataType)
   const tooltip = dataHandler.getPieTooltip(dataType)
   const options = { series, legend, tooltip }

@@ -1,4 +1,4 @@
-import { getLabelName } from '../echarts-base'
+import { getLabelName, tipPointStyle } from '../echarts-base'
 import { getFormated, getLineKB } from '../util'
 
 const scatterRange = [10, 80]
@@ -18,7 +18,7 @@ const dataHandler = {
     return {
       formatter (item) {
         let tpl = []
-        tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+        tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
         tpl.push(`${item.seriesName}<br>`)
         dataNames.forEach((name, index) => {
           tpl.push(`${name} : ${getFormated(item.data[index], dataType[index])}<br>`)
@@ -43,6 +43,7 @@ const dataHandler = {
   },
 
   getScatterSeries (data, dataType, axisNames) {
+    data = JSON.parse(JSON.stringify(data))
     const type = 'scatter'
     const itemStyle = {
       normal: {
@@ -126,7 +127,6 @@ const scatter = (data, settings) => {
   const yAxis = dataHandler.getScatterAxis(dataType[1], axisNames[1])
   const series = dataHandler.getScatterSeries(data, dataType, axisNames)
   const options = { legend, tooltip, xAxis, yAxis, series }
-  console.log(options)
   return options
 }
 

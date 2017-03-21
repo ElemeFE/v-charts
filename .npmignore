@@ -4,3 +4,4 @@ examples
 .eslintrc.js
 .travis.yml
 yarn.lock
+docs

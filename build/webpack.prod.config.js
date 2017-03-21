@@ -4,13 +4,12 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.config')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
-var DeployPrefix = '/vue-echarts-components'
-var RewritePath = require('./rewrite-path')
 
 module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
     path: path.resolve(__dirname, '../docs'),
+    publicPath: '/vue-echarts-components',
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[id].[chunkhash:8].js'
   },
@@ -62,9 +61,6 @@ module.exports = merge(baseWebpackConfig, {
           less: ExtractTextPlugin.extract("css-loader!less-loader")
         }
       }
-    }),
-    new RewritePath({
-      pathPrefix: DeployPrefix
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',

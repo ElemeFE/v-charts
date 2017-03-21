@@ -1,14 +1,16 @@
 <template>
-  <div class="page-bar">
+  <div class="page-item">
     <div class="chart-item" v-for="d in chartData" :key="d">
-      <h3>{{ d.name }}</h3>
-      <component :is="`ve-${type}`" :data="d.data" :settings="d.settings"></component>
+      <div class="chart-part">
+        <h3>{{ d.name }}</h3>
+        <component :is="`ve-${type}`" :data="d.data" :settings="d.settings"></component>
+      </div>
       <div class="code-view">
         <p>数据格式</p>
         <div class="data-code">
           <pre class="language-javascript"><code class="language-javascript" v-html='getCode(d.data)'></code></pre>
         </div>
-        <p>配置</p>
+        <p>配置项</p>
         <div class="setting-code">
           <pre class="language-javascript"><code class="language-javascript" v-html='getCode(d.settings)'></code></pre>
         </div>
@@ -70,3 +72,29 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.page-item {
+  h3, p {
+    margin: 0;
+  }
+
+  pre {
+    height: 150px;
+  }
+
+  .chart-item {
+    display: flex;
+    padding: 15px;
+
+    .chart-part {
+      flex: 1;
+    }
+
+    .code-view {
+      width: 400px;
+      margin-left: 20px;
+    }
+  }
+}
+</style>

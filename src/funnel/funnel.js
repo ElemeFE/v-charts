@@ -1,4 +1,4 @@
-import { SIGN } from '../echarts-base'
+import { SIGN, tipPointStyle } from '../echarts-base'
 import { getFormated } from '../util'
 
 const dataHandler = {
@@ -9,7 +9,7 @@ const dataHandler = {
         let tpl = []
         const name = item.name.split(SIGN)[0]
         const type = item.name.split(SIGN)[1]
-        tpl.push(`<span class="chart-point" style="background-color:${item.color}"></span>`)
+        tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
         tpl.push(`${name}: ${getFormated(item.data.realValue, type)}`)
         return tpl.join('')
       }
