@@ -3,6 +3,16 @@ import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 import 'echarts/lib/component/title'
 
+const SIGN = '@_@'
+const getLabelName = (item) => item.split(SIGN)[0]
+const tipPointStyle = [
+  'display: inline-block;',
+  'width: 10px;',
+  'height: 10px;',
+  'border-radius: 50%;',
+  'margin-right:2px;'
+].join('')
+
 echarts.registerTheme('ve-chart', {
   color: [
     '#19d4ae', '#5ab1ef', '#fa6e86',
@@ -36,16 +46,6 @@ echarts.registerTheme('ve-chart', {
     splitArea: { show: false }
   }
 })
-
-const SIGN = '@_@'
-const getLabelName = (item) => item.split(SIGN)[0]
-const tipPointStyle = [
-  'display: inline-block;',
-  'width: 10px;',
-  'height: 10px;',
-  'border-radius: 50%;',
-  'margin-right:2px;'
-].join('')
 
 export { SIGN, getLabelName, tipPointStyle }
 export default echarts

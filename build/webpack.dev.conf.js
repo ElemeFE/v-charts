@@ -1,7 +1,7 @@
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var path = require('path')
-var baseWebpackConfig = require('./webpack.base.config')
+var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var opn = require('opn')
 
@@ -11,7 +11,8 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     port: '8099',
     hot: true,
-    contentBase: path.join(__dirname, "dist")
+    contentBase: path.join(__dirname, "dist"),
+    stats: "errors-only"
   },
   plugins: [
     new webpack.DefinePlugin({

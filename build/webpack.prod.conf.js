@@ -1,7 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.config')
+var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 

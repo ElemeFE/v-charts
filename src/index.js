@@ -1,4 +1,4 @@
-import VeBar from './bar'
+import VeBar from './bar/index'
 import VeColumn from './bar/column'
 import VeLine from './line'
 import VePie from './pie'
