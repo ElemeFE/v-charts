@@ -5,14 +5,14 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.conf.js",
-    "build": "rm -f -r docs && ./node_modules/.bin/webpack --config ./build/webpack.prod.conf.js",
+    "build": "rm -f -r dist && ./node_modules/.bin/webpack --config ./build/webpack.prod.conf.js --hide-modules",
     "com": "rm -f -r lib && node build/rollup.com.conf.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xiguaxigua/vue-echarts-components.git"
   },
-  "keywords": ['vue', 'echarts'],
+  "keywords": ["vue", "echarts"],
   "author": "xiguaxigua",
   "license": "ISC",
   "bugs": {

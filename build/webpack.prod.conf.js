@@ -8,8 +8,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = merge(baseWebpackConfig, {
   devtool: '#source-map',
   output: {
-    path: path.resolve(__dirname, '../docs'),
-    publicPath: '/vue-echarts-components',
+    path: path.resolve(__dirname, '../dist'),
     filename: 'js/[name].[chunkhash:8].js',
     chunkFilename: 'js/[id].[chunkhash:8].js'
   },
