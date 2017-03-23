@@ -4,14 +4,14 @@ export default {
   data: [
     {
       name: '瀑布图',
-      data: { d1: 100, d2: 200, d3: 300 },
+      data: { '吃饭': 4, '睡觉': 8, '工作': 12 },
       settings: {}
     },
     {
       name: '带轴类型瀑布图',
-      data: { d1: 0.1, d2: 0.2, d3: 0.3 },
+      data: { '吃饭': 0.2, '睡觉': 0.4, '工作': 0.4 },
       settings: {
-        axisType: 'percent'
+        dataType: 'percent'
       }
     }
   ]

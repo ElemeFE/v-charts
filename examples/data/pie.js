@@ -5,18 +5,18 @@ export default {
     {
       name: '饼图',
       data: {
-        a: 1,
-        b: 2,
-        c: 3
+        '直接访问': 111,
+        '邮件营销': 222,
+        '联盟广告': 333
       },
       settings: {}
     },
     {
       name: '直接显示比例饼图',
       data: {
-        a: 1,
-        b: 2,
-        c: 3
+        '直接访问': 111,
+        '邮件营销': 222,
+        '联盟广告': 333
       },
       settings: {
         percentShow: true
@@ -25,9 +25,9 @@ export default {
     {
       name: '百分比类型数据饼图',
       data: {
-        a: 0.1,
-        b: 0.2,
-        c: 0.3
+        '直接访问': 0.211,
+        '邮件营销': 0.42,
+        '联盟广告': 0.333
       },
       settings: {
         dataType: 'percent'

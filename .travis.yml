@@ -1,13 +1,13 @@
 language: node_js
 node_js:
 - node
-- --lts # LTS: See https://github.com/creationix/nvm/pull/1070
+- --lts
 branches:
   only:
   - dev
 install:
-  - npm install
+  - yarn
 script:
-  - npm run build
+  - npm run com
 after_success:
   - sh build/deploy.sh

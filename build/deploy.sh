@@ -1,6 +1,7 @@
 #! /bin/sh
 
 if [ -n "$GITHUB_TOKEN" ]; then
+  npm run build
   mkdir web
   cd web
   git init

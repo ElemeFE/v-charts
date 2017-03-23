@@ -32,20 +32,19 @@ export default {
         axisOption: {
           right: ['201603']
         },
-        axisName: ['title1', 'title2']
+        axisName: ['收入', '支出']
       }
     },
     {
       name: '带轴属性柱状图',
       data: [
-        { '201603': 100, '201604': 150, 'name': '上海' },
-        { '201603': 110, '201604': 200, 'name': '北京' }
+        { '201603': 0.1, '201604': 150, 'name': '上海' },
+        { '201603': 0.2, '201604': 200, 'name': '北京' }
       ],
       settings: {
         axisOption: {
           right: ['201603']
         },
-        axisName: ['title1', 'title2'],
         axisType: ['KMB', 'percent']
       }
     },
@@ -60,8 +59,8 @@ export default {
           '2016': ['201603', '201604'],
           '2017': ['201703', '201704']
         },
-        axisName: ['title1', 'title2'],
-        axisType: ['KMB', 'percent']
+        axisName: ['收入'],
+        axisType: ['KMB']
       }
     }
   ]

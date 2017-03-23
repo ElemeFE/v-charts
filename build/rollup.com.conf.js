@@ -3,6 +3,7 @@ var vue = require('rollup-plugin-vue2')
 var resolve = require('rollup-plugin-node-resolve')
 var commonjs = require('rollup-plugin-commonjs')
 var babel = require('rollup-plugin-babel')
+var eslint = require('rollup-plugin-eslint')
 var componentInfo = require('../src/component-list')
 var echartsLib = require('../src/echarts-lib')
 
@@ -15,6 +16,10 @@ function rollupFn(entryPath, destPath) {
     entry: entryPath,
     external: echartsLib,
     plugins: [
+      eslint({
+        throwError: true,
+        exclude: 'node_modules/**'
+      }),
       vue(),
       resolve({
         extensions: ['.js', '.vue']
@@ -29,6 +34,5 @@ function rollupFn(entryPath, destPath) {
       format: 'cjs',
       dest: destPath
     })
-  })
-
+  }).catch((e) => { process.exit(1) })
 }

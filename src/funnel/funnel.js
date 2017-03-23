@@ -31,6 +31,7 @@ const dataHandler = {
       label: { normal: { show: true, position: 'inside', formatter (item) { return item.name.split(SIGN)[0] } } },
       data: []
     }
+
     let realData = dataHandler.getFunnelValue(data, sequence)
     realData.forEach(d => {
       series.data.push({ name: `${d.name}${SIGN}${dataType}`, value: d.value, realValue: d.realValue })
@@ -54,7 +55,7 @@ const dataHandler = {
     }
     const step = 100 / Object.keys(data).length
     let resultData = falseFunnel
-      ? Object.keys(data).reverse().map((key, index) => ({ name: key, value: (index + 1) * step, realValue: data[key] }))
+      ? sequence.slice().reverse().map((key, index) => ({ name: key, value: (index + 1) * step, realValue: data[key] }))
       : Object.keys(data).map(key => ({ name: key, value: data[key], realValue: data[key] }))
     return resultData
   }

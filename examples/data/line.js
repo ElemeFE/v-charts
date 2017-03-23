@@ -35,7 +35,7 @@ export default {
         axisOption: {
           right: ['a']
         },
-        axisName: ['title1', 'title2']
+        axisName: ['收入', '支出']
       }
     },
     {
@@ -49,8 +49,7 @@ export default {
         axisOption: {
           right: ['a']
         },
-        axisType: ['KMB', 'percent'],
-        axisName: ['title1', 'title2']
+        axisType: ['KMB', 'percent']
       }
     }
   ]
