@@ -3,7 +3,10 @@ const chartMixin = {
     data: { type: [Object, Array], default: null },
     settings: { type: Object, default () { return {} } },
     width: { type: String, default: 'auto' },
-    height: { type: String, default: '400px' }
+    height: { type: String, default: '400px' },
+    beforeConfig: { type: Function },
+    afterConfig: { type: Function },
+    events: { type: Object }
   },
 
   watch: {
@@ -21,6 +24,28 @@ const chartMixin = {
   computed: {
     canvasStyle () {
       return { width: this.width, height: this.height }
+    }
+  },
+
+  methods: {
+    dataHandler (data) {
+      if (this.beforeConfig) data = this.beforeConfig(data)
+      let options = this.chartHandler(data, this.settings)
+      if (this.afterConfig) options = this.afterConfig(options)
+      this.echarts.setOption(options, true)
+    },
+
+    init () {
+      if (this.echarts) return
+      this.echarts = this.echartsLib.init(this.$refs.canvas, 've-chart')
+      if (this.data) this.dataHandler(this.data)
+      if (this.events) this.bindEvents()
+    },
+
+    bindEvents () {
+      Object.keys(this.events).forEach(event => {
+        this.echarts.on(event, this.events[event])
+      })
     }
   },
 

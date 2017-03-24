@@ -10,16 +10,9 @@ import chartMixin from '../mixins'
 export default {
   name: 'VeRing',
   mixins: [chartMixin],
-  methods: {
-    init () {
-      this.echarts = echarts.init(this.$refs.canvas, 've-chart')
-      if (this.data) this.dataHandler(this.data)
-    },
-
-    dataHandler (data) {
-      const options = ring(data, this.settings)
-      this.echarts.setOption(options, true)
-    }
+  created () {
+    this.chartHandler = ring
+    this.echartsLib = echarts
   }
 }
 </script>

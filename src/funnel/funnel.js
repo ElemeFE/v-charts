@@ -28,7 +28,7 @@ const dataHandler = {
   getFunnelSeries (data, sequence, dataType, ascending) {
     let series = {
       type: 'funnel',
-      label: { normal: { show: true, position: 'inside', formatter (item) { return item.name.split(SIGN)[0] } } },
+      label: { normal: { formatter (item) { return item.name.split(SIGN)[0] } } },
       data: []
     }
 

@@ -10,16 +10,9 @@ import chartMixin from '../mixins'
 export default {
   name: 'VeLine',
   mixins: [chartMixin],
-  methods: {
-    init () {
-      this.echarts = echarts.init(this.$refs.canvas, 've-chart')
-      if (this.data) this.dataHandler(this.data)
-    },
-
-    dataHandler (data) {
-      const options = line(data, this.settings)
-      this.echarts.setOption(options, true)
-    }
+  created () {
+    this.chartHandler = line
+    this.echartsLib = echarts
   }
 }
 </script>
