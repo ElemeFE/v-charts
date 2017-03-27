@@ -1,5 +1,5 @@
 import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, clone } from '../util'
 
 const dataHandler = {
   getLineLegends (data, axisOption, axisType) {
@@ -94,6 +94,22 @@ const dataHandler = {
         return tpl.join('')
       }
     }
+  },
+
+  getLineData (data, dimName) {
+    let result = { key: [] }
+    if (!Array.isArray(data.rows) || !Array.isArray(data.columns)) return data
+    dimName = dimName !== undefined ? dimName : data.columns[0]
+    const index = data.columns.indexOf(dimName)
+    data.columns.splice(index, 1)
+    data.columns.forEach(d => { result[d] = [] })
+    data.rows.forEach(row => {
+      result.key.push(row[dimName])
+      data.columns.forEach(column => {
+        result[column].push(row[column])
+      })
+    })
+    return result
   }
 }
 /**
@@ -118,7 +134,10 @@ const dataHandler = {
 const line = (data, settings) => {
   if (!data) return false
 
-  const { axisOption = { right: [] }, axisType = [], axisName = [] } = settings
+  const { axisOption = { right: [] }, axisType = [], axisName = [], dimName, tableData } = settings
+
+  if (tableData) data = dataHandler.getLineData(clone(data), dimName)
+
   const legend = dataHandler.getLineLegends(data, axisOption, axisType)
   const xAxis = dataHandler.getLineXAxis(data)
   const series = dataHandler.getLineSeries(data, axisOption, axisType)

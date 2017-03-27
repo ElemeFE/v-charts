@@ -9,6 +9,9 @@
           {{ menu.name }}
         </router-link>
       </li>
+      <li>
+        <router-link exact to="/test">切换实例</router-link>
+      </li>
     </ul>
   </div>
 </template>

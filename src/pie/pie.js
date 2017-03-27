@@ -1,8 +1,8 @@
 import { SIGN, tipPointStyle } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, clone } from '../util'
 const pieRadius = 100
 const ringRadius = [80, 100]
-const pieOffset = 260
+const pieOffset = 200
 
 const dataHandler = {
   getPieSeries (data, dataType, style, percentShow) {
@@ -102,6 +102,17 @@ const dataHandler = {
       })
     })
     return series
+  },
+
+  getPieData (data, dimName, meaName) {
+    let result = {}
+    if (!Array.isArray(data.rows) || !Array.isArray(data.columns)) return data
+    dimName = dimName !== undefined ? dimName : data.columns[0]
+    meaName = meaName !== undefined ? meaName : data.columns[1]
+    data.rows.forEach(row => {
+      result[row[dimName]] = row[meaName]
+    })
+    return result
   }
 }
 /**
@@ -119,7 +130,8 @@ const dataHandler = {
  * @returns Object
  */
 const pie = (data, settings, style) => {
-  const { dataType, percentShow } = settings
+  const { dataType, percentShow, tableData, dimName, meaName } = settings
+  if (tableData) data = dataHandler.getPieData(clone(data), dimName, meaName)
   const series = dataHandler.getPieSeries(data, dataType, style, percentShow)
   const legend = dataHandler.getPieLegend(data, dataType)
   const tooltip = dataHandler.getPieTooltip(dataType)
@@ -141,7 +153,8 @@ const pie = (data, settings, style) => {
  * @returns Object
  */
 const ring = (data, settings, style) => {
-  const { dataType, percentShow } = settings
+  const { dataType, percentShow, tableData, dimName, meaName } = settings
+  if (tableData) data = dataHandler.getPieData(clone(data), dimName, meaName)
   const series = dataHandler.getRingSeries(data, dataType, style, percentShow)
   const legend = dataHandler.getPieLegend(data, dataType)
   const tooltip = dataHandler.getPieTooltip(dataType)

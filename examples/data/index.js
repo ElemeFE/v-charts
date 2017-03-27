@@ -7,5 +7,6 @@ import waterfall from './waterfall'
 import scatter from './scatter'
 import funnel from './funnel'
 import radar from './radar'
+import chart from './chart'
 
-export default { bar, column, line, pie, ring, waterfall, scatter, funnel, radar }
+export default { bar, column, line, pie, ring, waterfall, scatter, funnel, radar, chart }

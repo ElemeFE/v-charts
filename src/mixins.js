@@ -14,9 +14,14 @@ const chartMixin = {
       const dataKeys = Object.keys(v)
       const dataKeyProp = v.key
       if ((dataKeyProp && Array.isArray(dataKeyProp) && dataKeyProp.length) || dataKeys.length) {
-        this.processData(v)
-      } else {
-        this.showLoading('data-empty')
+        this.dataHandler(v)
+      }
+    },
+    settings: {
+      deep: true,
+      handler (v) {
+        this.chartHandler = this.chartLib[v.type]
+        this.dataHandler(this.data)
       }
     }
   },
@@ -29,6 +34,7 @@ const chartMixin = {
 
   methods: {
     dataHandler (data) {
+      if (!this.chartHandler) return
       if (this.beforeConfig) data = this.beforeConfig(data)
       let options = this.chartHandler(data, this.settings)
       if (this.afterConfig) options = this.afterConfig(options)

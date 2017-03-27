@@ -4,3 +4,6 @@ examples
 .eslintrc.js
 .travis.yml
 yarn.lock
+node_modules
+yarn-error.log
+npm-debug.log

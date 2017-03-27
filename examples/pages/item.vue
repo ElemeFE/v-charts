@@ -29,6 +29,7 @@ import VeWaterfall from '../../src/waterfall/index'
 import VeScatter from '../../src/scatter/index'
 import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
+import VeChart from '../../src/chart/index'
 
 export default {
   name: 'Item',
@@ -68,7 +69,8 @@ export default {
     VeWaterfall,
     VeScatter,
     VeFunnel,
-    VeRadar
+    VeRadar,
+    VeChart
   }
 }
 </script>

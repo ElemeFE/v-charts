@@ -7,5 +7,6 @@ import VeWaterfall from './waterfall'
 import VeScatter from './scatter'
 import VeFunnel from './funnel'
 import VeRadar from './radar'
+import VeChart from './chart'
 
-export { VeBar, VeColumn, VeRing, VeLine, VePie, VeWaterfall, VeScatter, VeFunnel, VeRadar }
+export { VeBar, VeColumn, VeRing, VeLine, VePie, VeWaterfall, VeScatter, VeFunnel, VeRadar, VeChart }

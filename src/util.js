@@ -39,4 +39,6 @@ const getLineKB = (s, v) => {
   return result
 }
 
-export { numberFormat, formatTausends, getFormated, getLineKB }
+const clone = (v) => JSON.parse(JSON.stringify(v))
+
+export { numberFormat, formatTausends, getFormated, getLineKB, clone }

@@ -1,5 +1,5 @@
 import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, clone } from '../util'
 
 const dataHandler = {
   getStackOptions (stackItems) {
@@ -150,6 +150,22 @@ const dataHandler = {
     })
 
     return series.length ? series : false
+  },
+
+  getBarData (data, dimName) {
+    let result = []
+    if (!Array.isArray(data.rows) || !Array.isArray(data.columns)) return data
+    dimName = dimName !== undefined ? dimName : data.columns[0]
+    const index = data.columns.indexOf(dimName)
+    data.columns.splice(index, 1)
+    data.rows.forEach(row => {
+      let itemData = { name: row[dimName] }
+      data.columns.forEach(column => {
+        itemData[column] = row[column]
+      })
+      result.push(itemData)
+    })
+    return result
   }
 }
 /**
@@ -174,7 +190,8 @@ const dataHandler = {
  * ]
  */
 const bar = (data, settings) => {
-  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {} } = settings
+  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {}, dimName, tableData } = settings
+  if (tableData) data = dataHandler.getBarData(clone(data), dimName)
   const stackOptions = dataHandler.getStackOptions(stack)
   const legend = dataHandler.getBarLegends(data, axisOption, axisType, stack)
   const yAxis = dataHandler.getBarYAxis(data)
@@ -189,7 +206,8 @@ const bar = (data, settings) => {
  * 配置同条形图
  */
 const column = (data, settings) => {
-  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {} } = settings
+  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {}, dimName, tableData } = settings
+  if (tableData) data = dataHandler.getBarData(clone(data), dimName)
   const legend = dataHandler.getBarLegends(data, axisOption, axisType, stack)
   const stackOptions = dataHandler.getStackOptions(stack)
   const xAxis = dataHandler.getBarYAxis(data, axisOption, axisType)

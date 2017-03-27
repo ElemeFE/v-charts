@@ -8,5 +8,6 @@ module.exports = {
   'src/radar/index.vue': 'lib/radar.js',
   'src/scatter/index.vue': 'lib/scatter.js',
   'src/waterfall/index.vue': 'lib/waterfall.js',
-  'src/index.js': 'lib/index.js'
+  'src/index.js': 'lib/index.js',
+  'src/chart/index.vue': 'lib/chart.js'
 }
