@@ -1,79 +1,83 @@
-import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
+import { SIGN, getLegendName, itemPoint } from '../echarts-base'
 import { getFormated, clone } from '../util'
 
 const dataHandler = {
-  getLineLegends (data, axisOption, axisType) {
+  getLineLegends ({ measures, axisSite, yAxisType }) {
     let legends = []
 
-    const formatter = getLabelName
+    const formatter = getLegendName
 
-    Object.keys(data).forEach(key => {
-      if (key !== 'key') {
-        let legendItem = axisOption.right.indexOf(key) > -1
-          ? `${key}${SIGN}${axisType[1]}`
-          : `${key}${SIGN}${axisType[0]}`
-        legends.push(legendItem)
-      }
+    measures.forEach(measure => {
+      let legendItem = ~axisSite.right.indexOf(measure)
+        ? `${measure}${SIGN}${yAxisType[1]}`
+        : `${measure}${SIGN}${yAxisType[0]}`
+      legends.push(legendItem)
     })
 
     return legends.length ? { data: legends, formatter } : false
   },
 
-  getLineXAxis (data) {
-    if (!data.key) return false
-    return [{
+  getLineXAxis ({ dimensions, rows, xAxisName }) {
+    return dimensions.map((dimension, index) => ({
       type: 'category',
+      nameLocation: 'middle',
+      nameGap: 22,
+      name: xAxisName[index] || dimension,
       axisTick: { show: true, lineStyle: { color: '#eee' } },
-      data: data.key,
+      data: rows.map(row => row[dimension]),
       axisLabel: {
         formatter (v) {
           return String(v)
         }
       }
-    }]
+    }))
   },
 
-  getLineSeries (data, axisOption, axisType) {
+  getLineSeries ({ rows, axisSite, yAxisType, dimensions, measures }) {
     let series = []
-
-    Object.keys(data).forEach(key => {
-      if (key !== 'key') {
-        let seriesItem = {
-          name: key,
-          type: 'line',
-          data: data[key]
-        }
-
-        if (axisOption.right.indexOf(key) > -1) {
-          seriesItem.yAxisIndex = 1
-          seriesItem.name = `${key}${SIGN}${axisType[1]}`
-        } else {
-          seriesItem.yAxisIndex = 0
-          seriesItem.name = `${key}${SIGN}${axisType[0]}`
-        }
-
-        series.push(seriesItem)
+    const dataTemp = {}
+    measures.forEach(measure => { dataTemp[measure] = [] })
+    rows.forEach(row => {
+      measures.forEach(measure => {
+        dataTemp[measure].push(row[measure] || 0)
+      })
+    })
+    measures.forEach(measure => {
+      let seriesItem = {
+        name: measure,
+        type: 'line',
+        data: dataTemp[measure]
       }
+
+      if (~axisSite.right.indexOf(measure)) {
+        seriesItem.yAxisIndex = 1
+        seriesItem.name = `${measure}${SIGN}${yAxisType[1]}`
+      } else {
+        seriesItem.yAxisIndex = 0
+        seriesItem.name = `${measure}${SIGN}${yAxisType[0]}`
+      }
+
+      series.push(seriesItem)
     })
     return series.length ? series : false
   },
 
-  getLineYAxis (axisName, axisType) {
+  getLineYAxis ({ yAxisName, yAxisType }) {
     const yAxisBase = { type: 'value', axisTick: { show: false } }
     let yAxis = []
     for (let i = 0; i < 2; i++) {
-      if (axisType[i]) {
+      if (yAxisType[i]) {
         yAxis[i] = Object.assign({}, yAxisBase, {
           axisLabel: {
             formatter (val) {
-              return getFormated(val, axisType[i])
+              return getFormated(val, yAxisType[i])
             }
           }
         })
       } else {
         yAxis[i] = Object.assign({}, yAxisBase)
       }
-      yAxis[i].name = axisName[i] || ''
+      yAxis[i].name = yAxisName[i] || ''
     }
     return yAxis
   },
@@ -86,64 +90,36 @@ const dataHandler = {
         tpl.push(`${items[0].name}<br>`)
         items.forEach(item => {
           let showData
-          showData = getFormated(item.data, item.seriesName.split(SIGN)[1])
-          tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
-          tpl.push(`${item.seriesName.split(SIGN)[0]}: ${showData}`)
+          const [name, type] = item.seriesName.split(SIGN)
+          showData = getFormated(item.data, type)
+          tpl.push(itemPoint(item.color))
+          tpl.push(`${name}: ${showData}`)
           tpl.push('<br>')
         })
         return tpl.join('')
       }
     }
-  },
-
-  getLineData (data, dimName) {
-    let result = { key: [] }
-    if (!Array.isArray(data.rows) || !Array.isArray(data.columns)) return data
-    dimName = dimName !== undefined ? dimName : data.columns[0]
-    const index = data.columns.indexOf(dimName)
-    data.columns.splice(index, 1)
-    data.columns.forEach(d => { result[d] = [] })
-    data.rows.forEach(row => {
-      result.key.push(row[dimName])
-      data.columns.forEach(column => {
-        result[column].push(row[column])
-      })
-    })
-    return result
   }
 }
-/**
- * 折线图
- * settings = {
- *   axisOption: {
- *     right: [a], 右Y轴中数据
- *     left: [b]
- *   }，
- *   axisType: ['KMB', 'percent'], 坐标轴类型 支持KMB, percent, normal
- *   axisName: ['title1', 'title2'], 坐标轴标题
- * }
- * data = {
- *   key: ['1', '2', '3', '4', '5', '6'],
- *   a: [2000, 5000, 3000, 10000, 5000, 6000],
- *   b: [7, 3, 4, 2, 5, 3]
- * }
- * @param {Object} data 原始数据
- * @param {Object} settings 配置项
- * @returns Object
- */
+
 const line = (data, settings) => {
-  if (!data) return false
+  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
+  const { columns, rows } = clone(data)
 
-  const { axisOption = { right: [] }, axisType = [], axisName = [], dimName, tableData } = settings
+  const {
+    axisSite = { right: [] },
+    yAxisType = ['normal', 'normal'],
+    yAxisName = [],
+    dimensions = [columns[0]],
+    xAxisName = dimensions,
+    measures = columns.slice(1, columns.length)
+  } = settings
 
-  if (tableData) data = dataHandler.getLineData(clone(data), dimName)
-
-  const legend = dataHandler.getLineLegends(data, axisOption, axisType)
-  const xAxis = dataHandler.getLineXAxis(data)
-  const series = dataHandler.getLineSeries(data, axisOption, axisType)
-  const yAxis = dataHandler.getLineYAxis(axisName, axisType)
+  const legend = dataHandler.getLineLegends({ measures, axisSite, yAxisType })
   const tooltip = dataHandler.getLineTooltip()
-
+  const xAxis = dataHandler.getLineXAxis({ dimensions, rows, xAxisName })
+  const yAxis = dataHandler.getLineYAxis({ yAxisName, yAxisType })
+  const series = dataHandler.getLineSeries({ rows, axisSite, yAxisType, dimensions, measures })
   if (!legend || !xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }

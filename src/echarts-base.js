@@ -4,14 +4,28 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/title'
 
 const SIGN = '@_@'
-const getLabelName = (item) => item.split(SIGN)[0]
-const tipPointStyle = [
+const getLabelName = (item) => item.split(SIGN)[0] // TODO: delete
+const getLegendName = (item) => item.split(SIGN)[0]
+const tipPointStyle = [ // TODO: delete
   'display: inline-block;',
   'width: 10px;',
   'height: 10px;',
   'border-radius: 50%;',
   'margin-right:2px;'
 ].join('')
+
+const itemPoint = (color) => {
+  return [
+    '<span style="',
+    `background-color:${color};`,
+    'display: inline-block;',
+    'width: 10px;',
+    'height: 10px;',
+    'border-radius: 50%;',
+    'margin-right:2px;',
+    '"></span>'
+  ].join('')
+}
 
 echarts.registerTheme('ve-chart', {
   color: [
@@ -32,20 +46,13 @@ echarts.registerTheme('ve-chart', {
   line: {
     smooth: true
   },
-  bar: {
-    label: {
-      normal: { show: true, position: 'top' }
-    }
-  },
-  pie: {
-    radius: ['55%', '70%'],
-    hoverAnimation: false
-  },
-  radar: {
-    shape: 'circle',
-    splitArea: { show: false }
+  grid: {
+    left: 60,
+    right: 60,
+    top: 60,
+    bottom: 60
   }
 })
 
-export { SIGN, getLabelName, tipPointStyle }
+export { SIGN, getLabelName, tipPointStyle, itemPoint, getLegendName }
 export default echarts
