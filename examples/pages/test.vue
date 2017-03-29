@@ -34,7 +34,8 @@ export default {
       {
         type: 'line',
         tableData: true,
-        dimName: '年龄'
+        dimName: '年龄',
+        color: ['#eee', '#222', '#333', '#444']
       },
       {
         type: 'column',

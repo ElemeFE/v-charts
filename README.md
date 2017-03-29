@@ -105,6 +105,7 @@ sequence | 设置漏斗图数据显示顺序 | `['name1', 'name2', 'name3']` | f
 ascending | 设置漏斗图是否为金字塔形 | `true` | funnel | `true,false`
 percentShow | 是否将百分比信息直接显示在图表上 | `true` | pie,ring | `true,false`
 type | 设置显示的图表类型 | `line` | chart | `line,pie,ring,bar,column`
+color | 线条颜色 | `['#111', '#222']` | all |
 tableData | 传递的数据类型是否为`tableData` | `true` | line,pie,ring,bar,column | `true,false`
 dimName | 维度名称(仅适用于tableData) | `'a'` | line,pie,ring,bar,column |
 meaName | 指标名称(仅适用于tableData) | `'b'` | pie,ring |
