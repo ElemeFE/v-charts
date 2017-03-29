@@ -40,7 +40,7 @@ const chartMixin = {
       if (Array.isArray(this.settings.color)) options.color = this.settings.color
       if (this.settings.grid) options.grid = this.settings.grid
       if (this.afterConfig) options = this.afterConfig(options)
-      this.echarts.setOption(options, true)
+      if (options) this.echarts.setOption(options, true)
     },
 
     init () {

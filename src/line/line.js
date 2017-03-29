@@ -1,5 +1,5 @@
 import { SIGN, getLegendName, itemPoint } from '../echarts-base'
-import { getFormated, clone } from '../util'
+import { getFormated } from '../util'
 
 const dataHandler = {
   getLineLegends ({ measures, axisSite, yAxisType }) {
@@ -104,7 +104,7 @@ const dataHandler = {
 
 const line = (data, settings) => {
   if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
-  const { columns, rows } = clone(data)
+  const { columns, rows } = data
 
   const {
     axisSite = { right: [] },
