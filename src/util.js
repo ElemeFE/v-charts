@@ -39,6 +39,16 @@ const getLineKB = (s, v) => {
   return result
 }
 
+const getStackMap = (stack) => {
+  const stackMap = {}
+  Object.keys(stack).forEach(item => {
+    stack[item].forEach(name => {
+      stackMap[name] = item
+    })
+  })
+  return stackMap
+}
+
 const clone = (v) => JSON.parse(JSON.stringify(v))
 
-export { numberFormat, formatTausends, getFormated, getLineKB, clone }
+export { numberFormat, formatTausends, getFormated, getLineKB, clone, getStackMap }

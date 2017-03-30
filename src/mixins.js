@@ -37,8 +37,12 @@ const chartMixin = {
       if (!this.chartHandler) return
       if (this.beforeConfig) data = this.beforeConfig(data)
       let options = this.chartHandler(data, this.settings)
+
       if (Array.isArray(this.settings.color)) options.color = this.settings.color
       if (this.settings.grid) options.grid = this.settings.grid
+      if (this.settings.scaleX) options.xAxis.scale = true
+      if (this.settings.scaleY) options.yAxis.scale = true
+
       if (this.afterConfig) options = this.afterConfig(options)
       if (options) this.echarts.setOption(options, true)
     },

@@ -1,5 +1,5 @@
 import { SIGN, getLabelName, itemPoint } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, getStackMap } from '../util'
 
 const dataHandler = {
   getBarLegends ({ measures, axisSite, meaAxisType, isColumn }) {
@@ -74,21 +74,12 @@ const dataHandler = {
     }
   },
 
-  getStackMap (stack) {
-    const stackMap = {}
-    Object.keys(stack).forEach(item => {
-      stack[item].forEach(name => {
-        stackMap[name] = item
-      })
-    })
-    return stackMap
-  },
-
-  getBarSeries ({ rows, measures, stackMap, axisSite, meaAxisType, isColumn }) {
+  getBarSeries ({ rows, measures, stack, axisSite, meaAxisType, isColumn }) {
     let series = []
     const seriesTemp = {}
     const secondAxis = isColumn ? axisSite.right : axisSite.top
     const secondDimAxisIndex = isColumn ? 'yAxisIndex' : 'xAxisIndex'
+    const stackMap = stack && getStackMap(stack)
     measures.forEach(measure => { seriesTemp[measure] = [] })
     rows.forEach(row => {
       measures.forEach(measure => {
@@ -106,7 +97,7 @@ const dataHandler = {
         [secondDimAxisIndex]: ~secondAxis.indexOf(item) ? '1' : '0'
       }
 
-      if (stackMap[item]) seriesItem.stack = stackMap[item]
+      if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
 
       return seriesItem
     })
@@ -133,11 +124,10 @@ const bar = (data, settings) => {
   const dimAxisName = settings.yAxisName || dimensions[0]
   const isColumn = false
 
-  const stackMap = stack ? dataHandler.getStackMap(stack) : {}
   const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
   const yAxis = dataHandler.getBarDimAxis({ rows, dimAxisName, dimensions })
   const xAxis = dataHandler.getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
-  const series = dataHandler.getBarSeries({ rows, measures, stackMap, axisSite, meaAxisType, isColumn })
+  const series = dataHandler.getBarSeries({ rows, measures, stack, axisSite, meaAxisType, isColumn })
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
@@ -162,11 +152,10 @@ const column = (data, settings) => {
   const dimAxisName = settings.xAxisName || dimensions[0]
   const isColumn = true
 
-  const stackMap = stack ? dataHandler.getStackMap(stack) : {}
   const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
   const xAxis = dataHandler.getBarDimAxis({ rows, dimAxisName, dimensions })
   const yAxis = dataHandler.getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
-  const series = dataHandler.getBarSeries({ rows, measures, stackMap, axisSite, meaAxisType, isColumn })
+  const series = dataHandler.getBarSeries({ rows, measures, stack, axisSite, meaAxisType, isColumn })
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options

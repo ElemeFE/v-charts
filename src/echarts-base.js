@@ -47,10 +47,9 @@ echarts.registerTheme('ve-chart', {
     smooth: true
   },
   grid: {
-    left: 60,
-    right: 60,
-    top: 60,
-    bottom: 60
+    containLabel: true,
+    left: 10,
+    right: 10
   }
 })
 

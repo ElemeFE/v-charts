@@ -1,5 +1,5 @@
 import { SIGN, getLegendName, itemPoint } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, getStackMap } from '../util'
 
 const dataHandler = {
   getLineLegends ({ measures, axisSite, yAxisType }) {
@@ -34,9 +34,10 @@ const dataHandler = {
     }))
   },
 
-  getLineSeries ({ rows, axisSite, yAxisType, dimensions, measures }) {
+  getLineSeries ({ rows, axisSite, yAxisType, dimensions, measures, area, stack }) {
     let series = []
     const dataTemp = {}
+    const stackMap = stack && getStackMap(stack)
     measures.forEach(measure => { dataTemp[measure] = [] })
     rows.forEach(row => {
       measures.forEach(measure => {
@@ -50,6 +51,8 @@ const dataHandler = {
         data: dataTemp[measure]
       }
 
+      if (area) seriesItem.areaStyle = { normal: {} }
+
       if (~axisSite.right.indexOf(measure)) {
         seriesItem.yAxisIndex = 1
         seriesItem.name = `${measure}${SIGN}${yAxisType[1]}`
@@ -57,6 +60,8 @@ const dataHandler = {
         seriesItem.yAxisIndex = 0
         seriesItem.name = `${measure}${SIGN}${yAxisType[0]}`
       }
+
+      if (stack && stackMap[measure]) seriesItem.stack = stackMap[measure]
 
       series.push(seriesItem)
     })
@@ -112,7 +117,9 @@ const line = (data, settings) => {
     yAxisType = ['normal', 'normal'],
     yAxisName = [],
     dimensions = [columns[0]],
-    xAxisName = dimensions
+    xAxisName = dimensions,
+    area,
+    stack
   } = settings
   let measures = columns.slice()
   if (settings.measures) {
@@ -124,7 +131,7 @@ const line = (data, settings) => {
   const tooltip = dataHandler.getLineTooltip()
   const xAxis = dataHandler.getLineXAxis({ dimensions, rows, xAxisName })
   const yAxis = dataHandler.getLineYAxis({ yAxisName, yAxisType })
-  const series = dataHandler.getLineSeries({ rows, axisSite, yAxisType, dimensions, measures })
+  const series = dataHandler.getLineSeries({ rows, stack, axisSite, yAxisType, dimensions, measures, area })
   if (!legend || !xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }
