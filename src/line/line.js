@@ -22,6 +22,7 @@ const dataHandler = {
       type: 'category',
       nameLocation: 'middle',
       nameGap: 22,
+      boundaryGap: false,
       name: xAxisName[index] || dimension,
       axisTick: { show: true, lineStyle: { color: '#eee' } },
       data: rows.map(row => row[dimension]),
@@ -111,10 +112,14 @@ const line = (data, settings) => {
     yAxisType = ['normal', 'normal'],
     yAxisName = [],
     dimensions = [columns[0]],
-    xAxisName = dimensions,
-    measures = columns.slice(1, columns.length)
+    xAxisName = dimensions
   } = settings
-
+  let measures = columns.slice()
+  if (settings.measures) {
+    measures = settings.measures
+  } else {
+    measures.splice(columns.indexOf(dimensions[0]), 1)
+  }
   const legend = dataHandler.getLineLegends({ measures, axisSite, yAxisType })
   const tooltip = dataHandler.getLineTooltip()
   const xAxis = dataHandler.getLineXAxis({ dimensions, rows, xAxisName })

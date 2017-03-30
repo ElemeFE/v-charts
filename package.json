@@ -1,6 +1,6 @@
 {
   "name": "vue-echarts-components",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "",
   "main": "lib/index.js",
   "scripts": {

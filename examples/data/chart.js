@@ -16,9 +16,7 @@ export default {
         ]
       },
       settings: {
-        type: 'line',
-        tableData: true,
-        dimName: '年龄'
+        type: 'line'
       }
     },
     {
@@ -35,8 +33,7 @@ export default {
         ]
       },
       settings: {
-        type: 'column',
-        tableData: true
+        type: 'column'
       }
     },
     {
@@ -53,8 +50,7 @@ export default {
         ]
       },
       settings: {
-        type: 'pie',
-        tableData: true
+        type: 'pie'
       }
     }
   ]

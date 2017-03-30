@@ -1,113 +1,57 @@
-import { SIGN, getLabelName, tipPointStyle } from '../echarts-base'
-import { getFormated, clone } from '../util'
+import { SIGN, getLabelName, itemPoint } from '../echarts-base'
+import { getFormated } from '../util'
 
 const dataHandler = {
-  getStackOptions (stackItems) {
-    let stackOptions = {}
-
-    Object.keys(stackItems).forEach(key => {
-      stackItems[key].forEach(value => {
-        stackOptions[value] = key
-      })
-    })
-
-    return stackOptions
-  },
-
-  getBarLegends (data, axisOption, axisType, stack) {
+  getBarLegends ({ measures, axisSite, meaAxisType, isColumn }) {
     let legends = []
+
     const formatter = getLabelName
-
-    if (!stack || !Object.keys(stack).length) {
-      data.some(items => {
-        legends = dataHandler.getBarLegendItem(items, axisOption, axisType)
-        return true
-      })
-    } else {
-      data.forEach(items => {
-        const legendItem = dataHandler.getBarLegendItem(items, axisOption, axisType)
-
-        legendItem.forEach(i => {
-          if (legends.indexOf(i) === -1) legends.push(i)
-        })
-      })
-    }
+    const secondAxis = isColumn ? axisSite.right : axisSite.top
+    measures.forEach(measure => {
+      let legendItem = ~secondAxis.indexOf(measure)
+        ? `${measure}${SIGN}${meaAxisType[1]}`
+        : `${measure}${SIGN}${meaAxisType[0]}`
+      legends.push(legendItem)
+    })
 
     return legends.length ? { data: legends, formatter } : false
   },
 
-  getBarLegendItem (items, axisOption, axisType) {
-    const legendTempArr = []
-
-    Object.keys(items).forEach(item => {
-      if (item !== 'name') {
-        if ((axisOption.top && axisOption.top.indexOf(item) > -1) ||
-          (axisOption.right && axisOption.right.indexOf(item) > -1)) {
-          legendTempArr.push(`${item}${SIGN}${axisType[1]}`)
-        } else {
-          legendTempArr.push(`${item}${SIGN}${axisType[0]}`)
-        }
-      }
-    })
-
-    return legendTempArr
-  },
-
-  getBarYAxis (data) {
-    return [{
+  getBarDimAxis ({ rows, dimAxisName, dimensions }) {
+    return dimensions.map(dimension => ({
       type: 'category',
-      data: data.map(value => value.name),
+      name: dimAxisName || dimension,
+      nameLocation: 'middle',
+      nameGap: 22,
+      data: rows.map(row => row[dimension]),
       axisLabel: {
         formatter (v) {
           return String(v)
         }
       }
-    }]
+    }))
   },
 
-  getBarXAxis (axisName, axisType) {
-    const xAxisBase = { type: 'value', axisTick: { show: false } }
-    let xAxis = []
+  getBarMeaAxis ({ columns, meaAxisName, measures, meaAxisType }) {
+    const meaAxisBase = { type: 'value', axisTick: { show: false } }
+    let meaAxis = []
 
     for (let i = 0; i < 2; i++) {
-      if (axisType[i]) {
-        xAxis[i] = Object.assign({}, xAxisBase, {
+      if (meaAxisType[i]) {
+        meaAxis[i] = Object.assign({}, meaAxisBase, {
           axisLabel: {
             formatter (val) {
-              return getFormated(val, axisType[i])
+              return getFormated(val, meaAxisType[i])
             }
           }
         })
       } else {
-        xAxis[i] = Object.assign({}, xAxisBase)
+        meaAxis[i] = Object.assign({}, meaAxisBase)
       }
-      xAxis[i].name = axisName[i] || ''
+      meaAxis[i].name = meaAxisName[i] || ''
     }
 
-    return xAxis
-  },
-
-  getBarSeries (data, axisOption, legend, stackOptions) {
-    let series = []
-
-    legend.data.forEach((legendItem, index) => {
-      const legendItemName = legendItem.split(SIGN)[0]
-      let legendData = data.map(item => item[legendItemName])
-      let seriesBase = {
-        name: legendItem,
-        type: 'bar',
-        data: legendData,
-        itemStyle: { normal: { label: { show: false } } }
-      }
-
-      seriesBase.xAxisIndex = axisOption.top.indexOf(legendItemName) > -1 ? 1 : 0
-      if (stackOptions[legendItemName]) {
-        seriesBase.stack = stackOptions[legendItemName]
-      }
-      series.push(seriesBase)
-    })
-
-    return series.length ? series : false
+    return meaAxis
   },
 
   getBarTooltip () {
@@ -115,12 +59,13 @@ const dataHandler = {
       trigger: 'axis',
       formatter (items) {
         let tpl = []
-
-        tpl.push(`${String(items[0].name).split(SIGN)[0]}<br>`)
+        const title = String(items[0].name).split(SIGN)[0]
+        tpl.push(`${title}<br>`)
         items.forEach(item => {
-          tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
-          tpl.push(`${item.seriesName.split(SIGN)[0]}: `)
-          tpl.push(getFormated(item.value, item.seriesName.split(SIGN)[1]))
+          const [name, type] = item.seriesName.split(SIGN)
+          tpl.push(itemPoint(item.color))
+          tpl.push(`${name}: `)
+          tpl.push(getFormated(item.value, type))
           tpl.push('<br>')
         })
 
@@ -129,90 +74,99 @@ const dataHandler = {
     }
   },
 
-  getColumnSeries (data, axisOption, legend, stackOptions) {
+  getStackMap (stack) {
+    const stackMap = {}
+    Object.keys(stack).forEach(item => {
+      stack[item].forEach(name => {
+        stackMap[name] = item
+      })
+    })
+    return stackMap
+  },
+
+  getBarSeries ({ rows, measures, stackMap, axisSite, meaAxisType, isColumn }) {
     let series = []
-
-    legend.data.forEach((legendItem, index) => {
-      const legendItemName = legendItem.split(SIGN)[0]
-      let legendData = data.map(item => item[legendItemName])
-      let seriesBase = {
-        name: legendItem,
+    const seriesTemp = {}
+    const secondAxis = isColumn ? axisSite.right : axisSite.top
+    const secondDimAxisIndex = isColumn ? 'yAxisIndex' : 'xAxisIndex'
+    measures.forEach(measure => { seriesTemp[measure] = [] })
+    rows.forEach(row => {
+      measures.forEach(measure => {
+        seriesTemp[measure].push(row[measure])
+      })
+    })
+    series = Object.keys(seriesTemp).map(item => {
+      let itemName = ~secondAxis.indexOf(item)
+        ? `${item}${SIGN}${meaAxisType[1]}`
+        : `${item}${SIGN}${meaAxisType[0]}`
+      const seriesItem = {
+        name: itemName,
         type: 'bar',
-        data: legendData,
-        itemStyle: { normal: { label: { show: false } } }
+        data: seriesTemp[item],
+        [secondDimAxisIndex]: ~secondAxis.indexOf(item) ? '1' : '0'
       }
 
-      seriesBase.yAxisIndex = axisOption.right && axisOption.right.indexOf(legendItemName) > -1 ? 1 : 0
-      if (stackOptions[legendItemName]) {
-        seriesBase.stack = stackOptions[legendItemName]
-      }
-      series.push(seriesBase)
+      if (stackMap[item]) seriesItem.stack = stackMap[item]
+
+      return seriesItem
     })
 
     return series.length ? series : false
-  },
-
-  getBarData (data, dimName) {
-    let result = []
-    if (!Array.isArray(data.rows) || !Array.isArray(data.columns)) return data
-    dimName = dimName !== undefined ? dimName : data.columns[0]
-    const index = data.columns.indexOf(dimName)
-    data.columns.splice(index, 1)
-    data.rows.forEach(row => {
-      let itemData = { name: row[dimName] }
-      data.columns.forEach(column => {
-        itemData[column] = row[column]
-      })
-      result.push(itemData)
-    })
-    return result
   }
 }
-/**
- * 条形图
- * settings = {
- *   axisOption: {
- *     top: ['201604'], 置于上坐标轴的数据
- *     bottom: ['201603']
- *   },
- *   axisType: ['KMB', 'percent'], 坐标轴类型 支持KMB, percent, normal
- *   axisName: ['title1', 'title2'], 坐标轴标题
- *   stack: {
- *     time: ['201603', '201604'] 堆叠配置
- *   }
- * }
- * data = [
- *   { '201603': 2.95, '201604': 2.1, 'name': '上海' },
- *   { '201603': 1.95, '201604': 2.15, 'name': '北京' },
- *   { '201603': 3.15, '201604': 2.4, 'name': '杭州' },
- *   { '201603': 3.15, '201604': 2.4, 'name': '广州' },
- *   { '201603': 3.15, '201604': 2.4, 'name': '深圳' }
- * ]
- */
 const bar = (data, settings) => {
-  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {}, dimName, tableData } = settings
-  if (tableData) data = dataHandler.getBarData(clone(data), dimName)
-  const stackOptions = dataHandler.getStackOptions(stack)
-  const legend = dataHandler.getBarLegends(data, axisOption, axisType, stack)
-  const yAxis = dataHandler.getBarYAxis(data)
-  const xAxis = dataHandler.getBarXAxis(axisName, axisType)
-  const series = dataHandler.getBarSeries(data, axisOption, legend, stackOptions)
+  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
+  const { columns, rows } = data
+  const {
+    axisSite = { top: [] },
+    dimensions = [columns[0]],
+    stack = {}
+  } = settings
+  let measures = columns.slice()
+  if (settings.measures) {
+    measures = settings.measures
+  } else {
+    measures.splice(columns.indexOf(dimensions[0]), 1)
+  }
+  const meaAxisType = settings.xAxisType || ['normal', 'normal']
+  const meaAxisName = settings.xAxisName || []
+  const dimAxisName = settings.yAxisName || dimensions[0]
+  const isColumn = false
+
+  const stackMap = stack ? dataHandler.getStackMap(stack) : {}
+  const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
+  const yAxis = dataHandler.getBarDimAxis({ rows, dimAxisName, dimensions })
+  const xAxis = dataHandler.getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
+  const series = dataHandler.getBarSeries({ rows, measures, stackMap, axisSite, meaAxisType, isColumn })
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
 }
-/**
- * 柱状图
- * 配置同条形图
- */
+
 const column = (data, settings) => {
-  const { axisOption = { top: [] }, axisType = [], axisName = [], stack = {}, dimName, tableData } = settings
-  if (tableData) data = dataHandler.getBarData(clone(data), dimName)
-  const legend = dataHandler.getBarLegends(data, axisOption, axisType, stack)
-  const stackOptions = dataHandler.getStackOptions(stack)
-  const xAxis = dataHandler.getBarYAxis(data, axisOption, axisType)
-  const yAxis = dataHandler.getBarXAxis(axisName, axisType)
-  const series = dataHandler.getColumnSeries(data, axisOption, legend, stackOptions)
+  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
+  const { columns, rows } = data
+  const {
+    axisSite = { right: [] },
+    dimensions = [columns[0]],
+    stack = {}
+  } = settings
+  let measures = columns.slice()
+  if (settings.measures) {
+    measures = settings.measures
+  } else {
+    measures.splice(columns.indexOf(dimensions[0]), 1)
+  }
+  const meaAxisType = settings.yAxisType || ['normal', 'normal']
+  const meaAxisName = settings.yAxisName || []
+  const dimAxisName = settings.xAxisName || dimensions[0]
+  const isColumn = true
+
+  const stackMap = stack ? dataHandler.getStackMap(stack) : {}
+  const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
+  const xAxis = dataHandler.getBarDimAxis({ rows, dimAxisName, dimensions })
+  const yAxis = dataHandler.getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
+  const series = dataHandler.getBarSeries({ rows, measures, stackMap, axisSite, meaAxisType, isColumn })
   const tooltip = dataHandler.getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options

@@ -10,13 +10,12 @@ import 'echarts/lib/chart/pie'
 import { bar, column } from '../bar/bar'
 import { line } from '../line/line'
 import { pie, ring } from '../pie/pie'
-import { waterfall } from '../waterfall/waterfall'
 import chartMixin from '../mixins'
 export default {
   name: 'VeChart',
   mixins: [chartMixin],
   created () {
-    this.chartLib = { bar, column, line, pie, ring, waterfall }
+    this.chartLib = { bar, column, line, pie, ring }
     this.chartHandler = this.chartLib[this.settings.type]
     this.echartsLib = echarts
   }
