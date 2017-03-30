@@ -35,8 +35,10 @@ const chartMixin = {
   methods: {
     dataHandler (data) {
       if (!this.chartHandler) return
+      if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
+      const { columns, rows } = data
       if (this.beforeConfig) data = this.beforeConfig(data)
-      let options = this.chartHandler(data, this.settings)
+      let options = this.chartHandler(columns, rows, this.settings)
 
       if (Array.isArray(this.settings.color)) options.color = this.settings.color
       if (this.settings.grid) options.grid = this.settings.grid

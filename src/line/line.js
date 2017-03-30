@@ -108,10 +108,7 @@ const dataHandler = {
   }
 }
 
-const line = (data, settings) => {
-  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
-  const { columns, rows } = data
-
+const line = (columns, rows, settings) => {
   const {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],

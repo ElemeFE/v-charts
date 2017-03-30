@@ -105,9 +105,7 @@ const dataHandler = {
     return series.length ? series : false
   }
 }
-const bar = (data, settings) => {
-  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
-  const { columns, rows } = data
+const bar = (columns, rows, settings) => {
   const {
     axisSite = { top: [] },
     dimensions = [columns[0]],

@@ -68,15 +68,7 @@ const dataHandler = {
   }
 }
 
-/**
- * 瀑布图
- * settings = { dataType: 'KMB' } 坐标轴类型 支持KMB, percent, normal
- * data = { d1: 100, d2: 200, d3: 300 }
- * @param {Object} data 原始数据
- * @param {Object} settings 配置项
- * @returns Object
- */
-const waterfall = (data, settings) => {
+const waterfall = (columns, rows, settings) => {
   const { dataType } = settings
   const tooltip = dataHandler.getWaterfallTooltip(dataType)
   const xAxis = dataHandler.getWaterfallXAxis(data)

@@ -57,10 +57,7 @@ const dataHandler = {
   }
 }
 
-const pie = (data, settings, isRing) => {
-  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
-
-  const { columns, rows } = data
+const pie = (columns, rows, settings, isRing) => {
   const {
     dataType = 'normal',
     percentShow,
@@ -81,6 +78,6 @@ const pie = (data, settings, isRing) => {
   return options
 }
 
-const ring = (data, settings) => pie(data, settings, true)
+const ring = (columns, rows, settings) => pie(columns, rows, settings, true)
 
 export { pie, ring }
