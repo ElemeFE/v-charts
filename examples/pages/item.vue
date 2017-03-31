@@ -26,7 +26,6 @@ import VeColumn from '../../src/bar/column'
 import VePie from '../../src/pie/index'
 import VeRing from '../../src/pie/ring'
 import VeWaterfall from '../../src/waterfall/index'
-import VeScatter from '../../src/scatter/index'
 import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeChart from '../../src/chart/index'
@@ -67,7 +66,6 @@ export default {
     VePie,
     VeRing,
     VeWaterfall,
-    VeScatter,
     VeFunnel,
     VeRadar,
     VeChart

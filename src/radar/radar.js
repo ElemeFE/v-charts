@@ -1,17 +1,14 @@
-import { tipPointStyle } from '../echarts-base'
+import { itemPoint } from '../echarts-base'
 import { getFormated } from '../util'
 
 const dataHandler = {
-  getRadarLegend (data) {
-    let legendData = []
-    data.forEach(val => {
-      if (legendData.indexOf(val.name) === -1) legendData.push(val.name)
-    })
+  getRadarLegend ({ rows, dimension }) {
+    let legendData = rows.map(row => row[dimension])
 
     return { data: legendData }
   },
 
-  getRadarTooltip (dataType, radar) {
+  getRadarTooltip ({ dataType, radar }) {
     const typeTemp = []
     const nameTemp = []
     radar.indicator.map((item, index) => {
@@ -21,31 +18,30 @@ const dataHandler = {
     return {
       formatter (item) {
         const tpl = []
-        tpl.push(`<span style="background-color:${item.color};${tipPointStyle}"></span>`)
+        tpl.push(itemPoint(item.color))
         tpl.push(`${item.seriesName}<br />`)
         item.data.forEach((val, index) => {
-          tpl.push(`${nameTemp[index]}: ${getFormated(val, typeTemp[index])}<br />`)
+          tpl.push(`${nameTemp[index]}: `)
+          tpl.push(`${getFormated(val, typeTemp[index])}<br />`)
         })
         return tpl.join('')
       }
     }
   },
 
-  getRadarSetting (data) {
+  getRadarSetting ({ rows, dimension, measures }) {
     const settingBase = {
       indicator: [],
       shape: 'circle',
       splitNumber: 5
     }
     let indicatorTemp = {}
-    data.forEach(items => {
-      Object.keys(items).forEach(key => {
-        if (key !== 'name') {
-          if (!indicatorTemp[key]) {
-            indicatorTemp[key] = [items[key]]
-          } else {
-            indicatorTemp[key].push(items[key])
-          }
+    rows.forEach(items => {
+      measures.forEach(measure => {
+        if (!indicatorTemp[measure]) {
+          indicatorTemp[measure] = [items[measure]]
+        } else {
+          indicatorTemp[measure].push(items[measure])
         }
       })
     })
@@ -58,47 +54,44 @@ const dataHandler = {
     return settingBase
   },
 
-  getRadarSeries (data, legend, radar) {
-    data = JSON.parse(JSON.stringify(data))
+  getRadarSeries ({ rows, dimension, measures, radar }) {
     let radarIndexObj = {}
     radar.indicator.forEach((item, index) => {
       radarIndexObj[item.name] = index
     })
-    let dataStore = {}
-    data.forEach(items => {
-      const name = items.name
-      delete items.name
-      if (!dataStore[name]) {
-        dataStore[name] = [items]
-      } else {
-        dataStore[name].push(items)
-      }
-    })
-    const series = legend.data.map((name, index) => {
+
+    const series = rows.map(row => {
       const seriesBase = {
-        name,
+        name: row[dimension],
         type: 'radar',
         data: []
       }
-      dataStore[name].forEach(items => {
-        let dataArr = []
-        Object.keys(items).forEach(key => {
-          dataArr[radarIndexObj[key]] = items[key]
-        })
-        seriesBase.data.push(dataArr)
+      let dataArr = []
+      Object.keys(row).forEach(key => {
+        if (~measures.indexOf(key)) dataArr[radarIndexObj[key]] = row[key]
       })
+      seriesBase.data.push(dataArr)
       return seriesBase
     })
     return series
   }
 }
 
-const radar = (data, settings) => {
-  const { dataType = {} } = settings
-  const legend = dataHandler.getRadarLegend(data)
-  const radar = dataHandler.getRadarSetting(data)
-  const tooltip = dataHandler.getRadarTooltip(dataType, radar)
-  const series = dataHandler.getRadarSeries(data, legend, radar)
+const radar = (columns, rows, settings) => {
+  const {
+    dataType = {},
+    dimension = columns[0]
+  } = settings
+  let measures = columns.slice()
+  if (settings.measures) {
+    measures = settings.measures
+  } else {
+    measures.splice(columns.indexOf(dimension), 1)
+  }
+  const legend = dataHandler.getRadarLegend({ rows, dimension })
+  const radar = dataHandler.getRadarSetting({ rows, dimension, measures })
+  const tooltip = dataHandler.getRadarTooltip({ dataType, radar })
+  const series = dataHandler.getRadarSeries({ rows, dimension, measures, radar })
   const options = { legend, tooltip, radar, series }
   return options
 }

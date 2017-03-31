@@ -6,7 +6,6 @@ module.exports = {
   'src/pie/index.vue': 'lib/pie.js',
   'src/pie/ring.vue': 'lib/ring.js',
   'src/radar/index.vue': 'lib/radar.js',
-  'src/scatter/index.vue': 'lib/scatter.js',
   'src/waterfall/index.vue': 'lib/waterfall.js',
   'src/index.js': 'lib/index.js',
   'src/chart/index.vue': 'lib/chart.js'

@@ -1,6 +1,6 @@
 {
   "name": "vue-echarts-components",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "babel-core": "6.24.0",
     "babel-eslint": "7.1.1",
     "babel-loader": "6.4.1",
+    "babel-plugin-external-helpers": "6.22.0",
     "babel-preset-latest": "6.24.0",
     "babel-preset-stage-2": "6.22.0",
     "css-loader": "0.27.3",
@@ -53,7 +54,7 @@
     "rollup-plugin-alias": "1.2.1",
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-commonjs": "8.0.2",
-    "rollup-plugin-eslint": "^3.0.0",
+    "rollup-plugin-eslint": "3.0.0",
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-vue2": "0.8.0",
     "style-loader": "0.14.1",

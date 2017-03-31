@@ -131,9 +131,7 @@ const bar = (columns, rows, settings) => {
   return options
 }
 
-const column = (data, settings) => {
-  if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
-  const { columns, rows } = data
+const column = (columns, rows, settings) => {
   const {
     axisSite = { right: [] },
     dimensions = [columns[0]],
