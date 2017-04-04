@@ -33,17 +33,14 @@ export default {
     this.chartSettingsStore = [
       {
         type: 'line',
-        tableData: true,
         dimName: '年龄',
         color: ['#eee', '#222', '#333', '#444']
       },
       {
-        type: 'column',
-        tableData: true
+        type: 'column'
       },
       {
-        type: 'pie',
-        tableData: true
+        type: 'pie'
       }
     ]
     return {

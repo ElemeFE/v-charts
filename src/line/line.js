@@ -23,7 +23,7 @@ const dataHandler = {
       nameLocation: 'middle',
       nameGap: 22,
       boundaryGap: false,
-      name: xAxisName[index] || dimension,
+      name: xAxisName[index] || '',
       axisTick: { show: true, lineStyle: { color: '#eee' } },
       data: rows.map(row => row[dimension]),
       axisLabel: {
@@ -114,7 +114,7 @@ const line = (columns, rows, settings) => {
     yAxisType = ['normal', 'normal'],
     yAxisName = [],
     dimensions = [columns[0]],
-    xAxisName = dimensions,
+    xAxisName = [],
     area,
     stack
   } = settings

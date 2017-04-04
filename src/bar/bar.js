@@ -20,7 +20,7 @@ const dataHandler = {
   getBarDimAxis ({ rows, dimAxisName, dimensions }) {
     return dimensions.map(dimension => ({
       type: 'category',
-      name: dimAxisName || dimension,
+      name: dimAxisName,
       nameLocation: 'middle',
       nameGap: 22,
       data: rows.map(row => row[dimension]),
@@ -119,7 +119,7 @@ const bar = (columns, rows, settings) => {
   }
   const meaAxisType = settings.xAxisType || ['normal', 'normal']
   const meaAxisName = settings.xAxisName || []
-  const dimAxisName = settings.yAxisName || dimensions[0]
+  const dimAxisName = settings.yAxisName || ''
   const isColumn = false
 
   const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
@@ -145,7 +145,7 @@ const column = (columns, rows, settings) => {
   }
   const meaAxisType = settings.yAxisType || ['normal', 'normal']
   const meaAxisName = settings.yAxisName || []
-  const dimAxisName = settings.xAxisName || dimensions[0]
+  const dimAxisName = settings.xAxisName || ''
   const isColumn = true
 
   const legend = dataHandler.getBarLegends({ measures, axisSite, meaAxisType, isColumn })
