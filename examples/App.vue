@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <div class="top-container">
-      <topbar></topbar>
-    </div>
     <div class="main-container">
       <div class="left-section">
         <sidebar></sidebar>
@@ -15,7 +12,6 @@
 </template>
 
 <script>
-import Topbar from './components/topbar'
 import Sidebar from './components/sidebar'
 export default {
   name: 'App',
@@ -24,7 +20,6 @@ export default {
   },
 
   components: {
-    Topbar,
     Sidebar
   }
 }
@@ -34,9 +29,7 @@ export default {
 html, body {
   height: 100%;
 }
-pre[class*="language-"] {
-  padding: 5px !important;
-}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -54,12 +47,19 @@ pre[class*="language-"] {
     .left-section {
       width: 150px;
       height: 100%;
-      border-right: 1px solid #ccc;
+      overflow: auto;
+      background-color: #f8f8f8;
+      border-right: 1px solid #f2f2f2;
     }
 
     .right-section {
       flex: 1;
       overflow: auto;
+      padding: 20px;
+      font-size: 14px;
+      p {
+        line-height: 22px;
+      }
     }
   }
 }

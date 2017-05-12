@@ -1,15 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './pages/index'
+import Install from './pages/install'
+import Starter from './pages/starter'
 import Item from './pages/item'
-import Test from './pages/test'
+import SettingEditor from './pages/setting-editor'
+import Eventer from './pages/eventer'
+import Toggle from './pages/toggle'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', name: '首页', component: Index },
-    { path: '/item/:type', name: '图', component: Item },
-    { path: '/test', name: '测试', component: Test }
+    { path: '/', name: '安装', component: Install },
+    { path: '/starter', name: '开始使用', component: Starter },
+    { path: '/item/:type', name: '图表', component: Item },
+    { path: '/setting-editor', name: '生命周期钩子', component: SettingEditor },
+    { path: '/eventer', name: '事件监听', component: Eventer },
+    { path: '/toggle', name: '图表切换', component: Toggle }
   ]
 })

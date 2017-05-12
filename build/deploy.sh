@@ -2,11 +2,11 @@
 
 if [ -n "$GITHUB_TOKEN" ]; then
   npm run build
-  mkdir web
+  git clone https://$GITHUB_TOKEN@github.com/vue-echarts/vue-echarts.github.io web
   cd web
-  git init
+  rm -rf *
   cp -r ../dist/* ./
-  git add .
-  git -c user.name='travis' -c user.email='travis' commit -m "`date +%c` deploy by Travis"
-  git push -f -q https://vue-echarts:$GITHUB_TOKEN@github.com/vue-echarts/vue-echarts.github.io master
+  git add -A
+  git -c user.name='vue-echarts' -c user.email='vue@daxigua.me' commit -m "`date +%c` deploy by Travis"
+  git push origin master
 fi

@@ -10,7 +10,8 @@ npm i vue-echarts-components -S
 
 `import VeChart from 'vue-echarts-components/lib/chart'`
 
-> 目前支持的图表有 chart, line, bar, column, waterfall, pie, ring, funnel, radar
+> 目前支持的图表有 chart, line, bar, column, waterfall, pie, ring, funnel, radar,
+其中chart为所有图表的合集
 
 ### 使用方式
 ---
