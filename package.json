@@ -1,6 +1,6 @@
 {
-  "name": "vue-echarts-components",
-  "version": "0.0.19",
+  "name": "v-charts",
+  "version": "1.0.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xiguaxigua/vue-echarts-components.git"
+    "url": "git+https://github.com/elemefe/v-charts.git"
   },
   "keywords": [
     "vue",
     "echarts"
   ],
   "author": "xiguaxigua",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xiguaxigua/vue-echarts-components/issues"
+    "url": "https://github.com/elemefe/v-charts/issues"
   },
-  "homepage": "https://github.com/xiguaxigua/vue-echarts-components#readme",
+  "homepage": "https://github.com/elemefe/v-charts#readme",
   "dependencies": {
     "echarts": "^3.0.0"
   },
@@ -33,6 +33,7 @@
     "babel-plugin-external-helpers": "6.22.0",
     "babel-preset-latest": "6.24.0",
     "babel-preset-stage-2": "6.22.0",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "0.27.3",
     "eslint": "3.17.1",
     "eslint-config-standard": "7.0.1",
@@ -42,6 +43,7 @@
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "2.1.1",
     "extract-text-webpack-plugin": "2.1.0",
+    "file-loader": "^0.11.1",
     "html-webpack-plugin": "2.28.0",
     "less": "2.7.2",
     "less-loader": "3.0.0",
@@ -58,6 +60,7 @@
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-vue2": "0.8.0",
     "style-loader": "0.14.1",
+    "url-loader": "^0.5.8",
     "vue": "2.2.4",
     "vue-loader": "11.1.4",
     "vue-router": "2.3.0",

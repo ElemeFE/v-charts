@@ -2,13 +2,13 @@
 ---
 
 ```
-npm i vue-echarts-components -S
+npm i v-charts -S
 ```
 
 ### 引入方式
 ---
 
-`import VeChart from 'vue-echarts-components/lib/chart'`
+`import VeChart from 'v-charts/lib/chart'`
 
 > 目前支持的图表有 chart, line, bar, column, waterfall, pie, ring, funnel, radar,
 其中chart为所有图表的合集

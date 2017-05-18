@@ -1,4 +1,5 @@
 var path = require('path')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -39,6 +40,14 @@ module.exports = {
         }
       },
       {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'img/[name].[hash:7].[ext]'
+        }
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('./src'), resolve('./examples')]
@@ -46,7 +55,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
-      },
+      }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../examples/favicon.ico')
+      }
+    ])
+  ]
 }

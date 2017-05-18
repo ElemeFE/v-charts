@@ -19,8 +19,7 @@ import chartData from '../data/index'
 
 const routerInfo = {
   '介绍': [
-    { name: '安装', url: '/' },
-    { name: '开始使用', url: '/starter' }
+    { name: '开始使用', url: '/' }
   ],
   '图表': Object.keys(chartData).map(key => {
     return { name: chartData[key].name, url: `/item/${chartData[key].type}` }

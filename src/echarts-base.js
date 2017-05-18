@@ -6,13 +6,6 @@ import 'echarts/lib/component/title'
 const SIGN = '@_@'
 const getLabelName = (item) => item.split(SIGN)[0] // TODO: delete
 const getLegendName = (item) => item.split(SIGN)[0]
-const tipPointStyle = [ // TODO: delete
-  'display: inline-block;',
-  'width: 10px;',
-  'height: 10px;',
-  'border-radius: 50%;',
-  'margin-right:2px;'
-].join('')
 
 const itemPoint = (color) => {
   return [
@@ -53,5 +46,5 @@ echarts.registerTheme('ve-chart', {
   }
 })
 
-export { SIGN, getLabelName, tipPointStyle, itemPoint, getLegendName }
+export { SIGN, getLabelName, itemPoint, getLegendName }
 export default echarts

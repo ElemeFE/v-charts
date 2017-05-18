@@ -2,7 +2,6 @@
   <div class="page-item">
     <h3>{{ title }}</h3>
     <code-section :content="codeList[0]"></code-section>
-    <code-section :content="codeList[1]"></code-section>
     <p>基本用法</p>
     <component :is="`ve-${type}`" :data="chartData.base.data" :settings="chartData.base.settings"></component>
     <p>chartData</p>
@@ -65,7 +64,7 @@ export default {
       this.type = this.$route.params.type
       this.chartData = chartData[this.type].data
       this.codeList = [
-        `import Ve${this.fistLetterUpper(this.type)} from 'vue-echarts-components/lib/${this.type}'`,
+        `import Ve${this.fistLetterUpper(this.type)} from 'v-charts/lib/${this.type}'`,
         `<ve-${this.type} :data="chartData" :settings="chartSettings"></ve-${this.type}>`
       ]
     },
