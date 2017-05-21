@@ -1,3 +1,13 @@
+<p align="center">
+  <img width="200" src="https://cdn.rawgit.com/ElemeFE/v-charts/dev/docs/static/logo.png">
+</p>
+
+## V-Charts
+
+在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个
+痛点。基于Vue2.0和echarts封装的v-charts图表组件，只需要统一提供一种对前后端都友好的数据格式
+设置简单的配置项，便可轻松生成常见的图表。
+
 ### 安装
 ---
 
@@ -5,52 +15,29 @@
 npm i v-charts -S
 ```
 
-### 引入方式
+### 快速上手
 ---
 
-`import VeChart from 'v-charts/lib/chart'`
-
-> 目前支持的图表有 chart, line, bar, column, waterfall, pie, ring, funnel, radar,
-其中chart为所有图表的合集
-
-### 使用方式
----
-
-`<ve-chart :data="chartData" :settings="chartSettings"></ve-chart> `
+`import VeLine from 'v-charts/lib/line'`
 
 `<ve-line :data="chartData" :settings="chartSettings"></ve-line>`
 
-每一个组件都提供了`data`和`settings`配置项
+> 目前支持的图表有 line, bar, column, waterfall, pie, ring, funnel, radar
 
-#### 1. `data` 由`columns`和`rows`组成
+### 文档
 
-```
-{
-    columns: ['日期', '余额', '年龄'],
-    rows: [
-        { '日期': 1, '余额': 123, '年龄': 3 },
-        { '日期': 2, '余额': 1223, '年龄': 6 },
-        { '日期': 3, '余额': 2123, '年龄': 9 },
-        { '日期': 4, '余额': 4123, '年龄': 12 },
-        { '日期': 5, '余额': 3123, '年龄': 15 },
-        { '日期': 6, '余额': 7123, '年龄': 20 }
-    ]
-}
-```
+[https://vue-echarts.github.io/](https://vue-echarts.github.io/)
 
-#### 2. `settings`配置项决定了表格的表现，例如一个典型的折线图配置项
-```
-settings = {
-    axisSite: {
-        right: ['比率']
-    },
-    yAxisType: ['KMB', 'percent']
-}
-```
-表示将数据`a`放到右轴上，同时设置了左轴的类型为`KMB`,右轴的类型为`percent`
-
-对于不同图表的,`settings`略有不同，但大部分属性都是通用的, 具体属性可参考demo页中的配置
-
-#### 3. 提供`beforeConfig`和`afterConfig`属性, 用于在图标信息生成前的data和生成后的options做一些修改
-
-#### 4. 提供了`events`属性，用于绑定echarts事件
+### 属性
+---
+| 配置项 | 简介 | 类型 | 示例 | 备注 |
+| --- | --- | --- | --- | --- |
+| data | 图表数据 | Object | `{ columns: [], rows: [] }` | columns代表指标和维度名称， rows为数据内容 |
+| settings | 图表配置项 | Object | `{ "yAxisType": [ "KMB", "percent" ] }` |  |
+| colors | 颜色列表 | Array | `[ "#19d4ae", "#5ab1ef", "#fa6e86", "#ffb980", "#0067a6", "#c4b4e4" ]` |  |
+| tooltip | 是否显示提示框 | Boolean | `false` | 默认为true |
+| grid | 网格配置 | Object | `{ left: 20, right: 20 }` |  |
+| scale | 是否是脱离 0 值比例 | Object | `{ x: true, y: true }` | 设置成 true 后坐标刻度不会强制包含零刻度，默认都是false |
+| events | 为图表绑定事件 | Object | `{ click: function (e) { console.log(e) } }` |  |
+| before-config | 对数据提前进行额外的处理 | Function | `function (data) { /* do something */return data; }` | 在数据转化为配置项开始前触发，参数为data，需返回表格数据
+| after-config | 对生成好的echarts配置进行额外的处理 | Function | `function (options) { /* do something */return options; }` | 在数据转化为配置项结束后触发，参数为options, 需返回echarts配置

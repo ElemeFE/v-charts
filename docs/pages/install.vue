@@ -3,6 +3,8 @@
     <div class="image">
       <img src="../static/logo.png" alt="logo">
     </div>
+    <h3>V-Charts</h3>
+    <p>在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个痛点。使用v-charts生成图表，只需要统一提供一种对前后端都友好的数据格式，设置简单的配置项，便可轻松生成常见的图表。</p>
     <h3>安装</h3>
     <code-section :content="codeList[0]"></code-section>
     <h3>加载v-charts</h3>
@@ -26,27 +28,6 @@
           <td>{{ property.type }}</td>
           <td><code-section json :content="property.example"></code-section></td>
           <td>{{ property.remark }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>事件</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>名称</th>
-          <th>简介</th>
-          <th>触发时间</th>
-          <th>参数</th>
-          <th>返回值</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="fn in fns" :key="fn">
-          <td>{{ fn.name }}</td>
-          <td>{{ fn.intro }}</td>
-          <td>{{ fn.time }}</td>
-          <td>{{ fn.props }}</td>
-          <td>{{ fn.return }}</td>
         </tr>
       </tbody>
     </table>
@@ -91,7 +72,7 @@ const PROPERTIES = [
     name: 'tooltip',
     type: 'Boolean',
     intro: '是否显示提示框',
-    example: 'false',
+    example: false,
     remark: '默认为true'
   },
   {
@@ -111,32 +92,29 @@ const PROPERTIES = [
   {
     name: 'events',
     type: 'Object',
-    intro: '向图表绑定事件',
-    example: '',
+    intro: '为图表绑定事件',
+    example: '{ click: function (e) { console.log(e) } }',
     remark: ''
-  }
-]
-const FNS = [
-  {
-    name: 'beforeConfig',
-    intro: '对数据提前进行额外的处理',
-    time: '在数据转化为配置项开始前',
-    props: 'data(预先传入的数据)',
-    return: '返回处理好的数据'
   },
   {
-    name: 'afterConfig',
+    name: 'before-config',
+    type: 'Function',
+    intro: '对数据提前进行额外的处理',
+    example: 'function (data) { /* do something */return data; }',
+    remark: '在数据转化为配置项开始前触发，参数为data，需返回表格数据'
+  },
+  {
+    name: 'after-config',
+    type: 'Function',
     intro: '对生成好的echarts配置进行额外的处理',
-    time: '在数据转化为配置项结束后',
-    props: 'options(echarts配置)',
-    return: '返回处理好的echarts配置'
+    example: 'function (options) { /* do something */return options; }',
+    remark: '在数据转化为配置项结束后触发，参数为options, 需返回echarts配置'
   }
 ]
 export default {
   created () {
     this.codeList = CODE_LIST
     this.properties = PROPERTIES
-    this.fns = FNS
   }
 }
 </script>
