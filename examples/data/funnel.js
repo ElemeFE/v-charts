@@ -1,8 +1,9 @@
 export default {
   name: '漏斗图',
   type: 'funnel',
-  data: {
-    base: {
+  data: [
+    {
+      name: '漏斗图',
       data: {
         columns: ['状态', '数值'],
         rows: [
@@ -14,42 +15,66 @@ export default {
       },
       settings: {}
     },
-    properties: [
-      {
-        name: 'dimension',
-        intro: '维度',
-        type: 'string',
-        example: '\'活动\'',
-        remark: '默认columns第一项为维度'
+    {
+      name: '定制顺序漏斗图',
+      data: {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 900 },
+          { '状态': '访问', '数值': 600 },
+          { '状态': '点击', '数值': 300 },
+          { '状态': '订单', '数值': 100 }
+        ]
       },
-      {
-        name: 'measure',
-        intro: '指标',
-        type: 'string',
-        example: '\'时间\'',
-        remark: '默认columns第二项为指标'
-      },
-      {
-        name: 'sequence',
-        intro: '数据显示顺序',
-        type: 'array',
-        example: '[\'订单\', \'点击\', \'访问\', \'展示\']',
-        remark: '默认按照数据大小顺序'
-      },
-      {
-        name: 'dataType',
-        intro: '数据格式',
-        type: 'string',
-        example: 'percent',
-        remark: '可选值: KMB, normal, percent'
-      },
-      {
-        name: 'ascending',
-        intro: '是否显示为金字塔',
-        type: 'boolean',
-        example: 'true',
-        remark: ''
+      settings: {
+        sequence: ['订单', '点击', '访问', '展示']
       }
-    ]
-  }
+    },
+    {
+      name: '漏斗图',
+      data: {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 0.9 },
+          { '状态': '访问', '数值': 0.6 },
+          { '状态': '点击', '数值': 0.3 },
+          { '状态': '订单', '数值': 0.1 }
+        ]
+      },
+      settings: {
+        dataType: 'percent'
+      }
+    },
+    {
+      name: '金字塔',
+      data: {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 900 },
+          { '状态': '访问', '数值': 600 },
+          { '状态': '点击', '数值': 300 },
+          { '状态': '订单', '数值': 100 }
+        ]
+      },
+      settings: {
+        ascending: true
+      }
+    },
+    {
+      name: '指定指标维度',
+      data: {
+        columns: ['状态', '状态1', '数值'],
+        rows: [
+          { '状态': '展示', '状态1': '展示1', '数值': 900 },
+          { '状态': '访问', '状态1': '访问1', '数值': 600 },
+          { '状态': '点击', '状态1': '点击1', '数值': 300 },
+          { '状态': '订单', '状态1': '订单1', '数值': 100 }
+        ]
+      },
+      settings: {
+        dimension: '状态1',
+        measure: '数值'
+      }
+    }
+  ]
 }

@@ -4,8 +4,8 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.dev.conf.js",
-    "build": "rm -f -r dist && ./node_modules/.bin/webpack --config ./build/webpack.prod.conf.js --hide-modules",
+    "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js",
+    "build": "rm -f -r dist && webpack --config ./build/webpack.prod.conf.js --hide-modules",
     "com": "rm -f -r lib && node build/rollup.com.conf.js",
     "prepublish": "npm run com"
   },

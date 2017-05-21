@@ -6,6 +6,5 @@ import ring from './ring'
 import waterfall from './waterfall'
 import funnel from './funnel'
 import radar from './radar'
-import chart from './chart'
 
-export default { bar, column, line, pie, ring, waterfall, funnel, radar, chart }
+export default { bar, column, line, pie, ring, waterfall, funnel, radar }

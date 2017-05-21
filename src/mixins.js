@@ -6,7 +6,11 @@ const chartMixin = {
     height: { type: String, default: '400px' },
     beforeConfig: { type: Function },
     afterConfig: { type: Function },
-    events: { type: Object }
+    events: { type: Object },
+    grid: { type: Object },
+    colors: { type: Array },
+    scale: { type: Object },
+    tooltip: { type: Boolean, default: true }
   },
 
   watch: {
@@ -40,10 +44,13 @@ const chartMixin = {
       if (this.beforeConfig) data = this.beforeConfig(data)
       let options = this.chartHandler(columns, rows, this.settings)
 
-      if (Array.isArray(this.settings.color)) options.color = this.settings.color
-      if (this.settings.grid) options.grid = this.settings.grid
-      if (this.settings.scaleX) options.xAxis.scale = true
-      if (this.settings.scaleY) options.yAxis.scale = true
+      if (this.colors) options.color = this.colors
+      if (this.grid) options.grid = this.grid
+      if (this.scale) {
+        options.xAxis.scale = this.scale.x
+        options.yAxis.scale = this.scale.y
+      }
+      if (!this.tooltip) options.tooltip.show = false
 
       if (this.afterConfig) options = this.afterConfig(options)
       if (options) this.echarts.setOption(options, true)

@@ -3,11 +3,12 @@
     <h3>事件监听</h3>
     <p>示例</p>
     <ve-pie
-      :data="chartData.data.base.data"
+      :data="chartData"
+      :settings="chartSettings"
+      :tooltip="false"
       :events="events">
     </ve-pie>
     <div ref="box">被选中饼的名称: {{ name }}</div>
-    <p>代码示例</p>
     <code-section :content="codeList[0]"></code-section>
     <code-section :content="codeList[1]"></code-section>
   </div>
@@ -33,7 +34,8 @@ export default {
   },
 
   created () {
-    this.chartData = chartData
+    this.chartData = chartData.data.base.data
+    this.chartSettings = { selectedMode: 'single', hoverAnimation: false }
     this.events = {
       click: (e) => { this.name = e.name }
     }

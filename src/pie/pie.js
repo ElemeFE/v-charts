@@ -8,12 +8,14 @@ const dataHandler = {
   getPieSeries (args) {
     const {
       rows, dataType, percentShow, dimension, measure,
-      radius, offsetY
+      radius, offsetY, selectedMode, hoverAnimation
     } = args
 
     let series = {
       type: 'pie',
       radius,
+      selectedMode,
+      hoverAnimation,
       data: [],
       center: ['50%', offsetY]
     }
@@ -65,11 +67,13 @@ const pie = (columns, rows, settings, isRing) => {
     measure = columns[1],
     radius = isRing ? ringRadius : pieRadius,
     offsetY = pieOffsetY,
-    legendLimit = 30
+    legendLimit = 30,
+    selectedMode = false,
+    hoverAnimation = true
   } = settings
 
   const series = dataHandler.getPieSeries({
-    rows, dataType, percentShow, dimension, measure, radius, offsetY
+    rows, dataType, percentShow, dimension, measure, radius, offsetY, selectedMode, hoverAnimation
   })
   const legend = dataHandler.getPieLegend({ rows, dimension, legendLimit })
   const tooltip = dataHandler.getPieTooltip(dataType)
