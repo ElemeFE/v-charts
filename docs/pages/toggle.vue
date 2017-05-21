@@ -70,10 +70,6 @@ export default {
     }
   },
   methods: {
-    afterConfig (options) {
-      console.log(options)
-      return options
-    },
     changeChart () {
       if (this.index === 2) this.index = 0
       else this.index++

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-item">
+  <div class="page-item-test">
     <div class="chart-item" v-for="d in chartData" :key="d">
       <div class="chart-part">
         <h3>{{ d.name }}</h3>
@@ -8,11 +8,11 @@
       <div class="code-view">
         <p>数据格式</p>
         <div class="data-code">
-          <pre class="language-javascript"><code class="language-javascript" v-html='getCode(d.data)'></code></pre>
+          <code-section :content="d.data" json></code-section>
         </div>
         <p>配置项</p>
         <div class="setting-code">
-          <pre class="language-javascript"><code class="language-javascript" v-html='getCode(d.settings)'></code></pre>
+          <code-section :content="d.settings" json></code-section>
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@ import VeWaterfall from '../../src/waterfall/index'
 import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeChart from '../../src/chart/index'
+import CHART_DATA from '../test-data'
 
 export default {
   name: 'Item',
@@ -44,12 +45,8 @@ export default {
   methods: {
     init () {
       this.type = this.$route.params.type
-      this.chartData = this.$chartData[this.type].data
-      this.innerType = this.$chartData[this.type].type
-    },
-
-    getCode (code) {
-      return this.$Prism.highlight(JSON.stringify(code, null, 2), this.$Prism.languages.javascript)
+      this.chartData = CHART_DATA[this.type].data
+      this.innerType = CHART_DATA[this.type].type
     }
   },
 
@@ -76,7 +73,7 @@ export default {
 </script>
 
 <style lang="less">
-.page-item {
+.page-item-test {
   h3, p {
     margin: 0;
   }

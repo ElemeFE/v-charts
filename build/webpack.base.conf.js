@@ -27,7 +27,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: "pre",
-        include: [resolve('examples'), resolve('src')],
+        include: [resolve('docs'), resolve('src')],
         options: {
           formatter: require('eslint-friendly-formatter')
         }
@@ -50,7 +50,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('./src'), resolve('./examples')]
+        include: [resolve('./src'), resolve('./docs')]
       },
       {
         test: /\.css$/,
@@ -61,7 +61,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../examples/favicon.ico')
+        from: path.resolve(__dirname, '../docs/favicon.ico')
       }
     ])
   ]

@@ -5,7 +5,6 @@
 <script>
 import Prism from 'prismjs'
 import 'prismjs/themes/prism.css'
-console.log(Prism.languages)
 
 export default {
   name: 'CodeSection',

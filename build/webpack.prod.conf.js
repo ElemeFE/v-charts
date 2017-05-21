@@ -29,7 +29,7 @@ module.exports = merge(baseWebpackConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './examples/index.html',
+      template: './docs/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
