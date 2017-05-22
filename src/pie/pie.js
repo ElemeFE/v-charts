@@ -4,57 +4,55 @@ const pieRadius = 100
 const ringRadius = [80, 100]
 const pieOffsetY = 200
 
-const dataHandler = {
-  getPieSeries (args) {
-    const {
-      rows, dataType, percentShow, dimension, measure,
-      radius, offsetY, selectedMode, hoverAnimation
-    } = args
+function getPieSeries (args) {
+  const {
+    rows, dataType, percentShow, dimension, measure,
+    radius, offsetY, selectedMode, hoverAnimation
+  } = args
 
-    let series = {
-      type: 'pie',
-      radius,
-      selectedMode,
-      hoverAnimation,
-      data: [],
-      center: ['50%', offsetY]
-    }
-    if (percentShow) {
-      series.label = {
-        normal: {
-          show: true,
-          formatter (item) {
-            let tpl = []
-            tpl.push(`${item.name}:`)
-            tpl.push(getFormated(item.value, dataType))
-            tpl.push(`(${item.percent}%)`)
-            return tpl.join(' ')
-          }
+  let series = {
+    type: 'pie',
+    radius,
+    selectedMode,
+    hoverAnimation,
+    data: [],
+    center: ['50%', offsetY]
+  }
+  if (percentShow) {
+    series.label = {
+      normal: {
+        show: true,
+        formatter (item) {
+          let tpl = []
+          tpl.push(`${item.name}:`)
+          tpl.push(getFormated(item.value, dataType))
+          tpl.push(`(${item.percent}%)`)
+          return tpl.join(' ')
         }
       }
     }
-    series.data = rows.map(row => ({ name: row[dimension], value: row[measure] }))
+  }
+  series.data = rows.map(row => ({ name: row[dimension], value: row[measure] }))
 
-    return series
-  },
+  return series
+}
 
-  getPieLegend ({ rows, dimension, legendLimit }) {
-    let legend = rows.map(row => row[dimension])
-    return legend.length
-      ? { data: legend, show: legend.length < legendLimit }
-      : false
-  },
+function getPieLegend ({ rows, dimension, legendLimit }) {
+  let legend = rows.map(row => row[dimension])
+  return legend.length
+    ? { data: legend, show: legend.length < legendLimit }
+    : false
+}
 
-  getPieTooltip (dataType) {
-    return {
-      formatter (item) {
-        let tpl = []
-        tpl.push(itemPoint(item.color))
-        tpl.push(`${item.name}:`)
-        tpl.push(getFormated(item.value, dataType))
-        tpl.push(`(${item.percent}%)`)
-        return tpl.join(' ')
-      }
+function getPieTooltip (dataType) {
+  return {
+    formatter (item) {
+      let tpl = []
+      tpl.push(itemPoint(item.color))
+      tpl.push(`${item.name}:`)
+      tpl.push(getFormated(item.value, dataType))
+      tpl.push(`(${item.percent}%)`)
+      return tpl.join(' ')
     }
   }
 }
@@ -72,11 +70,11 @@ const pie = (columns, rows, settings, isRing) => {
     hoverAnimation = true
   } = settings
 
-  const series = dataHandler.getPieSeries({
+  const series = getPieSeries({
     rows, dataType, percentShow, dimension, measure, radius, offsetY, selectedMode, hoverAnimation
   })
-  const legend = dataHandler.getPieLegend({ rows, dimension, legendLimit })
-  const tooltip = dataHandler.getPieTooltip(dataType)
+  const legend = getPieLegend({ rows, dimension, legendLimit })
+  const tooltip = getPieTooltip(dataType)
   if (!legend) return false
   const options = { series, legend, tooltip }
   return options

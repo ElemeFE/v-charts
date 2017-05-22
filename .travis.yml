@@ -4,7 +4,7 @@ node_js:
 - --lts
 branches:
   only:
-  - dev
+  - master
 install:
   - yarn
 script:
