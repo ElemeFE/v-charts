@@ -1,19 +1,18 @@
 var rollup = require('rollup')
 var vue = require('rollup-plugin-vue2')
 var resolve = require('rollup-plugin-node-resolve')
-var commonjs = require('rollup-plugin-commonjs')
 var babel = require('rollup-plugin-babel')
 var eslint = require('rollup-plugin-eslint')
 var componentInfo = require('../src/component-list')
 var echartsLib = require('../src/echarts-lib')
 
-Object.keys(componentInfo).forEach(com => {
-  rollupFn(com, componentInfo[com])
+Object.keys(componentInfo).forEach(name => {
+  rollupFn(name, componentInfo[name])
 })
 
-function rollupFn(entryPath, destPath) {
+function rollupFn (name, info) {
   rollup.rollup({
-    entry: entryPath,
+    entry: info.src,
     external: echartsLib,
     plugins: [
       eslint({
@@ -24,7 +23,6 @@ function rollupFn(entryPath, destPath) {
       resolve({
         extensions: ['.js', '.vue']
       }),
-      commonjs(),
       babel({
         exclude: 'node_modules/**',
         plugins: ['external-helpers']
@@ -32,8 +30,15 @@ function rollupFn(entryPath, destPath) {
     ]
   }).then(function (bundle) {
     bundle.write({
-      format: 'cjs',
-      dest: destPath
+      format: 'umd',
+      moduleName: name,
+      globals: {
+        'echarts/lib/echarts': 'echarts'
+      },
+      dest: info.dist
     })
-  }).catch((e) => { process.exit(1) })
+  }).catch((e) => {
+    console.log(e)
+    process.exit(1)
+  })
 }
