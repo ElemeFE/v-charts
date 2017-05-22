@@ -1,7 +1,3 @@
-<p align="center">
-  <img width="200" src="https://cdn.rawgit.com/ElemeFE/v-charts/dev/docs/static/logo.png">
-</p>
-
 ## V-Charts
 
 在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个
@@ -20,7 +16,7 @@ npm i v-charts -S
 
 ```html
 <template>
-  <div class="page-test">
+  <div>
     <ve-line :data="chartData"></ve-line>
   </div>
 </template>
@@ -28,18 +24,16 @@ npm i v-charts -S
 <script>
 import VeLine from 'v-charts/lib/line'
 export default {
-  name: 'Test',
-
   created () {
     this.chartData = {
-      columns: ['日期', '余额', '比率'],
+      columns: ['日期', '销售量'],
       rows: [
-        { '日期': '1月1日', '余额': 123, '比率': 0.1 },
-        { '日期': '1月2日', '余额': 1223, '比率': 0.2 },
-        { '日期': '1月3日', '余额': 2123, '比率': 0.3 },
-        { '日期': '1月4日', '余额': 4123, '比率': 0.4 },
-        { '日期': '1月5日', '余额': 3123, '比率': 0.5 },
-        { '日期': '1月6日', '余额': 7123, '比率': 0.6 }
+        { '日期': '1月1日', '销售量': 123 },
+        { '日期': '1月2日', '销售量': 1223 },
+        { '日期': '1月3日', '销售量': 2123 },
+        { '日期': '1月4日', '销售量': 4123 },
+        { '日期': '1月5日', '销售量': 3123 },
+        { '日期': '1月6日', '销售量': 7123 }
       ]
     }
   },
