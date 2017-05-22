@@ -1,10 +1,10 @@
-import { SIGN, getLabelName, itemPoint } from '../echarts-base'
+import { SIGN, getLegendName, itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
 
 function getBarLegends ({ metrics, axisSite, meaAxisType, isColumn }) {
   let legends = []
 
-  const formatter = getLabelName
+  const formatter = getLegendName
   const secondAxis = isColumn ? axisSite.right : axisSite.top
   metrics.forEach(item => {
     let legendItem = ~secondAxis.indexOf(item)
