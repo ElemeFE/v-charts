@@ -5,7 +5,6 @@
     <ve-pie
       :data="chartData"
       :settings="chartSettings"
-      :tooltip="false"
       :events="events">
     </ve-pie>
     <div ref="box">被选中饼的名称: {{ name }}</div>
