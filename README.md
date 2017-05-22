@@ -1,7 +1,3 @@
-<p align="center">
-  <img width="200" src="https://cdn.rawgit.com/ElemeFE/v-charts/dev/docs/static/logo.png">
-</p>
-
 ## V-Charts
 
 在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个

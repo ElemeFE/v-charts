@@ -1,8 +1,5 @@
 <template>
   <div class="page-install page-item">
-    <div class="image">
-      <img src="../static/logo.png" alt="logo">
-    </div>
     <h3>V-Charts</h3>
     <p>在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个痛点。使用v-charts生成图表，只需要统一提供一种对前后端都友好的数据格式，设置简单的配置项，便可轻松生成常见的图表。</p>
     <h3>安装</h3>
