@@ -10,7 +10,7 @@ export default {
   name: 'CodeSection',
 
   props: {
-    content: [String, Object, Array],
+    content: { default: '' },
     lang: { type: String, default: 'javascript' },
     json: { type: Boolean, default: false }
   },
