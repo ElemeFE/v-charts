@@ -4,7 +4,6 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/title'
 
 const SIGN = '@_@'
-const getLabelName = (item) => item.split(SIGN)[0] // TODO: delete
 const getLegendName = (item) => item.split(SIGN)[0]
 
 const itemPoint = (color) => {
@@ -46,5 +45,5 @@ echarts.registerTheme('ve-chart', {
   }
 })
 
-export { SIGN, getLabelName, itemPoint, getLegendName }
+export { SIGN, itemPoint, getLegendName }
 export default echarts
