@@ -1,30 +1,30 @@
 import { SIGN, getLegendName, itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
 
-function getLineLegends ({ measures, axisSite, yAxisType }) {
+function getLineLegends ({ metrics, axisSite, yAxisType }) {
   let legends = []
 
   const formatter = getLegendName
 
-  measures.forEach(measure => {
-    let legendItem = ~axisSite.right.indexOf(measure)
-      ? `${measure}${SIGN}${yAxisType[1]}`
-      : `${measure}${SIGN}${yAxisType[0]}`
+  metrics.forEach(item => {
+    let legendItem = ~axisSite.right.indexOf(item)
+      ? `${item}${SIGN}${yAxisType[1]}`
+      : `${item}${SIGN}${yAxisType[0]}`
     legends.push(legendItem)
   })
 
   return legends.length ? { data: legends, formatter } : false
 }
 
-function getLineXAxis ({ dimensions, rows, xAxisName }) {
-  return dimensions.map((dimension, index) => ({
+function getLineXAxis ({ dimension, rows, xAxisName }) {
+  return dimension.map((item, index) => ({
     type: 'category',
     nameLocation: 'middle',
     nameGap: 22,
     boundaryGap: false,
     name: xAxisName[index] || '',
     axisTick: { show: true, lineStyle: { color: '#eee' } },
-    data: rows.map(row => row[dimension]),
+    data: rows.map(row => row[item]),
     axisLabel: {
       formatter (v) {
         return String(v)
@@ -33,34 +33,34 @@ function getLineXAxis ({ dimensions, rows, xAxisName }) {
   }))
 }
 
-function getLineSeries ({ rows, axisSite, yAxisType, dimensions, measures, area, stack }) {
+function getLineSeries ({ rows, axisSite, yAxisType, dimension, metrics, area, stack }) {
   let series = []
   const dataTemp = {}
   const stackMap = stack && getStackMap(stack)
-  measures.forEach(measure => { dataTemp[measure] = [] })
+  metrics.forEach(item => { dataTemp[item] = [] })
   rows.forEach(row => {
-    measures.forEach(measure => {
-      dataTemp[measure].push(row[measure] || 0)
+    metrics.forEach(item => {
+      dataTemp[item].push(row[item] || 0)
     })
   })
-  measures.forEach(measure => {
+  metrics.forEach(item => {
     let seriesItem = {
-      name: measure,
+      name: item,
       type: 'line',
-      data: dataTemp[measure]
+      data: dataTemp[item]
     }
 
     if (area) seriesItem.areaStyle = { normal: {} }
 
-    if (~axisSite.right.indexOf(measure)) {
+    if (~axisSite.right.indexOf(item)) {
       seriesItem.yAxisIndex = 1
-      seriesItem.name = `${measure}${SIGN}${yAxisType[1]}`
+      seriesItem.name = `${item}${SIGN}${yAxisType[1]}`
     } else {
       seriesItem.yAxisIndex = 0
-      seriesItem.name = `${measure}${SIGN}${yAxisType[0]}`
+      seriesItem.name = `${item}${SIGN}${yAxisType[0]}`
     }
 
-    if (stack && stackMap[measure]) seriesItem.stack = stackMap[measure]
+    if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
 
     series.push(seriesItem)
   })
@@ -111,24 +111,24 @@ const line = (columns, rows, settings) => {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],
     yAxisName = [],
-    dimensions = [columns[0]],
+    dimension = [columns[0]],
     xAxisName = [],
     area,
     stack
   } = settings
-  let measures = columns.slice()
+  let metrics = columns.slice()
 
-  if (settings.measures) {
-    measures = settings.measures
+  if (settings.metrics) {
+    metrics = settings.metrics
   } else {
-    measures.splice(columns.indexOf(dimensions[0]), 1)
+    metrics.splice(columns.indexOf(dimension[0]), 1)
   }
 
-  const legend = getLineLegends({ measures, axisSite, yAxisType })
+  const legend = getLineLegends({ metrics, axisSite, yAxisType })
   const tooltip = getLineTooltip()
-  const xAxis = getLineXAxis({ dimensions, rows, xAxisName })
+  const xAxis = getLineXAxis({ dimension, rows, xAxisName })
   const yAxis = getLineYAxis({ yAxisName, yAxisType })
-  const series = getLineSeries({ rows, stack, axisSite, yAxisType, dimensions, measures, area })
+  const series = getLineSeries({ rows, stack, axisSite, yAxisType, dimension, metrics, area })
   if (!legend || !xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }

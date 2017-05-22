@@ -28,7 +28,7 @@ function getRadarTooltip ({ dataType, radar }) {
   }
 }
 
-function getRadarSetting ({ rows, dimension, measures }) {
+function getRadarSetting ({ rows, dimension, metrics }) {
   const settingBase = {
     indicator: [],
     shape: 'circle',
@@ -36,11 +36,11 @@ function getRadarSetting ({ rows, dimension, measures }) {
   }
   let indicatorTemp = {}
   rows.forEach(items => {
-    measures.forEach(measure => {
-      if (!indicatorTemp[measure]) {
-        indicatorTemp[measure] = [items[measure]]
+    metrics.forEach(item => {
+      if (!indicatorTemp[item]) {
+        indicatorTemp[item] = [items[item]]
       } else {
-        indicatorTemp[measure].push(items[measure])
+        indicatorTemp[item].push(items[item])
       }
     })
   })
@@ -53,7 +53,7 @@ function getRadarSetting ({ rows, dimension, measures }) {
   return settingBase
 }
 
-function getRadarSeries ({ rows, dimension, measures, radar }) {
+function getRadarSeries ({ rows, dimension, metrics, radar }) {
   let radarIndexObj = {}
   radar.indicator.forEach((item, index) => {
     radarIndexObj[item.name] = index
@@ -67,7 +67,7 @@ function getRadarSeries ({ rows, dimension, measures, radar }) {
     }
     let dataArr = []
     Object.keys(row).forEach(key => {
-      if (~measures.indexOf(key)) dataArr[radarIndexObj[key]] = row[key]
+      if (~metrics.indexOf(key)) dataArr[radarIndexObj[key]] = row[key]
     })
     seriesBase.data.push(dataArr)
     return seriesBase
@@ -80,16 +80,16 @@ const radar = (columns, rows, settings) => {
     dataType = {},
     dimension = columns[0]
   } = settings
-  let measures = columns.slice()
-  if (settings.measures) {
-    measures = settings.measures
+  let metrics = columns.slice()
+  if (settings.metrics) {
+    metrics = settings.metrics
   } else {
-    measures.splice(columns.indexOf(dimension), 1)
+    metrics.splice(columns.indexOf(dimension), 1)
   }
   const legend = getRadarLegend({ rows, dimension })
-  const radar = getRadarSetting({ rows, dimension, measures })
+  const radar = getRadarSetting({ rows, dimension, metrics })
   const tooltip = getRadarTooltip({ dataType, radar })
-  const series = getRadarSeries({ rows, dimension, measures, radar })
+  const series = getRadarSeries({ rows, dimension, metrics, radar })
   const options = { legend, tooltip, radar, series }
   return options
 }

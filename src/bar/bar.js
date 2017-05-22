@@ -1,28 +1,28 @@
 import { SIGN, getLabelName, itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
 
-function getBarLegends ({ measures, axisSite, meaAxisType, isColumn }) {
+function getBarLegends ({ metrics, axisSite, meaAxisType, isColumn }) {
   let legends = []
 
   const formatter = getLabelName
   const secondAxis = isColumn ? axisSite.right : axisSite.top
-  measures.forEach(measure => {
-    let legendItem = ~secondAxis.indexOf(measure)
-      ? `${measure}${SIGN}${meaAxisType[1]}`
-      : `${measure}${SIGN}${meaAxisType[0]}`
+  metrics.forEach(item => {
+    let legendItem = ~secondAxis.indexOf(item)
+      ? `${item}${SIGN}${meaAxisType[1]}`
+      : `${item}${SIGN}${meaAxisType[0]}`
     legends.push(legendItem)
   })
 
   return legends.length ? { data: legends, formatter } : false
 }
 
-function getBarDimAxis ({ rows, dimAxisName, dimensions }) {
-  return dimensions.map(dimension => ({
+function getBarDimAxis ({ rows, dimAxisName, dimension }) {
+  return dimension.map(item => ({
     type: 'category',
     name: dimAxisName,
     nameLocation: 'middle',
     nameGap: 22,
-    data: rows.map(row => row[dimension]),
+    data: rows.map(row => row[item]),
     axisLabel: {
       formatter (v) {
         return String(v)
@@ -31,7 +31,7 @@ function getBarDimAxis ({ rows, dimAxisName, dimensions }) {
   }))
 }
 
-function getBarMeaAxis ({ columns, meaAxisName, measures, meaAxisType }) {
+function getBarMeaAxis ({ columns, meaAxisName, metrics, meaAxisType }) {
   const meaAxisBase = { type: 'value', axisTick: { show: false } }
   let meaAxis = []
 
@@ -73,16 +73,16 @@ function getBarTooltip () {
   }
 }
 
-function getBarSeries ({ rows, measures, stack, axisSite, meaAxisType, isColumn }) {
+function getBarSeries ({ rows, metrics, stack, axisSite, meaAxisType, isColumn }) {
   let series = []
   const seriesTemp = {}
   const secondAxis = isColumn ? axisSite.right : axisSite.top
   const secondDimAxisIndex = isColumn ? 'yAxisIndex' : 'xAxisIndex'
   const stackMap = stack && getStackMap(stack)
-  measures.forEach(measure => { seriesTemp[measure] = [] })
+  metrics.forEach(item => { seriesTemp[item] = [] })
   rows.forEach(row => {
-    measures.forEach(measure => {
-      seriesTemp[measure].push(row[measure])
+    metrics.forEach(item => {
+      seriesTemp[item].push(row[item])
     })
   })
   series = Object.keys(seriesTemp).map(item => {
@@ -106,24 +106,24 @@ function getBarSeries ({ rows, measures, stack, axisSite, meaAxisType, isColumn 
 const bar = (columns, rows, settings) => {
   const {
     axisSite = { top: [] },
-    dimensions = [columns[0]],
+    dimension = [columns[0]],
     stack = {}
   } = settings
-  let measures = columns.slice()
-  if (settings.measures) {
-    measures = settings.measures
+  let metrics = columns.slice()
+  if (settings.metrics) {
+    metrics = settings.metrics
   } else {
-    measures.splice(columns.indexOf(dimensions[0]), 1)
+    metrics.splice(columns.indexOf(dimension[0]), 1)
   }
   const meaAxisType = settings.xAxisType || ['normal', 'normal']
   const meaAxisName = settings.xAxisName || []
   const dimAxisName = settings.yAxisName || ''
   const isColumn = false
 
-  const legend = getBarLegends({ measures, axisSite, meaAxisType, isColumn })
-  const yAxis = getBarDimAxis({ rows, dimAxisName, dimensions })
-  const xAxis = getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
-  const series = getBarSeries({ rows, measures, stack, axisSite, meaAxisType, isColumn })
+  const legend = getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
+  const yAxis = getBarDimAxis({ rows, dimAxisName, dimension })
+  const xAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType })
+  const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isColumn })
   const tooltip = getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
@@ -132,24 +132,24 @@ const bar = (columns, rows, settings) => {
 const column = (columns, rows, settings) => {
   const {
     axisSite = { right: [] },
-    dimensions = [columns[0]],
+    dimension = [columns[0]],
     stack = {}
   } = settings
-  let measures = columns.slice()
-  if (settings.measures) {
-    measures = settings.measures
+  let metrics = columns.slice()
+  if (settings.metrics) {
+    metrics = settings.metrics
   } else {
-    measures.splice(columns.indexOf(dimensions[0]), 1)
+    metrics.splice(columns.indexOf(dimension[0]), 1)
   }
   const meaAxisType = settings.yAxisType || ['normal', 'normal']
   const meaAxisName = settings.yAxisName || []
   const dimAxisName = settings.xAxisName || ''
   const isColumn = true
 
-  const legend = getBarLegends({ measures, axisSite, meaAxisType, isColumn })
-  const xAxis = getBarDimAxis({ rows, dimAxisName, dimensions })
-  const yAxis = getBarMeaAxis({ columns, meaAxisName, measures, meaAxisType })
-  const series = getBarSeries({ rows, measures, stack, axisSite, meaAxisType, isColumn })
+  const legend = getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
+  const xAxis = getBarDimAxis({ rows, dimAxisName, dimension })
+  const yAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType })
+  const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isColumn })
   const tooltip = getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options

@@ -52,8 +52,8 @@ export default {
         ]
       },
       settings: {
-        dimensions: ['余额'],
-        measures: ['年龄']
+        dimension: ['余额'],
+        metrics: ['年龄']
       }
     },
     {

@@ -39,23 +39,23 @@ function getWaterfallYAxis ({ dataType, yAxisName }) {
   }
 }
 
-function getWaterfallSeries ({ dataType, rows, dimension, measure, totalNum, remainStatus, dataSum }) {
+function getWaterfallSeries ({ dataType, rows, dimension, metrics, totalNum, remainStatus, dataSum }) {
   const seriesBase = { type: 'bar', stack: '总量' }
   let dataSumTemp = dataSum
   let totalNumTemp = totalNum
   let assistData
   let mainData
-  const rowData = rows.map(row => row[measure])
+  const rowData = rows.map(row => row[metrics])
 
   if (remainStatus === 'have-remain') {
     assistData = [0].concat(rows.map(row => {
-      totalNumTemp -= row[measure]
+      totalNumTemp -= row[metrics]
       return totalNumTemp
     })).concat([0])
     mainData = [totalNum].concat(rowData).concat([totalNum - dataSum])
   } else {
     assistData = [0].concat(rows.map(row => {
-      dataSumTemp -= row[measure]
+      dataSumTemp -= row[metrics]
       return dataSumTemp
     }))
     mainData = [dataSum].concat(rowData)
@@ -101,16 +101,16 @@ const waterfall = (columns, rows, settings) => {
     remainName = '其他',
     xAxisName = dimension
   } = settings
-  let measureTemp = columns.slice()
-  measureTemp.splice(measureTemp.indexOf(dimension), 1)
-  const measure = measureTemp[0]
-  const yAxisName = measure
+  let metricsTemp = columns.slice()
+  metricsTemp.splice(metricsTemp.indexOf(dimension), 1)
+  const metrics = metricsTemp[0]
+  const yAxisName = metrics
   const tooltip = getWaterfallTooltip(dataType)
-  const dataSum = rows.reduce((pre, cur) => pre + Number(cur[measure]), 0).toFixed(2)
+  const dataSum = rows.reduce((pre, cur) => pre + Number(cur[metrics]), 0).toFixed(2)
   const remainStatus = getWaterfallRemainStatus({ dataSum, dimension, totalNum })
   const xAxis = getWaterfallXAxis({ dimension, rows, remainStatus, totalName, remainName, xAxisName })
   const yAxis = getWaterfallYAxis({ dataType, yAxisName })
-  const series = getWaterfallSeries({ dataType, rows, dimension, measure, totalNum, remainStatus, dataSum })
+  const series = getWaterfallSeries({ dataType, rows, dimension, metrics, totalNum, remainStatus, dataSum })
   const options = { tooltip, xAxis, yAxis, series }
   return options
 }

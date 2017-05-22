@@ -25,7 +25,7 @@ export default {
         remark: '默认columns第一项为维度'
       },
       {
-        name: 'measure',
+        name: 'metrics',
         intro: '指标',
         type: 'string',
         example: '\'年龄\'',

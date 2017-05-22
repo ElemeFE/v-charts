@@ -6,7 +6,7 @@ const pieOffsetY = 200
 
 function getPieSeries (args) {
   const {
-    rows, dataType, percentShow, dimension, measure,
+    rows, dataType, percentShow, dimension, metrics,
     radius, offsetY, selectedMode, hoverAnimation
   } = args
 
@@ -32,7 +32,7 @@ function getPieSeries (args) {
       }
     }
   }
-  series.data = rows.map(row => ({ name: row[dimension], value: row[measure] }))
+  series.data = rows.map(row => ({ name: row[dimension], value: row[metrics] }))
 
   return series
 }
@@ -62,7 +62,7 @@ const pie = (columns, rows, settings, isRing) => {
     dataType = 'normal',
     percentShow,
     dimension = columns[0],
-    measure = columns[1],
+    metrics = columns[1],
     radius = isRing ? ringRadius : pieRadius,
     offsetY = pieOffsetY,
     legendLimit = 30,
@@ -71,7 +71,7 @@ const pie = (columns, rows, settings, isRing) => {
   } = settings
 
   const series = getPieSeries({
-    rows, dataType, percentShow, dimension, measure, radius, offsetY, selectedMode, hoverAnimation
+    rows, dataType, percentShow, dimension, metrics, radius, offsetY, selectedMode, hoverAnimation
   })
   const legend = getPieLegend({ rows, dimension, legendLimit })
   const tooltip = getPieTooltip(dataType)
