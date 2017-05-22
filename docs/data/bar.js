@@ -24,14 +24,14 @@ export default {
     },
     properties: [
       {
-        name: 'dimensions',
+        name: 'dimension',
         intro: '维度',
         type: 'array',
         example: '[\'余额\']',
         remark: '默认columns第一项为维度'
       },
       {
-        name: 'measures',
+        name: 'metrics',
         intro: '指标',
         type: 'array',
         example: '[\'年龄\']',

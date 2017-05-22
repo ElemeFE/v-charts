@@ -15,7 +15,7 @@ function getFunnelTooltip () {
   }
 }
 
-function getFunnelLegend ({ dimension, measure, rows, sequence, dataType }) {
+function getFunnelLegend ({ dimension, metrics, rows, sequence, dataType }) {
   const legendData = sequence.map(item => {
     return `${item}${SIGN}${dataType}`
   })
@@ -24,7 +24,7 @@ function getFunnelLegend ({ dimension, measure, rows, sequence, dataType }) {
   return { data: legendData, formatter }
 }
 
-function getFunnelSeries ({ dimension, measure, rows, sequence, dataType, ascending }) {
+function getFunnelSeries ({ dimension, metrics, rows, sequence, dataType, ascending }) {
   let series = {
     type: 'funnel',
     label: { normal: { formatter (item) { return item.name.split(SIGN)[0] } } }
@@ -33,7 +33,7 @@ function getFunnelSeries ({ dimension, measure, rows, sequence, dataType, ascend
 
   let falseFunnel = false
   rows.some((row, index) => {
-    if (index && row[measure] > rows[index - 1][measure]) {
+    if (index && row[metrics] > rows[index - 1][metrics]) {
       falseFunnel = true
       return true
     }
@@ -45,13 +45,13 @@ function getFunnelSeries ({ dimension, measure, rows, sequence, dataType, ascend
     series.data = rows.slice().reverse().map((row, index) => ({
       name: `${row[dimension]}${SIGN}${dataType}`,
       value: (index + 1) * step,
-      realValue: row[measure]
+      realValue: row[metrics]
     }))
   } else {
     series.data = rows.map(row => ({
       name: `${row[dimension]}${SIGN}${dataType}`,
-      value: row[measure],
-      realValue: row[measure]
+      value: row[metrics],
+      realValue: row[metrics]
     }))
   }
 
@@ -66,18 +66,18 @@ const funnel = (columns, rows, settings) => {
     sequence = rows.map(row => row[dimension]),
     ascending
   } = settings
-  let measure
-  if (settings.measure) {
-    measure = settings.measure
+  let metrics
+  if (settings.metrics) {
+    metrics = settings.metrics
   } else {
-    let measureTemp = columns.slice()
-    measureTemp.splice(columns.indexOf(dimension), 1)
-    measure = measureTemp[0]
+    let metricsTemp = columns.slice()
+    metricsTemp.splice(columns.indexOf(dimension), 1)
+    metrics = metricsTemp[0]
   }
 
   const tooltip = getFunnelTooltip()
-  const legend = getFunnelLegend({ dimension, measure, rows, sequence, dataType })
-  const series = getFunnelSeries({ dimension, measure, rows, sequence, dataType, ascending })
+  const legend = getFunnelLegend({ dimension, metrics, rows, sequence, dataType })
+  const series = getFunnelSeries({ dimension, metrics, rows, sequence, dataType, ascending })
   const options = { tooltip, legend, series }
   return options
 }

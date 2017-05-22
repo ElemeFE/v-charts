@@ -73,7 +73,7 @@ export default {
       },
       settings: {
         dimension: '状态1',
-        measure: '数值'
+        metrics: '数值'
       }
     }
   ]

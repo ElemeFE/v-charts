@@ -33,7 +33,7 @@ export default {
           '人口比例': 'percent'
         },
         dimension: '城市',
-        measures: ['收入', '人口比例', '房价']
+        metrics: ['收入', '人口比例', '房价']
       }
     }
   ]

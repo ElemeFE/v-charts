@@ -70,8 +70,8 @@ export default {
         ]
       },
       settings: {
-        dimensions: ['比率'],
-        measures: ['余额']
+        dimension: ['比率'],
+        metrics: ['余额']
       }
     },
     {

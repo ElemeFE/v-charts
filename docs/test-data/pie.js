@@ -49,7 +49,7 @@ export default {
       },
       settings: {
         dimension: '余额',
-        measure: '年龄'
+        metrics: '年龄'
       }
     },
     {
