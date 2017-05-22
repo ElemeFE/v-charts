@@ -1,0 +1,13 @@
+- 介绍
+ - [开始使用](/)
+- 图表
+  - [折线图](/chart/line)
+  - [柱状图](/chart/column)
+  - [条形图](/chart/bar)
+  - [饼图](/chart/pie)
+  - [环图](/chart/ring)
+  - [瀑布图](/chart/waterfall)
+  - [雷达图](/chart/radar)
+- 其他
+  - [事件监听](/others/event)
+  - [图表切换](/others/toggle)

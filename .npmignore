@@ -1,4 +1,5 @@
 build
+examples
 docs
 .babelrc
 .eslintrc.js
