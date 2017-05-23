@@ -1,6 +1,6 @@
 {
   "name": "v-charts",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -58,6 +58,7 @@
     "rollup-plugin-commonjs": "8.0.2",
     "rollup-plugin-eslint": "3.0.0",
     "rollup-plugin-node-resolve": "2.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
     "rollup-plugin-vue2": "0.8.0",
     "style-loader": "0.14.1",
     "url-loader": "^0.5.8",

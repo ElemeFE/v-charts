@@ -1,64 +1,19 @@
-## V-Charts
-
-在使用 echarts 生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts 的出现正是为了解决这个痛点。基于 Vue2.0 和 echarts 封装的 v-charts 图表组件，只需要统一提供一种对前后端都友好的数据格式设置简单的配置项，便可轻松生成常见的图表。
-
 ### 安装
----
+
+#### npm安装
 
 ```
 npm i v-charts -S
 ```
 
-### 快速上手
----
+#### cdn
 
 ```html
-<template>
-  <div>
-    <ve-line :data="chartData"></ve-line>
-  </div>
-</template>
-
-<script>
-import VeLine from 'v-charts/lib/line'
-export default {
-  created () {
-    this.chartData = {
-      columns: ['日期', '销售量'],
-      rows: [
-        { '日期': '1月1日', '销售量': 123 },
-        { '日期': '1月2日', '销售量': 1223 },
-        { '日期': '1月3日', '销售量': 2123 },
-        { '日期': '1月4日', '销售量': 4123 },
-        { '日期': '1月5日', '销售量': 3123 },
-        { '日期': '1月6日', '销售量': 7123 }
-      ]
-    }
-  },
-
-  components: { VeLine }
-}
-</script>
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="//unpkg.com/echarts/dist/echarts.min.js"></script>
+<script src="//unpkg.com/v-charts/lib/index.js"></script>
 ```
 
-> 目前支持的图表有 line, bar, column, waterfall, pie, ring, funnel, radar
+#### 示例
 
-### 示例
-
-<iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/he1u3j75/4/embedded/result,html,js,css/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-### 属性
----
-| 配置项 | 简介 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| data | 图表数据 | Object | columns 代表指标和维度名称， rows 为数据内容 |
-| width | 图表宽度 | String | 默认 100% |
-| height | 图表高度 | String | 默认 400px |
-| settings | 图表配置项 | Object | 每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项 |
-| colors | 颜色列表 | Array |  |
-| tooltip | 是否显示提示框 | Boolean | 默认为 true |
-| grid | 网格配置 | Object |  |
-| scale | 是否是脱离 0 值比例 | Object | 设置成 true 后坐标刻度不会强制包含零刻度，默认都是 false |
-| events | 为图表绑定事件 | Object |  |
-| before-config | 对数据提前进行额外的处理 | Function | 在数据转化为配置项开始前触发，参数为 data，需返回表格数据
-| after-config | 对生成好的echarts配置进行额外的处理 | Function | 在数据转化为配置项结束后触发，参数为 options , 需返回 echarts 配置
+<iframe width="100%" height="430" src="//jsfiddle.net/vue_echarts/he1u3j75/8/embedded/result,js,html/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
