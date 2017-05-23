@@ -8,4 +8,23 @@ import VeFunnel from './funnel'
 import VeRadar from './radar'
 import VeChart from './chart'
 
-export { VeBar, VeColumn, VeRing, VeLine, VePie, VeWaterfall, VeFunnel, VeRadar, VeChart }
+const components = [
+  VeBar,
+  VeColumn,
+  VeLine,
+  VePie,
+  VeWaterfall,
+  VeFunnel,
+  VeRadar,
+  VeChart
+]
+
+function install (Vue, _) {
+  components.forEach(component => { Vue.component(component.name, component) })
+}
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+export default { VeBar, VeColumn, VeRing, VeLine, VePie, VeWaterfall, VeFunnel, VeRadar, VeChart, install }
