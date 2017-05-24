@@ -13,6 +13,7 @@ const components = [
   VeColumn,
   VeLine,
   VePie,
+  VeRing,
   VeWaterfall,
   VeFunnel,
   VeRadar,
