@@ -9,6 +9,7 @@
   - [饼图](/pie)
   - [环图](/ring)
   - [瀑布图](/waterfall)
+  - [漏斗图](/funnel)
   - [雷达图](/radar)
 - 其他
   - [事件监听](/event)

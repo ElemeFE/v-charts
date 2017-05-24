@@ -4,6 +4,10 @@
 痛点。基于Vue2.0和echarts封装的v-charts图表组件，只需要统一提供一种对前后端都友好的数据格式
 设置简单的配置项，便可轻松生成常见的图表。
 
+### 文档
+
+[https://elemefe.github.io/v-charts/#/](https://elemefe.github.io/v-charts/#/)
+
 ### 安装
 ---
 
@@ -45,9 +49,6 @@ export default {
 
 > 目前支持的图表有 line, bar, column, waterfall, pie, ring, funnel, radar
 
-### 文档
-
-[https://vue-echarts.github.io/](https://vue-echarts.github.io/)
 
 ### 属性
 ---

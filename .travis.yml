@@ -8,5 +8,3 @@ install:
   - yarn
 script:
   - npm run com
-after_success:
-  - sh build/deploy.sh
