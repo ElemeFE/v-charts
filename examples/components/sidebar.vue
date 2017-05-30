@@ -22,7 +22,7 @@ const routerInfo = {
     { name: '开始使用', url: '/' }
   ],
   '图表': Object.keys(chartData).map(key => {
-    return { name: chartData[key].name, url: `/item/${chartData[key].type}` }
+    return { name: chartData[key].name, url: `/test-item/${chartData[key].type}` }
   }),
   '其他': [
     { name: '事件监听', url: '/eventer' },

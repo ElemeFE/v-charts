@@ -3,7 +3,11 @@
     <div class="chart-item" v-for="d in chartData" :key="d">
       <div class="chart-part">
         <h3>{{ d.name }}</h3>
-        <component :is="`ve-${innerType}`" :data="d.data" :settings="d.settings"></component>
+        <component
+          :is="`ve-${innerType}`"
+          :data="d.data"
+          :settings="d.settings">
+        </component>
       </div>
       <div class="code-view">
         <p>数据格式</p>
@@ -30,6 +34,14 @@ import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeChart from '../../src/chart/index'
 import CHART_DATA from '../test-data'
+
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/chart/funnel'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/chart/pie'
+import 'echarts/lib/chart/radar'
 
 export default {
   name: 'Item',

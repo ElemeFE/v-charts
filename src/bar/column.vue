@@ -4,7 +4,6 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/bar'
 import { column } from './bar'
 import chartMixin from '../mixins'
 export default {

@@ -4,7 +4,6 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/radar'
 import { radar } from './radar'
 import chartMixin from '../mixins'
 export default {

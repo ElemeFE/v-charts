@@ -4,7 +4,6 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/pie'
 import { pie } from './pie'
 import chartMixin from '../mixins'
 export default {

@@ -4,11 +4,6 @@
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/funnel'
-import 'echarts/lib/chart/radar'
 import { bar, column } from '../bar/bar'
 import { line } from '../line/line'
 import { pie, ring } from '../pie/pie'

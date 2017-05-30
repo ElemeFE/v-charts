@@ -16,7 +16,7 @@ function getBarLegends ({ metrics, axisSite, meaAxisType, isColumn }) {
   return legends.length ? { data: legends, formatter } : false
 }
 
-function getBarDimAxis ({ rows, dimAxisName, dimension }) {
+function getBarDimAxis ({ rows, dimAxisName, dimension, axisVisible }) {
   return dimension.map(item => ({
     type: 'category',
     name: dimAxisName,
@@ -27,12 +27,13 @@ function getBarDimAxis ({ rows, dimAxisName, dimension }) {
       formatter (v) {
         return String(v)
       }
-    }
+    },
+    show: axisVisible
   }))
 }
 
-function getBarMeaAxis ({ columns, meaAxisName, metrics, meaAxisType }) {
-  const meaAxisBase = { type: 'value', axisTick: { show: false } }
+function getBarMeaAxis ({ columns, meaAxisName, metrics, meaAxisType, axisVisible }) {
+  const meaAxisBase = { type: 'value', axisTick: { show: false }, show: axisVisible }
   let meaAxis = []
 
   for (let i = 0; i < 2; i++) {
@@ -103,12 +104,13 @@ function getBarSeries ({ rows, metrics, stack, axisSite, meaAxisType, isColumn }
 
   return series.length ? series : false
 }
-const bar = (columns, rows, settings) => {
+const bar = (columns, rows, settings, status) => {
   const {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {}
   } = settings
+  const { tooltipVisible, legendVisible, axisVisible } = status
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
@@ -120,21 +122,26 @@ const bar = (columns, rows, settings) => {
   const dimAxisName = settings.yAxisName || ''
   const isColumn = false
 
-  const legend = getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
+  const legend = legendVisible && getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
   const yAxis = getBarDimAxis({ rows, dimAxisName, dimension })
   const xAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType })
   const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isColumn })
-  const tooltip = getBarTooltip()
+  const tooltip = tooltipVisible && getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
+  if (!axisVisible) {
+    xAxis.show = false
+    yAxis.show = false
+  }
   return options
 }
 
-const column = (columns, rows, settings) => {
+const column = (columns, rows, settings, status) => {
   const {
     axisSite = { right: [] },
     dimension = [columns[0]],
     stack = {}
   } = settings
+  const { tooltipVisible, legendVisible, axisVisible } = status
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
@@ -146,11 +153,11 @@ const column = (columns, rows, settings) => {
   const dimAxisName = settings.xAxisName || ''
   const isColumn = true
 
-  const legend = getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
-  const xAxis = getBarDimAxis({ rows, dimAxisName, dimension })
-  const yAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType })
+  const legend = legendVisible && getBarLegends({ metrics, axisSite, meaAxisType, isColumn })
+  const xAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
+  const yAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType, axisVisible })
   const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isColumn })
-  const tooltip = getBarTooltip()
+  const tooltip = tooltipVisible && getBarTooltip()
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
 }

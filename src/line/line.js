@@ -16,7 +16,7 @@ function getLineLegends ({ metrics, axisSite, yAxisType }) {
   return legends.length ? { data: legends, formatter } : false
 }
 
-function getLineXAxis ({ dimension, rows, xAxisName }) {
+function getLineXAxis ({ dimension, rows, xAxisName, axisVisible }) {
   return dimension.map((item, index) => ({
     type: 'category',
     nameLocation: 'middle',
@@ -29,7 +29,8 @@ function getLineXAxis ({ dimension, rows, xAxisName }) {
       formatter (v) {
         return String(v)
       }
-    }
+    },
+    show: axisVisible
   }))
 }
 
@@ -67,8 +68,8 @@ function getLineSeries ({ rows, axisSite, yAxisType, dimension, metrics, area, s
   return series.length ? series : false
 }
 
-function getLineYAxis ({ yAxisName, yAxisType }) {
-  const yAxisBase = { type: 'value', axisTick: { show: false } }
+function getLineYAxis ({ yAxisName, yAxisType, axisVisible }) {
+  const yAxisBase = { type: 'value', axisTick: { show: false }, show: axisVisible }
   let yAxis = []
   for (let i = 0; i < 2; i++) {
     if (yAxisType[i]) {
@@ -106,7 +107,7 @@ function getLineTooltip () {
   }
 }
 
-const line = (columns, rows, settings) => {
+const line = (columns, rows, settings, status) => {
   const {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],
@@ -116,6 +117,7 @@ const line = (columns, rows, settings) => {
     area,
     stack
   } = settings
+  const { tooltipVisible, legendVisible, axisVisible } = status
   let metrics = columns.slice()
 
   if (settings.metrics) {
@@ -124,12 +126,12 @@ const line = (columns, rows, settings) => {
     metrics.splice(columns.indexOf(dimension[0]), 1)
   }
 
-  const legend = getLineLegends({ metrics, axisSite, yAxisType })
-  const tooltip = getLineTooltip()
-  const xAxis = getLineXAxis({ dimension, rows, xAxisName })
-  const yAxis = getLineYAxis({ yAxisName, yAxisType })
+  const legend = legendVisible && getLineLegends({ metrics, axisSite, yAxisType })
+  const tooltip = tooltipVisible && getLineTooltip()
+  const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
+  const yAxis = getLineYAxis({ yAxisName, yAxisType, axisVisible })
   const series = getLineSeries({ rows, stack, axisSite, yAxisType, dimension, metrics, area })
-  if (!legend || !xAxis || !series) return false
+  if (!xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }
   return options
