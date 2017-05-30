@@ -1,4 +1,11 @@
-## V-Charts
+# V-Charts
+
+[![Build Status](https://travis-ci.org/ElemeFE/v-charts.svg?branch=master)](https://travis-ci.org/ElemeFE/v-charts)
+[![NPM downloads](http://img.shields.io/npm/dm/v-charts.svg)](https://npmjs.org/package/v-charts)
+![JS gzip size](http://img.badgesize.io/https://unpkg.com/v-charts/lib/index.js?compression=gzip&label=gzip%20size:%20JS)
+[![Npm package](https://img.shields.io/npm/v/v-charts.svg)](https://www.npmjs.org/package/v-charts)
+![Language](https://img.shields.io/badge/language-javascript-yellow.svg)
+![License](https://img.shields.io/badge/license-MIT-000000.svg)
 
 在使用echarts生成图表时，经常需要做繁琐的数据类型转化、修改复杂的配置项，v-charts的出现正是为了解决这个
 痛点。基于Vue2.0和echarts封装的v-charts图表组件，只需要统一提供一种对前后端都友好的数据格式
