@@ -16,8 +16,11 @@ const chartMixin = {
   },
 
   watch: {
-    data (v) {
-      if (v) { this.dataHandler(v) }
+    data: {
+      deep: true,
+      handler (v) {
+        if (v) { this.dataHandler(v) }
+      }
     },
 
     settings: {
