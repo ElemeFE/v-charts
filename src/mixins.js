@@ -17,16 +17,13 @@ const chartMixin = {
 
   watch: {
     data (v) {
-      const dataKeys = Object.keys(v)
-      const dataKeyProp = v.key
-      if ((dataKeyProp && Array.isArray(dataKeyProp) && dataKeyProp.length) || dataKeys.length) {
-        this.dataHandler(v)
-      }
+      if (v) { this.dataHandler(v) }
     },
+
     settings: {
       deep: true,
       handler (v) {
-        this.chartHandler = this.chartLib[v.type]
+        if (v.type && this.chartLib) this.chartHandler = this.chartLib[v.type]
         this.dataHandler(this.data)
       }
     }
