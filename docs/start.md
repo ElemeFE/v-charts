@@ -25,8 +25,39 @@ new Vue({
 
 #### 按需引入
 ----
+借助 webpack2.0提供的tree-shaking功能，可以轻松实现按需引入，使得最终的打包文件体积更小。
+```js
+import Vue from 'vue'
+import 'echarts/lib/chart/line'
+import { VeLine } from 'v-charts/lib/index.esm'
 
-V-Charts的每种图表组件，都单独打包到lib文件夹下
+Vue.component(VeLine.name, VeLine)
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+})
+```
+> 为了使生成的内容更小，按需引入时需要手动引入echarts中对应的模块，例如上面使用了折线图，
+则需要引入 'echarts/lib/chart/line'，模块对应关系如下
+
+> VeLine => 'echarts/lib/chart/line'
+
+> VeBar => 'echarts/lib/chart/bar'
+
+> VeColumn => 'echarts/lib/chart/bar'
+
+> VeRing => 'echarts/lib/chart/pie'
+
+> VePie => 'echarts/lib/chart/pie'
+
+> VeWaterfall => 'echarts/lib/chart/bar'
+
+> VeRadar => 'echarts/lib/chart/radar'
+
+> VeFunnel => 'echarts/lib/chart/funnel'
+
+同时，V-Charts的每种图表组件，都单独打包到lib文件夹下，使用单独引入的方式则不依赖于webpack的tree-shaking
 ```
 |- lib/
     |- line.js  -------------- 折线图
@@ -41,6 +72,7 @@ V-Charts的每种图表组件，都单独打包到lib文件夹下
 使用时，可以直接将单个图表引入到项目中
 ```js
 import Vue from 'vue'
+import 'echarts/lib/chart/line'
 import VeLine from 'v-charts/lib/line'
 
 Vue.component(VeLine.name, VeLine)
@@ -50,36 +82,3 @@ new Vue({
   render: h => h(App)
 })
 ```
-
-#### 在单独的页面中使用
----
-
-```html
-<template>
-  <div>
-    <ve-line :data="chartData"></ve-line>
-  </div>
-</template>
-
-<script>
-import VeLine from 'v-charts/lib/line'
-export default {
-  created () {
-    this.chartData = {
-      columns: ['日期', '销售量'],
-      rows: [
-        { '日期': '1月1日', '销售量': 123 },
-        { '日期': '1月2日', '销售量': 1223 },
-        { '日期': '1月3日', '销售量': 2123 },
-        { '日期': '1月4日', '销售量': 4123 },
-        { '日期': '1月5日', '销售量': 3123 },
-        { '日期': '1月6日', '销售量': 7123 }
-      ]
-    }
-  },
-
-  components: { VeLine }
-}
-</script>
-```
-

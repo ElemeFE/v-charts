@@ -10,8 +10,8 @@ const chartMixin = {
     grid: { type: Object },
     colors: { type: Array },
     scale: { type: Object },
-    tooltipVisible: { type: Boolean, default: true },
-    legendVisible: { type: Boolean, default: true },
+    tooltipVisible: { type: Boolean, default: false },
+    legendVisible: { type: Boolean, default: false },
     axisVisible: { type: Boolean, default: true }
   },
 
