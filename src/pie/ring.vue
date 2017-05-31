@@ -1,5 +1,5 @@
 <template>
-  <div :style="canvasStyle" ref="canvas"></div>
+  <div class="ve-ring" :style="canvasStyle" ref="canvas"></div>
 </template>
 
 <script>

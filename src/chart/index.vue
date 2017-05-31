@@ -1,5 +1,5 @@
 <template>
-  <div :style="canvasStyle" ref="canvas"></div>
+  <div class="ve-chart" :style="canvasStyle" ref="canvas"></div>
 </template>
 
 <script>

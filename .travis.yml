@@ -8,3 +8,4 @@ install:
   - yarn
 script:
   - npm run com
+  - npm run test

@@ -27,7 +27,7 @@ const addons = [
     type: 'es',
     suffix: '.esm.js',
     globalName: '',
-    src: 'src/index.js',
+    src: 'src/index.es.js',
     dist: 'lib/index'
   }
 ]
