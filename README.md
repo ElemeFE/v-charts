@@ -1,5 +1,7 @@
 # V-Charts
 
+[![Join the chat at https://gitter.im/ElemeFE/v-charts](https://badges.gitter.im/ElemeFE/v-charts.svg)](https://gitter.im/ElemeFE/v-charts?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/ElemeFE/v-charts.svg?branch=master)](https://travis-ci.org/ElemeFE/v-charts)
 [![NPM downloads](http://img.shields.io/npm/dm/v-charts.svg)](https://npmjs.org/package/v-charts)
 ![JS gzip size](http://img.badgesize.io/https://unpkg.com/v-charts/lib/index.js?compression=gzip&label=gzip%20size:%20JS)
