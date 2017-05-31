@@ -21,13 +21,18 @@ const comps = {
 }
 let box
 let vm = {}
+createBox()
 
 afterEach(() => {
   if (vm.$el) document.body.removeChild(vm.$el)
+  createBox()
+})
+
+function createBox () {
   box = document.createElement('div')
   box.id = 'app'
   document.body.appendChild(box)
-})
+}
 
 Object.keys(comps).forEach(type => {
   testMount(type, comps[type])
