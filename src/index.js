@@ -1,9 +1,3 @@
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/funnel'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/radar'
-
 import VeBar from './bar/index'
 import VeColumn from './bar/column'
 import VeLine from './line'
@@ -13,6 +7,12 @@ import VeWaterfall from './waterfall'
 import VeFunnel from './funnel'
 import VeRadar from './radar'
 import VeChart from './chart'
+
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/chart/funnel'
+import 'echarts/lib/chart/line'
+import 'echarts/lib/chart/pie'
+import 'echarts/lib/chart/radar'
 
 const components = [
   VeBar,
