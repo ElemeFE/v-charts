@@ -28,8 +28,8 @@ new Vue({
 借助 webpack2.0提供的tree-shaking功能，可以轻松实现按需引入，使得最终的打包文件体积更小。
 ```js
 import Vue from 'vue'
-import 'echarts/lib/chart/line'
 import { VeLine } from 'v-charts/lib/index.esm'
+import 'echarts/lib/chart/line'
 
 Vue.component(VeLine.name, VeLine)
 
@@ -72,8 +72,8 @@ new Vue({
 使用时，可以直接将单个图表引入到项目中
 ```js
 import Vue from 'vue'
-import 'echarts/lib/chart/line'
 import VeLine from 'v-charts/lib/line'
+import 'echarts/lib/chart/line'
 
 Vue.component(VeLine.name, VeLine)
 
