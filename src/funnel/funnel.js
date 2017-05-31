@@ -59,13 +59,14 @@ function getFunnelSeries ({ dimension, metrics, rows, sequence, dataType, ascend
   return series
 }
 
-const funnel = (columns, rows, settings) => {
+const funnel = (columns, rows, settings, status) => {
   const {
     dataType = 'normal',
     dimension = columns[0],
     sequence = rows.map(row => row[dimension]),
     ascending
   } = settings
+  const { tooltipVisible, legendVisible } = status
   let metrics
   if (settings.metrics) {
     metrics = settings.metrics
@@ -75,8 +76,8 @@ const funnel = (columns, rows, settings) => {
     metrics = metricsTemp[0]
   }
 
-  const tooltip = getFunnelTooltip()
-  const legend = getFunnelLegend({ dimension, metrics, rows, sequence, dataType })
+  const tooltip = tooltipVisible && getFunnelTooltip()
+  const legend = legendVisible && getFunnelLegend({ dimension, metrics, rows, sequence, dataType })
   const series = getFunnelSeries({ dimension, metrics, rows, sequence, dataType, ascending })
   const options = { tooltip, legend, series }
   return options

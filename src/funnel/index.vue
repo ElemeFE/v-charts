@@ -1,10 +1,9 @@
 <template>
-  <div :style="canvasStyle" ref="canvas"></div>
+  <div class="ve-funnel" :style="canvasStyle" ref="canvas"></div>
 </template>
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/funnel'
 import { funnel } from './funnel'
 import chartMixin from '../mixins'
 export default {

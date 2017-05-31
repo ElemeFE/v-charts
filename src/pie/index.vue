@@ -1,10 +1,9 @@
 <template>
-  <div :style="canvasStyle" ref="canvas"></div>
+  <div class="ve-pie" :style="canvasStyle" ref="canvas"></div>
 </template>
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/pie'
 import { pie } from './pie'
 import chartMixin from '../mixins'
 export default {

@@ -6,13 +6,36 @@ var eslint = require('rollup-plugin-eslint')
 var componentInfo = require('../src/component-list')
 var echartsLib = require('../src/echarts-lib')
 var uglify = require('rollup-plugin-uglify')
+var pkg = []
+
 for (var i = 0; i < 2; i++) {
   Object.keys(componentInfo).forEach(name => {
-    rollupFn(name, componentInfo[name], i)
+    pkg.push({
+      min: !!i,
+      type: i ? 'umd' : 'cjs',
+      suffix: i ? '.min.js' : '.js',
+      globalName: name,
+      src: componentInfo[name].src,
+      dist: componentInfo[name].dist
+    })
   })
 }
 
-function rollupFn (name, info, min) {
+const addons = [
+  {
+    min: false,
+    type: 'es',
+    suffix: '.esm.js',
+    globalName: '',
+    src: 'src/index.es.js',
+    dist: 'lib/index'
+  }
+]
+pkg = pkg.concat(addons)
+
+pkg.forEach(item => { rollupFn(item) })
+
+function rollupFn (item) {
   var plugins = [
     eslint({
       throwError: true,
@@ -27,16 +50,16 @@ function rollupFn (name, info, min) {
       plugins: ['external-helpers']
     })
   ]
-  if (min) plugins.push(uglify())
+  if (item.min) plugins.push(uglify())
   rollup.rollup({
-    entry: info.src,
+    entry: item.src,
     external: echartsLib,
     plugins
   }).then(function (bundle) {
-    var dest = info.dist + (min ? '.min.js' : '.js')
+    var dest = item.dist + item.suffix
     bundle.write({
-      format: 'umd',
-      moduleName: name,
+      format: item.type,
+      moduleName: item.globalName,
       globals: {
         'echarts/lib/echarts': 'echarts'
       },

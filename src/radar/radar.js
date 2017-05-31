@@ -75,20 +75,21 @@ function getRadarSeries ({ rows, dimension, metrics, radar }) {
   return series
 }
 
-const radar = (columns, rows, settings) => {
+const radar = (columns, rows, settings, status) => {
   const {
     dataType = {},
     dimension = columns[0]
   } = settings
+  const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
   } else {
     metrics.splice(columns.indexOf(dimension), 1)
   }
-  const legend = getRadarLegend({ rows, dimension })
+  const legend = legendVisible && getRadarLegend({ rows, dimension })
   const radar = getRadarSetting({ rows, dimension, metrics })
-  const tooltip = getRadarTooltip({ dataType, radar })
+  const tooltip = tooltipVisible && getRadarTooltip({ dataType, radar })
   const series = getRadarSeries({ rows, dimension, metrics, radar })
   const options = { legend, tooltip, radar, series }
   return options

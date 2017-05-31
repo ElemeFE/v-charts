@@ -1,10 +1,9 @@
 <template>
-  <div :style="canvasStyle" ref="canvas"></div>
+  <div class="ve-bar" :style="canvasStyle" ref="canvas"></div>
 </template>
 
 <script>
 import echarts from '../echarts-base'
-import 'echarts/lib/chart/bar'
 import { bar } from './bar'
 import chartMixin from '../mixins'
 export default {
