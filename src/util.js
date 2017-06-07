@@ -26,7 +26,7 @@ const formatTausends = (num) => {
 const getFormated = (val, type) => {
   switch (type) {
     case 'KMB': return numberFormat(val)
-    case 'percent': return `${(val * 100).toFixed(2)}%`
+    case 'percent': return `${parseFloat((val * 100).toFixed(2))}%`
     case 'normal': return formatTausends(val)
     default: return val
   }

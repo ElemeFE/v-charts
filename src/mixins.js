@@ -34,7 +34,11 @@ const chartMixin = {
 
   computed: {
     canvasStyle () {
-      return { width: this.width, height: this.height }
+      return {
+        width: this.width,
+        height: this.height,
+        position: 'relative'
+      }
     }
   },
 
