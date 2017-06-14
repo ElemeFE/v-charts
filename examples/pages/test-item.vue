@@ -26,7 +26,7 @@
 <script>
 import VeBar from '../../src/bar/index'
 import VeLine from '../../src/line/index'
-import VeColumn from '../../src/bar/column'
+import VeHistogram from '../../src/bar/histogram'
 import VePie from '../../src/pie/index'
 import VeRing from '../../src/pie/ring'
 import VeWaterfall from '../../src/waterfall/index'
@@ -34,14 +34,6 @@ import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeChart from '../../src/chart/index'
 import CHART_DATA from '../test-data'
-
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/legend'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/funnel'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/radar'
 
 export default {
   name: 'Item',
@@ -73,7 +65,7 @@ export default {
   components: {
     VeBar,
     VeLine,
-    VeColumn,
+    VeHistogram,
     VePie,
     VeRing,
     VeWaterfall,

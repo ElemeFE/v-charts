@@ -1,6 +1,6 @@
 module.exports = {
   VeBar: { src: 'src/bar/index.vue', dist: 'lib/bar' },
-  VeColumn: { src: 'src/bar/column.vue', dist: 'lib/column' },
+  VeHistogram: { src: 'src/bar/histogram.vue', dist: 'lib/histogram' },
   VeFunnel: { src: 'src/funnel/index.vue', dist: 'lib/funnel' },
   VeLine: { src: 'src/line/index.vue', dist: 'lib/line' },
   VePie: { src: 'src/pie/index.vue', dist: 'lib/pie' },

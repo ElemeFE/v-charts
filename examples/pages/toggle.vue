@@ -25,7 +25,7 @@ const CONTENT_LIST = [
 ]
 const CODE_LIST = [
   '<ve-chart :data="chartData" :settings="chartSettings"></ve-chart>',
-  'this.chartSettings = { type: line } // column, pie'
+  'this.chartSettings = { type: line } // histogram, pie'
 ]
 
 export default {
@@ -69,7 +69,7 @@ export default {
         type: 'line'
       },
       {
-        type: 'column'
+        type: 'histogram'
       },
       {
         type: 'pie'

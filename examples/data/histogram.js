@@ -1,6 +1,6 @@
 export default {
   name: '柱状图',
-  type: 'column',
+  type: 'histogram',
   data: {
     base: {
       data: {

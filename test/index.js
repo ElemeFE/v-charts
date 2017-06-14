@@ -7,12 +7,12 @@ import 'echarts/lib/chart/funnel'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
-import { VeLine, VeBar, VeColumn, VePie, VeRing, VeFunnel, VeRadar, VeWaterfall } from '../lib/index.esm'
+import { VeLine, VeBar, VeHistogram, VePie, VeRing, VeFunnel, VeRadar, VeWaterfall } from '../lib/index.esm'
 
 const comps = {
   line: VeLine,
   bar: VeBar,
-  column: VeColumn,
+  histogram: VeHistogram,
   pie: VePie,
   ring: VeRing,
   funnel: VeFunnel,

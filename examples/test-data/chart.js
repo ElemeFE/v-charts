@@ -33,7 +33,7 @@ export default {
         ]
       },
       settings: {
-        type: 'column'
+        type: 'histogram'
       }
     },
     {

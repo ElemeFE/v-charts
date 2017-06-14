@@ -6,7 +6,7 @@
     <code-section :content="codeList[0]"></code-section>
     <h3>加载v-charts</h3>
     <code-section :content="codeList[1]"></code-section>
-    <p class="multi-tip">现有的图表种类有折线图(line)，饼图(pie)，条形图(bar)，柱状图(column)，环图(ring)，瀑布图(waterfall)，漏斗图(funnel)，雷达图(radar)。</p>
+    <p class="multi-tip">现有的图表种类有折线图(line)，饼图(pie)，条形图(bar)，柱状图(histogram)，环图(ring)，瀑布图(waterfall)，漏斗图(funnel)，雷达图(radar)。</p>
     <h3>属性</h3>
     <table>
       <thead>
