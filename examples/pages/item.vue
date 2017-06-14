@@ -35,7 +35,7 @@
 <script>
 import VeBar from '../../src/bar/index'
 import VeLine from '../../src/line/index'
-import VeColumn from '../../src/bar/column'
+import VeHistogram from '../../src/bar/histogram'
 import VePie from '../../src/pie/index'
 import VeRing from '../../src/pie/ring'
 import VeWaterfall from '../../src/waterfall/index'
@@ -89,7 +89,7 @@ export default {
   components: {
     VeBar,
     VeLine,
-    VeColumn,
+    VeHistogram,
     VePie,
     VeRing,
     VeWaterfall,

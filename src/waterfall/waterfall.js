@@ -1,4 +1,5 @@
 import { getFormated } from '../util'
+import 'echarts/lib/chart/bar'
 
 function getWaterfallTooltip (dataType) {
   return {
@@ -101,9 +102,10 @@ const waterfall = (columns, rows, settings, status) => {
     totalName = '总计',
     totalNum,
     remainName = '其他',
-    xAxisName = dimension
+    xAxisName = dimension,
+    axisVisible = true
   } = settings
-  const { tooltipVisible, axisVisible } = status
+  const { tooltipVisible } = status
   let metricsTemp = columns.slice()
   metricsTemp.splice(metricsTemp.indexOf(dimension), 1)
   const metrics = metricsTemp[0]

@@ -1,4 +1,6 @@
 import echarts from 'echarts/lib/echarts'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
 
 const SIGN = '@_@'
 const getLegendName = (item) => item.split(SIGN)[0]

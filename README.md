@@ -55,7 +55,7 @@ export default {
 </script>
 ```
 
-> 目前支持的图表有 line, bar, column, waterfall, pie, ring, funnel, radar
+> 目前支持的图表有 line, bar, histogram, waterfall, pie, ring, funnel, radar
 
 
 ### 属性

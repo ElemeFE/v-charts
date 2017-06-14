@@ -4,7 +4,7 @@
 
 <script>
 import echarts from '../echarts-base'
-import { bar, column } from '../bar/bar'
+import { bar, histogram } from '../bar/bar'
 import { line } from '../line/line'
 import { pie, ring } from '../pie/pie'
 import { funnel } from '../funnel/funnel'
@@ -15,7 +15,7 @@ export default {
   name: 'VeChart',
   mixins: [chartMixin],
   created () {
-    this.chartLib = { bar, column, line, pie, ring, funnel, radar, waterfall }
+    this.chartLib = { bar, histogram, line, pie, ring, funnel, radar, waterfall }
     this.chartHandler = this.chartLib[this.settings.type]
     this.echartsLib = echarts
   }

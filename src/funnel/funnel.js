@@ -1,5 +1,6 @@
 import { SIGN, itemPoint, getLegendName } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, clone } from '../util'
+import 'echarts/lib/chart/funnel'
 
 function getFunnelTooltip () {
   return {
@@ -59,7 +60,9 @@ function getFunnelSeries ({ dimension, metrics, rows, sequence, dataType, ascend
   return series
 }
 
-const funnel = (columns, rows, settings, status) => {
+const funnel = (outerColumns, outerRows, settings, status) => {
+  const columns = clone(outerColumns)
+  const rows = clone(outerRows)
   const {
     dataType = 'normal',
     dimension = columns[0],

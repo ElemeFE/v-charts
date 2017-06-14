@@ -9,10 +9,8 @@ const chartMixin = {
     events: { type: Object },
     grid: { type: Object },
     colors: { type: Array },
-    scale: { type: Object },
-    tooltipVisible: { type: Boolean, default: false },
-    legendVisible: { type: Boolean, default: false },
-    axisVisible: { type: Boolean, default: true }
+    tooltipVisible: { type: Boolean, default: true },
+    legendVisible: { type: Boolean, default: true }
   },
 
   watch: {
@@ -49,8 +47,7 @@ const chartMixin = {
       const { columns, rows } = data
       const status = {
         tooltipVisible: this.tooltipVisible,
-        legendVisible: this.legendVisible,
-        axisVisible: this.axisVisible
+        legendVisible: this.legendVisible
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
@@ -58,10 +55,6 @@ const chartMixin = {
 
       if (this.colors) options.color = this.colors
       if (this.grid) options.grid = this.grid
-      if (this.scale) {
-        options.xAxis.scale = this.scale.x
-        options.yAxis.scale = this.scale.y
-      }
       if (this.afterConfig) options = this.afterConfig(options)
       if (options) this.echarts.setOption(options, true)
     },

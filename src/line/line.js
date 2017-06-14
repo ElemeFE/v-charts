@@ -1,5 +1,6 @@
 import { SIGN, getLegendName, itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
+import 'echarts/lib/chart/line'
 
 function getLineLegends ({ metrics, axisSite, yAxisType }) {
   let legends = []
@@ -114,10 +115,11 @@ const line = (columns, rows, settings, status) => {
     yAxisName = [],
     dimension = [columns[0]],
     xAxisName = [],
+    axisVisible = true,
     area,
     stack
   } = settings
-  const { tooltipVisible, legendVisible, axisVisible } = status
+  const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
 
   if (settings.metrics) {
