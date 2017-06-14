@@ -10,7 +10,8 @@ const chartMixin = {
     grid: { type: Object },
     colors: { type: Array },
     tooltipVisible: { type: Boolean, default: true },
-    legendVisible: { type: Boolean, default: true }
+    legendVisible: { type: Boolean, default: true },
+    legendPosition: { type: String }
   },
 
   watch: {
@@ -57,6 +58,13 @@ const chartMixin = {
 
       if (this.colors) options.color = this.colors
       if (this.grid) options.grid = this.grid
+      if (this.legendPosition && options.legend) {
+        options.legend[this.legendPosition] = 10
+        if (~['left', 'right'].indexOf(this.legendPosition)) {
+          options.legend.top = 'middle'
+          options.legend.orient = 'vertical'
+        }
+      }
       if (this.afterConfig) options = this.afterConfig(options)
       if (options) this.echarts.setOption(options, true)
     },

@@ -1,5 +1,5 @@
 import { itemPoint } from '../echarts-base'
-import { getFormated, clone } from '../util'
+import { getFormated } from '../util'
 import 'echarts/lib/chart/funnel'
 
 function getFunnelTooltip (dataType) {
@@ -50,8 +50,8 @@ function getFunnelSeries (args) {
 }
 
 const funnel = (outerColumns, outerRows, settings, status) => {
-  const columns = clone(outerColumns)
-  const rows = clone(outerRows)
+  const columns = outerColumns.slice()
+  const rows = outerRows.slice()
   const {
     dataType = 'normal',
     dimension = columns[0],
