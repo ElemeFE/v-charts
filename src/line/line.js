@@ -56,7 +56,14 @@ function getLineSeries (args) {
 }
 
 function getLineYAxis (args) {
-  const { yAxisName, yAxisType, axisVisible } = args
+  const {
+    yAxisName,
+    yAxisType,
+    axisVisible,
+    scale,
+    min,
+    max
+  } = args
   const yAxisBase = {
     type: 'value',
     axisTick: {
@@ -78,6 +85,9 @@ function getLineYAxis (args) {
       yAxis[i] = Object.assign({}, yAxisBase)
     }
     yAxis[i].name = yAxisName[i] || ''
+    yAxis[i].scale = scale[i] || false
+    yAxis[i].min = min[i] || null
+    yAxis[i].max = max[i] || null
   }
   return yAxis
 }
@@ -112,7 +122,10 @@ const line = (columns, rows, settings, status) => {
     xAxisName = [],
     axisVisible = true,
     area,
-    stack
+    stack,
+    scale = [false, false],
+    min = [null, null],
+    max = [null, null]
   } = settings
   const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
@@ -126,15 +139,21 @@ const line = (columns, rows, settings, status) => {
   const legend = legendVisible && { data: metrics }
   const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType)
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
-  const yAxis = getLineYAxis({ yAxisName, yAxisType, axisVisible })
+  const yAxisParams = {
+    yAxisName,
+    yAxisType,
+    axisVisible,
+    scale,
+    min,
+    max
+  }
+  const yAxis = getLineYAxis(yAxisParams)
   const seriesParams = {
     rows,
-    stack,
     axisSite,
-    yAxisType,
-    dimension,
     metrics,
-    area
+    area,
+    stack
   }
   const series = getLineSeries(seriesParams)
   if (!xAxis || !series) return false
