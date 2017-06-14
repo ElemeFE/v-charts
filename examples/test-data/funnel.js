@@ -31,7 +31,7 @@ export default {
       }
     },
     {
-      name: '漏斗图',
+      name: '指定数据类型漏斗图',
       data: {
         columns: ['状态', '数值'],
         rows: [

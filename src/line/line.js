@@ -1,23 +1,9 @@
-import { SIGN, getLegendName, itemPoint } from '../echarts-base'
+import { itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
 import 'echarts/lib/chart/line'
 
-function getLineLegends ({ metrics, axisSite, yAxisType }) {
-  let legends = []
-
-  const formatter = getLegendName
-
-  metrics.forEach(item => {
-    let legendItem = ~axisSite.right.indexOf(item)
-      ? `${item}${SIGN}${yAxisType[1]}`
-      : `${item}${SIGN}${yAxisType[0]}`
-    legends.push(legendItem)
-  })
-
-  return legends.length ? { data: legends, formatter } : false
-}
-
-function getLineXAxis ({ dimension, rows, xAxisName, axisVisible }) {
+function getLineXAxis (args) {
+  const { dimension, rows, xAxisName, axisVisible } = args
   return dimension.map((item, index) => ({
     type: 'category',
     nameLocation: 'middle',
@@ -35,7 +21,14 @@ function getLineXAxis ({ dimension, rows, xAxisName, axisVisible }) {
   }))
 }
 
-function getLineSeries ({ rows, axisSite, yAxisType, dimension, metrics, area, stack }) {
+function getLineSeries (args) {
+  const {
+    rows,
+    axisSite,
+    metrics,
+    area,
+    stack
+  } = args
   let series = []
   const dataTemp = {}
   const stackMap = stack && getStackMap(stack)
@@ -53,14 +46,7 @@ function getLineSeries ({ rows, axisSite, yAxisType, dimension, metrics, area, s
     }
 
     if (area) seriesItem.areaStyle = { normal: {} }
-
-    if (~axisSite.right.indexOf(item)) {
-      seriesItem.yAxisIndex = 1
-      seriesItem.name = `${item}${SIGN}${yAxisType[1]}`
-    } else {
-      seriesItem.yAxisIndex = 0
-      seriesItem.name = `${item}${SIGN}${yAxisType[0]}`
-    }
+    seriesItem.yAxisIndex = ~axisSite.right.indexOf(item) ? 1 : 0
 
     if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
 
@@ -69,8 +55,15 @@ function getLineSeries ({ rows, axisSite, yAxisType, dimension, metrics, area, s
   return series.length ? series : false
 }
 
-function getLineYAxis ({ yAxisName, yAxisType, axisVisible }) {
-  const yAxisBase = { type: 'value', axisTick: { show: false }, show: axisVisible }
+function getLineYAxis (args) {
+  const { yAxisName, yAxisType, axisVisible } = args
+  const yAxisBase = {
+    type: 'value',
+    axisTick: {
+      show: false
+    },
+    show: axisVisible
+  }
   let yAxis = []
   for (let i = 0; i < 2; i++) {
     if (yAxisType[i]) {
@@ -89,7 +82,7 @@ function getLineYAxis ({ yAxisName, yAxisType, axisVisible }) {
   return yAxis
 }
 
-function getLineTooltip () {
+function getLineTooltip (axisSite, yAxisType) {
   return {
     trigger: 'axis',
     formatter (items) {
@@ -97,10 +90,12 @@ function getLineTooltip () {
       tpl.push(`${items[0].name}<br>`)
       items.forEach(item => {
         let showData
-        const [name, type] = item.seriesName.split(SIGN)
+        const type = ~axisSite.right.indexOf(item.seriesName)
+          ? yAxisType[1]
+          : yAxisType[0]
         showData = getFormated(item.data, type)
         tpl.push(itemPoint(item.color))
-        tpl.push(`${name}: ${showData}`)
+        tpl.push(`${item.seriesName}: ${showData}`)
         tpl.push('<br>')
       })
       return tpl.join('')
@@ -128,11 +123,20 @@ const line = (columns, rows, settings, status) => {
     metrics.splice(columns.indexOf(dimension[0]), 1)
   }
 
-  const legend = legendVisible && getLineLegends({ metrics, axisSite, yAxisType })
-  const tooltip = tooltipVisible && getLineTooltip()
+  const legend = legendVisible && { data: metrics }
+  const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType)
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
   const yAxis = getLineYAxis({ yAxisName, yAxisType, axisVisible })
-  const series = getLineSeries({ rows, stack, axisSite, yAxisType, dimension, metrics, area })
+  const seriesParams = {
+    rows,
+    stack,
+    axisSite,
+    yAxisType,
+    dimension,
+    metrics,
+    area
+  }
+  const series = getLineSeries(seriesParams)
   if (!xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }

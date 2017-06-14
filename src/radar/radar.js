@@ -2,13 +2,13 @@ import { itemPoint } from '../echarts-base'
 import { getFormated } from '../util'
 import 'echarts/lib/chart/radar'
 
-function getRadarLegend ({ rows, dimension }) {
+function getRadarLegend (rows, dimension) {
   let legendData = rows.map(row => row[dimension])
 
   return { data: legendData }
 }
 
-function getRadarTooltip ({ dataType, radar }) {
+function getRadarTooltip (dataType, radar) {
   const typeTemp = []
   const nameTemp = []
   radar.indicator.map((item, index) => {
@@ -29,7 +29,7 @@ function getRadarTooltip ({ dataType, radar }) {
   }
 }
 
-function getRadarSetting ({ rows, dimension, metrics }) {
+function getRadarSetting (rows, metrics) {
   const settingBase = {
     indicator: [],
     shape: 'circle',
@@ -54,7 +54,8 @@ function getRadarSetting ({ rows, dimension, metrics }) {
   return settingBase
 }
 
-function getRadarSeries ({ rows, dimension, metrics, radar }) {
+function getRadarSeries (args) {
+  const { rows, dimension, metrics, radar } = args
   let radarIndexObj = {}
   radar.indicator.forEach((item, index) => {
     radarIndexObj[item.name] = index
@@ -88,9 +89,9 @@ const radar = (columns, rows, settings, status) => {
   } else {
     metrics.splice(columns.indexOf(dimension), 1)
   }
-  const legend = legendVisible && getRadarLegend({ rows, dimension })
-  const radar = getRadarSetting({ rows, dimension, metrics })
-  const tooltip = tooltipVisible && getRadarTooltip({ dataType, radar })
+  const legend = legendVisible && getRadarLegend(rows, dimension)
+  const radar = getRadarSetting(rows, metrics)
+  const tooltip = tooltipVisible && getRadarTooltip(dataType, radar)
   const series = getRadarSeries({ rows, dimension, metrics, radar })
   const options = { legend, tooltip, radar, series }
   return options

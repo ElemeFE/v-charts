@@ -27,11 +27,24 @@ const components = [
 ]
 
 function install (Vue, _) {
-  components.forEach(component => { Vue.component(component.name, component) })
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export default { VeBar, VeHistogram, VeRing, VeLine, VePie, VeWaterfall, VeFunnel, VeRadar, VeChart, install }
+export default {
+  VeBar,
+  VeHistogram,
+  VeRing,
+  VeLine,
+  VePie,
+  VeWaterfall,
+  VeFunnel,
+  VeRadar,
+  VeChart,
+  install
+}

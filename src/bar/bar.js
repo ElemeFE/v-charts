@@ -1,23 +1,9 @@
-import { SIGN, getLegendName, itemPoint } from '../echarts-base'
+import { itemPoint } from '../echarts-base'
 import { getFormated, getStackMap } from '../util'
 import 'echarts/lib/chart/bar'
 
-function getBarLegends ({ metrics, axisSite, meaAxisType, isHistogram }) {
-  let legends = []
-
-  const formatter = getLegendName
-  const secondAxis = isHistogram ? axisSite.right : axisSite.top
-  metrics.forEach(item => {
-    let legendItem = ~secondAxis.indexOf(item)
-      ? `${item}${SIGN}${meaAxisType[1]}`
-      : `${item}${SIGN}${meaAxisType[0]}`
-    legends.push(legendItem)
-  })
-
-  return legends.length ? { data: legends, formatter } : false
-}
-
-function getBarDimAxis ({ rows, dimAxisName, dimension, axisVisible }) {
+function getBarDimAxis (args) {
+  const { rows, dimAxisName, dimension, axisVisible } = args
   return dimension.map(item => ({
     type: 'category',
     name: dimAxisName,
@@ -33,8 +19,15 @@ function getBarDimAxis ({ rows, dimAxisName, dimension, axisVisible }) {
   }))
 }
 
-function getBarMeaAxis ({ columns, meaAxisName, metrics, meaAxisType, axisVisible }) {
-  const meaAxisBase = { type: 'value', axisTick: { show: false }, show: axisVisible }
+function getBarMeaAxis (args) {
+  const { meaAxisName, meaAxisType, axisVisible } = args
+  const meaAxisBase = {
+    type: 'value',
+    axisTick: {
+      show: false
+    },
+    show: axisVisible
+  }
   let meaAxis = []
 
   for (let i = 0; i < 2; i++) {
@@ -55,17 +48,21 @@ function getBarMeaAxis ({ columns, meaAxisName, metrics, meaAxisType, axisVisibl
   return meaAxis
 }
 
-function getBarTooltip () {
+function getBarTooltip (args) {
+  const { axisSite, isHistogram, meaAxisType } = args
+  const secondAxis = isHistogram ? axisSite.right : axisSite.top
   return {
     trigger: 'axis',
     formatter (items) {
       let tpl = []
-      const title = String(items[0].name).split(SIGN)[0]
-      tpl.push(`${title}<br>`)
+      tpl.push(`${items[0].name}<br>`)
       items.forEach(item => {
-        const [name, type] = item.seriesName.split(SIGN)
+        const seriesName = item.seriesName
+        const type = ~secondAxis.indexOf(seriesName)
+          ? meaAxisType[1]
+          : meaAxisType[0]
         tpl.push(itemPoint(item.color))
-        tpl.push(`${name}: `)
+        tpl.push(`${seriesName}: `)
         tpl.push(getFormated(item.value, type))
         tpl.push('<br>')
       })
@@ -75,7 +72,8 @@ function getBarTooltip () {
   }
 }
 
-function getBarSeries ({ rows, metrics, stack, axisSite, meaAxisType, isHistogram }) {
+function getBarSeries (args) {
+  const { rows, metrics, stack, axisSite, isHistogram } = args
   let series = []
   const seriesTemp = {}
   const secondAxis = isHistogram ? axisSite.right : axisSite.top
@@ -88,9 +86,7 @@ function getBarSeries ({ rows, metrics, stack, axisSite, meaAxisType, isHistogra
     })
   })
   series = Object.keys(seriesTemp).map(item => {
-    let itemName = ~secondAxis.indexOf(item)
-      ? `${item}${SIGN}${meaAxisType[1]}`
-      : `${item}${SIGN}${meaAxisType[0]}`
+    let itemName = item
     const seriesItem = {
       name: itemName,
       type: 'bar',
@@ -105,6 +101,7 @@ function getBarSeries ({ rows, metrics, stack, axisSite, meaAxisType, isHistogra
 
   return series.length ? series : false
 }
+
 const bar = (columns, rows, settings, status) => {
   const {
     axisSite = { top: [] },
@@ -124,11 +121,12 @@ const bar = (columns, rows, settings, status) => {
   const dimAxisName = settings.yAxisName || ''
   const isHistogram = false
 
-  const legend = legendVisible && getBarLegends({ metrics, axisSite, meaAxisType, isHistogram })
+  const legend = legendVisible && { data: metrics }
   const yAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
-  const xAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType, axisVisible })
-  const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isHistogram })
-  const tooltip = tooltipVisible && getBarTooltip()
+  const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible })
+  const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
+  const tooltipParams = { axisSite, isHistogram, meaAxisType }
+  const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
 }
@@ -152,11 +150,12 @@ const histogram = (columns, rows, settings, status) => {
   const dimAxisName = settings.xAxisName || ''
   const isHistogram = true
 
-  const legend = legendVisible && getBarLegends({ metrics, axisSite, meaAxisType, isHistogram })
+  const legend = legendVisible && { data: metrics }
   const xAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
-  const yAxis = getBarMeaAxis({ columns, meaAxisName, metrics, meaAxisType, axisVisible })
-  const series = getBarSeries({ rows, metrics, stack, axisSite, meaAxisType, isHistogram })
-  const tooltip = tooltipVisible && getBarTooltip()
+  const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible })
+  const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
+  const tooltipParams = { axisSite, isHistogram, meaAxisType }
+  const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
 }

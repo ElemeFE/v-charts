@@ -15,7 +15,16 @@ export default {
   name: 'VeChart',
   mixins: [chartMixin],
   created () {
-    this.chartLib = { bar, histogram, line, pie, ring, funnel, radar, waterfall }
+    this.chartLib = {
+      bar,
+      histogram,
+      line,
+      pie,
+      ring,
+      funnel,
+      radar,
+      waterfall
+    }
     this.chartHandler = this.chartLib[this.settings.type]
     this.echartsLib = echarts
   }

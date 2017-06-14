@@ -43,7 +43,9 @@ const chartMixin = {
   methods: {
     dataHandler (data) {
       if (!this.chartHandler) return
-      if (!data || !Array.isArray(data.columns) || !Array.isArray(data.rows)) return false
+      if (!data ||
+        !Array.isArray(data.columns) ||
+        !Array.isArray(data.rows)) return false
       const { columns, rows } = data
       const status = {
         tooltipVisible: this.tooltipVisible,
