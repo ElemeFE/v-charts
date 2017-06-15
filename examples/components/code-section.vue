@@ -1,5 +1,5 @@
 <template>
-  <pre :class="langClass"><code :class="langClass" v-html='innerCode'></code></pre>
+  <pre :class="cls"><code :class="cls" v-html='innerCode'></code></pre>
 </template>
 
 <script>
@@ -17,11 +17,13 @@ export default {
 
   computed: {
     innerCode () {
-      const content = this.json ? JSON.stringify(this.content, null, 2) : this.content
+      const content = this.json
+        ? JSON.stringify(this.content, null, 2)
+        : this.content
       return Prism.highlight(content, Prism.languages[this.lang])
     },
 
-    langClass () {
+    cls () {
       return { [`language-${this.lang}`]: true }
     }
   }

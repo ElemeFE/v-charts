@@ -15,7 +15,7 @@
 
 <script>
 import VePie from '../../src/pie/index'
-import chartData from '../data/pie.js'
+import chartData from '../test-data/pie.js'
 
 const CODE_LIST = [
   '<ve-pie :data="chartData" :events="events"></ve-pie>',
@@ -33,8 +33,11 @@ export default {
   },
 
   created () {
-    this.chartData = chartData.data.base.data
-    this.chartSettings = { selectedMode: 'single', hoverAnimation: false }
+    this.chartData = chartData.data[0].data
+    this.chartSettings = {
+      selectedMode: 'single',
+      hoverAnimation: false
+    }
     this.events = {
       click: (e) => { this.name = e.name }
     }

@@ -27,7 +27,8 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
 import VeChart from '../../src/chart/index'
 const CONTENT_LIST = [
-  '为了方便使用一份数据即可生成不同的表格，可以使用<ve-chart>组件，切换图表类型则只需要改变settings即可'
+  '为了方便使用一份数据即可生成不同的表格，可以使用' +
+  '<ve-chart>组件，切换图表类型则只需要改变settings即可'
 ]
 const CODE_LIST = [
   '<ve-chart :data="chartData" :settings="chartSettings"></ve-chart>',
@@ -98,7 +99,9 @@ export default {
       if (this.index === 2) this.index = 0
       else this.index++
       // this.dataSw = !this.dataSw
-      // this.chartData = this.dataSw ? this.chartDataStore : this.chartDataStore1
+      // this.chartData = this.dataSw
+      // ? this.chartDataStore
+      // : this.chartDataStore1
     },
     init () {
       this.chartData = this.chartDataStore
