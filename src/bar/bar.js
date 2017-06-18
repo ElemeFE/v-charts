@@ -86,9 +86,8 @@ function getBarSeries (args) {
     })
   })
   series = Object.keys(seriesTemp).map(item => {
-    let itemName = item
     const seriesItem = {
-      name: itemName,
+      name: item,
       type: 'bar',
       data: seriesTemp[item],
       [secondDimAxisIndex]: ~secondAxis.indexOf(item) ? '1' : '0'
@@ -102,14 +101,14 @@ function getBarSeries (args) {
   return series.length ? series : false
 }
 
-const bar = (columns, rows, settings, status) => {
+const bar = (columns, rows, settings, extra) => {
   const {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {},
     axisVisible = true
   } = settings
-  const { tooltipVisible, legendVisible } = status
+  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics

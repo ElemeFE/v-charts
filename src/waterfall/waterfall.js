@@ -115,7 +115,7 @@ function getWaterfallRemainStatus (dataSum, totalNum) {
   return totalNum > dataSum ? 'have-remain' : 'none-remain'
 }
 
-const waterfall = (columns, rows, settings, status) => {
+const waterfall = (columns, rows, settings, extra) => {
   const {
     dataType = 'normal',
     dimension = columns[0],
@@ -125,7 +125,7 @@ const waterfall = (columns, rows, settings, status) => {
     xAxisName = dimension,
     axisVisible = true
   } = settings
-  const { tooltipVisible } = status
+  const { tooltipVisible } = extra
   let metricsTemp = columns.slice()
   metricsTemp.splice(metricsTemp.indexOf(dimension), 1)
   const metrics = metricsTemp[0]

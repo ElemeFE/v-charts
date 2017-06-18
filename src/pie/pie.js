@@ -70,7 +70,7 @@ function getPieTooltip (dataType) {
   }
 }
 
-const pie = (columns, rows, settings, status, isRing) => {
+const pie = (columns, rows, settings, extra, isRing) => {
   const {
     dataType = 'normal',
     percentShow,
@@ -82,7 +82,7 @@ const pie = (columns, rows, settings, status, isRing) => {
     selectedMode = false,
     hoverAnimation = true
   } = settings
-  const { tooltipVisible, legendVisible } = status
+  const { tooltipVisible, legendVisible } = extra
   const seriesParams = {
     rows,
     dataType,
@@ -101,8 +101,8 @@ const pie = (columns, rows, settings, status, isRing) => {
   return options
 }
 
-const ring = (columns, rows, settings, status) => {
-  return pie(columns, rows, settings, status, true)
+const ring = (columns, rows, settings, extra) => {
+  return pie(columns, rows, settings, extra, true)
 }
 
 export { pie, ring }

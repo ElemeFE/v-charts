@@ -8,5 +8,12 @@ module.exports = [
   'echarts/lib/chart/scatter',
   'echarts/lib/component/tooltip',
   'echarts/lib/component/legend',
-  'echarts/lib/component/title'
+  'echarts/lib/component/title',
+  'echarts/lib/component/markPoint',
+  'echarts/lib/component/markLine',
+  'echarts/lib/component/markArea',
+  'echarts/lib/component/dataZoom',
+  'echarts/lib/component/visualMap',
+  'echarts/lib/component/timeline',
+  'echarts/lib/component/toolbox'
 ]

@@ -113,7 +113,7 @@ function getLineTooltip (axisSite, yAxisType) {
   }
 }
 
-const line = (columns, rows, settings, status) => {
+const line = (columns, rows, settings, extra) => {
   const {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],
@@ -127,7 +127,7 @@ const line = (columns, rows, settings, status) => {
     min = [null, null],
     max = [null, null]
   } = settings
-  const { tooltipVisible, legendVisible } = status
+  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
 
   if (settings.metrics) {

@@ -77,12 +77,12 @@ function getRadarSeries (args) {
   return series
 }
 
-const radar = (columns, rows, settings, status) => {
+const radar = (columns, rows, settings, extra) => {
   const {
     dataType = {},
     dimension = columns[0]
   } = settings
-  const { tooltipVisible, legendVisible } = status
+  const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics

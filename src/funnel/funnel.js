@@ -49,7 +49,7 @@ function getFunnelSeries (args) {
   return series
 }
 
-const funnel = (outerColumns, outerRows, settings, status) => {
+const funnel = (outerColumns, outerRows, settings, extra) => {
   const columns = outerColumns.slice()
   const rows = outerRows.slice()
   const {
@@ -58,7 +58,7 @@ const funnel = (outerColumns, outerRows, settings, status) => {
     sequence = rows.map(row => row[dimension]),
     ascending
   } = settings
-  const { tooltipVisible, legendVisible } = status
+  const { tooltipVisible, legendVisible } = extra
   let metrics
   if (settings.metrics) {
     metrics = settings.metrics
