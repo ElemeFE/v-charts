@@ -11,7 +11,7 @@ npm i v-charts -S
 ```html
 <script src="//unpkg.com/vue/dist/vue.js"></script>
 <script src="//unpkg.com/echarts/dist/echarts.min.js"></script>
-<script src="//unpkg.com/v-charts/lib/index.js"></script>
+<script src="//unpkg.com/v-charts/lib/index.min.js"></script>
 ```
 
 #### 示例

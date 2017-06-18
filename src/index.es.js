@@ -21,7 +21,20 @@ const components = [
 ]
 
 function install (Vue, _) {
-  components.forEach(component => { Vue.component(component.name, component) })
+  components.forEach(component => {
+    Vue.component(component.name, component)
+  })
 }
 
-export { VeBar, VeHistogram, VeRing, VeLine, VePie, VeWaterfall, VeFunnel, VeRadar, VeChart, install }
+export {
+  VeBar,
+  VeHistogram,
+  VeRing,
+  VeLine,
+  VePie,
+  VeWaterfall,
+  VeFunnel,
+  VeRadar,
+  VeChart,
+  install
+}

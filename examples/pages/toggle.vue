@@ -2,7 +2,13 @@
   <div id="ap">
     <h3>图表切换</h3>
     <p>{{ contentList[0] }}</p>
-    <ve-chart :data="chartData" :settings="chartSettings" legend-visible tooltip-visible></ve-chart>
+    <ve-chart 
+      :data="chartData"
+      :settings="chartSettings"
+      legend-position="bottom"
+      legend-visible
+      tooltip-visible>
+    </ve-chart>
     <button @click="changeChart">切换图表类型</button>
     <p>代码示例</p>
     <code-section :content="codeList[0]"></code-section>
@@ -21,7 +27,8 @@ import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
 import VeChart from '../../src/chart/index'
 const CONTENT_LIST = [
-  '为了方便使用一份数据即可生成不同的表格，可以使用<ve-chart>组件，切换图表类型则只需要改变settings即可'
+  '为了方便使用一份数据即可生成不同的表格，可以使用' +
+  '<ve-chart>组件，切换图表类型则只需要改变settings即可'
 ]
 const CODE_LIST = [
   '<ve-chart :data="chartData" :settings="chartSettings"></ve-chart>',
@@ -89,10 +96,12 @@ export default {
   },
   methods: {
     changeChart () {
-      // if (this.index === 2) this.index = 0
-      // else this.index++
-      this.dataSw = !this.dataSw
-      this.chartData = this.dataSw ? this.chartDataStore : this.chartDataStore1
+      if (this.index === 2) this.index = 0
+      else this.index++
+      // this.dataSw = !this.dataSw
+      // this.chartData = this.dataSw
+      // ? this.chartDataStore
+      // : this.chartDataStore1
     },
     init () {
       this.chartData = this.chartDataStore

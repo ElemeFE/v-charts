@@ -2,22 +2,6 @@ import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 
-const SIGN = '@_@'
-const getLegendName = (item) => item.split(SIGN)[0]
-
-const itemPoint = (color) => {
-  return [
-    '<span style="',
-    `background-color:${color};`,
-    'display: inline-block;',
-    'width: 10px;',
-    'height: 10px;',
-    'border-radius: 50%;',
-    'margin-right:2px;',
-    '"></span>'
-  ].join('')
-}
-
 echarts.registerTheme('ve-chart', {
   color: [
     '#19d4ae', '#5ab1ef', '#fa6e86',
@@ -44,5 +28,17 @@ echarts.registerTheme('ve-chart', {
   }
 })
 
-export { SIGN, itemPoint, getLegendName }
+export const itemPoint = (color) => {
+  return [
+    '<span style="',
+    `background-color:${color};`,
+    'display: inline-block;',
+    'width: 10px;',
+    'height: 10px;',
+    'border-radius: 50%;',
+    'margin-right:2px;',
+    '"></span>'
+  ].join('')
+}
+
 export default echarts

@@ -15,9 +15,20 @@ function getWaterfallTooltip (dataType) {
   }
 }
 
-function getWaterfallXAxis ({ dimension, rows, remainStatus, totalName, remainName, xAxisName, axisVisible }) {
+function getWaterfallXAxis (args) {
+  const {
+    dimension,
+    rows,
+    remainStatus,
+    totalName,
+    remainName,
+    xAxisName,
+    axisVisible
+  } = args
   let xAxisData = [totalName].concat(rows.map(row => row[dimension]))
-  if (remainStatus === 'have-remain') xAxisData = xAxisData.concat([remainName])
+  if (remainStatus === 'have-remain') {
+    xAxisData = xAxisData.concat([remainName])
+  }
 
   return {
     type: 'category',
@@ -28,7 +39,8 @@ function getWaterfallXAxis ({ dimension, rows, remainStatus, totalName, remainNa
   }
 }
 
-function getWaterfallYAxis ({ dataType, yAxisName, axisVisible }) {
+function getWaterfallYAxis (args) {
+  const { dataType, yAxisName, axisVisible } = args
   return {
     type: 'value',
     name: yAxisName,
@@ -42,7 +54,15 @@ function getWaterfallYAxis ({ dataType, yAxisName, axisVisible }) {
   }
 }
 
-function getWaterfallSeries ({ dataType, rows, dimension, metrics, totalNum, remainStatus, dataSum }) {
+function getWaterfallSeries (args) {
+  const {
+    dataType,
+    rows,
+    metrics,
+    totalNum,
+    remainStatus,
+    dataSum
+  } = args
   const seriesBase = { type: 'bar', stack: '总量' }
   let dataSumTemp = dataSum
   let totalNumTemp = totalNum
@@ -90,12 +110,12 @@ function getWaterfallSeries ({ dataType, rows, dimension, metrics, totalNum, rem
   return series
 }
 
-function getWaterfallRemainStatus ({ dataSum, totalNum }) {
+function getWaterfallRemainStatus (dataSum, totalNum) {
   if (!totalNum) return 'not-total'
   return totalNum > dataSum ? 'have-remain' : 'none-remain'
 }
 
-const waterfall = (columns, rows, settings, status) => {
+const waterfall = (columns, rows, settings, extra) => {
   const {
     dataType = 'normal',
     dimension = columns[0],
@@ -105,17 +125,37 @@ const waterfall = (columns, rows, settings, status) => {
     xAxisName = dimension,
     axisVisible = true
   } = settings
-  const { tooltipVisible } = status
+  const { tooltipVisible } = extra
   let metricsTemp = columns.slice()
   metricsTemp.splice(metricsTemp.indexOf(dimension), 1)
   const metrics = metricsTemp[0]
   const yAxisName = metrics
   const tooltip = tooltipVisible && getWaterfallTooltip(dataType)
-  const dataSum = rows.reduce((pre, cur) => pre + Number(cur[metrics]), 0).toFixed(2)
-  const remainStatus = getWaterfallRemainStatus({ dataSum, dimension, totalNum })
-  const xAxis = getWaterfallXAxis({ dimension, rows, remainStatus, totalName, remainName, xAxisName, axisVisible })
+  const dataSum = rows.reduce((pre, cur) => {
+    return pre + Number(cur[metrics])
+  }, 0).toFixed(2)
+  const remainStatus = getWaterfallRemainStatus(dataSum, totalNum)
+  const xAxisParams = {
+    dimension,
+    rows,
+    remainStatus,
+    totalName,
+    remainName,
+    xAxisName,
+    axisVisible
+  }
+  const xAxis = getWaterfallXAxis(xAxisParams)
   const yAxis = getWaterfallYAxis({ dataType, yAxisName, axisVisible })
-  const series = getWaterfallSeries({ dataType, rows, dimension, metrics, totalNum, remainStatus, dataSum })
+  const seriesParams = {
+    dataType,
+    rows,
+    dimension,
+    metrics,
+    totalNum,
+    remainStatus,
+    dataSum
+  }
+  const series = getWaterfallSeries(seriesParams)
   const options = { tooltip, xAxis, yAxis, series }
   return options
 }

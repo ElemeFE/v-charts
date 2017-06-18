@@ -55,19 +55,7 @@ export default {
 </script>
 ```
 
-> 目前支持的图表有 line, bar, histogram, waterfall, pie, ring, funnel, radar
-
-
-### 属性
+### LICENSE
 ---
-| 配置项 | 简介 | 类型 | 示例 | 备注 |
-| --- | --- | --- | --- | --- |
-| data | 图表数据 | Object | `{ columns: [], rows: [] }` | columns代表指标和维度名称， rows为数据内容 |
-| settings | 图表配置项 | Object | `{ "yAxisType": [ "KMB", "percent" ] }` |  |
-| colors | 颜色列表 | Array | `[ "#19d4ae", "#5ab1ef", "#fa6e86", "#ffb980", "#0067a6", "#c4b4e4" ]` |  |
-| tooltip | 是否显示提示框 | Boolean | `false` | 默认为true |
-| grid | 网格配置 | Object | `{ left: 20, right: 20 }` |  |
-| scale | 是否是脱离 0 值比例 | Object | `{ x: true, y: true }` | 设置成 true 后坐标刻度不会强制包含零刻度，默认都是false |
-| events | 为图表绑定事件 | Object | `{ click: function (e) { console.log(e) } }` |  |
-| before-config | 对数据提前进行额外的处理 | Function | `function (data) { /* do something */return data; }` | 在数据转化为配置项开始前触发，参数为data，需返回表格数据
-| after-config | 对生成好的echarts配置进行额外的处理 | Function | `function (options) { /* do something */return options; }` | 在数据转化为配置项结束后触发，参数为options, 需返回echarts配置
+
+MIT

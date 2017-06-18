@@ -31,7 +31,7 @@ export default {
         ]
       },
       settings: {
-        yAxisType: ['KMB', 'normal'],
+        yAxisType: ['KMB', 'percent'],
         yAxisName: ['余额', '年龄'],
         axisSite: {
           right: ['年龄']

@@ -8,8 +8,15 @@ const pieOffsetY = 200
 
 function getPieSeries (args) {
   const {
-    rows, dataType, percentShow, dimension, metrics,
-    radius, offsetY, selectedMode, hoverAnimation
+    rows,
+    dataType,
+    percentShow,
+    dimension,
+    metrics,
+    radius,
+    offsetY,
+    selectedMode,
+    hoverAnimation
   } = args
 
   let series = {
@@ -34,12 +41,16 @@ function getPieSeries (args) {
       }
     }
   }
-  series.data = rows.map(row => ({ name: row[dimension], value: row[metrics] }))
+  series.data = rows.map(row => ({
+    name: row[dimension],
+    value: row[metrics]
+  }))
 
   return series
 }
 
-function getPieLegend ({ rows, dimension, legendLimit }) {
+function getPieLegend (args) {
+  const { rows, dimension, legendLimit } = args
   let legend = rows.map(row => row[dimension])
   return legend.length
     ? { data: legend, show: legend.length < legendLimit }
@@ -59,7 +70,7 @@ function getPieTooltip (dataType) {
   }
 }
 
-const pie = (columns, rows, settings, status, isRing) => {
+const pie = (columns, rows, settings, extra, isRing) => {
   const {
     dataType = 'normal',
     percentShow,
@@ -71,16 +82,27 @@ const pie = (columns, rows, settings, status, isRing) => {
     selectedMode = false,
     hoverAnimation = true
   } = settings
-  const { tooltipVisible, legendVisible } = status
-  const series = getPieSeries({
-    rows, dataType, percentShow, dimension, metrics, radius, offsetY, selectedMode, hoverAnimation
-  })
+  const { tooltipVisible, legendVisible } = extra
+  const seriesParams = {
+    rows,
+    dataType,
+    percentShow,
+    dimension,
+    metrics,
+    radius,
+    offsetY,
+    selectedMode,
+    hoverAnimation
+  }
+  const series = getPieSeries(seriesParams)
   const legend = legendVisible && getPieLegend({ rows, dimension, legendLimit })
   const tooltip = tooltipVisible && getPieTooltip(dataType)
   const options = { series, legend, tooltip }
   return options
 }
 
-const ring = (columns, rows, settings, status) => pie(columns, rows, settings, status, true)
+const ring = (columns, rows, settings, extra) => {
+  return pie(columns, rows, settings, extra, true)
+}
 
 export { pie, ring }
