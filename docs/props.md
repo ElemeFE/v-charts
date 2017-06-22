@@ -20,11 +20,11 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 | events | 为图表绑定事件 | Object | 内容为包含事件名-事件处理函数的对象，例如<br>`{  click: function (e) { console.log(e) }}` |
 | before-config | 对数据提前进行额外的处理 | Function | 在数据转化为配置项开始前触发<br>参数为 data，返回值为表格数据 |
 | after-config | 对生成好的echarts配置<br>进行额外的处理 | Function | 在数据转化为配置项结束后触发<br>参数为 options，返回值为 echarts 配置 |
-| mark-line | 图表标线 | Object | 配置项内容对应echarts中关于markLine的部分 | 
-| mark-point | 图表标线 | Object | 配置项内容对应echarts中关于markPoint的部分 | 
-| mark-area | 图表标线 | Object | 配置项内容对应echarts中关于markArea的部分 | 
-| visualMap | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#visualMap | 
-| dataZoom | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#dataZoom |
+| mark-line | 图表标线 | Object | 配置项内容对应echarts中关于markLine的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markLine'` | 
+| mark-point | 图表标线 | Object | 配置项内容对应echarts中关于markPoint的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markPoint'` | 
+| mark-area | 图表标线 | Object | 配置项内容对应echarts中关于markArea的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markAreae'` | 
+| visualMap | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#visualMap<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/visualMap'` | 
+| dataZoom | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#dataZoom<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/dataZoom'` |
 
 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 
