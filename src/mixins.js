@@ -16,7 +16,8 @@ const chartMixin = {
     markArea: { type: Object },
     markPoint: { type: Object },
     visualMap: { type: [Object, Array] },
-    dataZoom: { type: [Object, Array] }
+    dataZoom: { type: [Object, Array] },
+    initOptions: { type: Object, default () { return {} } }
   },
 
   watch: {
@@ -107,7 +108,7 @@ const chartMixin = {
 
     init () {
       if (this.echarts) return
-      this.echarts = this.echartsLib.init(this.$refs.canvas, 've-chart')
+      this.echarts = this.echartsLib.init(this.$refs.canvas, 've-chart', this.initOptions)
       if (this.data) this.dataHandler(this.data)
       if (this.events) this.bindEvents()
     },

@@ -25,6 +25,7 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 | mark-area | 图表标线 | Object | 配置项内容对应echarts中关于markArea的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markAreae'` | 
 | visualMap | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#visualMap<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/visualMap'` | 
 | dataZoom | 视觉映射组件 | Array, Object | 内容参考<br>http://echarts.baidu.com/option.html#dataZoom<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/dataZoom'` |
+| initOptions | init 附加参数 | Object | 内容参考<br>http://echarts.baidu.com/api.html#echarts.init |
 
 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 

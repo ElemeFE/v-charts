@@ -2,11 +2,13 @@
   <div id="ap">
     <h3>图表切换</h3>
     <p>{{ contentList[0] }}</p>
-    <ve-chart 
+    <ve-chart
+      ref="chart"
       :data="chartData"
       :settings="chartSettings"
       legend-position="bottom"
       legend-visible
+      :init-options="initOptions"
       tooltip-visible>
     </ve-chart>
     <button @click="changeChart">切换图表类型</button>
@@ -82,6 +84,9 @@ export default {
         type: 'pie'
       }
     ]
+    this.initOptions = {
+      devicePixelRatio: 1
+    }
     return {
       currentValue: '',
       chartData: {},
