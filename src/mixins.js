@@ -17,6 +17,7 @@ const chartMixin = {
     markPoint: { type: Object },
     visualMap: { type: [Object, Array] },
     dataZoom: { type: [Object, Array] },
+    toolbox: { type: Object },
     initOptions: { type: Object, default () { return {} } }
   },
 
@@ -74,6 +75,7 @@ const chartMixin = {
         }
         if (this.dataZoom) options.dataZoom = this.dataZoom
         if (this.visualMap) options.visualMap = this.visualMap
+        if (this.toolbox) options.toolbox = this.toolbox
         if (this.markArea || this.markLine || this.markPoint) {
           const marks = {
             markArea: this.markArea,
