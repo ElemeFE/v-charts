@@ -27,7 +27,8 @@ function getLineSeries (args) {
     axisSite,
     metrics,
     area,
-    stack
+    stack,
+    nullAddZero
   } = args
   let series = []
   const dataTemp = {}
@@ -35,7 +36,13 @@ function getLineSeries (args) {
   metrics.forEach(item => { dataTemp[item] = [] })
   rows.forEach(row => {
     metrics.forEach(item => {
-      dataTemp[item].push(row[item] || 0)
+      let value = null
+      if (row[item] != null) {
+        value = row[item]
+      } else if (nullAddZero) {
+        value = 0
+      }
+      dataTemp[item].push(value)
     })
   })
   metrics.forEach(item => {
@@ -125,7 +132,8 @@ const line = (columns, rows, settings, extra) => {
     stack,
     scale = [false, false],
     min = [null, null],
-    max = [null, null]
+    max = [null, null],
+    nullAddZero = false
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -153,7 +161,8 @@ const line = (columns, rows, settings, extra) => {
     axisSite,
     metrics,
     area,
-    stack
+    stack,
+    nullAddZero
   }
   const series = getLineSeries(seriesParams)
   if (!xAxis || !series) return false

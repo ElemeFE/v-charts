@@ -18,6 +18,7 @@
 | scale | 是否是脱离 0 值比例 | Object | 设置成 true 后坐标刻度不会<br>强制包含零刻度，默认都是 false |
 | min | 左右坐标轴最小值 | Array | - |
 | max | 左右坐标轴最大值 | Array | - |
+| nullAddZero | 空值补零 | Boolean | 设置为true后，如果数据中对应某项<br>为null或undefined，则在表格中补0 |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
 
