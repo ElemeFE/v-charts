@@ -8,7 +8,9 @@
       :settings="chartSettings"
       legend-position="bottom"
       legend-visible
+      :toolbox="toolbox"
       :init-options="initOptions"
+      :after-config="afterConfig"
       tooltip-visible>
     </ve-chart>
     <button @click="changeChart">切换图表类型</button>
@@ -22,6 +24,7 @@
 <script>
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
+import 'echarts/lib/component/toolbox'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/funnel'
 import 'echarts/lib/chart/line'
@@ -87,6 +90,18 @@ export default {
     this.initOptions = {
       devicePixelRatio: 1
     }
+    this.toolbox = {
+      show: true,
+      feature: {
+        dataZoom: {
+          yAxisIndex: 'none'
+        },
+        dataView: { readOnly: false },
+        magicType: { type: ['line', 'bar'] },
+        restore: {},
+        saveAsImage: {}
+      }
+    }
     return {
       currentValue: '',
       chartData: {},
@@ -111,6 +126,10 @@ export default {
     init () {
       this.chartData = this.chartDataStore
       this.chartSettings = this.chartSettingsStore[this.index]
+    },
+    afterConfig (options) {
+      console.log(options)
+      return options
     }
   },
   watch: {
