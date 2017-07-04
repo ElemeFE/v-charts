@@ -1,6 +1,6 @@
 {
   "name": "v-charts",
-  "version": "1.2.7",
+  "version": "1.2.9",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -25,8 +25,7 @@
   },
   "homepage": "https://github.com/elemefe/v-charts#readme",
   "dependencies": {
-    "echarts": "^3.0.0",
-    "object.assign": "^4.0.4"
+    "echarts": "^3.0.0"
   },
   "devDependencies": {
     "babel-core": "6.24.0",

@@ -15,6 +15,5 @@ module.exports = [
   'echarts/lib/component/dataZoom',
   'echarts/lib/component/visualMap',
   'echarts/lib/component/timeline',
-  'echarts/lib/component/toolbox',
-  'object.assign'
+  'echarts/lib/component/toolbox'
 ]
