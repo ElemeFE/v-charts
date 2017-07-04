@@ -1,6 +1,7 @@
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
+import 'object.assign'
 
 echarts.registerTheme('ve-chart', {
   color: [
