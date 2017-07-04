@@ -15,7 +15,7 @@
 | axisSite | 指标所在的轴 | Object | 默认不在right轴的指标都在left轴 |
 | stack | 堆叠选项 | Object | - |
 | area | 是否展示为面积图 | Boolean | 默认为false |
-| scale | 是否是脱离 0 值比例 | Object | 设置成 true 后坐标刻度不会<br>强制包含零刻度，默认都是 false |
+| scale | 是否是脱离 0 值比例 | Array | 默认为[false, false]，表示左右<br>两个轴都不会脱离0值比例。<br>设置成 true 后坐标刻度不会<br>强制包含零刻度<br> |
 | min | 左右坐标轴最小值 | Array | - |
 | max | 左右坐标轴最大值 | Array | - |
 | nullAddZero | 空值补零 | Boolean | 设置为true后，如果数据中对应某项<br>为null或undefined，则在表格中补0 |
