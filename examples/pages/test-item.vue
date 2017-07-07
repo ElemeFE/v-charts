@@ -32,6 +32,7 @@ import VeRing from '../../src/pie/ring'
 import VeWaterfall from '../../src/waterfall/index'
 import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
+import VeScatter from '../../src/scatter/index'
 import VeChart from '../../src/chart/index'
 import CHART_DATA from '../test-data'
 
@@ -71,6 +72,7 @@ export default {
     VeWaterfall,
     VeFunnel,
     VeRadar,
+    VeScatter,
     VeChart
   }
 }

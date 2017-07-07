@@ -7,6 +7,7 @@ import VeWaterfall from './waterfall'
 import VeFunnel from './funnel'
 import VeRadar from './radar'
 import VeChart from './chart'
+import VeScatter from './scatter'
 
 const components = [
   VeBar,
@@ -17,6 +18,7 @@ const components = [
   VeWaterfall,
   VeFunnel,
   VeRadar,
+  VeScatter,
   VeChart
 ]
 
@@ -35,6 +37,7 @@ export {
   VeWaterfall,
   VeFunnel,
   VeRadar,
+  VeScatter,
   VeChart,
   install
 }

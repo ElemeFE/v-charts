@@ -6,6 +6,7 @@ import VeRing from './pie/ring'
 import VeWaterfall from './waterfall'
 import VeFunnel from './funnel'
 import VeRadar from './radar'
+import VeScatter from './scatter'
 import VeChart from './chart'
 
 import 'echarts/lib/chart/bar'
@@ -13,6 +14,7 @@ import 'echarts/lib/chart/funnel'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
+import 'echarts/lib//chart/scatter'
 
 const components = [
   VeBar,
@@ -23,6 +25,7 @@ const components = [
   VeWaterfall,
   VeFunnel,
   VeRadar,
+  VeScatter,
   VeChart
 ]
 
@@ -45,6 +48,7 @@ export default {
   VeWaterfall,
   VeFunnel,
   VeRadar,
+  VeScatter,
   VeChart,
   install
 }
