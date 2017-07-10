@@ -18,7 +18,22 @@ const chartMixin = {
     visualMap: { type: [Object, Array] },
     dataZoom: { type: [Object, Array] },
     toolbox: { type: Object },
-    initOptions: { type: Object, default () { return {} } }
+    initOptions: { type: Object, default () { return {} } },
+    title: Object,
+    legend: Object,
+    xAxis: Object,
+    yAxis: Object,
+    radar: Object,
+    tooltip: Object,
+    axisPointer: Object,
+    brush: Object,
+    geo: Object,
+    timeline: Object,
+    graphic: Object,
+    series: Object,
+    backgroundColor: [Object, String],
+    textStyle: Object,
+    animation: Object
   },
 
   watch: {
@@ -64,8 +79,6 @@ const chartMixin = {
       let options = this.chartHandler(columns, rows, this.settings, extra)
 
       if (options) {
-        if (this.colors) options.color = this.colors
-        if (this.grid) options.grid = this.grid
         if (this.legendPosition && options.legend) {
           options.legend[this.legendPosition] = 10
           if (~['left', 'right'].indexOf(this.legendPosition)) {
@@ -73,9 +86,30 @@ const chartMixin = {
             options.legend.orient = 'vertical'
           }
         }
+        if (this.colors) options.color = this.colors
+        if (this.grid) options.grid = this.grid
         if (this.dataZoom) options.dataZoom = this.dataZoom
         if (this.visualMap) options.visualMap = this.visualMap
         if (this.toolbox) options.toolbox = this.toolbox
+        if (this.title) options.title = this.title
+        if (this.legend) options.legend = this.legend
+        if (this.xAxis) options.xAxis = this.xAxis
+        if (this.yAxis) options.yAxis = this.yAxis
+        if (this.radar) options.radar = this.radar
+        if (this.tooltip) options.tooltip = this.tooltip
+        if (this.axisPointer) options.axisPointer = this.axisPointer
+        if (this.brush) options.brush = this.brush
+        if (this.geo) options.geo = this.geo
+        if (this.timeline) options.timeline = this.timeline
+        if (this.graphic) options.graphic = this.graphic
+        if (this.series) options.series = this.series
+        if (this.backgroundColor) options.backgroundColor = this.backgroundColor
+        if (this.textStyle) options.textStyle = this.textStyle
+        if (this.animation) {
+          Object.keys(this.animation).forEach(key => {
+            options[key] = this.animation[key]
+          })
+        }
         if (this.markArea || this.markLine || this.markPoint) {
           const marks = {
             markArea: this.markArea,
@@ -123,10 +157,8 @@ const chartMixin = {
   },
 
   mounted () {
-    this.$nextTick(() => {
-      this.init()
-      window.addEventListener('resize', this.echarts.resize)
-    })
+    this.init()
+    window.addEventListener('resize', this.echarts.resize)
   },
 
   beforeDestory () {
