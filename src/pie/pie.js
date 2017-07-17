@@ -16,7 +16,8 @@ function getPieSeries (args) {
     radius,
     offsetY,
     selectedMode,
-    hoverAnimation
+    hoverAnimation,
+    digit
   } = args
 
   let series = {
@@ -34,7 +35,7 @@ function getPieSeries (args) {
         formatter (item) {
           let tpl = []
           tpl.push(`${item.name}:`)
-          tpl.push(getFormated(item.value, dataType))
+          tpl.push(getFormated(item.value, dataType, digit))
           tpl.push(`(${item.percent}%)`)
           return tpl.join(' ')
         }
@@ -57,13 +58,13 @@ function getPieLegend (args) {
     : false
 }
 
-function getPieTooltip (dataType) {
+function getPieTooltip (dataType, digit) {
   return {
     formatter (item) {
       let tpl = []
       tpl.push(itemPoint(item.color))
       tpl.push(`${item.name}:`)
-      tpl.push(getFormated(item.value, dataType))
+      tpl.push(getFormated(item.value, dataType, digit))
       tpl.push(`(${item.percent}%)`)
       return tpl.join(' ')
     }
@@ -80,7 +81,8 @@ const pie = (columns, rows, settings, extra, isRing) => {
     offsetY = pieOffsetY,
     legendLimit = 30,
     selectedMode = false,
-    hoverAnimation = true
+    hoverAnimation = true,
+    digit = 2
   } = settings
   const { tooltipVisible, legendVisible } = extra
   const seriesParams = {
@@ -92,11 +94,12 @@ const pie = (columns, rows, settings, extra, isRing) => {
     radius,
     offsetY,
     selectedMode,
-    hoverAnimation
+    hoverAnimation,
+    digit
   }
   const series = getPieSeries(seriesParams)
   const legend = legendVisible && getPieLegend({ rows, dimension, legendLimit })
-  const tooltip = tooltipVisible && getPieTooltip(dataType)
+  const tooltip = tooltipVisible && getPieTooltip(dataType, digit)
   const options = { series, legend, tooltip }
   return options
 }

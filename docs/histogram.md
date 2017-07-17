@@ -14,6 +14,7 @@
 | yAxisName | 左右坐标轴标题 | Array | - |
 | axisSite | 指标所在的轴 | Object | 默认不在right轴的指标都在left轴 |
 | stack | 堆叠选项 | Object | - |
+| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
 

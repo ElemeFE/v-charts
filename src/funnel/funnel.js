@@ -2,13 +2,13 @@ import { itemPoint } from '../echarts-base'
 import { getFormated } from '../util'
 import 'echarts/lib/chart/funnel'
 
-function getFunnelTooltip (dataType) {
+function getFunnelTooltip (dataType, digit) {
   return {
     trigger: 'item',
     formatter (item) {
       let tpl = []
       tpl.push(itemPoint(item.color))
-      tpl.push(`${item.name}: ${getFormated(item.data.realValue, dataType)}`)
+      tpl.push(`${item.name}: ${getFormated(item.data.realValue, dataType, digit)}`)
       return tpl.join('')
     }
   }
@@ -56,6 +56,7 @@ const funnel = (outerColumns, outerRows, settings, extra) => {
     dataType = 'normal',
     dimension = columns[0],
     sequence = rows.map(row => row[dimension]),
+    digit = 2,
     ascending
   } = settings
   const { tooltipVisible, legendVisible } = extra
@@ -68,7 +69,7 @@ const funnel = (outerColumns, outerRows, settings, extra) => {
     metrics = metricsTemp[0]
   }
 
-  const tooltip = tooltipVisible && getFunnelTooltip(dataType)
+  const tooltip = tooltipVisible && getFunnelTooltip(dataType, digit)
   const legend = legendVisible && { data: sequence }
   const seriesParams = { dimension, metrics, rows, sequence, ascending }
   const series = getFunnelSeries(seriesParams)

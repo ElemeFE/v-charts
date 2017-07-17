@@ -69,7 +69,8 @@ function getLineYAxis (args) {
     axisVisible,
     scale,
     min,
-    max
+    max,
+    digit
   } = args
   const yAxisBase = {
     type: 'value',
@@ -84,7 +85,7 @@ function getLineYAxis (args) {
       yAxis[i] = Object.assign({}, yAxisBase, {
         axisLabel: {
           formatter (val) {
-            return getFormated(val, yAxisType[i])
+            return getFormated(val, yAxisType[i], digit)
           }
         }
       })
@@ -99,7 +100,7 @@ function getLineYAxis (args) {
   return yAxis
 }
 
-function getLineTooltip (axisSite, yAxisType) {
+function getLineTooltip (axisSite, yAxisType, digit) {
   return {
     trigger: 'axis',
     formatter (items) {
@@ -110,7 +111,7 @@ function getLineTooltip (axisSite, yAxisType) {
         const type = ~axisSite.right.indexOf(item.seriesName)
           ? yAxisType[1]
           : yAxisType[0]
-        showData = getFormated(item.data, type)
+        showData = getFormated(item.data, type, digit)
         tpl.push(itemPoint(item.color))
         tpl.push(`${item.seriesName}: ${showData}`)
         tpl.push('<br>')
@@ -133,7 +134,8 @@ const line = (columns, rows, settings, extra) => {
     scale = [false, false],
     min = [null, null],
     max = [null, null],
-    nullAddZero = false
+    nullAddZero = false,
+    digit = 2
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -145,7 +147,7 @@ const line = (columns, rows, settings, extra) => {
   }
 
   const legend = legendVisible && { data: metrics }
-  const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType)
+  const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType, digit)
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
   const yAxisParams = {
     yAxisName,
@@ -153,7 +155,8 @@ const line = (columns, rows, settings, extra) => {
     axisVisible,
     scale,
     min,
-    max
+    max,
+    digit
   }
   const yAxis = getLineYAxis(yAxisParams)
   const seriesParams = {
