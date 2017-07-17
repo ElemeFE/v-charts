@@ -14,3 +14,4 @@
 | totalNum | 总量 | Number | 默认瀑布图总量为所有数据的和 |
 | totalName | 总量的显示文案 | String | 默认显示总计 |
 | remainName | 剩余的显示文案 | String | 默认显示其他 |
+| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |

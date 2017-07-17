@@ -8,7 +8,7 @@ function getRadarLegend (rows, dimension) {
   return { data: legendData }
 }
 
-function getRadarTooltip (dataType, radar) {
+function getRadarTooltip (dataType, radar, digit) {
   const typeTemp = []
   const nameTemp = []
   radar.indicator.map((item, index) => {
@@ -22,7 +22,7 @@ function getRadarTooltip (dataType, radar) {
       tpl.push(`${item.seriesName}<br />`)
       item.data.forEach((val, index) => {
         tpl.push(`${nameTemp[index]}: `)
-        tpl.push(`${getFormated(val, typeTemp[index])}<br />`)
+        tpl.push(`${getFormated(val, typeTemp[index], digit)}<br />`)
       })
       return tpl.join('')
     }
@@ -80,7 +80,8 @@ function getRadarSeries (args) {
 const radar = (columns, rows, settings, extra) => {
   const {
     dataType = {},
-    dimension = columns[0]
+    dimension = columns[0],
+    digit = 2
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -91,7 +92,7 @@ const radar = (columns, rows, settings, extra) => {
   }
   const legend = legendVisible && getRadarLegend(rows, dimension)
   const radar = getRadarSetting(rows, metrics)
-  const tooltip = tooltipVisible && getRadarTooltip(dataType, radar)
+  const tooltip = tooltipVisible && getRadarTooltip(dataType, radar, digit)
   const series = getRadarSeries({ rows, dimension, metrics, radar })
   const options = { legend, tooltip, radar, series }
   return options

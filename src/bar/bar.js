@@ -20,7 +20,7 @@ function getBarDimAxis (args) {
 }
 
 function getBarMeaAxis (args) {
-  const { meaAxisName, meaAxisType, axisVisible } = args
+  const { meaAxisName, meaAxisType, axisVisible, digit } = args
   const meaAxisBase = {
     type: 'value',
     axisTick: {
@@ -35,7 +35,7 @@ function getBarMeaAxis (args) {
       meaAxis[i] = Object.assign({}, meaAxisBase, {
         axisLabel: {
           formatter (val) {
-            return getFormated(val, meaAxisType[i])
+            return getFormated(val, meaAxisType[i], digit)
           }
         }
       })
@@ -49,7 +49,7 @@ function getBarMeaAxis (args) {
 }
 
 function getBarTooltip (args) {
-  const { axisSite, isHistogram, meaAxisType } = args
+  const { axisSite, isHistogram, meaAxisType, digit } = args
   const secondAxis = isHistogram ? axisSite.right : axisSite.top
   return {
     trigger: 'axis',
@@ -63,7 +63,7 @@ function getBarTooltip (args) {
           : meaAxisType[0]
         tpl.push(itemPoint(item.color))
         tpl.push(`${seriesName}: `)
-        tpl.push(getFormated(item.value, type))
+        tpl.push(getFormated(item.value, type, digit))
         tpl.push('<br>')
       })
 
@@ -106,7 +106,8 @@ const bar = (columns, rows, settings, extra) => {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {},
-    axisVisible = true
+    axisVisible = true,
+    digit = 2
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -122,9 +123,9 @@ const bar = (columns, rows, settings, extra) => {
 
   const legend = legendVisible && { data: metrics }
   const yAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
-  const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible })
+  const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
   const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
-  const tooltipParams = { axisSite, isHistogram, meaAxisType }
+  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
@@ -135,7 +136,8 @@ const histogram = (columns, rows, settings, status) => {
     axisSite = { right: [] },
     dimension = [columns[0]],
     stack = {},
-    axisVisible = true
+    axisVisible = true,
+    digit = 2
   } = settings
   const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
@@ -151,9 +153,9 @@ const histogram = (columns, rows, settings, status) => {
 
   const legend = legendVisible && { data: metrics }
   const xAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
-  const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible })
+  const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
   const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
-  const tooltipParams = { axisSite, isHistogram, meaAxisType }
+  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options

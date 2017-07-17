@@ -16,3 +16,4 @@
 | hoverAnimation | 是否开启 hover 在扇区上的放大动画效果 | Boolean | 默认值为true |
 | radius | 环图外半径与内半径 | Array | - |
 | offsetY | 	纵向偏移量 | Number | - |
+| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |

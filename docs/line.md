@@ -19,6 +19,7 @@
 | min | 左右坐标轴最小值 | Array | - |
 | max | 左右坐标轴最大值 | Array | - |
 | nullAddZero | 空值补零 | Boolean | 设置为true后，如果数据中对应某项<br>为null或undefined，则在表格中补0 |
+| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
 

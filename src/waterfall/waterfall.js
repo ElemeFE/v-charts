@@ -1,7 +1,7 @@
 import { getFormated } from '../util'
 import 'echarts/lib/chart/bar'
 
-function getWaterfallTooltip (dataType) {
+function getWaterfallTooltip (dataType, digit) {
   return {
     trigger: 'axis',
     axisPointer: { type: 'shadow' },
@@ -9,7 +9,7 @@ function getWaterfallTooltip (dataType) {
       const item = items[1]
       return [
         `${item.name}<br/>${item.seriesName} :`,
-        `${getFormated(item.value, dataType)}`
+        `${getFormated(item.value, dataType, digit)}`
       ].join('')
     }
   }
@@ -40,14 +40,14 @@ function getWaterfallXAxis (args) {
 }
 
 function getWaterfallYAxis (args) {
-  const { dataType, yAxisName, axisVisible } = args
+  const { dataType, yAxisName, axisVisible, digit } = args
   return {
     type: 'value',
     name: yAxisName,
     axisTick: { show: false },
     axisLabel: {
       formatter (val) {
-        return getFormated(val, dataType)
+        return getFormated(val, dataType, digit)
       }
     },
     show: axisVisible
@@ -61,7 +61,8 @@ function getWaterfallSeries (args) {
     metrics,
     totalNum,
     remainStatus,
-    dataSum
+    dataSum,
+    digit
   } = args
   const seriesBase = { type: 'bar', stack: '总量' }
   let dataSumTemp = dataSum
@@ -101,7 +102,7 @@ function getWaterfallSeries (args) {
         show: true,
         position: 'top',
         formatter (item) {
-          return getFormated(item.value, dataType)
+          return getFormated(item.value, dataType, digit)
         }
       }
     },
@@ -123,14 +124,15 @@ const waterfall = (columns, rows, settings, extra) => {
     totalNum,
     remainName = '其他',
     xAxisName = dimension,
-    axisVisible = true
+    axisVisible = true,
+    digit = 2
   } = settings
   const { tooltipVisible } = extra
   let metricsTemp = columns.slice()
   metricsTemp.splice(metricsTemp.indexOf(dimension), 1)
   const metrics = metricsTemp[0]
   const yAxisName = metrics
-  const tooltip = tooltipVisible && getWaterfallTooltip(dataType)
+  const tooltip = tooltipVisible && getWaterfallTooltip(dataType, digit)
   const dataSum = rows.reduce((pre, cur) => {
     return pre + Number(cur[metrics])
   }, 0).toFixed(2)
@@ -145,7 +147,7 @@ const waterfall = (columns, rows, settings, extra) => {
     axisVisible
   }
   const xAxis = getWaterfallXAxis(xAxisParams)
-  const yAxis = getWaterfallYAxis({ dataType, yAxisName, axisVisible })
+  const yAxis = getWaterfallYAxis({ dataType, yAxisName, axisVisible, digit })
   const seriesParams = {
     dataType,
     rows,
@@ -153,7 +155,8 @@ const waterfall = (columns, rows, settings, extra) => {
     metrics,
     totalNum,
     remainStatus,
-    dataSum
+    dataSum,
+    digit
   }
   const series = getWaterfallSeries(seriesParams)
   const options = { tooltip, xAxis, yAxis, series }
