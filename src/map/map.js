@@ -17,7 +17,6 @@ function getSeries (args) {
   const {
     position,
     selectData,
-    selectedMode,
     label,
     dimension,
     metrics,
@@ -28,7 +27,6 @@ function getSeries (args) {
     name: 'map',
     type: 'map',
     mapType: position,
-    selectedMode,
     data: []
   }
 
@@ -61,7 +59,13 @@ export const map = (columns, rows, settings, extra) => {
     dataType = 'normal',
     digit = 2,
     dimension = columns[0],
-    metrics = columns[1]
+    metrics = columns[1],
+    room,
+    center,
+    aspectScale,
+    boundingCoords,
+    zoom,
+    scaleLimit
   } = settings
   const { tooltipVisible } = extra
 
@@ -69,15 +73,23 @@ export const map = (columns, rows, settings, extra) => {
   const seriesParams = {
     position,
     selectData,
-    selectedMode,
     label,
     dimension,
     metrics,
     rows
   }
   const series = getSeries(seriesParams)
+  const geo = {
+    selectedMode,
+    room,
+    center,
+    aspectScale,
+    boundingCoords,
+    zoom,
+    scaleLimit
+  }
   return getMapJSON(position).then(json => {
     echarts.registerMap(position, json)
-    return { series, tooltip }
+    return { series, tooltip, geo }
   })
 }
