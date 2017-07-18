@@ -20,17 +20,18 @@ export default {
     {
       name: '设置数据标示',
       data: {
-        columns: ['位置', 'GDP'],
+        columns: ['位置', 'GDP', '人口'],
         rows: [
-          { '位置': '吉林', 'GDP': 123 },
-          { '位置': '北京', 'GDP': 1223 },
-          { '位置': '上海', 'GDP': 2123 },
-          { '位置': '浙江', 'GDP': 4123 }
+          { '位置': '吉林', 'GDP': 123, '人口': 234 },
+          { '位置': '北京', 'GDP': 1223, '人口': 1234 },
+          { '位置': '上海', 'GDP': 2123, '人口': 3234 },
+          { '位置': '浙江', 'GDP': 4123, '人口': 4234 }
         ]
       },
       settings: {
         position: 'china',
-        selectData: true
+        selectData: true,
+        label: false
       }
     },
     {

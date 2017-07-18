@@ -1,3 +1,4 @@
+import { color } from './echarts-base'
 const chartMixin = {
   props: {
     data: { type: [Object, Array], default: null },
@@ -73,7 +74,8 @@ const chartMixin = {
       const extra = {
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
-        echarts: this.echarts
+        echarts: this.echarts,
+        color: this.colors || color
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
@@ -95,7 +97,7 @@ const chartMixin = {
           options.legend.orient = 'vertical'
         }
       }
-      if (this.colors) options.color = this.colors
+      options.color = this.colors || color
       if (this.grid) options.grid = this.grid
       if (this.dataZoom) options.dataZoom = this.dataZoom
       if (this.visualMap) options.visualMap = this.visualMap
