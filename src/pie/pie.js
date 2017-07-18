@@ -71,7 +71,7 @@ function getPieTooltip (dataType, digit) {
   }
 }
 
-const pie = (columns, rows, settings, extra, isRing) => {
+export const pie = (columns, rows, settings, extra, isRing) => {
   const {
     dataType = 'normal',
     percentShow,
@@ -104,8 +104,6 @@ const pie = (columns, rows, settings, extra, isRing) => {
   return options
 }
 
-const ring = (columns, rows, settings, extra) => {
+export const ring = (columns, rows, settings, extra) => {
   return pie(columns, rows, settings, extra, true)
 }
-
-export { pie, ring }

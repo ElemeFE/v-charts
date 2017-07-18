@@ -25,7 +25,8 @@ export const formatTausends = (num) => {
   })
 }
 
-export const getFormated = (val, type, digit = 2) => {
+export const getFormated = (val, type, digit = 2, defaultVal = '-') => {
+  if (isNaN(val)) return defaultVal
   switch (type) {
     case 'KMB': return numberFormat(val)
     case 'percent': return `${parseFloat((val * 100).toFixed(digit))}%`
@@ -49,6 +50,26 @@ export const getStackMap = (stack) => {
     })
   })
   return stackMap
+}
+
+export const $get = (url) => {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', url)
+    xhr.send(null)
+    xhr.onload = () => {
+      resolve(JSON.parse(xhr.responseText))
+    }
+    xhr.onerror = () => {
+      reject(JSON.parse(xhr.responseText))
+    }
+  })
+}
+
+const MAP_URL_PREFIX = 'https://unpkg.com/echarts@3.6.2/map/json/'
+
+export const getMapJSON = (position) => {
+  return $get(`${MAP_URL_PREFIX}${position}.json`)
 }
 
 export const clone = (v) => JSON.parse(JSON.stringify(v))

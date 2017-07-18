@@ -116,7 +116,7 @@ function getWaterfallRemainStatus (dataSum, totalNum) {
   return totalNum > dataSum ? 'have-remain' : 'none-remain'
 }
 
-const waterfall = (columns, rows, settings, extra) => {
+export const waterfall = (columns, rows, settings, extra) => {
   const {
     dataType = 'normal',
     dimension = columns[0],
@@ -162,5 +162,3 @@ const waterfall = (columns, rows, settings, extra) => {
   const options = { tooltip, xAxis, yAxis, series }
   return options
 }
-
-export { waterfall }
