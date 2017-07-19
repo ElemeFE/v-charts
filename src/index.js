@@ -7,6 +7,7 @@ import VeWaterfall from './waterfall'
 import VeFunnel from './funnel'
 import VeRadar from './radar'
 import VeChart from './chart'
+import VeMap from './map'
 
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/funnel'
@@ -23,7 +24,8 @@ const components = [
   VeWaterfall,
   VeFunnel,
   VeRadar,
-  VeChart
+  VeChart,
+  VeMap
 ]
 
 function install (Vue, _) {

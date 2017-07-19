@@ -29,9 +29,16 @@ function getSeries (args) {
     metrics,
     rows,
     label,
-    itemStyle
+    itemStyle,
+    selectedMode,
+    roam,
+    center,
+    aspectScale,
+    boundingCoords,
+    zoom,
+    scaleLimit,
+    mapGrid
   } = args
-
   const result = []
   const mapBase = {
     type: 'map',
@@ -41,11 +48,25 @@ function getSeries (args) {
   metrics.forEach(itemName => {
     const itemResult = Object.assign({
       name: itemName,
-      data: []
+      data: [],
+      selectedMode,
+      roam,
+      center,
+      aspectScale,
+      boundingCoords,
+      zoom,
+      scaleLimit
     }, mapBase)
+
+    if (mapGrid) {
+      Object.keys(mapGrid).forEach(key => {
+        itemResult[key] = mapGrid[key]
+      })
+    }
 
     setGeoLabel(itemStyle, itemResult, 'itemStyle')
     setGeoLabel(label, itemResult, 'label')
+
     rows.forEach(row => {
       itemResult.data.push({
         name: row[dimension],
@@ -79,16 +100,14 @@ export const map = (columns, rows, settings, extra) => {
     dataType = {},
     digit = 2,
     dimension = columns[0],
-    room,
+    roam,
     center,
     aspectScale,
     boundingCoords,
     zoom,
     scaleLimit,
     mapGrid,
-    itemStyle,
-    geoItemStyle,
-    geoLabel
+    itemStyle
   } = settings
   let metrics = columns.slice()
   if (settings.metrics) {
@@ -108,27 +127,20 @@ export const map = (columns, rows, settings, extra) => {
     itemStyle,
     dimension,
     metrics,
-    rows
-  }
-  const series = getSeries(seriesParams)
-  const geo = {
-    map: position,
+    rows,
     selectedMode,
-    room,
+    roam,
     center,
     aspectScale,
     boundingCoords,
     zoom,
     scaleLimit,
-    grid: mapGrid,
-    itemStyle: geoItemStyle
+    mapGrid
   }
-
-  setGeoLabel(geoLabel, geo, 'label')
-  setGeoLabel(geoItemStyle, geo, 'itemStyle')
+  const series = getSeries(seriesParams)
 
   return getMapJSON(position).then(json => {
     echarts.registerMap(position, json)
-    return { series, tooltip, geo, legend }
+    return { series, tooltip, legend }
   })
 }
