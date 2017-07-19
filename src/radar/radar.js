@@ -20,7 +20,7 @@ function getRadarTooltip (dataType, radar, digit) {
       const tpl = []
       tpl.push(itemPoint(item.color))
       tpl.push(`${item.seriesName}<br />`)
-      item.data.forEach((val, index) => {
+      item.data.value.forEach((val, index) => {
         tpl.push(`${nameTemp[index]}: `)
         tpl.push(`${getFormated(val, typeTemp[index], digit)}<br />`)
       })
@@ -61,20 +61,25 @@ function getRadarSeries (args) {
     radarIndexObj[item.name] = index
   })
 
-  const series = rows.map(row => {
-    const seriesBase = {
-      name: row[dimension],
-      type: 'radar',
-      data: []
+  const seriesData = rows.map(row => {
+    const serieData = {
+      value: [],
+      name: row[dimension]
     }
-    let dataArr = []
     Object.keys(row).forEach(key => {
-      if (~metrics.indexOf(key)) dataArr[radarIndexObj[key]] = row[key]
+      if (~metrics.indexOf(key)) {
+        serieData.value[radarIndexObj[key]] = row[key]
+      }
     })
-    seriesBase.data.push(dataArr)
-    return seriesBase
+    return serieData
   })
-  return series
+  return [
+    {
+      name: dimension,
+      type: 'radar',
+      data: seriesData
+    }
+  ]
 }
 
 const radar = (columns, rows, settings, extra) => {
