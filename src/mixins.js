@@ -1,4 +1,4 @@
-import { color } from './echarts-base'
+import { color, default as echarts } from './echarts-base'
 const chartMixin = {
   props: {
     data: { type: [Object, Array], default: null },
@@ -34,7 +34,8 @@ const chartMixin = {
     series: Object,
     backgroundColor: [Object, String],
     textStyle: Object,
-    animation: Object
+    animation: Object,
+    theme: Object
   },
 
   watch: {
@@ -61,6 +62,10 @@ const chartMixin = {
         height: this.height,
         position: 'relative'
       }
+    },
+
+    chartColor () {
+      return this.colors || (this.theme && this.theme.color) || color
     }
   },
 
@@ -75,7 +80,7 @@ const chartMixin = {
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
         echarts: this.echarts,
-        color: this.colors || color
+        color: this.chartColor
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
@@ -97,7 +102,7 @@ const chartMixin = {
           options.legend.orient = 'vertical'
         }
       }
-      options.color = this.colors || color
+      options.color = this.chartColor
       if (this.grid) options.grid = this.grid
       if (this.dataZoom) options.dataZoom = this.dataZoom
       if (this.visualMap) options.visualMap = this.visualMap
@@ -154,7 +159,8 @@ const chartMixin = {
 
     init () {
       if (this.echarts) return
-      this.echarts = this.echartsLib.init(this.$refs.canvas, 've-chart', this.initOptions)
+      const themeName = this.theme ? 'outer-theme' : 've-chart'
+      this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.dataHandler(this.data)
       if (this.events) this.bindEvents()
     },
@@ -178,11 +184,16 @@ const chartMixin = {
           }, opts)
         }
       })
+    },
+
+    registerTheme () {
+      echarts.registerTheme('outer-theme', this.theme)
     }
   },
 
   created () {
     this.addWatchToProps()
+    if (this.theme) this.registerTheme()
   },
 
   mounted () {
