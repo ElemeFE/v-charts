@@ -8,7 +8,17 @@ function getScatterLegend (rows, dimension) {
   return { data: legendArray }
 }
 
-function getScatterTooltip (dataNames, dataType) {
+function getScatterTooltip (rows, columns) {
+  return {
+    formatter (data) {
+      const tpl = []
+      tpl.push(`${data.seriesName}</br>`)
+      columns.forEach((column, index) => {
+        tpl.push(`${column}: ${data.data[index]}</br>`)
+      })
+      return tpl.join('')
+    }
+  }
 }
 
 function getScatterXAxis (params, legend) {
@@ -89,8 +99,6 @@ function getScatterSeries (params, legendArray) {
 
 const scatter = (columns, rows, settings, extra) => {
   const {
-    dataType = [],
-    axisNames = [],
     min = null,
     max = null,
     symbol = 'circle',
@@ -127,7 +135,7 @@ const scatter = (columns, rows, settings, extra) => {
   }
 
   const legend = legendVisible && getScatterLegend(rows, dimension)
-  const tooltip = tooltipVisible && getScatterTooltip(axisNames, dataType)
+  const tooltip = tooltipVisible && getScatterTooltip(rows, columns)
   const xAxis = getScatterXAxis(xParams, legend)
   const yAxis = getScatterYAxis(yParams)
   const series = getScatterSeries(seriesParams, legend)
