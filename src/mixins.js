@@ -153,7 +153,26 @@ const chartMixin = {
       Object.keys(this.events).forEach(event => {
         this.echarts.on(event, this.events[event])
       })
+    },
+
+    addWatchToProps () {
+      const watchedVariable = this._watchers.map(watcher => watcher.expression)
+      Object.keys(this.$props).forEach(prop => {
+        if (!~watchedVariable.indexOf(prop)) {
+          const opts = {}
+          if (Object.prototype.toString.call(prop) === '[object Object]') {
+            opts.deep = true
+          }
+          this.$watch(prop, () => {
+            this.dataHandler(this.data)
+          }, opts)
+        }
+      })
     }
+  },
+
+  created () {
+    this.addWatchToProps()
   },
 
   mounted () {
