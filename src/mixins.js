@@ -1,3 +1,4 @@
+import { color } from './echarts-base'
 const chartMixin = {
   props: {
     data: { type: [Object, Array], default: null },
@@ -72,62 +73,71 @@ const chartMixin = {
       const { columns, rows } = data
       const extra = {
         tooltipVisible: this.tooltipVisible,
-        legendVisible: this.legendVisible
+        legendVisible: this.legendVisible,
+        echarts: this.echarts,
+        color: this.colors || color
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
       let options = this.chartHandler(columns, rows, this.settings, extra)
-
       if (options) {
-        if (this.legendPosition && options.legend) {
-          options.legend[this.legendPosition] = 10
-          if (~['left', 'right'].indexOf(this.legendPosition)) {
-            options.legend.top = 'middle'
-            options.legend.orient = 'vertical'
-          }
+        if (typeof options.then === 'function') {
+          options.then(this.optionsHandler)
+        } else {
+          this.optionsHandler(options)
         }
-        if (this.colors) options.color = this.colors
-        if (this.grid) options.grid = this.grid
-        if (this.dataZoom) options.dataZoom = this.dataZoom
-        if (this.visualMap) options.visualMap = this.visualMap
-        if (this.toolbox) options.toolbox = this.toolbox
-        if (this.title) options.title = this.title
-        if (this.legend) options.legend = this.legend
-        if (this.xAxis) options.xAxis = this.xAxis
-        if (this.yAxis) options.yAxis = this.yAxis
-        if (this.radar) options.radar = this.radar
-        if (this.tooltip) options.tooltip = this.tooltip
-        if (this.axisPointer) options.axisPointer = this.axisPointer
-        if (this.brush) options.brush = this.brush
-        if (this.geo) options.geo = this.geo
-        if (this.timeline) options.timeline = this.timeline
-        if (this.graphic) options.graphic = this.graphic
-        if (this.series) options.series = this.series
-        if (this.backgroundColor) options.backgroundColor = this.backgroundColor
-        if (this.textStyle) options.textStyle = this.textStyle
-        if (this.animation) {
-          Object.keys(this.animation).forEach(key => {
-            options[key] = this.animation[key]
-          })
-        }
-        if (this.markArea || this.markLine || this.markPoint) {
-          const marks = {
-            markArea: this.markArea,
-            markLine: this.markLine,
-            markPoint: this.markPoint
-          }
-          const series = options.series
-          if (this.getType(series) === '[object Array]') {
-            series.forEach(item => {
-              this.addMark(item, marks)
-            })
-          } else if (this.getType(series) === '[object Object]') {
-            this.addMark(series, marks)
-          }
-        }
-        if (this.afterConfig) options = this.afterConfig(options)
-        this.echarts.setOption(options, true)
       }
+    },
+
+    optionsHandler (options) {
+      if (this.legendPosition && options.legend) {
+        options.legend[this.legendPosition] = 10
+        if (~['left', 'right'].indexOf(this.legendPosition)) {
+          options.legend.top = 'middle'
+          options.legend.orient = 'vertical'
+        }
+      }
+      options.color = this.colors || color
+      if (this.grid) options.grid = this.grid
+      if (this.dataZoom) options.dataZoom = this.dataZoom
+      if (this.visualMap) options.visualMap = this.visualMap
+      if (this.toolbox) options.toolbox = this.toolbox
+      if (this.title) options.title = this.title
+      if (this.legend) options.legend = this.legend
+      if (this.xAxis) options.xAxis = this.xAxis
+      if (this.yAxis) options.yAxis = this.yAxis
+      if (this.radar) options.radar = this.radar
+      if (this.tooltip) options.tooltip = this.tooltip
+      if (this.axisPointer) options.axisPointer = this.axisPointer
+      if (this.brush) options.brush = this.brush
+      if (this.geo) options.geo = this.geo
+      if (this.timeline) options.timeline = this.timeline
+      if (this.graphic) options.graphic = this.graphic
+      if (this.series) options.series = this.series
+      if (this.backgroundColor) options.backgroundColor = this.backgroundColor
+      if (this.textStyle) options.textStyle = this.textStyle
+      if (this.animation) {
+        Object.keys(this.animation).forEach(key => {
+          options[key] = this.animation[key]
+        })
+      }
+      if (this.markArea || this.markLine || this.markPoint) {
+        const marks = {
+          markArea: this.markArea,
+          markLine: this.markLine,
+          markPoint: this.markPoint
+        }
+        const series = options.series
+        if (this.getType(series) === '[object Array]') {
+          series.forEach(item => {
+            this.addMark(item, marks)
+          })
+        } else if (this.getType(series) === '[object Object]') {
+          this.addMark(series, marks)
+        }
+      }
+      if (this.afterConfig) options = this.afterConfig(options)
+      this.echarts.setOption(options, true)
     },
 
     addMark (seriesItem, marks) {

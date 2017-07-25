@@ -101,7 +101,7 @@ function getBarSeries (args) {
   return series.length ? series : false
 }
 
-const bar = (columns, rows, settings, extra) => {
+export const bar = (columns, rows, settings, extra) => {
   const {
     axisSite = { top: [] },
     dimension = [columns[0]],
@@ -131,7 +131,7 @@ const bar = (columns, rows, settings, extra) => {
   return options
 }
 
-const histogram = (columns, rows, settings, status) => {
+export const histogram = (columns, rows, settings, status) => {
   const {
     axisSite = { right: [] },
     dimension = [columns[0]],
@@ -160,5 +160,3 @@ const histogram = (columns, rows, settings, status) => {
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
 }
-
-export { bar, histogram }

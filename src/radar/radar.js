@@ -82,7 +82,7 @@ function getRadarSeries (args) {
   ]
 }
 
-const radar = (columns, rows, settings, extra) => {
+export const radar = (columns, rows, settings, extra) => {
   const {
     dataType = {},
     dimension = columns[0],
@@ -102,5 +102,3 @@ const radar = (columns, rows, settings, extra) => {
   const options = { legend, tooltip, radar, series }
   return options
 }
-
-export { radar }

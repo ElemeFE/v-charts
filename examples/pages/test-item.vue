@@ -33,6 +33,7 @@ import VeWaterfall from '../../src/waterfall/index'
 import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeChart from '../../src/chart/index'
+import VeMap from '../../src/map/index'
 import CHART_DATA from '../test-data'
 
 export default {
@@ -71,7 +72,8 @@ export default {
     VeWaterfall,
     VeFunnel,
     VeRadar,
-    VeChart
+    VeChart,
+    VeMap
   }
 }
 </script>

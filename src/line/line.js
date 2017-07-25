@@ -121,7 +121,7 @@ function getLineTooltip (axisSite, yAxisType, digit) {
   }
 }
 
-const line = (columns, rows, settings, extra) => {
+export const line = (columns, rows, settings, extra) => {
   const {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],
@@ -173,5 +173,3 @@ const line = (columns, rows, settings, extra) => {
   let options = { legend, xAxis, series, yAxis, tooltip }
   return options
 }
-
-export { line }

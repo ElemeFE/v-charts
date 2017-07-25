@@ -11,6 +11,7 @@
   - [瀑布图](/waterfall)
   - [漏斗图](/funnel)
   - [雷达图](/radar)
+  - [地图](/map)
 - 其他
   - [事件监听](/event)
   - [图表切换](/toggle)

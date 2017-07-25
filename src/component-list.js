@@ -8,5 +8,6 @@ module.exports = {
   VeRadar: { src: 'src/radar/index.vue', dist: 'lib/radar' },
   VeWaterfall: { src: 'src/waterfall/index.vue', dist: 'lib/waterfall' },
   VeIndex: { src: 'src/index.js', dist: 'lib/index' },
-  VeChart: { src: 'src/chart/index.vue', dist: 'lib/chart' }
+  VeChart: { src: 'src/chart/index.vue', dist: 'lib/chart' },
+  VeMap: { src: 'src/map/index.vue', dist: 'lib/map' }
 }

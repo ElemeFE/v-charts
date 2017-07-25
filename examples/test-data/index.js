@@ -7,5 +7,17 @@ import waterfall from './waterfall'
 import funnel from './funnel'
 import radar from './radar'
 import chart from './chart'
+import map from './map'
 
-export default { bar, histogram, line, pie, ring, waterfall, funnel, radar, chart }
+export default {
+  bar,
+  histogram,
+  line,
+  pie,
+  ring,
+  waterfall,
+  funnel,
+  radar,
+  chart,
+  map
+}

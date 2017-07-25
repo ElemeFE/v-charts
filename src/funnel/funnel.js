@@ -49,7 +49,7 @@ function getFunnelSeries (args) {
   return series
 }
 
-const funnel = (outerColumns, outerRows, settings, extra) => {
+export const funnel = (outerColumns, outerRows, settings, extra) => {
   const columns = outerColumns.slice()
   const rows = outerRows.slice()
   const {
@@ -76,5 +76,3 @@ const funnel = (outerColumns, outerRows, settings, extra) => {
   const options = { tooltip, legend, series }
   return options
 }
-
-export { funnel }
