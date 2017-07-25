@@ -34,4 +34,4 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 
 ### 示例
 
-<iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/he1u3j75/14/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/he1u3j75/24/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
