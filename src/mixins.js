@@ -74,7 +74,9 @@ const chartMixin = {
       if (!this.chartHandler) return
       if (!data ||
         !Array.isArray(data.columns) ||
-        !Array.isArray(data.rows)) return false
+        !Array.isArray(data.rows)) {
+        return false
+      }
       const { columns, rows } = data
       const extra = {
         tooltipVisible: this.tooltipVisible,
@@ -103,24 +105,15 @@ const chartMixin = {
         }
       }
       options.color = this.chartColor
-      if (this.grid) options.grid = this.grid
-      if (this.dataZoom) options.dataZoom = this.dataZoom
-      if (this.visualMap) options.visualMap = this.visualMap
-      if (this.toolbox) options.toolbox = this.toolbox
-      if (this.title) options.title = this.title
-      if (this.legend) options.legend = this.legend
-      if (this.xAxis) options.xAxis = this.xAxis
-      if (this.yAxis) options.yAxis = this.yAxis
-      if (this.radar) options.radar = this.radar
-      if (this.tooltip) options.tooltip = this.tooltip
-      if (this.axisPointer) options.axisPointer = this.axisPointer
-      if (this.brush) options.brush = this.brush
-      if (this.geo) options.geo = this.geo
-      if (this.timeline) options.timeline = this.timeline
-      if (this.graphic) options.graphic = this.graphic
-      if (this.series) options.series = this.series
-      if (this.backgroundColor) options.backgroundColor = this.backgroundColor
-      if (this.textStyle) options.textStyle = this.textStyle
+      const echartsSettings = [
+        'grid', 'dataZoom', 'visualMap', 'toolbox', 'title', 'legend',
+        'xAxis', 'yAxis', 'radar', 'tooltip', 'axisPointer', 'brush',
+        'geo', 'timeline', 'graphic', 'series', 'backgroundColor',
+        'textStyle'
+      ]
+      echartsSettings.forEach(setting => {
+        if (this[setting]) options[setting] = this[setting]
+      })
       if (this.animation) {
         Object.keys(this.animation).forEach(key => {
           options[key] = this.animation[key]
