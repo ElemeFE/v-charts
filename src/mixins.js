@@ -1,5 +1,7 @@
 import { color, default as echarts } from './echarts-base'
-const chartMixin = {
+import { getType } from './util'
+
+export default {
   props: {
     data: { type: [Object, Array], default: null },
     settings: { type: Object, default () { return {} } },
@@ -126,11 +128,11 @@ const chartMixin = {
           markPoint: this.markPoint
         }
         const series = options.series
-        if (this.getType(series) === '[object Array]') {
+        if (getType(series) === '[object Array]') {
           series.forEach(item => {
             this.addMark(item, marks)
           })
-        } else if (this.getType(series) === '[object Object]') {
+        } else if (getType(series) === '[object Object]') {
           this.addMark(series, marks)
         }
       }
@@ -144,10 +146,6 @@ const chartMixin = {
           seriesItem[key] = marks[key]
         }
       })
-    },
-
-    getType (v) {
-      return Object.prototype.toString.call(v)
     },
 
     init () {
@@ -169,7 +167,7 @@ const chartMixin = {
       Object.keys(this.$props).forEach(prop => {
         if (!~watchedVariable.indexOf(prop)) {
           const opts = {}
-          if (Object.prototype.toString.call(prop) === '[object Object]') {
+          if (getType(prop) === '[object Object]') {
             opts.deep = true
           }
           this.$watch(prop, () => {
@@ -199,5 +197,3 @@ const chartMixin = {
     this.echarts.dispose()
   }
 }
-
-export default chartMixin
