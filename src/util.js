@@ -73,3 +73,7 @@ export const getMapJSON = (position) => {
 }
 
 export const clone = (v) => JSON.parse(JSON.stringify(v))
+
+export const getType = (v) => {
+  return Object.prototype.toString.call(v)
+}

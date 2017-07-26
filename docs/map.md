@@ -24,3 +24,5 @@
 | scaleLimit | 滚轮缩放的极限控制 | Object | 默认`{ min: 1, max: 1 }` |
 | mapGrid | 地图距离容器的边距 | Object | 默认值为<br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
 | itemStyle | 地图区域的多边形 图形样式 | Boolean | 默认为true, 也可以参考文档设置<br>http://t.cn/RKEEc73 |
+
+> 备注1. 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
