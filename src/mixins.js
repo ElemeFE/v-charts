@@ -37,7 +37,8 @@ export default {
     backgroundColor: [Object, String],
     textStyle: Object,
     animation: Object,
-    theme: Object
+    theme: Object,
+    themeName: String
   },
 
   watch: {
@@ -106,7 +107,7 @@ export default {
           options.legend.orient = 'vertical'
         }
       }
-      options.color = this.chartColor
+      if (!this.themeName) options.color = this.chartColor
       const echartsSettings = [
         'grid', 'dataZoom', 'visualMap', 'toolbox', 'title', 'legend',
         'xAxis', 'yAxis', 'radar', 'tooltip', 'axisPointer', 'brush',
@@ -150,7 +151,7 @@ export default {
 
     init () {
       if (this.echarts) return
-      const themeName = this.theme ? 'outer-theme' : 've-chart'
+      const themeName = this.themeName || (this.theme ? 'outer-theme' : 've-chart')
       this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.dataHandler(this.data)
       if (this.events) this.bindEvents()

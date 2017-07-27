@@ -28,6 +28,7 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 | toolbox | 工具箱 | Object | 内容参考<br>http://echarts.baidu.com/option.html#toolbox<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/toolbox'` |
 | init-options | init 附加参数 | Object | 内容参考<br>http://echarts.baidu.com/api.html#echarts.init |
 | theme | 自定义主题 | Object | 内容为自定义主题参数 |
+| theme-name | 自定义主题名称 | String | 内容为全局注册的自定义主题名称 |
 
 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 

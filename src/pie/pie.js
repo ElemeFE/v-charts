@@ -1,5 +1,5 @@
 import { itemPoint } from '../echarts-base'
-import { getFormated } from '../util'
+import { getFormated, clone } from '../util'
 import 'echarts/lib/chart/pie'
 
 const pieRadius = 100
@@ -9,7 +9,7 @@ const pieOffsetY = 200
 
 function getPieSeries (args) {
   const {
-    rows,
+    innerRows,
     dataType,
     percentShow,
     dimension,
@@ -33,7 +33,7 @@ function getPieSeries (args) {
     level.forEach((levelItems, index) => {
       levelItems.forEach(item => { levelTemp[item] = index })
     })
-    rows.forEach(row => {
+    innerRows.forEach(row => {
       const itemLevel = levelTemp[row[dimension]]
       if (itemLevel !== undefined) {
         if (rowsTemp[itemLevel]) {
@@ -44,7 +44,7 @@ function getPieSeries (args) {
       }
     })
   } else {
-    rowsTemp.push(rows)
+    rowsTemp.push(innerRows)
   }
   let seriesBase = {
     type: 'pie',
@@ -103,7 +103,7 @@ function getPieSeries (args) {
 }
 
 function getPieLegend (args) {
-  const { rows, dimension, legendLimit, level, limitShowNum } = args
+  const { innerRows, dimension, legendLimit, level, limitShowNum } = args
   let legend = []
   const levelTemp = []
   if (level) {
@@ -115,11 +115,11 @@ function getPieLegend (args) {
     legend = levelTemp
   } else if (limitShowNum) {
     for (let i = 0; i < limitShowNum; i++) {
-      legend.push(rows[i][dimension])
+      legend.push(innerRows[i][dimension])
     }
     legend.push('其他')
   } else {
-    legend = rows.map(row => row[dimension])
+    legend = innerRows.map(row => row[dimension])
   }
   return legend.length
     ? { data: legend, show: legend.length < legendLimit }
@@ -129,20 +129,20 @@ function getPieLegend (args) {
 function getPieTooltip (args) {
   const {
     dataType,
-    rows,
+    innerRows,
     limitShowNum,
     digit,
     metrics,
     dimension
   } = args
   let sum = 0
-  const remainArr = rows.map(row => {
+  const remainArr = innerRows.map(row => {
     sum += row[metrics]
     return {
       name: row[dimension],
       value: row[metrics]
     }
-  })
+  }).slice(limitShowNum, innerRows.length)
   return {
     formatter (item) {
       let tpl = []
@@ -166,6 +166,7 @@ function getPieTooltip (args) {
 }
 
 export const pie = (columns, rows, settings, extra, isRing) => {
+  const innerRows = clone(rows)
   const {
     dataType = 'normal',
     percentShow,
@@ -187,8 +188,9 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     limitShowNum = 0
   } = settings
   const { tooltipVisible, legendVisible } = extra
+  if (limitShowNum) innerRows.sort((a, b) => b[metrics] - a[metrics])
   const seriesParams = {
-    rows,
+    innerRows,
     dataType,
     percentShow,
     dimension,
@@ -206,7 +208,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
   }
   const series = getPieSeries(seriesParams)
   const legendParams = {
-    rows,
+    innerRows,
     dimension,
     legendLimit,
     level,
@@ -215,7 +217,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
   const legend = legendVisible && getPieLegend(legendParams)
   const tooltip = tooltipVisible && getPieTooltip({
     dataType,
-    rows,
+    innerRows,
     limitShowNum,
     digit,
     metrics,
