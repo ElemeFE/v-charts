@@ -17,3 +17,9 @@
 | radius | 饼图半径 | Number | - |
 | offsetY | 	纵向偏移量 | Number | - |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| roseType | 显示为南丁格尔玫瑰图 | String | 默认不展示为南丁格尔玫瑰图，可设置为`'radius', 'area'` |
+| label | 饼图图形上的文本标签 | Object | - |
+| level | 多圆饼图时设置 | Array | - |
+| limitShowNum | 设置超过此数字时使用‘其他’代替 | Number | - |
+
+> 备注1. level 的值接受二维数组，例如：`[['a', 'b'], ['c', 'd']]`, 表示的含义是内层展示的是维度中的`'a', 'b'`的指标加在一起组成的饼图，外层为`'c', 'd'`的指标加在一起组成的环图。

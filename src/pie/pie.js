@@ -22,7 +22,8 @@ function getPieSeries (args) {
     roseType,
     label,
     level,
-    limitShowNum
+    limitShowNum,
+    isRing
   } = args
 
   let series = []
@@ -57,7 +58,7 @@ function getPieSeries (args) {
     let seriesItem = Object.assign({ data: [] }, seriesBase)
     const centerWidth = radius / rowsTempLength
     if (!index) {
-      seriesItem.radius = centerWidth
+      seriesItem.radius = isRing ? radius : centerWidth
     } else {
       const outerWidth = centerWidth + radius / (2 * rowsTempLength) * (2 * index - 1)
       const innerWidth = outerWidth + radius / (2 * rowsTempLength)
@@ -200,7 +201,8 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     roseType,
     label,
     level,
-    limitShowNum
+    limitShowNum,
+    isRing
   }
   const series = getPieSeries(seriesParams)
   const legendParams = {

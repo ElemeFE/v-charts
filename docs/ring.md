@@ -17,3 +17,6 @@
 | radius | 环图外半径与内半径 | Array | - |
 | offsetY | 	纵向偏移量 | Number | - |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| roseType | 显示为南丁格尔玫瑰图 | String | 默认不展示为南丁格尔玫瑰图，可设置为`'radius', 'area'` |
+| label | 饼图图形上的文本标签 | Object | - |
+| limitShowNum | 设置超过此数字时使用‘其他’代替 | Number | - |
