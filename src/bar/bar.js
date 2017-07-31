@@ -1,15 +1,15 @@
 import { itemPoint } from '../echarts-base'
-import { getFormated, getStackMap } from '../util'
+import { getFormated, getStackMap, clone } from '../util'
 import 'echarts/lib/chart/bar'
 
 function getBarDimAxis (args) {
-  const { rows, dimAxisName, dimension, axisVisible } = args
+  const { innerRows, dimAxisName, dimension, axisVisible } = args
   return dimension.map(item => ({
     type: 'category',
     name: dimAxisName,
     nameLocation: 'middle',
     nameGap: 22,
-    data: rows.map(row => row[item]),
+    data: innerRows.map(row => row[item]),
     axisLabel: {
       formatter (v) {
         return String(v)
@@ -73,14 +73,14 @@ function getBarTooltip (args) {
 }
 
 function getBarSeries (args) {
-  const { rows, metrics, stack, axisSite, isHistogram } = args
+  const { innerRows, metrics, stack, axisSite, isHistogram } = args
   let series = []
   const seriesTemp = {}
   const secondAxis = isHistogram ? axisSite.right : axisSite.top
   const secondDimAxisIndex = isHistogram ? 'yAxisIndex' : 'xAxisIndex'
   const stackMap = stack && getStackMap(stack)
   metrics.forEach(item => { seriesTemp[item] = [] })
-  rows.forEach(row => {
+  innerRows.forEach(row => {
     metrics.forEach(item => {
       seriesTemp[item].push(row[item])
     })
@@ -102,12 +102,14 @@ function getBarSeries (args) {
 }
 
 export const bar = (columns, rows, settings, extra) => {
+  const innerRows = clone(rows)
   const {
     axisSite = { top: [] },
     dimension = [columns[0]],
     stack = {},
     axisVisible = true,
-    digit = 2
+    digit = 2,
+    dataOrder = false
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -121,10 +123,25 @@ export const bar = (columns, rows, settings, extra) => {
   const dimAxisName = settings.yAxisName || ''
   const isHistogram = false
 
+  if (dataOrder) {
+    const { label, order } = dataOrder
+    if (!label || !order) {
+      console.warn('Need to provide name and order parameters')
+    } else {
+      innerRows.sort((a, b) => {
+        if (order === 'desc') {
+          return a[label] - b[label]
+        } else {
+          return b[label] - a[label]
+        }
+      })
+    }
+  }
+
   const legend = legendVisible && { data: metrics }
-  const yAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
+  const yAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
   const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
-  const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
+  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
   const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
@@ -132,6 +149,7 @@ export const bar = (columns, rows, settings, extra) => {
 }
 
 export const histogram = (columns, rows, settings, status) => {
+  const innerRows = clone(rows)
   const {
     axisSite = { right: [] },
     dimension = [columns[0]],
@@ -152,9 +170,9 @@ export const histogram = (columns, rows, settings, status) => {
   const isHistogram = true
 
   const legend = legendVisible && { data: metrics }
-  const xAxis = getBarDimAxis({ rows, dimAxisName, dimension, axisVisible })
+  const xAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
   const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
-  const series = getBarSeries({ rows, metrics, stack, axisSite, isHistogram })
+  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
   const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }

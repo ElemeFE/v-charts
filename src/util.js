@@ -26,7 +26,7 @@ export const formatTausends = (num) => {
 }
 
 export const getFormated = (val, type, digit = 2, defaultVal = '-') => {
-  if (isNaN(val)) return defaultVal
+  if (val == null || isNaN(val)) return defaultVal
   switch (type) {
     case 'KMB': return numberFormat(val)
     case 'percent': return `${parseFloat((val * 100).toFixed(digit))}%`

@@ -15,7 +15,10 @@
 | axisSite | 指标所在的轴 | Object | 默认不在top轴的指标都在bottom轴 |
 | stack | 堆叠选项 | Object | - |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| dataOrder | 设置数据排序方式 | Boolean, Object | 默认为false |
 
 > 备注1. axisSite 可以设置 top 和 bottom，例如示例所示 `axisSite: { top: ['占比'] }` 即将占比的数据置于上轴上。
 
 > 备注2. stack 用于将两数据堆叠起来，例如实例中所示`stack: { '销售额': ['销售额-1季度', '销售额-2季度'] }` 即将'销售额-1季度', '销售额-2季度'相应的数据堆叠在一起。
+
+> 备注3. dataOrder 用于设置数据的排序方式，用于更加清晰的展示数据的升降。例如： `{ label: '余额', order: 'asc }` 表示数据按照余额指标升序展示，降序为`desc`。
