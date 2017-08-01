@@ -20,7 +20,7 @@ function getBarDimAxis (args) {
 }
 
 function getBarMeaAxis (args) {
-  const { meaAxisName, meaAxisType, axisVisible, digit } = args
+  const { meaAxisName, meaAxisType, axisVisible, digit, scale, min, max } = args
   const meaAxisBase = {
     type: 'value',
     axisTick: {
@@ -43,6 +43,9 @@ function getBarMeaAxis (args) {
       meaAxis[i] = Object.assign({}, meaAxisBase)
     }
     meaAxis[i].name = meaAxisName[i] || ''
+    meaAxis[i].scale = scale[i] || false
+    meaAxis[i].min = min[i] || null
+    meaAxis[i].max = max[i] || null
   }
 
   return meaAxis
@@ -109,7 +112,10 @@ export const bar = (columns, rows, settings, extra) => {
     stack = {},
     axisVisible = true,
     digit = 2,
-    dataOrder = false
+    dataOrder = false,
+    scale = [false, false],
+    min = [null, null],
+    max = [null, null]
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -140,7 +146,7 @@ export const bar = (columns, rows, settings, extra) => {
 
   const legend = legendVisible && { data: metrics }
   const yAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
-  const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
+  const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit, scale, min, max })
   const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
   const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
@@ -155,8 +161,28 @@ export const histogram = (columns, rows, settings, status) => {
     dimension = [columns[0]],
     stack = {},
     axisVisible = true,
-    digit = 2
+    digit = 2,
+    dataOrder = false,
+    scale = [false, false],
+    min = [null, null],
+    max = [null, null]
   } = settings
+
+  if (dataOrder) {
+    const { label, order } = dataOrder
+    if (!label || !order) {
+      console.warn('Need to provide name and order parameters')
+    } else {
+      innerRows.sort((a, b) => {
+        if (order === 'desc') {
+          return a[label] - b[label]
+        } else {
+          return b[label] - a[label]
+        }
+      })
+    }
+  }
+
   const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
   if (settings.metrics) {
@@ -171,7 +197,7 @@ export const histogram = (columns, rows, settings, status) => {
 
   const legend = legendVisible && { data: metrics }
   const xAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
-  const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit })
+  const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit, scale, min, max })
   const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
   const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
