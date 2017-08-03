@@ -91,7 +91,7 @@ function getPieSeries (args) {
     }))
     series.push(seriesItem)
   })
-  if (limitShowNum) {
+  if (limitShowNum && limitShowNum < series[0].data.length) {
     const firstData = series[0].data
     const remainArr = firstData.slice(limitShowNum, firstData.length)
     let sum = 0
@@ -113,7 +113,7 @@ function getPieLegend (args) {
       })
     })
     legend = levelTemp
-  } else if (limitShowNum) {
+  } else if (limitShowNum && limitShowNum < innerRows.length) {
     for (let i = 0; i < limitShowNum; i++) {
       legend.push(innerRows[i][dimension])
     }
