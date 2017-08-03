@@ -121,6 +121,17 @@ function getLineTooltip (axisSite, yAxisType, digit) {
   }
 }
 
+function getLegend (args) {
+  const { metrics, legendName } = args
+  if (!legendName) return { data: metrics }
+  return {
+    data: metrics,
+    formatter (name) {
+      return legendName[name] || name
+    }
+  }
+}
+
 export const line = (columns, rows, settings, extra) => {
   const {
     axisSite = { right: [] },
@@ -135,7 +146,8 @@ export const line = (columns, rows, settings, extra) => {
     min = [null, null],
     max = [null, null],
     nullAddZero = false,
-    digit = 2
+    digit = 2,
+    legendName
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -146,7 +158,7 @@ export const line = (columns, rows, settings, extra) => {
     metrics.splice(columns.indexOf(dimension[0]), 1)
   }
 
-  const legend = legendVisible && { data: metrics }
+  const legend = legendVisible && getLegend({ metrics, legendName })
   const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType, digit)
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
   const yAxisParams = {
