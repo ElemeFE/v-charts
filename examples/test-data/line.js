@@ -18,6 +18,26 @@ export default {
       settings: {}
     },
     {
+      name: '设置指标名称',
+      data: {
+        columns: ['date', 'balance', 'age'],
+        rows: [
+          { 'date': '1-1', 'balance': 123, 'age': 3 },
+          { 'date': '1-2', 'balance': 1223, 'age': 6 },
+          { 'date': '1-3', 'balance': 2123, 'age': 9 },
+          { 'date': '1-4', 'balance': 4123, 'age': 12 },
+          { 'date': '1-5', 'balance': 3123, 'age': 15 },
+          { 'date': '1-6', 'balance': 7123, 'age': 20 }
+        ]
+      },
+      settings: {
+        labelMap: {
+          date: '日期',
+          balance: '余额'
+        }
+      }
+    },
+    {
       name: '设置legend别名折线图',
       data: {
         columns: ['日期', '余额', '年龄'],

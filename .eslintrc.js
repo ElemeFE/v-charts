@@ -12,5 +12,8 @@ module.exports = {
   extends: 'standard',
   plugins: [
     'html'
-  ]
+  ],
+  rules: {
+    'no-mixed-operators': 'off'
+  }
 }
