@@ -28,7 +28,8 @@ function getLineSeries (args) {
     metrics,
     area,
     stack,
-    nullAddZero
+    nullAddZero,
+    labelMap
   } = args
   let series = []
   const dataTemp = {}
@@ -47,7 +48,7 @@ function getLineSeries (args) {
   })
   metrics.forEach(item => {
     let seriesItem = {
-      name: item,
+      name: labelMap && labelMap[item] || item,
       type: 'line',
       data: dataTemp[item]
     }
@@ -100,7 +101,8 @@ function getLineYAxis (args) {
   return yAxis
 }
 
-function getLineTooltip (axisSite, yAxisType, digit) {
+function getLineTooltip (args) {
+  const { axisSite, yAxisType, digit } = args
   return {
     trigger: 'axis',
     formatter (items) {
@@ -122,12 +124,15 @@ function getLineTooltip (axisSite, yAxisType, digit) {
 }
 
 function getLegend (args) {
-  const { metrics, legendName } = args
-  if (!legendName) return { data: metrics }
+  const { metrics, legendName, labelMap } = args
+  if (!legendName && !labelMap) return { data: metrics }
+  const data = labelMap
+    ? metrics.map(item => (labelMap[item] == null ? item : labelMap[item]))
+    : metrics
   return {
-    data: metrics,
+    data,
     formatter (name) {
-      return legendName[name] || name
+      return legendName && legendName[name] || name
     }
   }
 }
@@ -147,7 +152,8 @@ export const line = (columns, rows, settings, extra) => {
     max = [null, null],
     nullAddZero = false,
     digit = 2,
-    legendName
+    legendName,
+    labelMap
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -158,8 +164,12 @@ export const line = (columns, rows, settings, extra) => {
     metrics.splice(columns.indexOf(dimension[0]), 1)
   }
 
-  const legend = legendVisible && getLegend({ metrics, legendName })
-  const tooltip = tooltipVisible && getLineTooltip(axisSite, yAxisType, digit)
+  const legend = legendVisible && getLegend({ metrics, legendName, labelMap })
+  const tooltip = tooltipVisible && getLineTooltip({
+    axisSite,
+    yAxisType,
+    digit
+  })
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
   const yAxisParams = {
     yAxisName,
@@ -177,7 +187,8 @@ export const line = (columns, rows, settings, extra) => {
     metrics,
     area,
     stack,
-    nullAddZero
+    nullAddZero,
+    labelMap
   }
   const series = getLineSeries(seriesParams)
   if (!xAxis || !series) return false

@@ -4,6 +4,10 @@
 
 <iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/jepw6dy2/34/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+#### 修改指标名称
+
+<iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/jepw6dy2/38/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
@@ -20,6 +24,7 @@
 | max | 左右坐标轴最大值 | Array | - |
 | nullAddZero | 空值补零 | Boolean | 设置为true后，如果数据中对应某项<br>为null或undefined，则在表格中补0 |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| labelMap | 设置指标的别名，同时作用于提示框和图例 | Object | - |
 | legendName | 设置图表上方图例的别名 | Object | - |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
