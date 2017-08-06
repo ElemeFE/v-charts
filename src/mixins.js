@@ -3,12 +3,14 @@ import { getType } from './util'
 
 export default {
   props: {
-    data: { type: [Object, Array], default: null },
+    data: { type: [Object, Array], default () { return {} } },
     settings: { type: Object, default () { return {} } },
     width: { type: String, default: 'auto' },
     height: { type: String, default: '400px' },
     beforeConfig: { type: Function },
     afterConfig: { type: Function },
+    afterSetOption: { type: Function },
+    afterSetOptionOnce: { type: Function },
     events: { type: Object },
     grid: { type: Object },
     colors: { type: Array },
@@ -33,7 +35,7 @@ export default {
     geo: Object,
     timeline: Object,
     graphic: Object,
-    series: Object,
+    series: [Object, Array],
     backgroundColor: [Object, String],
     textStyle: Object,
     animation: Object,
@@ -75,11 +77,6 @@ export default {
   methods: {
     dataHandler (data) {
       if (!this.chartHandler) return
-      if (!data ||
-        !Array.isArray(data.columns) ||
-        !Array.isArray(data.rows)) {
-        return false
-      }
       const { columns, rows } = data
       const extra = {
         tooltipVisible: this.tooltipVisible,
@@ -139,6 +136,10 @@ export default {
       }
       if (this.afterConfig) options = this.afterConfig(options)
       this.echarts.setOption(options, true)
+      if (this.afterSetOption) this.afterSetOption(this.echarts)
+      if (this.afterSetOptionOnce && !this._once['afterSetOptionOnce']) {
+        this._once['afterSetOptionOnce'] = this.afterSetOptionOnce(this.echarts)
+      }
     },
 
     addMark (seriesItem, marks) {
@@ -184,6 +185,8 @@ export default {
   },
 
   created () {
+    this.echarts = null
+    this._once = {}
     this.addWatchToProps()
     if (this.theme) this.registerTheme()
   },

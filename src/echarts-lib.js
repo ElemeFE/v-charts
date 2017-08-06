@@ -40,5 +40,6 @@ module.exports = [
   'echarts/lib/component/markLine',
   'echarts/lib/component/markArea',
   'echarts/lib/component/timeline',
-  'echarts/lib/component/toolbox'
+  'echarts/lib/component/toolbox',
+  'echarts/extension/bmap/bmap'
 ]
