@@ -1,6 +1,6 @@
 ### V-Charts属性
 
-V-Charts 的属性分为两种，一种是全部图表都具有的属性，例如 `colors`, `grid` 等
+##### V-Charts 的属性分为两种，一种是全部图表都具有的属性，例如 `colors`, `grid` 等
 
 `<ve-line :data="chartData" :colors="chartColors" :grid="chartGrid"></ve-line>`
 
@@ -20,6 +20,8 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 | events | 为图表绑定事件 | Object | 内容为包含事件名-事件处理函数的对象，例如<br>`{  click: function (e) { console.log(e) }}` |
 | before-config | 对数据提前进行额外的处理 | Function | 在数据转化为配置项开始前触发<br>参数为 data，返回值为表格数据 |
 | after-config | 对生成好的echarts配置<br>进行额外的处理 | Function | 在数据转化为配置项结束后触发<br>参数为 options，返回值为 echarts 配置 |
+| after-set-option | 生成图后获取echarts实例 | Function | 参数为echarts实例 |
+| after-set-option-once | 生成图后获取echarts实例（只执行一次） | Function | 参数为echarts实例 |
 | mark-line | 图表标线 | Object | 配置项内容对应echarts中关于markLine的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markLine'` | 
 | mark-point | 图表标点 | Object | 配置项内容对应echarts中关于markPoint的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markPoint'` | 
 | mark-area | 图表标志区域 | Object | 配置项内容对应echarts中关于markArea的部分<br>使用时需额外引入对应模块<br>`import 'echarts/lib/component/markAreae'` | 
@@ -30,7 +32,25 @@ V-Charts 的属性分为两种，一种是全部图表都具有的属性，例�
 | theme | 自定义主题 | Object | 内容为自定义主题参数 |
 | theme-name | 自定义主题名称 | String | 内容为全局注册的自定义主题名称 |
 
-另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
+同时，为了能够更方便的设置属性配置项等，下面这些与echarts配置项对应的属性也被加到了组件上，使用方式可参考[文档](http://echarts.baidu.com/option.html)
+```
+title: Object
+legend: Object
+xAxis: Object
+yAxis: Object
+radar: Object
+tooltip: Object
+axisPointer: Object
+brush: Object
+geo: Object
+timeline: Object
+graphic: Object
+series: [Object, Array]
+backgroundColor: [Object, String]
+textStyle: Object
+```
+
+##### 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 
 > 
 

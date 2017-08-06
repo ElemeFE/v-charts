@@ -71,6 +71,24 @@ const MAP_URL_PREFIX = 'https://unpkg.com/echarts@3.6.2/map/json/'
 export const getMapJSON = (position) => {
   return $get(`${MAP_URL_PREFIX}${position}.json`)
 }
+let mapPromise = null
+export const getBmap = (key) => {
+  if (!mapPromise) {
+    mapPromise = new Promise((resolve, reject) => {
+      const callbackName = `bmap${Date.now()}`
+      window[callbackName] = resolve
+      const script = document.createElement('script')
+      script.src = [
+        'https://api.map.baidu.com/api?v=2.0',
+        `ak=${key}`,
+        `callback=${callbackName}`
+      ].join('&')
+
+      document.body.appendChild(script)
+    })
+  }
+  return mapPromise
+}
 
 export const clone = (v) => JSON.parse(JSON.stringify(v))
 

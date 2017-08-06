@@ -8,6 +8,7 @@ import VeFunnel from './funnel'
 import VeRadar from './radar'
 import VeChart from './chart'
 import VeMap from './map'
+import VeBmap from './bmap'
 
 const components = [
   VeBar,
@@ -19,7 +20,8 @@ const components = [
   VeFunnel,
   VeRadar,
   VeChart,
-  VeMap
+  VeMap,
+  VeBmap
 ]
 
 function install (Vue, _) {
@@ -38,5 +40,7 @@ export {
   VeFunnel,
   VeRadar,
   VeChart,
+  VeMap,
+  VeBmap,
   install
 }
