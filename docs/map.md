@@ -13,8 +13,8 @@
 | position | 地图类型 | String | 默认为 `'china'` |
 | selectData | 是否高亮显示数据对应位置 | Boolean | 默认为 `false` |
 | selectedMode | 地图选中模式 | Boolean，String | 默认为 `false`, 可选值有<br>`'single', 'multiple'` |
-| label | 文本标签 | Boolean, Object | 默认为`true`, 也可以参考文档设置<br> http://t.cn/RKEEUS6 |
-| dataType | 指标数据类型 | Object | 内容为 指标-指标数据类型 <br>的键值对，支持`'normal', 'KMB', 'percent'` |
+| label | 文本标签 | Boolean, Object | 默认为`true`, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.label) |
+| dataType | 指标数据类型 | Object | 内容为 指标-指标数据 <br>类型的键值对，支持<br>`'normal', 'KMB', 'percent'` |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | zoom | 视角的缩放比例 | Number | 默认为1 |
 | center | 当前视角的中心点 | Array | - |
@@ -23,6 +23,6 @@
 | roam | 是否开启鼠标缩放和平移漫游 | Boolean, String | 默认为false, 可选值有<br>`false, true, 'scale', 'move'` |
 | scaleLimit | 滚轮缩放的极限控制 | Object | 默认`{ min: 1, max: 1 }` |
 | mapGrid | 地图距离容器的边距 | Object | 默认值为<br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
-| itemStyle | 地图区域的多边形 图形样式 | Boolean | 默认为true, 也可以参考文档设置<br>http://t.cn/RKEEc73 |
+| itemStyle | 地图区域的多边形 图形样式 | Boolean | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
 
 > 备注1. 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
