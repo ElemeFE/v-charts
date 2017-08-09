@@ -4,13 +4,13 @@
 
 <script>
 import echarts from '../echarts-base'
-import { heatmap } from './heatmap'
+import { heatmap, Geoheatmap } from './heatmap'
 import chartMixin from '../mixins'
 export default {
   name: 'VeHeatmap',
   mixins: [chartMixin],
   created () {
-    this.chartHandler = heatmap
+    this.chartHandler = this.settings.GeoHeatmap ? Geoheatmap : heatmap
     this.echartsLib = echarts
   }
 }
