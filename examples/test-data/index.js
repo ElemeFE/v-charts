@@ -8,6 +8,7 @@ import funnel from './funnel'
 import radar from './radar'
 import chart from './chart'
 import map from './map'
+import heatmap from './heatmap'
 
 export default {
   bar,
@@ -19,5 +20,6 @@ export default {
   funnel,
   radar,
   chart,
-  map
+  map,
+  heatmap
 }
