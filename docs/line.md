@@ -26,6 +26,10 @@
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | labelMap | 设置指标的别名，同时作用于提示框和图例 | Object | - |
 | legendName | 设置图表上方图例的别名 | Object | - |
+| label | 设置图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-line.label) |
+| itemStyle | 设置折线拐点标志的样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-line.itemStyle) |
+| lineStyle | 设置线条样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-line.lineStyle) |
+| areaStyle | 设置区域填充样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-line.areaStyle) |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
 

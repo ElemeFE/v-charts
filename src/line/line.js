@@ -29,7 +29,11 @@ function getLineSeries (args) {
     area,
     stack,
     nullAddZero,
-    labelMap
+    labelMap,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
   } = args
   let series = []
   const dataTemp = {}
@@ -57,6 +61,11 @@ function getLineSeries (args) {
     seriesItem.yAxisIndex = ~axisSite.right.indexOf(item) ? 1 : 0
 
     if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
+
+    if (label) seriesItem.label = label
+    if (itemStyle) seriesItem.itemStyle = itemStyle
+    if (lineStyle) seriesItem.lineStyle = lineStyle
+    if (areaStyle) seriesItem.areaStyle = areaStyle
 
     series.push(seriesItem)
   })
@@ -153,7 +162,11 @@ export const line = (columns, rows, settings, extra) => {
     nullAddZero = false,
     digit = 2,
     legendName,
-    labelMap
+    labelMap,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -188,7 +201,11 @@ export const line = (columns, rows, settings, extra) => {
     area,
     stack,
     nullAddZero,
-    labelMap
+    labelMap,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
   }
   const series = getLineSeries(seriesParams)
   if (!xAxis || !series) return false
