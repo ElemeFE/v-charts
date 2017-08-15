@@ -18,6 +18,31 @@ export default {
       settings: {}
     },
     {
+      name: '设置数据别名',
+      data: {
+        columns: ['date', 'resume', 'uplevel'],
+        rows: [
+          { 'date': '1-1', 'resume': 123, 'uplevel': 0.3 },
+          { 'date': '1-2', 'resume': 1223, 'uplevel': 0.6 },
+          { 'date': '1-3', 'resume': 2123, 'uplevel': 0.9 },
+          { 'date': '1-4', 'resume': 4123, 'uplevel': 0.12 },
+          { 'date': '1-5', 'resume': 3123, 'uplevel': 0.15 },
+          { 'date': '1-6', 'resume': 7123, 'uplevel': 0.2 }
+        ]
+      },
+      settings: {
+        labelMap: {
+          date: '日期',
+          resume: '余额',
+          uplevel: '增长率'
+        },
+        yAxisType: ['KMB', 'percent'],
+        axisSite: {
+          right: ['uplevel']
+        }
+      }
+    },
+    {
       name: '设置label',
       data: {
         columns: ['日期', '余额', '年龄'],

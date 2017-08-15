@@ -111,15 +111,20 @@ function getLineYAxis (args) {
 }
 
 function getLineTooltip (args) {
-  const { axisSite, yAxisType, digit } = args
+  const { axisSite, yAxisType, digit, labelMap } = args
+  const rightList = labelMap
+    ? axisSite.right.map(item => {
+      return labelMap[item] === undefined ? item : labelMap[item]
+    })
+    : axisSite.right
   return {
     trigger: 'axis',
     formatter (items) {
       let tpl = []
       tpl.push(`${items[0].name}<br>`)
       items.forEach(item => {
-        let showData
-        const type = ~axisSite.right.indexOf(item.seriesName)
+        let showData = null
+        const type = ~rightList.indexOf(item.seriesName)
           ? yAxisType[1]
           : yAxisType[0]
         showData = getFormated(item.data, type, digit)
@@ -181,7 +186,8 @@ export const line = (columns, rows, settings, extra) => {
   const tooltip = tooltipVisible && getLineTooltip({
     axisSite,
     yAxisType,
-    digit
+    digit,
+    labelMap
   })
   const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
   const yAxisParams = {
