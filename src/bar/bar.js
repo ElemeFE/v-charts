@@ -52,8 +52,13 @@ function getBarMeaAxis (args) {
 }
 
 function getBarTooltip (args) {
-  const { axisSite, isHistogram, meaAxisType, digit } = args
-  const secondAxis = isHistogram ? axisSite.right : axisSite.top
+  const { axisSite, isHistogram, meaAxisType, digit, labelMap } = args
+  let secondAxis = isHistogram ? axisSite.right : axisSite.top
+  if (labelMap) {
+    secondAxis = secondAxis.map(item => {
+      return labelMap[item] === undefined ? item : labelMap[item]
+    })
+  }
   return {
     trigger: 'axis',
     formatter (items) {
@@ -76,7 +81,7 @@ function getBarTooltip (args) {
 }
 
 function getBarSeries (args) {
-  const { innerRows, metrics, stack, axisSite, isHistogram } = args
+  const { innerRows, metrics, stack, axisSite, isHistogram, labelMap, itemStyle, label } = args
   let series = []
   const seriesTemp = {}
   const secondAxis = isHistogram ? axisSite.right : axisSite.top
@@ -90,7 +95,7 @@ function getBarSeries (args) {
   })
   series = Object.keys(seriesTemp).map(item => {
     const seriesItem = {
-      name: item,
+      name: labelMap && labelMap[item] || item,
       type: 'bar',
       data: seriesTemp[item],
       [secondDimAxisIndex]: ~secondAxis.indexOf(item) ? '1' : '0'
@@ -98,10 +103,27 @@ function getBarSeries (args) {
 
     if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
 
+    if (label) seriesItem.label = label
+    if (itemStyle) seriesItem.itemStyle = itemStyle
+
     return seriesItem
   })
 
   return series.length ? series : false
+}
+
+function getLegend (args) {
+  const { metrics, labelMap, legendName } = args
+  if (!legendName && !labelMap) return { data: metrics }
+  const data = labelMap
+    ? metrics.map(item => (labelMap[item] == null ? item : labelMap[item]))
+    : metrics
+  return {
+    data,
+    formatter (name) {
+      return legendName && legendName[name] || name
+    }
+  }
 }
 
 export const bar = (columns, rows, settings, extra) => {
@@ -115,7 +137,11 @@ export const bar = (columns, rows, settings, extra) => {
     dataOrder = false,
     scale = [false, false],
     min = [null, null],
-    max = [null, null]
+    max = [null, null],
+    legendName,
+    labelMap,
+    label,
+    itemStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -144,11 +170,11 @@ export const bar = (columns, rows, settings, extra) => {
     }
   }
 
-  const legend = legendVisible && { data: metrics }
+  const legend = legendVisible && getLegend({ metrics, labelMap, legendName })
   const yAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
   const xAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit, scale, min, max })
-  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
-  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
+  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram, labelMap, itemStyle, label })
+  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit, labelMap }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
@@ -165,7 +191,11 @@ export const histogram = (columns, rows, settings, status) => {
     dataOrder = false,
     scale = [false, false],
     min = [null, null],
-    max = [null, null]
+    max = [null, null],
+    labelMap,
+    legendName,
+    label,
+    itemStyle
   } = settings
 
   if (dataOrder) {
@@ -195,11 +225,11 @@ export const histogram = (columns, rows, settings, status) => {
   const dimAxisName = settings.xAxisName || ''
   const isHistogram = true
 
-  const legend = legendVisible && { data: metrics }
+  const legend = legendVisible && getLegend({ metrics, labelMap, legendName })
   const xAxis = getBarDimAxis({ innerRows, dimAxisName, dimension, axisVisible })
   const yAxis = getBarMeaAxis({ meaAxisName, meaAxisType, axisVisible, digit, scale, min, max })
-  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram })
-  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit }
+  const series = getBarSeries({ innerRows, metrics, stack, axisSite, isHistogram, labelMap, itemStyle, label })
+  const tooltipParams = { axisSite, isHistogram, meaAxisType, digit, labelMap }
   const tooltip = tooltipVisible && getBarTooltip(tooltipParams)
   const options = { legend, yAxis, series, xAxis, tooltip }
   return options
