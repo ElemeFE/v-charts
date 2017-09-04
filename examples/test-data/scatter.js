@@ -33,7 +33,7 @@ export default {
       settings: {}
     },
     {
-      name: '普通散点图',
+      name: '配置visualMap',
       data: {
         columns: ['日期', '余额', '年龄', '数量'],
         rows: [{
@@ -60,10 +60,73 @@ export default {
           { '日期': '1-6', '余额': 3843, '年龄': 30, '数量': 4850 }]
         }]
       },
+      grid: {
+        x: '5%',
+        x2: 100,
+        y: '18%',
+        y2: '10%'
+      },
       settings: {
-        axisSite: {
-          right: ['数量']
-        }
+        visualMapIndex: [{
+          left: 'right',
+          top: '10%',
+          dimension: 3,
+          min: 0,
+          max: 10000,
+          itemWidth: 20,
+          itemHeight: 80,
+          calculable: true,
+          precision: 0.1,
+          text: ['图片大小：数量'],
+          textGap: 30,
+          textStyle: {
+            color: '#000'
+          },
+          inRange: {
+            symbolSize: [10, 70]
+          },
+          outOfRange: {
+            symbolSize: [10, 70],
+            color: ['rgba(255,255,255,.2)']
+          },
+          controller: {
+            inRange: {
+              color: ['#19d4ae']
+            },
+            outOfRange: {
+              color: ['#19d4ae']
+            }
+          }
+        },
+        {
+          left: 'right',
+          bottom: '0',
+          dimension: 2,
+          min: 0,
+          max: 30,
+          itemHeight: 120,
+          calculable: true,
+          precision: 0.1,
+          text: ['明暗：年龄'],
+          textGap: 30,
+          textStyle: {
+            color: '#000'
+          },
+          inRange: {
+            colorLightness: [1, 0.5]
+          },
+          outOfRange: {
+            color: ['rgba(255,255,255,.2)']
+          },
+          controller: {
+            inRange: {
+              color: ['#19d4ae']
+            },
+            outOfRange: {
+              color: ['#19d4ae']
+            }
+          }
+        }]
       }
     }
   ]

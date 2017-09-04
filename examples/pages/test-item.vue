@@ -6,6 +6,7 @@
         <component
           :is="`ve-${innerType}`"
           :data="d.data"
+          :grid="d.grid"
           :settings="d.settings">
         </component>
       </div>
@@ -34,6 +35,7 @@ import VeFunnel from '../../src/funnel/index'
 import VeRadar from '../../src/radar/index'
 import VeScatter from '../../src/scatter/index'
 import VeChart from '../../src/chart/index'
+import 'echarts/lib/component/visualMap'
 import CHART_DATA from '../test-data'
 
 export default {
@@ -97,7 +99,7 @@ export default {
     }
 
     .code-view {
-      width: 400px;
+      width: 300px;
       margin-left: 20px;
     }
   }
