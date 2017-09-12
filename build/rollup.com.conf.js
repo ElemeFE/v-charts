@@ -7,19 +7,25 @@ var componentInfo = require('../src/component-list')
 var echartsLib = require('../src/echarts-lib')
 var uglify = require('rollup-plugin-uglify')
 var pkg = []
+var pkgTypeList = [
+  { type: 'cjs', min: false, suffix: '.common.js' },
+  { type: 'cjs', min: true, suffix: '.common.min.js' },
+  { type: 'umd', min: false, suffix: '.js' },
+  { type: 'umd', min: true, suffix: '.min.js' }
+]
 
-for (var i = 0; i < 2; i++) {
+pkgTypeList.forEach(({ type, min, suffix }) => {
   Object.keys(componentInfo).forEach(name => {
     pkg.push({
-      min: !!i,
-      type: i ? 'umd' : 'cjs',
-      suffix: i ? '.min.js' : '.js',
+      min,
+      type,
+      suffix,
       globalName: name,
       src: componentInfo[name].src,
       dist: componentInfo[name].dist
     })
   })
-}
+})
 
 const addons = [
   {
