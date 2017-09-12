@@ -77,7 +77,7 @@ export default {
   methods: {
     dataHandler (data) {
       if (!this.chartHandler) return
-      const { columns, rows } = data
+      const { columns = [], rows = [] } = data
       const extra = {
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
