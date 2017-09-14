@@ -1,5 +1,5 @@
 var rollup = require('rollup')
-var vue = require('rollup-plugin-vue2')
+var vue = require('rollup-plugin-vue')
 var resolve = require('rollup-plugin-node-resolve')
 var babel = require('rollup-plugin-babel')
 var eslint = require('rollup-plugin-eslint')

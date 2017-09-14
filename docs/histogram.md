@@ -2,7 +2,193 @@
 
 #### 示例
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/1Le0wps5/24/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/1Le0wps5/33/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+#### 设置显示的指标维度
+
+<vuep template="#set-metrics-dimension"></vuep>
+
+<script v-pre type="text/x-template" id="set-metrics-dimension">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润', '占比', '其他'],
+        rows: [
+          { '成本': 1523, '日期': '1月1日', '利润': 1523, '占比': 0.12, '其他': 100 },
+          { '成本': 1223, '日期': '1月2日', '利润': 1523, '占比': 0.345, '其他': 100 },
+          { '成本': 2123, '日期': '1月3日', '利润': 1523, '占比': 0.7, '其他': 100 },
+          { '成本': 4123, '日期': '1月4日', '利润': 1523, '占比': 0.31, '其他': 100 }
+        ]
+      }
+      this.chartSettings = {
+        metrics: ['成本', '利润'],
+        dimension: ['日期']
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置双y轴
+
+<vuep template="#set-double-y-axis"></vuep>
+
+<script v-pre type="text/x-template" id="set-double-y-axis">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润', '占比', '其他'],
+        rows: [
+          { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
+          { '日期': '1月2日', '成本': 1223, '利润': 1523, '占比': 0.345, '其他': 100 },
+          { '日期': '1月3日', '成本': 2123, '利润': 1523, '占比': 0.7, '其他': 100 },
+          { '日期': '1月4日', '成本': 4123, '利润': 1523, '占比': 0.31, '其他': 100 }
+        ]
+      }
+      this.chartSettings = {
+        axisSite: { right: ['占比'] },
+        yAxisType: ['KMB', 'percent'],
+        yAxisName: ['数值', '比率']
+      }
+    }
+  }
+</script>
+</script>
+
+#### 柱状图+折线图
+
+<vuep template="#histogram-line"></vuep>
+
+<script v-pre type="text/x-template" id="histogram-line">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润', '占比', '其他'],
+        rows: [
+          { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
+          { '日期': '1月2日', '成本': 1223, '利润': 1921, '占比': 0.345, '其他': 100 },
+          { '日期': '1月3日', '成本': 2123, '利润': 5523, '占比': 0.7, '其他': 100 },
+          { '日期': '1月4日', '成本': 4123, '利润': 6523, '占比': 0.31, '其他': 100 }
+        ]
+      }
+      this.chartSettings = {
+        metrics: ['成本', '利润'],
+        showLine: ['利润']
+      }
+    }
+  }
+</script>
+</script>
+
+#### 堆叠柱状图
+
+<vuep template="#histogram-stack"></vuep>
+
+<script v-pre type="text/x-template" id="histogram-stack">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润', '占比', '其他'],
+        rows: [
+          { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
+          { '日期': '1月2日', '成本': 1223, '利润': 1921, '占比': 0.345, '其他': 100 },
+          { '日期': '1月3日', '成本': 2123, '利润': 5523, '占比': 0.7, '其他': 100 },
+          { '日期': '1月4日', '成本': 4123, '利润': 6523, '占比': 0.31, '其他': 100 }
+        ]
+      }
+      this.chartSettings = {
+        metrics: ['成本', '利润'],
+        stack: { '单价': ['成本', '利润'] }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 默认显示柱状图数据
+
+<vuep template="#show-data-default"></vuep>
+
+<script v-pre type="text/x-template" id="show-data-default">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润', '占比', '其他'],
+        rows: [
+          { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
+          { '日期': '1月2日', '成本': 1223, '利润': 1921, '占比': 0.345, '其他': 100 },
+          { '日期': '1月3日', '成本': 2123, '利润': 5523, '占比': 0.7, '其他': 100 },
+          { '日期': '1月4日', '成本': 4123, '利润': 6523, '占比': 0.31, '其他': 100 }
+        ]
+      }
+      this.chartSettings = {
+        label: {
+          normal: { show: true, position: "top" }
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 修改指标名称
+
+<vuep template="#change-metrics-name"></vuep>
+
+<script v-pre type="text/x-template" id="change-metrics-name">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['date', 'resume', 'uplevel'],
+        rows: [
+          { 'date': '1-1', 'resume': 123, 'uplevel': 0.3 },
+          { 'date': '1-2', 'resume': 1223, 'uplevel': 0.6 },
+          { 'date': '1-3', 'resume': 2123, 'uplevel': 0.9 },
+          { 'date': '1-4', 'resume': 4123, 'uplevel': 0.12 },
+          { 'date': '1-5', 'resume': 3123, 'uplevel': 0.15 },
+          { 'date': '1-6', 'resume': 7123, 'uplevel': 0.2 }
+        ]
+      }
+      this.chartSettings = {
+        labelMap: {
+          resume: '余额',
+          uplevel: '增长率'
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### settings 配置项
 

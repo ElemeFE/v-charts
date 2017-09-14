@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
   <link rel="stylesheet" href="./style.css">
   <script>
     var _hmt = _hmt || [];
@@ -16,19 +17,23 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-  </script>    
+  </script>
 </head>
 <body>
   <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'v-charts',
+      repo: 'https://github.com/elemefe/v-charts',
+      loadSidebar: true,
+      ga: 'UA-104697795-1'
+    }
+  </script>
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.js"></script>
+  <script src="//unpkg.com/echarts/dist/echarts.min.js"></script>
+  <script src="./v-charts.min.js"></script>
 </body>
-<script>
-  window.$docsify = {
-    name: 'v-charts',
-    repo: 'https://github.com/elemefe/v-charts',
-    loadSidebar: true,
-    ga: 'UA-104697795-1'
-  }
-</script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-<script src="//unpkg.com/docsify/lib/plugins/ga.js"></script>
 </html>

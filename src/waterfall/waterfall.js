@@ -133,9 +133,9 @@ export const waterfall = (columns, rows, settings, extra) => {
   const metrics = metricsTemp[0]
   const yAxisName = metrics
   const tooltip = tooltipVisible && getWaterfallTooltip(dataType, digit)
-  const dataSum = rows.reduce((pre, cur) => {
+  const dataSum = parseFloat(rows.reduce((pre, cur) => {
     return pre + Number(cur[metrics])
-  }, 0).toFixed(2)
+  }, 0).toFixed(digit))
   const remainStatus = getWaterfallRemainStatus(dataSum, totalNum)
   const xAxisParams = {
     dimension,

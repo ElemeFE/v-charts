@@ -1,12 +1,12 @@
 {
   "name": "v-charts",
-  "version": "1.8.1",
+  "version": "1.8.3",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.dev.conf.js",
     "build": "rm -f -r dist && webpack --config ./build/webpack.prod.conf.js --hide-modules",
-    "com": "rm -f -r lib && node build/rollup.com.conf.js",
+    "com": "rm -f -r lib && node build/rollup.com.conf.js && cp -f lib/index.min.js docs/v-charts.min.js",
     "prepublish": "npm run com",
     "test": "karma start ./test/karma.conf.js"
   },
@@ -41,6 +41,7 @@
     "eslint-config-standard": "7.0.1",
     "eslint-friendly-formatter": "2.0.7",
     "eslint-loader": "1.6.3",
+    "eslint-plugin-html": "^3.2.1",
     "eslint-plugin-promise": "3.5.0",
     "eslint-plugin-standard": "2.1.1",
     "extract-text-webpack-plugin": "2.1.0",
@@ -70,7 +71,7 @@
     "rollup-plugin-eslint": "3.0.0",
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-uglify": "^2.0.1",
-    "rollup-plugin-vue2": "0.8.0",
+    "rollup-plugin-vue": "^2.4.2",
     "style-loader": "0.14.1",
     "url-loader": "^0.5.8",
     "vue": "2.4.2",

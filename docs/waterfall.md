@@ -2,7 +2,94 @@
 
 #### 示例
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/tecfxdg9/14/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/tecfxdg9/23/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+#### 设置指标维度
+
+<vuep template="#set-metrics-dimension"></vuep>
+
+<script v-pre type="text/x-template" id="set-metrics-dimension">
+<template>
+  <ve-waterfall :data="chartData" :settings="chartSettings"></ve-waterfall>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['活动', '时间'],
+        rows: [
+          { '活动': '吃饭', '时间': 4 },
+          { '活动': '睡觉', '时间': 10 },
+          { '活动': '打豆豆', '时间': 5 }
+        ]
+      }
+      this.chartSettings = {
+        dimension: '活动',
+        metrics: '时间'
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置数据类型
+
+<vuep template="#set-data-type"></vuep>
+
+<script v-pre type="text/x-template" id="set-data-type">
+<template>
+  <ve-waterfall :data="chartData" :settings="chartSettings"></ve-waterfall>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['活动', '时间'],
+        rows: [
+          { '活动': '吃饭', '时间': 0.1 },
+          { '活动': '睡觉', '时间': 0.2 },
+          { '活动': '打豆豆', '时间': 0.3 }
+        ]
+      }
+      this.chartSettings = {
+        "dataType": "percent"
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置 总计、剩余 的名称
+
+<vuep template="#set-label"></vuep>
+
+<script v-pre type="text/x-template" id="set-label">
+<template>
+  <ve-waterfall :data="chartData" :settings="chartSettings"></ve-waterfall>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['活动', '时间'],
+        rows: [
+          { '活动': '吃饭', '时间': 4 },
+          { '活动': '睡觉', '时间': 10 },
+          { '活动': '打豆豆', '时间': 5 }
+        ]
+      }
+      this.chartSettings = {
+        totalNum: 24,
+        totalName: '总时间',
+        remainName: '剩余时间'
+      }
+    }
+  }
+</script>
+</script>
 
 #### settings 配置项
 

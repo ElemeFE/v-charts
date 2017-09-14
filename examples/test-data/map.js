@@ -14,7 +14,10 @@ export default {
         ]
       },
       settings: {
-        position: 'china'
+        position: 'china',
+        dataType: {
+          'GDP': 'KMB'
+        }
       }
     },
     {

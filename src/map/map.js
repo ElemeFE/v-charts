@@ -10,7 +10,7 @@ function getTooltip (dataType, digit, dataStore, metrics, color) {
       metrics.forEach((label, index) => {
         tpl.push(`${itemPoint(color[index])} ${label} : `)
         if (dataStore[item.name]) {
-          tpl.push(getFormated(dataStore[item.name][label], dataType[item.name], digit))
+          tpl.push(getFormated(dataStore[item.name][label], dataType[label], digit))
         } else {
           tpl.push('-')
         }

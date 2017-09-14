@@ -4,16 +4,145 @@
 
 <iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/1fwe4tt7/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+#### 设置指标维度
+
+<vuep template="#set-metrics-dimension"></vuep>
+
+<script v-pre type="text/x-template" id="set-metrics-dimension">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '吉林', '税收': 123, '人口': 123, '面积': 92134 },
+          { '位置': '北京', '税收': 1223, '人口': 2123, '面积': 29234 },
+          { '位置': '上海', '税收': 2123, '人口': 1243, '面积': 94234 },
+          { '位置': '浙江', '税收': 4123, '人口': 5123, '面积': 29234 }
+        ]
+      }
+      this.chartSettings = {
+        position: 'china',
+        dimension: '位置',
+        metrics: ['人口', '面积'],
+        dataType: {
+          '面积': 'KMB'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置城市
+
+<vuep template="#set-city"></vuep>
+
+<script v-pre type="text/x-template" id="set-city">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '延庆区', 'GDP': 123 },
+          { '位置': '密云区', 'GDP': 1223 },
+          { '位置': '平谷区', 'GDP': 2123 },
+          { '位置': '海淀区', 'GDP': 4123 }
+        ]
+      }
+      this.chartSettings = {
+        position: 'province/beijing'
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置选中模式
+
+<vuep template="#set-selection"></vuep>
+
+<script v-pre type="text/x-template" id="set-selection">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '吉林', 'GDP': 123 },
+          { '位置': '北京', 'GDP': 1223 },
+          { '位置': '上海', 'GDP': 2123 },
+          { '位置': '浙江', 'GDP': 4123 }
+        ]
+      }
+      this.chartSettings = {
+        position: 'china',
+        selectData: true,
+        selectedMode: 'single'
+      }
+    }
+  }
+</script>
+</script>
+
+#### 设置样式
+
+<vuep template="#set-style"></vuep>
+
+<script v-pre type="text/x-template" id="set-style">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '吉林', 'GDP': 123 },
+          { '位置': '北京', 'GDP': 1223 },
+          { '位置': '上海', 'GDP': 2123 },
+          { '位置': '浙江', 'GDP': 4123 }
+        ]
+      }
+      this.chartSettings = {
+        position: 'china',
+        label: false,
+        itemStyle: {
+          normal: {
+            borderColor: '#00f'
+          }
+        },
+        zoom: 1.2
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
-| dimension | 维度 | Array | 默认columns第一项为维度 |
+| dimension | 维度 | String | 默认columns第一项为维度 |
 | metrics | 指标 | Array | 默认columns第二项为指标 |
 | position | 地图类型 | String | 默认为 `'china'` |
 | selectData | 是否高亮显示数据对应位置 | Boolean | 默认为 `false` |
 | selectedMode | 地图选中模式 | Boolean，String | 默认为 `false`, 可选值有<br>`'single', 'multiple'` |
-| label | 文本标签 | Boolean, Object | 默认为`true`, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.label) |
 | dataType | 指标数据类型 | Object | 内容为 指标-指标数据 <br>类型的键值对，支持<br>`'normal', 'KMB', 'percent'` |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | zoom | 视角的缩放比例 | Number | 默认为1 |
@@ -23,6 +152,7 @@
 | roam | 是否开启鼠标缩放和平移漫游 | Boolean, String | 默认为false, 可选值有<br>`false, true, 'scale', 'move'` |
 | scaleLimit | 滚轮缩放的极限控制 | Object | 默认`{ min: 1, max: 1 }` |
 | mapGrid | 地图距离容器的边距 | Object | 默认值为<br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
-| itemStyle | 地图区域的多边形 图形样式 | Boolean | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
+| label | 文本标签 | Boolean, Object | 默认为`true`, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.label) |
+| itemStyle | 地图区域的多边形 图形样式 | Boolean, Object | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
 
 > 备注1. 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
