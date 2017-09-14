@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import Vue from 'vue'
 import chartData from '../examples/test-data/index.js'
 import 'echarts/lib/component/tooltip'
