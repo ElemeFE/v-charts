@@ -4,6 +4,173 @@
 
 <iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/m1hdcmf4/10/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+#### 排序条形图
+
+<vuep template="#order-bar"></vuep>
+
+<script v-pre type="text/x-template" id="order-bar">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '余额', '年龄'],
+        rows: [
+          { '日期': '1-1', '余额': 123, '年龄': 3 },
+          { '日期': '1-2', '余额': 1223, '年龄': 6 },
+          { '日期': '1-3', '余额': 2123, '年龄': 90 },
+          { '日期': '1-4', '余额': 4123, '年龄': 12 },
+          { '日期': '1-5', '余额': 3123, '年龄': 15 },
+          { '日期': '1-6', '余额': 7123, '年龄': 20 }
+        ]
+      }
+      this.chartSettings = {
+        metrics: ['年龄'],
+        dataOrder: {
+          label: '年龄',
+          order: 'desc'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 百分比数值较小
+
+<vuep template="#smaller-percentage"></vuep>
+
+<script v-pre type="text/x-template" id="smaller-percentage">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '比率'],
+        rows: [
+          { '日期': '1-1', '余额': 123, '比率': 0.00001 },
+          { '日期': '1-2', '余额': 1223, '比率': 0.00002 },
+          { '日期': '1-3', '余额': 2123, '比率': 0.00003 },
+          { '日期': '1-4', '余额': 4123, '比率': 0.00007 },
+          { '日期': '1-5', '余额': 3123, '比率': 0.00001 },
+          { '日期': '1-6', '余额': 7123, '比率': 0.00003 }
+        ]
+      }
+      this.chartSettings = {
+        xAxisType: ['percent'],
+        digit: 4
+      }
+    }
+  }
+</script>
+</script>
+
+#### 条形轴配置图
+
+<vuep template="#double-yAxis"></vuep>
+
+<script v-pre type="text/x-template" id="double-yAxis">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '余额', '年龄'],
+        rows: [
+          { '日期': '1-1', '余额': 123, '年龄': 3 },
+          { '日期': '1-2', '余额': 1223, '年龄': 6 },
+          { '日期': '1-3', '余额': 2123, '年龄': 90 },
+          { '日期': '1-4', '余额': 4123, '年龄': 12 },
+          { '日期': '1-5', '余额': 3123, '年龄': 15 },
+          { '日期': '1-6', '余额': 7123, '年龄': 20 }
+        ]
+      }
+      this.chartSettings = {
+        xAxisType: ['KMB', 'percent'],
+        xAxisName: ['余额', '年龄'],
+        axisSite: {
+          top: ['年龄']
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 指定指标纬度
+
+<vuep template="#order-dimesion"></vuep>
+
+<script v-pre type="text/x-template" id="order-dimesion">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '余额', '年龄'],
+        rows: [
+          { '日期': '1-1', '余额': 123, '年龄': 3 },
+          { '日期': '1-2', '余额': 1223, '年龄': 6 },
+          { '日期': '1-3', '余额': 2123, '年龄': 90 },
+          { '日期': '1-4', '余额': 4123, '年龄': 12 },
+          { '日期': '1-5', '余额': 3123, '年龄': 15 },
+          { '日期': '1-6', '余额': 7123, '年龄': 20 }
+        ]
+      }
+      this.chartSettings = {
+        dimension: ['余额'],
+        metrics: ['年龄']
+      }
+    }
+  }
+</script>
+</script>
+
+#### 堆叠条形图
+
+<vuep template="#stacked-bar"></vuep>
+
+<script v-pre type="text/x-template" id="stacked-bar">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '余额', '年龄'],
+        rows: [
+          { '日期': '1-1', '余额': 123, '年龄': 3 },
+          { '日期': '1-2', '余额': 1223, '年龄': 6 },
+          { '日期': '1-3', '余额': 2123, '年龄': 90 },
+          { '日期': '1-4', '余额': 4123, '年龄': 12 },
+          { '日期': '1-5', '余额': 3123, '年龄': 15 },
+          { '日期': '1-6', '余额': 7123, '年龄': 20 }
+        ]
+      }
+      this.chartSettings =  {
+        stack: {
+          'xxx': ['余额', '年龄']
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
