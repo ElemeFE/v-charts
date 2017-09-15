@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import VePie from '../../src/pie/index'
-import VeLine from '../../src/line/index'
+import VePie from '../../src/packages/pie'
+import VeLine from '../../src/packages/line'
 import 'echarts/lib/component/toolbox'
 
 export default {

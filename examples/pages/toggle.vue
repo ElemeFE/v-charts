@@ -30,7 +30,7 @@ import 'echarts/lib/chart/funnel'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
-import VeChart from '../../src/chart/index'
+import VeChart from '../../src/packages/chart'
 const CONTENT_LIST = [
   '为了方便使用一份数据即可生成不同的表格，可以使用' +
   '<ve-chart>组件，切换图表类型则只需要改变settings即可'

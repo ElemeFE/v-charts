@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import Vue from 'vue'
-import chartData from '../examples/test-data/index.js'
+import chartData from '../examples/data/index.js'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 import 'echarts/lib/chart/bar'

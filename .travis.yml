@@ -7,5 +7,5 @@ branches:
 install:
   - yarn
 script:
-  - npm run com
+  - npm run build
   - npm run test

@@ -71,7 +71,9 @@ const MAP_URL_PREFIX = 'https://unpkg.com/echarts@3.6.2/map/json/'
 export const getMapJSON = (position) => {
   return $get(`${MAP_URL_PREFIX}${position}.json`)
 }
+
 let mapPromise = null
+
 export const getBmap = (key) => {
   if (!mapPromise) {
     mapPromise = new Promise((resolve, reject) => {

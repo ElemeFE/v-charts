@@ -3,10 +3,10 @@
     <div
       class="main-section"
       v-for="(menu, title) in menus"
-      :key="menu">
+      :key="title">
       <span class="main-title">{{ title }}</span>
       <ul>
-        <li v-for="item in menu" :key="item">
+        <li v-for="(item, index) in menu" :key="index">
           <router-link exact :to="item.url">{{ item.name }}</router-link>
         </li>
       </ul>
@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import chartData from '../test-data/index'
+import chartData from '../data/index'
 
 const routerInfo = {
   '图表': Object.keys(chartData).map(key => {
     return {
       name: chartData[key].name,
-      url: `/test-item/${chartData[key].type}`
+      url: `/chart/${chartData[key].type}`
     }
   }),
   '其他': [
@@ -43,11 +43,10 @@ export default {
 <style lang="less">
 .component-sidebar {
   height: 100%;
-  padding-top: 20px;
 
   .main-section {
     padding-left: 20px;
-    padding-top: 15px;
+    padding-top: 35px;
     color: #5e6d82;
 
     .main-title {

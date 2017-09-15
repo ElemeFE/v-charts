@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import VePie from '../../src/pie/index'
-import chartData from '../test-data/pie.js'
+import VePie from '../../src/packages/pie'
+import chartData from '../data/pie.js'
 
 const CODE_LIST = [
   '<ve-pie :data="chartData" :events="events"></ve-pie>',

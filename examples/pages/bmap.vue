@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import VeBmap from '../../src/bmap/index'
+import VeBmap from '../../src/packages/bmap'
 export default {
   name: 'bmap',
   data () {
@@ -38,8 +38,6 @@ export default {
 
   methods: {
     getMap (echarts) {
-      console.log(echarts)
-      console.log(echarts.getModel().getComponent('bmap').getBMap())
       const bmap = echarts.getModel().getComponent('bmap').getBMap()
       bmap.addControl(new window.BMap.MapTypeControl())
     }
