@@ -16,3 +16,5 @@
   - [事件监听](/event)
   - [图表切换](/toggle)
   - [百度地图](/bmap)
+  - [属性配置示例](/props-demo)
+  - [常见问题示例](/skill-demo)
