@@ -4,6 +4,123 @@
 
 <iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/3hx08359/4/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+#### 指定指标维度
+
+<vuep template="#custom-demision-funnel"></vuep>
+
+<script v-pre type="text/x-template" id="custom-demision-funnel">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['状态', '状态1', '数值'],
+        rows: [
+          { '状态': '展示', '状态1': '展示1', '数值': 900 },
+          { '状态': '访问', '状态1': '访问1', '数值': 600 },
+          { '状态': '点击', '状态1': '点击1', '数值': 300 },
+          { '状态': '订单', '状态1': '订单1', '数值': 100 }
+        ]
+      }
+      this.chartSettings = {
+        dimension: '状态1',
+        metrics: '数值'
+      }
+    }
+  }
+</script>
+</script>
+
+#### 定制顺序漏斗图
+
+<vuep template="#custom-order-funnel"></vuep>
+
+<script v-pre type="text/x-template" id="custom-order-funnel">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 900 },
+          { '状态': '访问', '数值': 600 },
+          { '状态': '点击', '数值': 300 },
+          { '状态': '订单', '数值': 100 }
+        ]
+      },
+      this.chartSettings = {
+        sequence: ['订单', '点击', '访问', '展示']
+      }
+    }
+  }
+</script>
+</script>
+
+#### 指定数据类型漏斗图
+
+<vuep template="#custom-datatype-funnel"></vuep>
+
+<script v-pre type="text/x-template" id="custom-datatype-funnel">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 0.9 },
+          { '状态': '访问', '数值': 0.6 },
+          { '状态': '点击', '数值': 0.3 },
+          { '状态': '订单', '数值': 0.1 }
+        ]
+      },
+      this.chartSettings = {
+        dataType: 'percent'
+      }
+    }
+  }
+</script>
+</script>
+
+#### 金字塔
+
+<vuep template="#pyramid-funnel"></vuep>
+
+<script v-pre type="text/x-template" id="pyramid-funnel">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 900 },
+          { '状态': '访问', '数值': 600 },
+          { '状态': '点击', '数值': 300 },
+          { '状态': '订单', '数值': 100 }
+        ]
+      },
+      this.chartSettings = {
+        ascending: true
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
