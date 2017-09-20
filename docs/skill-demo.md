@@ -26,8 +26,6 @@
 </template>
 
 <script>
-  // 使用前需先引入对应模块
-  // import 'echarts/lib/component/toolbox'
   module.exports = {
     data () {
       return {
