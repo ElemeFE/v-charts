@@ -196,7 +196,7 @@ export default {
     window.addEventListener('resize', this.echarts.resize)
   },
 
-  beforeDestory () {
+  beforeDestroy () {
     window.removeEventListener('resize', this.echarts.resize)
     this.echarts.dispose()
   }
