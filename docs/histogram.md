@@ -190,12 +190,43 @@
 </script>
 </script>
 
+#### 设置横轴为连续的数值轴
+
+<vuep template="#set-value-axis"></vuep>
+
+<script v-pre type="text/x-template" id="set-value-axis">
+<template>
+  <ve-histogram :data="chartData" :settings="chartSettings"></ve-histogram>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['date', 'resume', 'uplevel'],
+        rows: [
+          { 'date': 10, 'resume': 123, 'uplevel': 1213 },
+          { 'date': 11, 'resume': 1223, 'uplevel': 3116 },
+          { 'date': 12, 'resume': 2123, 'uplevel': 4119 },
+          { 'date': 20, 'resume': 4123, 'uplevel': 1112 },
+          { 'date': 21, 'resume': 3123, 'uplevel': 4115 },
+          { 'date': 25, 'resume': 7123, 'uplevel': 1212 }
+        ]
+      }
+      this.chartSettings = {
+        xAxisType: 'value'
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | dimension | 维度 | Array | 默认columns第一项为维度 |
-| metrics | 指标 | Array | 默认columns第二项为指标 |
+| metrics | 指标 | Array | 默认columns第二项起为指标 |
 | yAxisType | 左右坐标轴数据类型 | Array | 可选值: KMB, normal, percent |
 | yAxisName | 左右坐标轴标题 | Array | - |
 | axisSite | 指标所在的轴 | Object | 默认不在right轴的指标都在left轴 |
@@ -210,7 +241,8 @@
 | label | 设置图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.label) |
 | itemStyle | 图形样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.itemStyle) |
 | showLine | 展示为折线图的指标 | Array | - |
-
+| xAxisType | 横轴的类型 | String | 可选值'category'，'value'，默认为'category' |
+| opacity | 透明度 | Number | - |
 
 > 备注1. axisSite 可以设置 left 和 right，例如示例所示 `axisSite: { right: ['占比'] }` 即将占比的数据置于右轴上。
 
@@ -221,3 +253,5 @@
 > 备注4. min和max的值可以直接设置为数字，例如：`[100, 300]`；也可以设置为`['dataMin', 'dataMin']`, `['dataMax', 'dataMax']`，此时表示使用该坐标轴上的最小值或最大值为最小或最大刻度。
 
 > 备注5. 有时我们需要将折线图与柱状图展示在同一个图上，利用showLine属性可以设置需要展示为折线图的指标，其他的指标则使用柱状图展示。
+
+> 备注6. 为了优化连续的数值型横轴显示多指标的时候样式，在此情况下默认设置opacity为0.5。
