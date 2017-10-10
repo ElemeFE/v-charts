@@ -1,8 +1,3 @@
-<template>
-  <div class="ve-funnel" :style="canvasStyle" ref="canvas"></div>
-</template>
-
-<script>
 import echarts from '../../echarts-base'
 import { funnel } from './main'
 import Core from '../../core'
@@ -14,4 +9,3 @@ export default {
     this.echartsLib = echarts
   }
 }
-</script>

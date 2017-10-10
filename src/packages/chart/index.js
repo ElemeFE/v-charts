@@ -1,8 +1,3 @@
-<template>
-  <div class="ve-chart" :style="canvasStyle" ref="canvas"></div>
-</template>
-
-<script>
 import echarts from '../../echarts-base'
 import { bar, histogram } from '../bar/main'
 import { line } from '../line/main'
@@ -29,4 +24,3 @@ export default {
     this.echartsLib = echarts
   }
 }
-</script>

@@ -1,17 +1,11 @@
-iframe {
-  border: 2px solid #eee;
-}
+<template>
+  <div class="v-charts-data-empty">
+    暂无数据
+  </div>
+</template>
 
-.vuep {
-  height: 460px;
-}
-
-.cm-error {
-  color: rgba(255, 83, 112, 1) !important;
-  background-color: inherit !important;
-}
-
-.data-empty {
+<style>
+.v-charts-data-empty {
   position: absolute;
   left: 0;
   right: 0;
@@ -24,3 +18,4 @@ iframe {
   color: #888;
   font-size: 14px;
 }
+</style>

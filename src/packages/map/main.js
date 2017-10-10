@@ -1,5 +1,5 @@
 import { default as echarts, itemPoint } from '../../echarts-base'
-import { getMapJSON, getFormated } from '../../util'
+import { getMapJSON, getFormated } from '../../utils'
 import 'echarts/lib/chart/map'
 
 function getTooltip (dataType, digit, dataStore, metrics, color) {

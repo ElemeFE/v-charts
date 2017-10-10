@@ -1,5 +1,5 @@
 import 'echarts/extension/bmap/bmap'
-import { getBmap } from '../../util'
+import { getBmap } from '../../utils'
 
 export const bmap = (_, __, settings) => {
   const {

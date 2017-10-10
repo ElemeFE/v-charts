@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.config.js",
-    "build": "rm -f -r lib && node build/rollup.config.js && cp -f lib/index.min.js docs/v-charts.min.js",
+    "build": "rm -f -r lib && node build/rollup.config.js && cp -f lib/index.min.js lib/style.min.css docs/",
     "prepublish": "npm run build",
     "test": "karma start ./test/karma.conf.js"
   },
@@ -27,6 +27,7 @@
     "echarts": "^3.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.5",
     "babel-core": "6.24.0",
     "babel-eslint": "7.1.1",
     "babel-loader": "6.4.1",
@@ -37,6 +38,7 @@
     "babel-preset-stage-2": "6.22.0",
     "copy-webpack-plugin": "4.0.1",
     "css-loader": "0.27.3",
+    "cssnano": "^3.10.0",
     "eslint": "3.17.1",
     "eslint-config-standard": "7.0.1",
     "eslint-friendly-formatter": "2.0.7",
@@ -72,7 +74,7 @@
     "rollup-plugin-eslint": "3.0.0",
     "rollup-plugin-node-resolve": "2.0.0",
     "rollup-plugin-uglify": "2.0.1",
-    "rollup-plugin-vue": "2.4.2",
+    "rollup-plugin-vue": "2.5.2",
     "style-loader": "0.14.1",
     "url-loader": "0.5.8",
     "vue": "2.4.2",

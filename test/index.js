@@ -8,7 +8,16 @@ import 'echarts/lib/chart/funnel'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/pie'
 import 'echarts/lib/chart/radar'
-import { VeLine, VeBar, VeHistogram, VePie, VeRing, VeFunnel, VeRadar, VeWaterfall } from '../lib/index.esm'
+import {
+  VeLine,
+  VeBar,
+  VeHistogram,
+  VePie,
+  VeRing,
+  VeFunnel,
+  VeRadar,
+  VeWaterfall
+} from '../lib/index.esm'
 
 const comps = {
   line: VeLine,
@@ -48,8 +57,9 @@ function testMount (type, comp) {
           data: chartData[type].data[0].data
         }
       }).$mount(box)
-
-      expect(vm.$el.classList.contains('ve-' + type)).toEqual(true)
+      setTimeout(() => {
+        expect(vm.$el.classList.contains('ve-' + type)).toEqual(true)
+      }, 100)
     })
   })
 }

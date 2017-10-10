@@ -1,4 +1,4 @@
-import { getFormated } from '../../util'
+import { getFormated } from '../../utils'
 import 'echarts/lib/chart/bar'
 
 function getWaterfallTooltip (dataType, digit) {
