@@ -175,7 +175,7 @@
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | dimension | 维度 | Array | 默认columns第一项为维度 |
-| metrics | 指标 | Array | 默认columns第二项为指标 |
+| metrics | 指标 | Array | 默认columns第二项起为指标 |
 | yAxisType | 左右坐标轴数据类型 | Array | 可选值: KMB, normal, percent |
 | yAxisName | 左右坐标轴标题 | Array | - |
 | axisSite | 指标所在的轴 | Object | 默认不在right轴的指标都在left轴 |

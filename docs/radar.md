@@ -42,7 +42,7 @@
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | dimension | 维度 | String | 默认columns第一项为维度 |
-| metrics | 指标 | String | 默认columns第二项为指标 |
+| metrics | 指标 | String | 默认columns第二项起为指标 |
 | dataType | 数据类型 | Object | 可选值: KMB, normal, percent |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 

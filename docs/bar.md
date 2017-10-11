@@ -139,12 +139,43 @@
 </script>
 </script>
 
+#### 设置纵轴为连续的数值轴
+
+<vuep template="#set-value-axis"></vuep>
+
+<script v-pre type="text/x-template" id="set-value-axis">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['date', 'resume', 'uplevel'],
+        rows: [
+          { 'date': 10, 'resume': 123, 'uplevel': 1213 },
+          { 'date': 11, 'resume': 1223, 'uplevel': 3116 },
+          { 'date': 12, 'resume': 2123, 'uplevel': 4119 },
+          { 'date': 20, 'resume': 4123, 'uplevel': 1112 },
+          { 'date': 21, 'resume': 3123, 'uplevel': 4115 },
+          { 'date': 25, 'resume': 7123, 'uplevel': 1212 }
+        ]
+      }
+      this.chartSettings = {
+        yAxisType: 'value'
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | dimension | 维度 | Array | 默认columns第一项为维度 |
-| metrics | 指标 | Array | 默认columns第二项为指标 |
+| metrics | 指标 | Array | 默认columns第二项起为指标 |
 | xAxisType | 上下坐标轴数据类型 | Array | 可选值: KMB, normal, percent |
 | xAxisName | 上下坐标轴标题 | Array | - |
 | axisSite | 指标所在的轴 | Object | 默认不在top轴的指标都在bottom轴 |
@@ -158,6 +189,8 @@
 | legendName | 设置图表上方图例的别名 | Object | - |
 | label | 设置图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.label) |
 | itemStyle | 图形样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.itemStyle) |
+| yAxisType | 纵轴的类型 | String | 可选值'category'，'value'，默认为'category' |
+| opacity | 透明度 | Number | - |
 
 > 备注1. axisSite 可以设置 top 和 bottom，例如示例所示 `axisSite: { top: ['占比'] }` 即将占比的数据置于上轴上。
 
@@ -166,3 +199,5 @@
 > 备注3. dataOrder 用于设置数据的排序方式，用于更加清晰的展示数据的升降。例如： `{ label: '成本', order: 'asc }` 表示数据按照成本指标升序展示，降序为`desc`。
 
 > 备注4. min和max的值可以直接设置为数字，例如：`[100, 300]`；也可以设置为`['dataMin', 'dataMin']`, `['dataMax', 'dataMax']`，此时表示使用该坐标轴上的最小值或最大值为最小或最大刻度。
+
+> 备注5. 为了优化连续的数值型横轴显示多指标的时候样式，在此情况下默认设置opacity为0.5。

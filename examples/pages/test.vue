@@ -1,42 +1,32 @@
 <template>
   <div>
-    <ve-line
+    <ve-histogram
       :data="chartData"
       :settings="chartSettings"
-      :after-config="afterConfig"
-      :toolbox="toolbox">
-    </ve-line>
+      :after-config="afterConfig">
+    </ve-histogram>
   </div>
 </template>
 
 <script>
-import VePie from '../../src/packages/pie'
-import VeLine from '../../src/packages/line'
+import VeHistogram from '../../src/packages/histogram'
 import 'echarts/lib/component/toolbox'
 
 export default {
   data () {
-    this.toolbox = {
-      show: true,
-      feature: {
-        saveAsImage: {
-          type: 'jpeg'
-        }
-      }
-    }
     this.chartSettings = {
-      nullAddZero: false
+      xAxisType: 'value'
     }
     return {
       chartData: {
         columns: ['日期', '余额', '年龄'],
         rows: [
-          { '日期': 1, '余额': 123, '年龄': 3 },
-          { '日期': 2, '年龄': 6 },
-          { '日期': 3, '余额': 123, '年龄': 9 },
-          { '日期': 4, '余额': 123, '年龄': 12 },
-          { '日期': 5, '余额': 323, '年龄': 15 },
-          { '日期': 6, '余额': 123, '年龄': 20 }
+          { '日期': 10, '余额': 2123, '年龄': 300 },
+          { '日期': 12, '余额': 123, '年龄': 600 },
+          { '日期': 13, '余额': 1323, '年龄': 900 },
+          { '日期': 14, '余额': 4123, '年龄': 1200 },
+          { '日期': 15, '余额': 3223, '年龄': 1500 },
+          { '日期': 106, '余额': 123, '年龄': 2000 }
         ]
       }
     }
@@ -49,6 +39,6 @@ export default {
     }
   },
 
-  components: { VePie, VeLine }
+  components: { VeHistogram }
 }
 </script>
