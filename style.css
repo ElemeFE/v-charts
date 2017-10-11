@@ -1,0 +1,26 @@
+iframe {
+  border: 2px solid #eee;
+}
+
+.vuep {
+  height: 460px;
+}
+
+.cm-error {
+  color: rgba(255, 83, 112, 1) !important;
+  background-color: inherit !important;
+}
+
+.data-empty {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, .7);
+  color: #888;
+  font-size: 14px;
+}
