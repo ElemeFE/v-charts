@@ -1,7 +1,28 @@
 import { color, default as echarts } from './echarts-base'
-import { getType } from './util'
+import { getType, toKebab } from './utils'
+import Loading from './components/loading'
+import DataEmpty from './components/data-empty'
 
 export default {
+  render (h) {
+    return h('div', {
+      class: [toKebab(this.$options.name || this.$options._componentTag)],
+      style: this.canvasStyle
+    }, [
+      h('div', {
+        style: this.canvasStyle,
+        ref: 'canvas'
+      }),
+      h(Loading, {
+        style: { display: this.loading ? '' : 'none' }
+      }),
+      h(DataEmpty, {
+        style: { display: this.dataEmpty ? '' : 'none' }
+      }),
+      this.$slots.default
+    ])
+  },
+
   props: {
     data: { type: [Object, Array], default () { return {} } },
     settings: { type: Object, default () { return {} } },
@@ -40,7 +61,9 @@ export default {
     textStyle: Object,
     animation: Object,
     theme: Object,
-    themeName: String
+    themeName: String,
+    loading: Boolean,
+    dataEmpty: Boolean
   },
 
   watch: {

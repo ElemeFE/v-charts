@@ -5,6 +5,8 @@ var babel = require('rollup-plugin-babel')
 var eslint = require('rollup-plugin-eslint')
 var componentInfo = require('../src/component-list')
 var uglify = require('rollup-plugin-uglify')
+var autoprefixer = require('autoprefixer')
+var cssnano = require('cssnano')
 var pkg = []
 var pkgTypeList = [
   { type: 'cjs', min: false, suffix: '.common.js' },
@@ -41,12 +43,15 @@ pkg = pkg.concat(addons)
 pkg.forEach(item => { rollupFn(item) })
 
 function rollupFn (item) {
+  const vueSettings = item.min
+    ? { css: 'lib/style.min.css', postcss: [autoprefixer, cssnano] }
+    : { css: 'lib/style.css', postcss: [autoprefixer] }
   var plugins = [
     eslint({
       throwError: true,
       exclude: 'node_modules/**'
     }),
-    vue(),
+    vue(vueSettings),
     resolve({
       extensions: ['.js', '.vue']
     }),

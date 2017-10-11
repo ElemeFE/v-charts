@@ -22,15 +22,19 @@
 | after-config | 对生成好的echarts配置<br>进行额外的处理 | Function | 在数据转化为配置项结束后触发<br>参数为 options，返回值为 echarts 配置 |
 | after-set-option | 生成图后获取echarts实例 | Function | 参数为echarts实例 |
 | after-set-option-once | 生成图后获取echarts实例（只执行一次） | Function | 参数为echarts实例 |
-| mark-line | 图表标线 | Object | 配置项内容对应echarts中<br>关于markLine的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markLine'` | 
-| mark-point | 图表标点 | Object | 配置项内容对应echarts中<br>关于markPoint的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markPoint'` | 
-| mark-area | 图表标志区域 | Object | 配置项内容对应echarts中<br>关于markArea的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markAreae'` | 
-| visual-map | 视觉映射组件 | Array, Object | 内容参考[文档](http://echarts.baidu.com/option.html#visualMap)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/visualMap'` | 
+| mark-line | 图表标线 | Object | 配置项内容对应echarts中<br>关于markLine的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markLine'` |
+| mark-point | 图表标点 | Object | 配置项内容对应echarts中<br>关于markPoint的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markPoint'` |
+| mark-area | 图表标志区域 | Object | 配置项内容对应echarts中<br>关于markArea的部分<br>使用时需额外引入对应模块<br>`'echarts/lib/component/markAreae'` |
+| visual-map | 视觉映射组件 | Array, Object | 内容参考[文档](http://echarts.baidu.com/option.html#visualMap)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/visualMap'` |
 | data-zoom | 区域缩放组件 | Array, Object | 内容参考[文档](http://echarts.baidu.com/option.html#dataZoom)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/dataZoom'` |
 | toolbox | 工具箱 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#toolbox)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/toolbox'` |
 | init-options | init 附加参数 | Object | 内容参考[文档](http://echarts.baidu.com/api.html#echarts.init) |
 | theme | 自定义主题 | Object | 内容为自定义主题参数 |
 | theme-name | 自定义主题名称 | String | 内容为全局注册的自定义主题名称 |
+| loading | 加载状态 | Boolean | 默认为false |
+| dataEmpty | 暂无数据状态 | Boolean | 默认为false |
+
+> 备注：使用loading和dataEmpty属性前需引入css `import 'v-charts/lib/style.css'`
 
 同时，为了能够更方便的设置属性配置项等，下面这些与echarts配置项对应的属性也被加到了组件上，使用方式可参考[文档](http://echarts.baidu.com/option.html)
 ```
@@ -52,7 +56,7 @@ textStyle: Object
 
 ##### 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 
-> 
+>
 
 ### 示例
 

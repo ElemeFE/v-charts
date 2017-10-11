@@ -97,3 +97,5 @@ export const clone = (v) => JSON.parse(JSON.stringify(v))
 export const getType = (v) => {
   return Object.prototype.toString.call(v)
 }
+
+export const toKebab = (v) => v.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()

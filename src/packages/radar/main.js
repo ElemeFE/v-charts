@@ -1,5 +1,5 @@
 import { itemPoint } from '../../echarts-base'
-import { getFormated } from '../../util'
+import { getFormated } from '../../utils'
 import 'echarts/lib/chart/radar'
 
 function getRadarLegend (rows, dimension) {
