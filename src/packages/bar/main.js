@@ -113,7 +113,7 @@ function getValueData (seriesTemp, dims) {
     if (~index) {
       result.push(seriesTemp[index])
     } else {
-      result.push(0)
+      result.push(null)
     }
   }
   return result
