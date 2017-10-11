@@ -3,3 +3,5 @@ dist
 npm-debug.log
 yarn-error.log
 lib
+docs/index.min.js
+docs/style.min.css

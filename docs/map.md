@@ -155,4 +155,4 @@
 | label | 文本标签 | Boolean, Object | 默认为`true`, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.label) |
 | itemStyle | 地图区域的多边形 图形样式 | Boolean, Object | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
 
-> 备注1. 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
+> 备注: 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
