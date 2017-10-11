@@ -7,7 +7,9 @@
     "dev": "webpack-dev-server --config ./build/webpack.config.js",
     "build": "rm -f -r lib && node build/rollup.config.js && cp -f lib/index.min.js lib/style.min.css docs/",
     "prepublish": "npm run build",
-    "test": "karma start ./test/karma.conf.js"
+    "test": "karma start ./test/karma.conf.js",
+    "docs": "docsify serve docs",
+    "deploy": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
@@ -39,6 +41,7 @@
     "copy-webpack-plugin": "4.0.1",
     "css-loader": "0.27.3",
     "cssnano": "^3.10.0",
+    "docsify": "^4.3.8",
     "eslint": "3.17.1",
     "eslint-config-standard": "7.0.1",
     "eslint-friendly-formatter": "2.0.7",
@@ -48,6 +51,7 @@
     "eslint-plugin-standard": "2.1.1",
     "extract-text-webpack-plugin": "2.1.0",
     "file-loader": "0.11.1",
+    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "2.30.1",
     "jasmine-core": "2.6.2",
     "karma": "1.7.0",
