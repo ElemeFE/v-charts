@@ -36,7 +36,13 @@
 
 > 备注：使用loading和dataEmpty属性前需引入css `import 'v-charts/lib/style.css'`
 
-同时，为了能够更方便的设置属性配置项等，下面这些与echarts配置项对应的属性也被加到了组件上，使用方式可参考[文档](http://echarts.baidu.com/option.html)
+同时，为了能够更方便的设置属性配置项等，可以通过`extend`属性实现对已配置好的内部属性进行单独的设置，`extend`为对象类型，对象内的属性可以是函数，也可以对象，也可以是其他类型的值
+ - 当属性为函数时，设置的是函数的返回值
+ - 当属性为对象时，如果在options中对应的属性为对象(eg: tooltip)或包含对象的数组(eg: series)，对应的配置会被合并，否则将直接覆盖对应的配置
+
+ 具体使用方法可以参考下面的属性配置示例
+
+最后，下面这些与echarts配置项对应的属性也被加到了组件上，设置后将会直接覆盖options原有的对应属性，使用方式可参考[文档](http://echarts.baidu.com/option.html)
 ```
 title: Object
 legend: Object
@@ -53,6 +59,7 @@ series: [Object, Array]
 backgroundColor: [Object, String]
 textStyle: Object
 ```
+
 
 ##### 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
 

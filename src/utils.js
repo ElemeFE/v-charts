@@ -99,3 +99,11 @@ export const getType = (v) => {
 }
 
 export const toKebab = (v) => v.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
+
+export const isArray = (v) => {
+  return getType(v) === '[object Array]'
+}
+
+export const isObject = (v) => {
+  return v != null && typeof v === 'object' && !isArray(v)
+}
