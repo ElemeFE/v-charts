@@ -1,5 +1,5 @@
 import { color, default as echarts } from './echarts-base'
-import { getType, toKebab } from './utils'
+import { getType, toKebab, isArray, isObject } from './utils'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
 
@@ -63,7 +63,8 @@ export default {
     theme: Object,
     themeName: String,
     loading: Boolean,
-    dataEmpty: Boolean
+    dataEmpty: Boolean,
+    extend: Object
   },
 
   watch: {
@@ -157,6 +158,30 @@ export default {
           this.addMark(series, marks)
         }
       }
+
+      // extend sub attribute
+      if (this.extend) {
+        Object.keys(this.extend).forEach(attr => {
+          if (typeof this.extend[attr] === 'function') {
+            // get callback value
+            options[attr] = this.extend[attr](options[attr])
+          } else {
+            // mixin extend value
+            if (isArray(options[attr]) && isObject(options[attr][0])) {
+              // eg: [{ xx: 1 }, { xx: 2 }]
+              options[attr].forEach((option, index) => {
+                options[attr][index] = Object.assign({}, option, this.extend[attr])
+              })
+            } else if (isObject(options[attr])) {
+              // eg: { xx: 1, yy: 2 }
+              options[attr] = Object.assign({}, options[attr], this.extend[attr])
+            } else {
+              options[attr] = this.extend[attr]
+            }
+          }
+        })
+      }
+
       if (this.afterConfig) options = this.afterConfig(options)
       this.echarts.setOption(options, true)
       if (this.afterSetOption) this.afterSetOption(this.echarts)

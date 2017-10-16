@@ -3,6 +3,7 @@
     <ve-histogram
       :data="chartData"
       :settings="chartSettings"
+      :extend="chartExtend"
       :after-config="afterConfig">
     </ve-histogram>
   </div>
@@ -16,6 +17,33 @@ export default {
   data () {
     this.chartSettings = {
       xAxisType: 'value'
+    }
+    /* this.chartExtend = {
+      series (v) {
+        console.log('series', v)
+        v.forEach(i => {
+          i.barWidth = 1
+        })
+        return v
+      },
+      color (v) {
+        console.log('color', v)
+        return ['#000']
+      },
+      tooltip (v) {
+        console.log('tooltip', v)
+        v.trigger = 'none'
+        return v
+      }
+    } */
+    this.chartExtend = {
+      series: {
+        barWidth: 1
+      },
+      color: ['#000'],
+      tooltip: {
+        trigger: 'none'
+      }
     }
     return {
       chartData: {
