@@ -105,5 +105,5 @@ export const isArray = (v) => {
 }
 
 export const isObject = (v) => {
-  return v != null && typeof v === 'object' && !isArray(v)
+  return getType(v) === '[object Object]'
 }

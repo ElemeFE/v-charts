@@ -8,6 +8,7 @@ import funnel from './funnel'
 import radar from './radar'
 import chart from './chart'
 import map from './map'
+import sankey from './sankey'
 
 export default {
   bar,
@@ -19,5 +20,6 @@ export default {
   funnel,
   radar,
   chart,
-  map
+  map,
+  sankey
 }
