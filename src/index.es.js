@@ -9,6 +9,7 @@ import VeRadar from './packages/radar'
 import VeChart from './packages/chart'
 import VeMap from './packages/map'
 import VeBmap from './packages/bmap'
+import VeSankey from './packages/sankey'
 
 const components = [
   VeBar,
@@ -21,7 +22,8 @@ const components = [
   VeRadar,
   VeChart,
   VeMap,
-  VeBmap
+  VeBmap,
+  VeSankey
 ]
 
 function install (Vue, _) {
@@ -42,5 +44,6 @@ export {
   VeChart,
   VeMap,
   VeBmap,
+  VeSankey,
   install
 }

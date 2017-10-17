@@ -14,7 +14,7 @@
 
 ### 文档
 
-[https://elemefe.github.io/v-charts/#/](https://elemefe.github.io/v-charts/#/)
+[https://elemefe.github.io/v-charts/](https://elemefe.github.io/v-charts/#/)
 
 ### 安装
 ---

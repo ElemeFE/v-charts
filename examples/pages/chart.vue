@@ -34,6 +34,7 @@ import VeFunnel from '../../src/packages/funnel'
 import VeRadar from '../../src/packages/radar'
 import VeChart from '../../src/packages/chart'
 import VeMap from '../../src/packages/map'
+import VeSankey from '../../src/packages/sankey'
 import CHART_DATA from '../data'
 
 export default {
@@ -73,7 +74,8 @@ export default {
     VeFunnel,
     VeRadar,
     VeChart,
-    VeMap
+    VeMap,
+    VeSankey
   }
 }
 </script>
