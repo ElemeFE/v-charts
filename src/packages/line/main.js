@@ -58,7 +58,9 @@ function getLineSeries (args) {
     }
 
     if (area) seriesItem.areaStyle = { normal: {} }
-    seriesItem.yAxisIndex = ~axisSite.right.indexOf(item) ? 1 : 0
+    if (axisSite.right) {
+      seriesItem.yAxisIndex = ~axisSite.right.indexOf(item) ? 1 : 0
+    }
 
     if (stack && stackMap[item]) seriesItem.stack = stackMap[item]
 
@@ -112,11 +114,12 @@ function getLineYAxis (args) {
 
 function getLineTooltip (args) {
   const { axisSite, yAxisType, digit, labelMap, xAxisType } = args
+  const rightItems = axisSite.right || []
   const rightList = labelMap
-    ? axisSite.right.map(item => {
+    ? rightItems.map(item => {
       return labelMap[item] === undefined ? item : labelMap[item]
     })
-    : axisSite.right
+    : rightItems
   return {
     trigger: 'axis',
     formatter (items) {
@@ -156,7 +159,7 @@ function getLegend (args) {
 
 export const line = (columns, rows, settings, extra) => {
   const {
-    axisSite = { right: [] },
+    axisSite = {},
     yAxisType = ['normal', 'normal'],
     xAxisType = 'category',
     yAxisName = [],
@@ -180,7 +183,11 @@ export const line = (columns, rows, settings, extra) => {
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
 
-  if (settings.metrics) {
+  if (axisSite.left && axisSite.right) {
+    metrics = axisSite.left.concat(axisSite.right)
+  } else if (axisSite.left && !axisSite.right) {
+    metrics = axisSite.left
+  } else if (settings.metrics) {
     metrics = settings.metrics
   } else {
     metrics.splice(columns.indexOf(dimension[0]), 1)
