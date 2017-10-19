@@ -3,20 +3,15 @@ import { getFormated, getStackMap } from '../../utils'
 import 'echarts/lib/chart/line'
 
 function getLineXAxis (args) {
-  const { dimension, rows, xAxisName, axisVisible } = args
+  const { dimension, rows, xAxisName, axisVisible, xAxisType } = args
   return dimension.map((item, index) => ({
-    type: 'category',
+    type: xAxisType,
     nameLocation: 'middle',
     nameGap: 22,
     boundaryGap: false,
     name: xAxisName[index] || '',
     axisTick: { show: true, lineStyle: { color: '#eee' } },
     data: rows.map(row => row[item]),
-    axisLabel: {
-      formatter (v) {
-        return String(v)
-      }
-    },
     show: axisVisible
   }))
 }
@@ -33,7 +28,9 @@ function getLineSeries (args) {
     label,
     itemStyle,
     lineStyle,
-    areaStyle
+    areaStyle,
+    xAxisType,
+    dimension
   } = args
   let series = []
   const dataTemp = {}
@@ -47,7 +44,10 @@ function getLineSeries (args) {
       } else if (nullAddZero) {
         value = 0
       }
-      dataTemp[item].push(value)
+      const dataItem = xAxisType === 'category'
+        ? value
+        : [row[dimension[0]], value]
+      dataTemp[item].push(dataItem)
     })
   })
   metrics.forEach(item => {
@@ -111,7 +111,7 @@ function getLineYAxis (args) {
 }
 
 function getLineTooltip (args) {
-  const { axisSite, yAxisType, digit, labelMap } = args
+  const { axisSite, yAxisType, digit, labelMap, xAxisType } = args
   const rightList = labelMap
     ? axisSite.right.map(item => {
       return labelMap[item] === undefined ? item : labelMap[item]
@@ -127,7 +127,10 @@ function getLineTooltip (args) {
         const type = ~rightList.indexOf(item.seriesName)
           ? yAxisType[1]
           : yAxisType[0]
-        showData = getFormated(item.data, type, digit)
+        const data = xAxisType === 'category'
+          ? item.data
+          : item.data[1]
+        showData = getFormated(data, type, digit)
         tpl.push(itemPoint(item.color))
         tpl.push(`${item.seriesName}: ${showData}`)
         tpl.push('<br>')
@@ -155,6 +158,7 @@ export const line = (columns, rows, settings, extra) => {
   const {
     axisSite = { right: [] },
     yAxisType = ['normal', 'normal'],
+    xAxisType = 'category',
     yAxisName = [],
     dimension = [columns[0]],
     xAxisName = [],
@@ -187,10 +191,17 @@ export const line = (columns, rows, settings, extra) => {
     axisSite,
     yAxisType,
     digit,
-    labelMap
+    labelMap,
+    xAxisType
   })
-  const xAxis = getLineXAxis({ dimension, rows, xAxisName, axisVisible })
-  const yAxisParams = {
+  const xAxis = getLineXAxis({
+    dimension,
+    rows,
+    xAxisName,
+    axisVisible,
+    xAxisType
+  })
+  const yAxis = getLineYAxis({
     yAxisName,
     yAxisType,
     axisVisible,
@@ -198,9 +209,8 @@ export const line = (columns, rows, settings, extra) => {
     min,
     max,
     digit
-  }
-  const yAxis = getLineYAxis(yAxisParams)
-  const seriesParams = {
+  })
+  const series = getLineSeries({
     rows,
     axisSite,
     metrics,
@@ -211,9 +221,10 @@ export const line = (columns, rows, settings, extra) => {
     label,
     itemStyle,
     lineStyle,
-    areaStyle
-  }
-  const series = getLineSeries(seriesParams)
+    areaStyle,
+    xAxisType,
+    dimension
+  })
   if (!xAxis || !series) return false
 
   let options = { legend, xAxis, series, yAxis, tooltip }
