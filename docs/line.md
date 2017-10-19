@@ -170,12 +170,44 @@
 </script>
 </script>
 
+#### 设置横轴为连续的数值轴
+
+<vuep template="#xAxis-type-value"></vuep>
+
+<script v-pre type="text/x-template" id="xAxis-type-value">
+<template>
+  <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['num', 'balance'],
+        rows: [
+          { 'num': 1, 'balance': 123 },
+          { 'num': 10, 'balance': 1223 },
+          { 'num': 11, 'balance': 2123 },
+          { 'num': 100, 'balance': 4123 },
+          { 'num': 101, 'balance': 6123 },
+          { 'num': 120, 'balance': 7123 }
+        ]
+      }
+      this.chartSettings = {
+        xAxisType: 'value'
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | dimension | 维度 | Array | 默认columns第一项为维度 |
 | metrics | 指标 | Array | 默认columns第二项起为指标 |
+| xAxisType | 横轴的数据类型 | String | 可选值: category, value, time, log |
 | yAxisType | 左右坐标轴数据类型 | Array | 可选值: KMB, normal, percent |
 | yAxisName | 左右坐标轴标题 | Array | - |
 | axisSite | 指标所在的轴 | Object | 默认不在right轴的指标都在left轴 |
