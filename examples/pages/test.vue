@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="page-test" :style="{ width: chartWidth }">
     <ve-line
       :data="chartData"
+      ref="chart"
       :settings="chartSettings"
+      :width-change-delay="1500"
       :after-config="afterConfig">
     </ve-line>
   </div>
@@ -28,17 +30,30 @@ export default {
           { '日期': 100, '余额': 3223, '年龄': 1500 },
           { '日期': 120, '余额': 123, '年龄': 2000 }
         ]
-      }
+      },
+      chartWidth: '0'
     }
   },
 
   methods: {
     afterConfig (options) {
-      console.log(options)
+      // console.log(options)
       return options
     }
+  },
+
+  mounted () {
+    setTimeout(() => {
+      this.chartWidth = '100px'
+    }, 1000)
   },
 
   components: { VeLine }
 }
 </script>
+
+<style>
+.page-test .ve-line {
+  width: 0;
+}
+</style>
