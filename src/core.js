@@ -64,7 +64,9 @@ export default {
     themeName: String,
     loading: Boolean,
     dataEmpty: Boolean,
-    extend: Object
+    extend: Object,
+    judgeWidth: { type: Boolean, default: true },
+    widthChangeDelay: { type: Number, default: 300 }
   },
 
   watch: {
@@ -118,6 +120,10 @@ export default {
           this.optionsHandler(options)
         }
       }
+    },
+
+    resize () {
+      this.echarts.resize()
     },
 
     optionsHandler (options) {
@@ -184,9 +190,29 @@ export default {
 
       if (this.afterConfig) options = this.afterConfig(options)
       this.echarts.setOption(options, true)
+      if (this.judgeWidth) this.judgeWidthHandler(options)
       if (this.afterSetOption) this.afterSetOption(this.echarts)
       if (this.afterSetOptionOnce && !this._once['afterSetOptionOnce']) {
         this._once['afterSetOptionOnce'] = this.afterSetOptionOnce(this.echarts)
+      }
+    },
+
+    judgeWidthHandler (options) {
+      if (this.$el.clientWidth) {
+        this.echarts.resize()
+      } else {
+        this.$nextTick(_ => {
+          if (this.$el.clientWidth) {
+            this.echarts.resize()
+          } else {
+            setTimeout(_ => {
+              this.echarts.resize()
+              if (!this.$el.clientWidth) {
+                console.warn(' Can\'t get dom width or height ')
+              }
+            }, this.widthChangeDelay)
+          }
+        })
       }
     },
 
