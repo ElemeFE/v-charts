@@ -48,7 +48,7 @@ export default {
     title: Object,
     legend: Object,
     xAxis: Object,
-    yAxis: Object,
+    yAxis: [Object, Array],
     radar: Object,
     tooltip: Object,
     axisPointer: Object,
