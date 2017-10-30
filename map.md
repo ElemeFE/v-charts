@@ -73,12 +73,15 @@
 
 <script v-pre type="text/x-template" id="set-selection">
 <template>
-  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+  <div>
+    <span>当前选中了: {{ cityName || '-' }}</span>
+    <ve-map :data="chartData" :settings="chartSettings" :events="chartEvents"></ve-map>
+  </div>
 </template>
 
 <script>
   module.exports = {
-    created: function () {
+    data () {
       this.chartData = {
         columns: ['位置', 'GDP'],
         rows: [
@@ -90,8 +93,16 @@
       }
       this.chartSettings = {
         position: 'china',
-        selectData: true,
+        // selectData: true,
         selectedMode: 'single'
+      }
+      this.chartEvents = {
+        click: (v) => {
+          this.cityName = v.name
+        }
+      }
+      return {
+        cityName: ''
       }
     }
   }
@@ -134,6 +145,62 @@
 </script>
 </script>
 
+#### 设置自定义位置并修改数据源
+
+<vuep template="#set-position-json"></vuep>
+
+<script v-pre type="text/x-template" id="set-position-json">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings" :extend="chartExtend"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', ' 人口'],
+        rows: [
+          { '位置': '北区', ' 人口': 123 }
+        ]
+      }
+      this.chartSettings = {
+        positionJsonLink: 'https://dn-quietcoder.qbox.me/HK_geo.json',
+        position: 'HK',
+        beforeRegisterMap (json) {
+          // edit data here such as:
+          // json.features[0].properties.cp = [121.509062, 26.044332]
+          return json
+        }
+      }
+      this.chartExtend = {
+        series: {
+          nameMap: {
+            'Central and Western':'中西区',
+            'Eastern':'东区',
+            'Islands':'离岛',
+            'Kowloon City':'九龙城',
+            'Kwai Tsing':'葵青',
+            'Kwun Tong':'观塘',
+            'North':'北区',
+            'Sai Kung':'西贡',
+            'Sha Tin':'沙田',
+            'Sham Shui Po':'深水埗',
+            'Southern':'南区',
+            'Tai Po':'大埔',
+            'Tsuen Wan':'荃湾',
+            'Tuen Mun':'屯门',
+            'Wan Chai':'湾仔',
+            'Wong Tai Sin':'黄大仙',
+            'Yau Tsim Mong':'油尖旺',
+            'Yuen Long':'元朗'
+          }
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### settings 配置项
 
 | 配置项 | 简介 | 类型 | 备注 |
@@ -154,5 +221,7 @@
 | mapGrid | 地图距离容器的边距 | Object | 默认值为<br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
 | label | 文本标签 | Boolean, Object | 默认为`true`, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.label) |
 | itemStyle | 地图区域的多边形 图形样式 | Boolean, Object | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
+| positionJsonLink | 地图数据源 | String | - |
+| beforeRegisterMap | 地图数据注册前执行的函数 | Function | 参数为地图数据，需返回地图数据 |
 
 > 备注: 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
