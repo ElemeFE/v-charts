@@ -4,9 +4,13 @@
 - [ ] CI passed
 - [ ] Add suitable label
 
-#### What changed
+#### What Changed
 -
 
 #### Breaking Change
+- [ ] Yes
+- [ ] No
+
+#### Document Update
 - [ ] Yes
 - [ ] No
