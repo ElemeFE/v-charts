@@ -21,6 +21,24 @@ export default {
       }
     },
     {
+      name: '自定义 JSON 地图',
+      data: {
+        columns: ['位置', ' 人口'],
+        rows: [
+          { '位置': 'North', ' 人口': 123 }
+        ]
+      },
+      settings: {
+        positionJsonLink: 'https://dn-quietcoder.qbox.me/HK_geo.json',
+        position: 'HK',
+        beforeRegisterMap (json) {
+          // edit data here such as:
+          // json.features[0].properties.cp = [121.509062, 26.044332]
+          return json
+        }
+      }
+    },
+    {
       name: '设置数据标示',
       data: {
         columns: ['位置', 'GDP', '人口'],

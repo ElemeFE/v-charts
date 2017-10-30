@@ -107,7 +107,9 @@ export const map = (columns, rows, settings, extra) => {
     zoom,
     scaleLimit,
     mapGrid,
-    itemStyle
+    itemStyle,
+    positionJsonLink,
+    beforeRegisterMap
   } = settings
   let metrics = columns.slice()
   if (settings.metrics) {
@@ -139,7 +141,8 @@ export const map = (columns, rows, settings, extra) => {
   }
   const series = getSeries(seriesParams)
 
-  return getMapJSON(position).then(json => {
+  return getMapJSON(position, positionJsonLink).then(json => {
+    if (beforeRegisterMap) json = beforeRegisterMap(json)
     echarts.registerMap(position, json)
     return { series, tooltip, legend }
   })
