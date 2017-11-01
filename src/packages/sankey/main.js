@@ -24,7 +24,8 @@ function getSeries (args) {
     dimension,
     metrics,
     links,
-    valueFull
+    valueFull,
+    useDataValue
   } = args
   const dataMap = {}
   const seriesData = rows.map(row => {
@@ -32,11 +33,14 @@ function getSeries (args) {
     return { name: row[dimension], value: row[metrics] }
   })
   let innerLinks = null
-
-  if (!valueFull) {
+  if (useDataValue) {
+    innerLinks = links.map(link => {
+      return Object.assign({}, link, { value: dataMap[link.target] })
+    })
+  } else if (!valueFull) {
     innerLinks = links.map(link => {
       return link.value == null
-        ? Object.assign({ value: dataMap[link.target] }, link)
+        ? Object.assign({}, link, { value: dataMap[link.target] })
         : link
     })
   } else {
@@ -58,7 +62,8 @@ export const sankey = (columns, rows, settings, extra) => {
     metrics = columns[1],
     dataType = ['normal', 'normal'],
     digit = 2,
-    valueFull = false
+    valueFull = false,
+    useDataValue = false
   } = settings
 
   if (!links) {
@@ -78,7 +83,8 @@ export const sankey = (columns, rows, settings, extra) => {
     dimension,
     metrics,
     links,
-    valueFull
+    valueFull,
+    useDataValue
   })
   return { tooltip, series }
 }
