@@ -3,7 +3,7 @@ export default {
   type: 'radar',
   data: [
     {
-      name: '雷达图',
+      name: '简单雷达图',
       data: {
         columns: ['城市', '房价', '收入', '人口比例'],
         rows: [
@@ -19,7 +19,7 @@ export default {
       }
     },
     {
-      name: '雷达图',
+      name: '指标维度配置',
       data: {
         columns: ['城市', '房价', '收入', '人口比例'],
         rows: [

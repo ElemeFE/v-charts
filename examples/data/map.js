@@ -56,7 +56,7 @@ export default {
       }
     },
     {
-      name: '设置位置可选',
+      name: '设置位置选择模式',
       data: {
         columns: ['位置', 'GDP'],
         rows: [
@@ -72,7 +72,7 @@ export default {
       }
     },
     {
-      name: '显示省份的地图',
+      name: '设置省份显示',
       data: {
         columns: ['位置', 'GDP'],
         rows: [

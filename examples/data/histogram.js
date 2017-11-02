@@ -55,7 +55,7 @@ export default {
       }
     },
     {
-      name: '默认显示数据',
+      name: '默认在柱子上显示数据',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -77,7 +77,7 @@ export default {
       }
     },
     {
-      name: '设置数据别名',
+      name: '设置指标维度名称',
       data: {
         columns: ['date', 'resume', 'uplevel'],
         rows: [
@@ -102,7 +102,7 @@ export default {
       }
     },
     {
-      name: '设置scale柱状图',
+      name: '坐标轴值域配置',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -119,7 +119,7 @@ export default {
       }
     },
     {
-      name: '百分比数值较小',
+      name: '带有较小百分比数值',
       data: {
         columns: ['日期', '比率'],
         rows: [
@@ -137,7 +137,7 @@ export default {
       }
     },
     {
-      name: '柱状轴配置图',
+      name: '坐标轴配置',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -158,7 +158,7 @@ export default {
       }
     },
     {
-      name: '指定指标为度',
+      name: '指标维度配置',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [

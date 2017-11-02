@@ -3,7 +3,7 @@ export default {
   type: 'ring',
   data: [
     {
-      name: '环图',
+      name: '简单环图',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -35,7 +35,7 @@ export default {
       }
     },
     {
-      name: '限制显示条数环图',
+      name: '限制显示条数',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -74,7 +74,7 @@ export default {
       }
     },
     {
-      name: '设置指标维度',
+      name: '指标维度配置',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [

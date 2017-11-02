@@ -3,7 +3,7 @@ export default {
   type: 'funnel',
   data: [
     {
-      name: '漏斗图',
+      name: '简单漏斗图',
       data: {
         columns: ['状态', '数值'],
         rows: [
@@ -16,7 +16,7 @@ export default {
       settings: {}
     },
     {
-      name: '定制顺序漏斗图',
+      name: '定制维度顺序',
       data: {
         columns: ['状态', '数值'],
         rows: [
@@ -31,7 +31,7 @@ export default {
       }
     },
     {
-      name: '指定数据类型漏斗图',
+      name: '数据类型配置',
       data: {
         columns: ['状态', '数值'],
         rows: [
@@ -62,7 +62,7 @@ export default {
       }
     },
     {
-      name: '指定指标维度',
+      name: '指标维度配置',
       data: {
         columns: ['状态', '状态1', '数值'],
         rows: [
