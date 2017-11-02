@@ -3,7 +3,7 @@ export default {
   type: 'waterfall',
   data: [
     {
-      name: '瀑布图',
+      name: '简单瀑布图',
       data: {
         columns: ['活动', '时间'],
         rows: [
@@ -15,7 +15,7 @@ export default {
       settings: {}
     },
     {
-      name: '设定总量瀑布图',
+      name: '设定总量',
       data: {
         columns: ['活动', '时间'],
         rows: [
@@ -29,7 +29,7 @@ export default {
       }
     },
     {
-      name: '设定总量并且子项超标瀑布图',
+      name: '设定总量并且子项超标',
       data: {
         columns: ['活动', '时间'],
         rows: [
@@ -43,7 +43,7 @@ export default {
       }
     },
     {
-      name: '设定数据类型瀑布图',
+      name: '设定数据类型',
       data: {
         columns: ['活动', '时间'],
         rows: [
@@ -58,7 +58,7 @@ export default {
       }
     },
     {
-      name: '设定总量及其他名称名称瀑布图',
+      name: '设定总量及其他名称',
       data: {
         columns: ['活动', '时间'],
         rows: [

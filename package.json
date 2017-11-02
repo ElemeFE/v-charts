@@ -42,6 +42,7 @@
     "css-loader": "0.27.3",
     "cssnano": "^3.10.0",
     "docsify": "^4.3.8",
+    "es6-promise": "^4.1.1",
     "eslint": "3.17.1",
     "eslint-config-standard": "7.0.1",
     "eslint-friendly-formatter": "2.0.7",

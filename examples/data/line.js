@@ -3,7 +3,7 @@ export default {
   type: 'line',
   data: [
     {
-      name: '普通折线图',
+      name: '简单折线图',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -18,32 +18,7 @@ export default {
       settings: {}
     },
     {
-      name: '设置数据别名',
-      data: {
-        columns: ['date', 'resume', 'uplevel'],
-        rows: [
-          { 'date': '1-1', 'resume': 123, 'uplevel': 0.3 },
-          { 'date': '1-2', 'resume': 1223, 'uplevel': 0.6 },
-          { 'date': '1-3', 'resume': 2123, 'uplevel': 0.9 },
-          { 'date': '1-4', 'resume': 4123, 'uplevel': 0.12 },
-          { 'date': '1-5', 'resume': 3123, 'uplevel': 0.15 },
-          { 'date': '1-6', 'resume': 7123, 'uplevel': 0.2 }
-        ]
-      },
-      settings: {
-        labelMap: {
-          date: '日期',
-          resume: '余额',
-          uplevel: '增长率'
-        },
-        yAxisType: ['KMB', 'percent'],
-        axisSite: {
-          right: ['uplevel']
-        }
-      }
-    },
-    {
-      name: '设置label',
+      name: 'label 属性配置',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -84,7 +59,7 @@ export default {
       }
     },
     {
-      name: '设置legend别名折线图',
+      name: '设置legend名称',
       data: {
         columns: ['日期', '余额', '年龄'],
         rows: [
@@ -103,7 +78,7 @@ export default {
       }
     },
     {
-      name: '百分比数值较小',
+      name: '带有较小百分比数值',
       data: {
         columns: ['日期', '比率'],
         rows: [
@@ -121,27 +96,7 @@ export default {
       }
     },
     {
-      name: '双轴折线图',
-      data: {
-        columns: ['日期', '余额', '年龄', 'c'],
-        rows: [
-          { '日期': '1-1', '余额': 123, '年龄': 3, c: 1 },
-          { '日期': '1-2', '余额': 1223, '年龄': 6, c: 1 },
-          { '日期': '1-3', '余额': 2123, '年龄': 9, c: 1 },
-          { '日期': '1-4', '余额': 4123, '年龄': 12, c: 1 },
-          { '日期': '1-5', '余额': 3123, '年龄': 15, c: 1 },
-          { '日期': '1-6', '余额': 7123, '年龄': 20, c: 1 }
-        ]
-      },
-      settings: {
-        axisSite: {
-          right: ['年龄'],
-          left: ['余额']
-        }
-      }
-    },
-    {
-      name: '指定纵轴配置',
+      name: '坐标轴配置',
       data: {
         columns: ['日期', '余额', '比率'],
         rows: [
@@ -161,7 +116,7 @@ export default {
       }
     },
     {
-      name: '指定指标和维度',
+      name: '指标维度配置',
       data: {
         columns: ['日期', '余额', '比率'],
         rows: [
@@ -179,7 +134,7 @@ export default {
       }
     },
     {
-      name: '设置scale',
+      name: '坐标轴缩放配置',
       data: {
         columns: ['日期', '余额', '比率'],
         rows: [
@@ -198,7 +153,7 @@ export default {
       }
     },
     {
-      name: '设置min max',
+      name: '坐标轴值域配置',
       data: {
         columns: ['日期', '余额', '比率'],
         rows: [

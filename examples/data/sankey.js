@@ -3,7 +3,7 @@ export default {
   type: 'sankey',
   data: [
     {
-      name: '基本桑基图',
+      name: '简单桑基图',
       data: {
         columns: ['页面', '访问量'],
         rows: [
@@ -28,7 +28,7 @@ export default {
       }
     },
     {
-      name: '基本桑基图',
+      name: '强制设置使用 rows 中的数据',
       data: {
         columns: ['页面', '访问量'],
         rows: [

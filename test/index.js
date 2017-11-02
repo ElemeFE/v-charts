@@ -3,11 +3,8 @@ import Vue from 'vue'
 import chartData from '../examples/data/index.js'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/funnel'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/radar'
+
+window.Promise = require('es6-promise').Promise
 import {
   VeLine,
   VeBar,
@@ -16,7 +13,10 @@ import {
   VeRing,
   VeFunnel,
   VeRadar,
-  VeWaterfall
+  VeWaterfall,
+  VeChart,
+  VeMap,
+  VeSankey
 } from '../lib/index.esm'
 
 const comps = {
@@ -27,7 +27,10 @@ const comps = {
   ring: VeRing,
   funnel: VeFunnel,
   radar: VeRadar,
-  waterfall: VeWaterfall
+  waterfall: VeWaterfall,
+  chart: VeChart,
+  map: VeMap,
+  sankey: VeSankey
 }
 let box
 let vm = {}
@@ -38,28 +41,26 @@ afterEach(() => {
   createBox()
 })
 
+Object.keys(comps).forEach(type => {
+  chartData[type].data.forEach(item => {
+    describe(type + ': ', () => {
+      testMount(type, comps[type], item)
+    })
+  })
+})
+
+function testMount (type, comp, item) {
+  it(item.name, () => {
+    const Ctor = Vue.extend(comp)
+    const vm = new Ctor({
+      propsData: { data: item.data, settings: item.settings }
+    }).$mount(box)
+    expect(vm.$el.classList.contains('ve-' + type)).toEqual(true)
+  })
+}
+
 function createBox () {
   box = document.createElement('div')
   box.id = 'app'
   document.body.appendChild(box)
-}
-
-Object.keys(comps).forEach(type => {
-  testMount(type, comps[type])
-})
-
-function testMount (type, comp) {
-  describe(type + ': ', () => {
-    it('should mount right', () => {
-      const Ctor = Vue.extend(comp)
-      const vm = new Ctor({
-        propsData: {
-          data: chartData[type].data[0].data
-        }
-      }).$mount(box)
-      setTimeout(() => {
-        expect(vm.$el.classList.contains('ve-' + type)).toEqual(true)
-      }, 100)
-    })
-  })
 }
