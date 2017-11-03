@@ -131,3 +131,6 @@
 | sequence | 数据显示顺序 | Array | 默认按照数据大小顺序 |
 | ascending | 是否显示为金字塔 | Boolean | 默认为false |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| label | 设置文本标签样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-funnel.label) |
+| labelLine | 设置标签的视觉引导线样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-funnel.labelLine) |
+| itemStyle | 设置图形样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-funnel.itemStyle) |

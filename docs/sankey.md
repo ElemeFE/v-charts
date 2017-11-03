@@ -55,3 +55,6 @@
 | dataType | 数据类型 | Array | 数组的第一项为item的数据类型，<br>第二项为line的数据类型，<br>可选值: KMB, normal, percent |
 | links | 节点间的关系数据 | Array | 内容参考[文档](http://echarts.baidu.com/option.html#series-sankey.links) |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
+| label | 每个矩形节点中文本标签的样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-sankey.label) |
+| itemStyle | 节点矩形的样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-sankey.itemStyle) |
+| lineStyle | 桑基图边的样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-sankey.lineStyle) |

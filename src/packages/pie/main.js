@@ -23,7 +23,9 @@ function getPieSeries (args) {
     label,
     level,
     limitShowNum,
-    isRing
+    isRing,
+    labelLine,
+    itemStyle
   } = args
 
   let series = []
@@ -70,6 +72,8 @@ function getPieSeries (args) {
       }
     }
     if (label) seriesItem.label = label
+    if (labelLine) seriesItem.labelLine = labelLine
+    if (itemStyle) seriesItem.itemStyle = itemStyle
     if (percentShow) {
       seriesItem.label = {
         normal: {
@@ -185,7 +189,9 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     digit = 2,
     label = false,
     level = false,
-    limitShowNum = 0
+    limitShowNum = 0,
+    labelLine,
+    itemStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
   if (limitShowNum) innerRows.sort((a, b) => b[metrics] - a[metrics])
@@ -204,7 +210,9 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     label,
     level,
     limitShowNum,
-    isRing
+    isRing,
+    labelLine,
+    itemStyle
   }
   const series = getPieSeries(seriesParams)
   const legendParams = {
