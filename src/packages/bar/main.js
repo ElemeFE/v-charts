@@ -77,7 +77,9 @@ function getBarMeaAxis (args) {
 
 function getBarTooltip (args) {
   const { axisSite, isHistogram, meaAxisType, digit, labelMap } = args
-  let secondAxis = isHistogram ? axisSite.right : axisSite.top
+  let secondAxis = isHistogram
+    ? axisSite.right || []
+    : axisSite.top || []
   if (labelMap) {
     secondAxis = secondAxis.map(item => {
       return labelMap[item] === undefined ? item : labelMap[item]
@@ -137,7 +139,9 @@ function getBarSeries (args) {
   } = args
   let series = []
   const seriesTemp = {}
-  const secondAxis = isHistogram ? axisSite.right : axisSite.top
+  const secondAxis = isHistogram
+    ? axisSite.right || []
+    : axisSite.top || []
   const secondDimAxisIndex = isHistogram ? 'yAxisIndex' : 'xAxisIndex'
   const stackMap = stack && getStackMap(stack)
   metrics.forEach(item => { seriesTemp[item] = [] })
@@ -200,7 +204,7 @@ function getDims (rows, dimension) {
 export const bar = (columns, rows, settings, extra) => {
   const innerRows = clone(rows)
   const {
-    axisSite = { top: [] },
+    axisSite = {},
     dimension = [columns[0]],
     stack = {},
     axisVisible = true,
@@ -219,7 +223,11 @@ export const bar = (columns, rows, settings, extra) => {
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
-  if (settings.metrics) {
+  if (axisSite.top && axisSite.bottom) {
+    metrics = axisSite.top.concat(axisSite.bottom)
+  } else if (axisSite.bottom && !axisSite.right) {
+    metrics = axisSite.bottom
+  } else if (settings.metrics) {
     metrics = settings.metrics
   } else {
     metrics.splice(columns.indexOf(dimension[0]), 1)
@@ -289,7 +297,7 @@ export const bar = (columns, rows, settings, extra) => {
 export const histogram = (columns, rows, settings, status) => {
   const innerRows = clone(rows)
   const {
-    axisSite = { right: [] },
+    axisSite = {},
     dimension = [columns[0]],
     stack = {},
     axisVisible = true,
@@ -324,7 +332,11 @@ export const histogram = (columns, rows, settings, status) => {
 
   const { tooltipVisible, legendVisible } = status
   let metrics = columns.slice()
-  if (settings.metrics) {
+  if (axisSite.left && axisSite.right) {
+    metrics = axisSite.left.concat(axisSite.right)
+  } else if (axisSite.left && !axisSite.right) {
+    metrics = axisSite.left
+  } else if (settings.metrics) {
     metrics = settings.metrics
   } else {
     metrics.splice(columns.indexOf(dimension[0]), 1)
