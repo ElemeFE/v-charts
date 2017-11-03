@@ -180,5 +180,7 @@
 | offsetY | 	纵向偏移量 | Number | - |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | roseType | 显示为南丁格尔玫瑰图 | String | 默认不展示为南丁格尔玫瑰图，可设置为`'radius', 'area'` |
-| label | 饼图图形上的文本标签 | Object | - |
+| label | 环图图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-pie.label) |
+| labelLine | 标签的视觉引导线样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-pie.labelLine) |
+| itemStyle | 图形样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-pie.itemStyle)  |
 | limitShowNum | 设置超过此数字时使用‘其他’代替 | Number | 此时数据会按照由大到小顺序显示 |
