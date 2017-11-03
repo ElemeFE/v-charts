@@ -25,7 +25,10 @@ function getSeries (args) {
     metrics,
     links,
     valueFull,
-    useDataValue
+    useDataValue,
+    label,
+    itemStyle,
+    lineStyle
   } = args
   const dataMap = {}
   const seriesData = rows.map(row => {
@@ -52,6 +55,9 @@ function getSeries (args) {
     data: seriesData,
     links: innerLinks
   }
+  if (label) result.label = label
+  if (itemStyle) result.itemStyle = itemStyle
+  if (lineStyle) result.lineStyle = lineStyle
   return [result]
 }
 
@@ -63,7 +69,10 @@ export const sankey = (columns, rows, settings, extra) => {
     dataType = ['normal', 'normal'],
     digit = 2,
     valueFull = false,
-    useDataValue = false
+    useDataValue = false,
+    label,
+    itemStyle,
+    lineStyle
   } = settings
 
   if (!links) {
@@ -84,7 +93,10 @@ export const sankey = (columns, rows, settings, extra) => {
     metrics,
     links,
     valueFull,
-    useDataValue
+    useDataValue,
+    label,
+    itemStyle,
+    lineStyle
   })
   return { tooltip, series }
 }

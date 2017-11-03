@@ -15,7 +15,16 @@ function getFunnelTooltip (dataType, digit) {
 }
 
 function getFunnelSeries (args) {
-  const { dimension, metrics, rows, sequence, ascending } = args
+  const {
+    dimension,
+    metrics,
+    rows,
+    sequence,
+    ascending,
+    label,
+    labelLine,
+    itemStyle
+  } = args
   let series = { type: 'funnel' }
   rows.sort((a, b) => {
     return sequence.indexOf(a[dimension]) - sequence.indexOf(b[dimension])
@@ -46,6 +55,9 @@ function getFunnelSeries (args) {
   }
 
   if (ascending) series.sort = 'ascending'
+  if (label) series.label = label
+  if (labelLine) series.labelLine = labelLine
+  if (itemStyle) series.itemStyle = itemStyle
   return series
 }
 
@@ -57,7 +69,10 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
     dimension = columns[0],
     sequence = rows.map(row => row[dimension]),
     digit = 2,
-    ascending
+    ascending,
+    label,
+    labelLine,
+    itemStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics
@@ -71,8 +86,16 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
 
   const tooltip = tooltipVisible && getFunnelTooltip(dataType, digit)
   const legend = legendVisible && { data: sequence }
-  const seriesParams = { dimension, metrics, rows, sequence, ascending }
-  const series = getFunnelSeries(seriesParams)
+  const series = getFunnelSeries({
+    dimension,
+    metrics,
+    rows,
+    sequence,
+    ascending,
+    label,
+    labelLine,
+    itemStyle
+  })
   const options = { tooltip, legend, series }
   return options
 }

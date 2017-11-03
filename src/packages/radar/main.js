@@ -55,7 +55,16 @@ function getRadarSetting (rows, metrics) {
 }
 
 function getRadarSeries (args) {
-  const { rows, dimension, metrics, radar } = args
+  const {
+    rows,
+    dimension,
+    metrics,
+    radar,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
+  } = args
   let radarIndexObj = {}
   radar.indicator.forEach((item, index) => {
     radarIndexObj[item.name] = index
@@ -73,20 +82,27 @@ function getRadarSeries (args) {
     })
     return serieData
   })
-  return [
-    {
-      name: dimension,
-      type: 'radar',
-      data: seriesData
-    }
-  ]
+  const result = {
+    name: dimension,
+    type: 'radar',
+    data: seriesData
+  }
+  if (label) result.label = label
+  if (itemStyle) result.itemStyle = itemStyle
+  if (lineStyle) result.lineStyle = lineStyle
+  if (areaStyle) result.areaStyle = areaStyle
+  return [result]
 }
 
 export const radar = (columns, rows, settings, extra) => {
   const {
     dataType = {},
     dimension = columns[0],
-    digit = 2
+    digit = 2,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -98,7 +114,16 @@ export const radar = (columns, rows, settings, extra) => {
   const legend = legendVisible && getRadarLegend(rows, dimension)
   const radar = getRadarSetting(rows, metrics)
   const tooltip = tooltipVisible && getRadarTooltip(dataType, radar, digit)
-  const series = getRadarSeries({ rows, dimension, metrics, radar })
+  const series = getRadarSeries({
+    rows,
+    dimension,
+    metrics,
+    radar,
+    label,
+    itemStyle,
+    lineStyle,
+    areaStyle
+  })
   const options = { legend, tooltip, radar, series }
   return options
 }
