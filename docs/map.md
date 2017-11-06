@@ -67,6 +67,37 @@
 </script>
 </script>
 
+#### 修改指标名称
+
+<vuep template="#change-metrics-name"></vuep>
+
+<script v-pre type="text/x-template" id="change-metrics-name">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '延庆区', 'GDP': 123 },
+          { '位置': '密云区', 'GDP': 1223 },
+          { '位置': '平谷区', 'GDP': 2123 },
+          { '位置': '海淀区', 'GDP': 4123 }
+        ]
+      }
+      this.chartSettings = {
+        labelMap: {
+          'GDP': '国内生产总值'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### 设置选中模式
 
 <vuep template="#set-selection"></vuep>

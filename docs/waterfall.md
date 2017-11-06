@@ -61,6 +61,36 @@
 </script>
 </script>
 
+#### 修改指标名称
+
+<vuep template="#change-metrics-name"></vuep>
+
+<script v-pre type="text/x-template" id="change-metrics-name">
+<template>
+  <ve-waterfall :data="chartData" :settings="chartSettings"></ve-waterfall>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['活动', '时间'],
+        rows: [
+          { '活动': '吃饭', '时间': 0.1 },
+          { '活动': '睡觉', '时间': 0.2 },
+          { '活动': '打豆豆', '时间': 0.3 }
+        ]
+      }
+      this.chartSettings = {
+        labelMap: {
+          '时间': 'time'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### 设置 总计、剩余 的名称
 
 <vuep template="#set-label"></vuep>

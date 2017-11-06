@@ -92,6 +92,37 @@
 </script>
 </script>
 
+#### 修改legend别名漏斗图
+
+<vuep template="#change-legend-name"></vuep>
+
+<script v-pre type="text/x-template" id="change-legend-name">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 0.9 },
+          { '状态': '访问', '数值': 0.6 },
+          { '状态': '点击', '数值': 0.3 },
+          { '状态': '订单', '数值': 0.1 }
+        ]
+      },
+      this.chartSettings = {
+        legendName: {
+          '订单': '订单biubiu～'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### 金字塔
 
 <vuep template="#pyramid-funnel"></vuep>
