@@ -106,6 +106,39 @@
 </script>
 </script>
 
+#### 设置legend别名漏斗图
+
+<vuep template="#stacked-bar"></vuep>
+
+<script v-pre type="text/x-template" id="stacked-bar">
+<template>
+  <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['日期', '成本', '利润'],
+        rows: [
+          { '日期': '1月1号', '成本': 123, '利润': 300 },
+          { '日期': '1月2号', '成本': 1223, '利润': 600 },
+          { '日期': '1月3号', '成本': 2123, '利润': 9000 },
+          { '日期': '1月4号', '成本': 4123, '利润': 1200 },
+          { '日期': '1月5号', '成本': 3123, '利润': 1500 },
+          { '日期': '1月6号', '成本': 7123, '利润': 2000 }
+        ]
+      }
+      this.chartSettings =  {
+        legendName: {
+          '成本': '成本biubiu～'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### 堆叠条形图
 
 <vuep template="#stacked-bar"></vuep>

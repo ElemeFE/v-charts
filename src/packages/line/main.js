@@ -52,7 +52,7 @@ function getLineSeries (args) {
   })
   metrics.forEach(item => {
     let seriesItem = {
-      name: labelMap && labelMap[item] || item,
+      name: labelMap[item] != null ? labelMap[item] : item,
       type: 'line',
       data: dataTemp[item]
     }
@@ -152,7 +152,7 @@ function getLegend (args) {
   return {
     data,
     formatter (name) {
-      return legendName && legendName[name] || name
+      return legendName[name] != null ? legendName[name] : name
     }
   }
 }
@@ -173,8 +173,8 @@ export const line = (columns, rows, settings, extra) => {
     max = [null, null],
     nullAddZero = false,
     digit = 2,
-    legendName,
-    labelMap,
+    legendName = {},
+    labelMap = {},
     label,
     itemStyle,
     lineStyle,

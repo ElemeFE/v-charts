@@ -2,10 +2,15 @@ import { itemPoint } from '../../echarts-base'
 import { getFormated } from '../../utils'
 import 'echarts/lib/chart/radar'
 
-function getRadarLegend (rows, dimension) {
+function getRadarLegend (rows, dimension, legendName) {
   let legendData = rows.map(row => row[dimension])
 
-  return { data: legendData }
+  return {
+    data: legendData,
+    formatter (name) {
+      return legendName[name] != null ? legendName[name] : name
+    }
+  }
 }
 
 function getRadarTooltip (dataType, radar, digit) {
@@ -19,7 +24,7 @@ function getRadarTooltip (dataType, radar, digit) {
     formatter (item) {
       const tpl = []
       tpl.push(itemPoint(item.color))
-      tpl.push(`${item.seriesName}<br />`)
+      tpl.push(`${item.name}<br />`)
       item.data.value.forEach((val, index) => {
         tpl.push(`${nameTemp[index]}: `)
         tpl.push(`${getFormated(val, typeTemp[index], digit)}<br />`)
@@ -29,7 +34,7 @@ function getRadarTooltip (dataType, radar, digit) {
   }
 }
 
-function getRadarSetting (rows, metrics) {
+function getRadarSetting (rows, metrics, labelMap) {
   const settingBase = {
     indicator: [],
     shape: 'circle',
@@ -38,10 +43,13 @@ function getRadarSetting (rows, metrics) {
   let indicatorTemp = {}
   rows.forEach(items => {
     metrics.forEach(item => {
-      if (!indicatorTemp[item]) {
-        indicatorTemp[item] = [items[item]]
+      const key = labelMap[item] != null
+        ? labelMap[item]
+        : item
+      if (!indicatorTemp[key]) {
+        indicatorTemp[key] = [items[item]]
       } else {
-        indicatorTemp[item].push(items[item])
+        indicatorTemp[key].push(items[item])
       }
     })
   })
@@ -63,11 +71,13 @@ function getRadarSeries (args) {
     label,
     itemStyle,
     lineStyle,
+    labelMap,
     areaStyle
   } = args
   let radarIndexObj = {}
   radar.indicator.forEach((item, index) => {
-    radarIndexObj[item.name] = index
+    const name = item.name
+    radarIndexObj[name] = index
   })
 
   const seriesData = rows.map(row => {
@@ -77,7 +87,10 @@ function getRadarSeries (args) {
     }
     Object.keys(row).forEach(key => {
       if (~metrics.indexOf(key)) {
-        serieData.value[radarIndexObj[key]] = row[key]
+        let k = labelMap[key] != null
+          ? radarIndexObj[labelMap[key]]
+          : radarIndexObj[key]
+        serieData.value[k] = row[key]
       }
     })
     return serieData
@@ -97,6 +110,8 @@ function getRadarSeries (args) {
 export const radar = (columns, rows, settings, extra) => {
   const {
     dataType = {},
+    legendName = {},
+    labelMap = {},
     dimension = columns[0],
     digit = 2,
     label,
@@ -111,8 +126,8 @@ export const radar = (columns, rows, settings, extra) => {
   } else {
     metrics.splice(columns.indexOf(dimension), 1)
   }
-  const legend = legendVisible && getRadarLegend(rows, dimension)
-  const radar = getRadarSetting(rows, metrics)
+  const legend = legendVisible && getRadarLegend(rows, dimension, legendName)
+  const radar = getRadarSetting(rows, metrics, labelMap)
   const tooltip = tooltipVisible && getRadarTooltip(dataType, radar, digit)
   const series = getRadarSeries({
     rows,
@@ -122,6 +137,7 @@ export const radar = (columns, rows, settings, extra) => {
     label,
     itemStyle,
     lineStyle,
+    labelMap,
     areaStyle
   })
   const options = { legend, tooltip, radar, series }

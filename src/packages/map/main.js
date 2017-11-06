@@ -2,13 +2,14 @@ import { default as echarts, itemPoint } from '../../echarts-base'
 import { getMapJSON, getFormated } from '../../utils'
 import 'echarts/lib/chart/map'
 
-function getTooltip (dataType, digit, dataStore, metrics, color) {
+function getTooltip (dataType, digit, dataStore, metrics, color, labelMap) {
   return {
     formatter (item) {
       let tpl = []
       tpl.push(`${item.name}<br>`)
       metrics.forEach((label, index) => {
-        tpl.push(`${itemPoint(color[index])} ${label} : `)
+        let title = labelMap[label] != null ? labelMap[label] : label
+        tpl.push(`${itemPoint(color[index])} ${title} : `)
         if (dataStore[item.name]) {
           tpl.push(getFormated(dataStore[item.name][label], dataType[label], digit))
         } else {
@@ -36,6 +37,7 @@ function getSeries (args) {
     aspectScale,
     boundingCoords,
     zoom,
+    labelMap,
     scaleLimit,
     mapGrid
   } = args
@@ -47,7 +49,7 @@ function getSeries (args) {
 
   metrics.forEach(itemName => {
     const itemResult = Object.assign({
-      name: itemName,
+      name: labelMap[itemName] != null ? labelMap[itemName] : itemName,
       data: [],
       selectedMode,
       roam,
@@ -91,6 +93,20 @@ function setGeoLabel (value, target, label) {
   }
 }
 
+function getLegendMap (args) {
+  const { metrics, legendName, labelMap } = args
+  if (!legendName && !labelMap) return { data: metrics }
+  const data = labelMap
+    ? metrics.map(item => (labelMap[item] == null ? item : labelMap[item]))
+    : metrics
+  return {
+    data,
+    formatter (name) {
+      return legendName[name] != null ? legendName[name] : name
+    }
+  }
+}
+
 export const map = (columns, rows, settings, extra) => {
   const {
     position = 'china',
@@ -106,6 +122,8 @@ export const map = (columns, rows, settings, extra) => {
     boundingCoords,
     zoom,
     scaleLimit,
+    legendName = {},
+    labelMap = {},
     mapGrid,
     itemStyle,
     positionJsonLink,
@@ -120,8 +138,8 @@ export const map = (columns, rows, settings, extra) => {
   const { tooltipVisible, legendVisible, color } = extra
   const dataStore = {}
   rows.forEach(row => { dataStore[row[dimension]] = row })
-  const tooltip = tooltipVisible && getTooltip(dataType, digit, dataStore, metrics, color)
-  const legend = legendVisible && { data: metrics }
+  const tooltip = tooltipVisible && getTooltip(dataType, digit, dataStore, metrics, color, labelMap)
+  const legend = legendVisible && getLegendMap({ metrics, legendName, labelMap })
   const seriesParams = {
     position,
     selectData,
@@ -136,6 +154,7 @@ export const map = (columns, rows, settings, extra) => {
     aspectScale,
     boundingCoords,
     zoom,
+    labelMap,
     scaleLimit,
     mapGrid
   }

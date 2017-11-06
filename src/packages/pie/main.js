@@ -107,7 +107,7 @@ function getPieSeries (args) {
 }
 
 function getPieLegend (args) {
-  const { innerRows, dimension, legendLimit, level, limitShowNum } = args
+  const { innerRows, dimension, legendLimit, legendName, level, limitShowNum } = args
   let legend = []
   const levelTemp = []
   if (level) {
@@ -125,9 +125,17 @@ function getPieLegend (args) {
   } else {
     legend = innerRows.map(row => row[dimension])
   }
-  return legend.length
-    ? { data: legend, show: legend.length < legendLimit }
-    : false
+  if (legend.length) {
+    return {
+      data: legend,
+      show: legend.length < legendLimit,
+      formatter (name) {
+        return legendName[name] != null ? legendName[name] : name
+      }
+    }
+  } else {
+    return false
+  }
 }
 
 function getPieTooltip (args) {
@@ -187,6 +195,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     selectedMode = false,
     hoverAnimation = true,
     digit = 2,
+    legendName = {},
     label = false,
     level = false,
     limitShowNum = 0,
@@ -209,6 +218,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     roseType,
     label,
     level,
+    legendName,
     limitShowNum,
     isRing,
     labelLine,
@@ -219,6 +229,7 @@ export const pie = (columns, rows, settings, extra, isRing) => {
     innerRows,
     dimension,
     legendLimit,
+    legendName,
     level,
     limitShowNum
   }

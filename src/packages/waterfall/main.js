@@ -22,6 +22,7 @@ function getWaterfallXAxis (args) {
     remainStatus,
     totalName,
     remainName,
+    labelMap,
     xAxisName,
     axisVisible
   } = args
@@ -32,7 +33,7 @@ function getWaterfallXAxis (args) {
 
   return {
     type: 'category',
-    name: xAxisName,
+    name: labelMap && labelMap[xAxisName] || xAxisName,
     splitLine: { show: false },
     data: xAxisData,
     show: axisVisible
@@ -40,10 +41,10 @@ function getWaterfallXAxis (args) {
 }
 
 function getWaterfallYAxis (args) {
-  const { dataType, yAxisName, axisVisible, digit } = args
+  const { dataType, yAxisName, axisVisible, digit, labelMap } = args
   return {
     type: 'value',
-    name: yAxisName,
+    name: labelMap[yAxisName] != null ? labelMap[yAxisName] : yAxisName,
     axisTick: { show: false },
     axisLabel: {
       formatter (val) {
@@ -124,6 +125,7 @@ export const waterfall = (columns, rows, settings, extra) => {
     totalNum,
     remainName = '其他',
     xAxisName = dimension,
+    labelMap = {},
     axisVisible = true,
     digit = 2
   } = settings
@@ -144,10 +146,11 @@ export const waterfall = (columns, rows, settings, extra) => {
     totalName,
     remainName,
     xAxisName,
+    labelMap,
     axisVisible
   }
   const xAxis = getWaterfallXAxis(xAxisParams)
-  const yAxis = getWaterfallYAxis({ dataType, yAxisName, axisVisible, digit })
+  const yAxis = getWaterfallYAxis({ dataType, yAxisName, axisVisible, digit, labelMap })
   const seriesParams = {
     dataType,
     rows,
