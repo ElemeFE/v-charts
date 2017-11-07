@@ -9,6 +9,7 @@ import radar from './radar'
 import chart from './chart'
 import map from './map'
 import sankey from './sankey'
+import heatmap from './heatmap'
 
 export default {
   bar,
@@ -21,5 +22,6 @@ export default {
   radar,
   chart,
   map,
-  sankey
+  sankey,
+  heatmap
 }

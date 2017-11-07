@@ -1,27 +1,15 @@
 <template>
   <div id="app">
-    <ve-line :data="chartData"></ve-line>
-    <ve-heatmap :data="heatmapChartData" :settings="chartSettings"></ve-heatmap>
+    <ve-heatmap :data="chartData" :settings="chartSettings"></ve-heatmap>
   </div>
 </template>
 
 <script>
-import { VeLine, VeHeatmap } from '../../../../lib/index.esm'
+import VeHeatmap from '../../../../lib/heatmap'
 
 export default {
   created: function () {
     this.chartData = {
-      columns: ['日期', '销售额'],
-      rows: [
-        { '日期': '1月1日', '销售额': 123 },
-        { '日期': '1月2日', '销售额': 1223 },
-        { '日期': '1月3日', '销售额': 2123 },
-        { '日期': '1月4日', '销售额': 4123 },
-        { '日期': '1月5日', '销售额': 3123 },
-        { '日期': '1月6日', '销售额': 7123 }
-      ]
-    }
-    this.heatmapChartData = {
       columns: ['lat', 'lng'],
       rows: [
         { 'lat': 120.14322240845, 'lng': 30.236064370321 },
@@ -46,6 +34,6 @@ export default {
       type: 'bmap'
     }
   },
-  components: { VeLine, VeHeatmap }
+  components: { VeHeatmap }
 }
 </script>
