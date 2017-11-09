@@ -35,6 +35,7 @@ import VeRadar from '../../src/packages/radar'
 import VeChart from '../../src/packages/chart'
 import VeMap from '../../src/packages/map'
 import VeSankey from '../../src/packages/sankey'
+import VeScatter from '../../src/packages/scatter'
 import CHART_DATA from '../data'
 
 export default {
@@ -75,7 +76,8 @@ export default {
     VeRadar,
     VeChart,
     VeMap,
-    VeSankey
+    VeSankey,
+    VeScatter
   }
 }
 </script>
