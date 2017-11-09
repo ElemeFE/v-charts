@@ -10,6 +10,7 @@ import chart from './chart'
 import map from './map'
 import sankey from './sankey'
 import heatmap from './heatmap'
+import scatter from './scatter'
 
 export default {
   bar,
@@ -23,5 +24,6 @@ export default {
   chart,
   map,
   sankey,
-  heatmap
+  heatmap,
+  scatter
 }
