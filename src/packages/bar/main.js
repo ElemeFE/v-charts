@@ -155,7 +155,7 @@ function getBarSeries (args) {
       ? getValueData(seriesTemp[item], dims)
       : seriesTemp[item]
     const seriesItem = {
-      name: labelMap && labelMap[item] || item,
+      name: labelMap[item] != null ? labelMap[item] : item,
       type: ~showLine.indexOf(item) ? 'line' : 'bar',
       data,
       [secondDimAxisIndex]: ~secondAxis.indexOf(item) ? '1' : '0'
@@ -192,7 +192,7 @@ function getLegend (args) {
   return {
     data,
     formatter (name) {
-      return legendName && legendName[name] || name
+      return legendName[name] != null ? legendName[name] : name
     }
   }
 }
@@ -213,8 +213,8 @@ export const bar = (columns, rows, settings, extra) => {
     scale = [false, false],
     min = [null, null],
     max = [null, null],
-    legendName,
-    labelMap,
+    legendName = {},
+    labelMap = {},
     label,
     itemStyle,
     showLine,
@@ -306,8 +306,8 @@ export const histogram = (columns, rows, settings, status) => {
     scale = [false, false],
     min = [null, null],
     max = [null, null],
-    labelMap,
-    legendName,
+    labelMap = {},
+    legendName = {},
     label,
     itemStyle,
     showLine,

@@ -14,6 +14,16 @@ function getFunnelTooltip (dataType, digit) {
   }
 }
 
+function getFunnelLegend (args) {
+  const { data, legendName } = args
+  return {
+    data,
+    formatter (name) {
+      return legendName[name] != null ? legendName[name] : name
+    }
+  }
+}
+
 function getFunnelSeries (args) {
   const {
     dimension,
@@ -72,6 +82,7 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
     ascending,
     label,
     labelLine,
+    legendName = {},
     itemStyle
   } = settings
   const { tooltipVisible, legendVisible } = extra
@@ -85,8 +96,7 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
   }
 
   const tooltip = tooltipVisible && getFunnelTooltip(dataType, digit)
-  const legend = legendVisible && { data: sequence }
-  const series = getFunnelSeries({
+  const seriesParams = {
     dimension,
     metrics,
     rows,
@@ -95,7 +105,9 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
     label,
     labelLine,
     itemStyle
-  })
+  }
+  const legend = legendVisible && getFunnelLegend({ data: sequence, legendName })
+  const series = getFunnelSeries(seriesParams)
   const options = { tooltip, legend, series }
   return options
 }
