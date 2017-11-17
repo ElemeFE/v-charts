@@ -238,7 +238,7 @@
 | --- | --- | --- | --- |
 | dimension | 维度 | String | 默认columns第一项为维度 |
 | metrics | 指标 | Array | 默认columns第二项为指标 |
-| position | 地图类型 | String | 默认为 `'china'` |
+| position | 位置 | String | 默认为 `'china'` |
 | selectData | 是否高亮显示数据对应位置 | Boolean | 默认为 `false` |
 | selectedMode | 地图选中模式 | Boolean，String | 默认为 `false`, 可选值有<br>`'single', 'multiple'` |
 | dataType | 指标数据类型 | Object | 内容为 指标-指标数据 <br>类型的键值对，支持<br>`'normal', 'KMB', 'percent'` |

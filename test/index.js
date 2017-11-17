@@ -16,7 +16,8 @@ import {
   VeWaterfall,
   VeChart,
   VeMap,
-  VeSankey
+  VeSankey,
+  VeHeatmap
 } from '../lib/index.esm'
 
 const comps = {
@@ -30,7 +31,8 @@ const comps = {
   waterfall: VeWaterfall,
   chart: VeChart,
   map: VeMap,
-  sankey: VeSankey
+  sankey: VeSankey,
+  heatmap: VeHeatmap
 }
 let box
 let vm = {}

@@ -1947,11 +1947,11 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
-echarts@^3.0.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.7.1.tgz#fad25d4b1cbb7ec28f1b0fa890e9a0d86056b2d5"
+echarts@^3.8.3:
+  version "3.8.3"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-3.8.3.tgz#0ecf0ceb870ee8cca2426f3a18a10e287532603c"
   dependencies:
-    zrender "^3.6.1"
+    zrender "3.7.2"
 
 editorconfig@^0.13.2:
   version "0.13.3"
@@ -6437,6 +6437,6 @@ zoom-image@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/zoom-image/-/zoom-image-0.1.4.tgz#faaf0a8051bb6726be60cf3dd6a335ec73f1e969"
 
-zrender@^3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.6.1.tgz#362e8c4eb6c970a8d97c84daa8d65f37921b826b"
+zrender@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-3.7.2.tgz#2d296158f267ea8bf818822459f6bb331ce6984d"
