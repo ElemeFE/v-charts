@@ -29,9 +29,26 @@
       repo: 'https://github.com/elemefe/v-charts',
       loadSidebar: 'sidebar.md',
       ga: 'UA-104697795-1',
-      homepage: 'install.md'
+      homepage: 'install.md',
+      plugins: [
+        function (hook, vm) {
+          hook.doneEach(function () {
+            if (vm.shap) vm.shap.spa()
+          })
+
+          hook.ready(function () {
+            vm.shap = new Shap({
+              el: document.body.appendChild(document.createElement('div')),
+              mode: 'suspension',
+              key: '5a1674c7d1be5c004cc096df',
+              formatter: function () { return vm.route.path }
+            })
+          })
+        }
+      ]
     }
   </script>
+  <script src="//unpkg.com/shap/sdk/Shap.umd.min.js"></script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
   <script src="//unpkg.com/vue/dist/vue.min.js"></script>
   <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>

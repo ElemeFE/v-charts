@@ -28,7 +28,6 @@
 | visual-map | 视觉映射组件 | Array, Object | 内容参考[文档](http://echarts.baidu.com/option.html#visualMap)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/visualMap'` |
 | data-zoom | 区域缩放组件 | Array, Object | 内容参考[文档](http://echarts.baidu.com/option.html#dataZoom)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/dataZoom'` |
 | toolbox | 工具箱 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#toolbox)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/toolbox'` |
-| title | 图表标题 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#title)<br>使用时需额外引入对应模块<br>`'echarts/lib/component/title'` |
 | init-options | init 附加参数 | Object | 内容参考[文档](http://echarts.baidu.com/api.html#echarts.init) |
 | theme | 自定义主题 | Object | 内容为自定义主题参数 |
 | theme-name | 自定义主题名称 | String | 内容为全局注册的自定义主题名称 |
@@ -47,6 +46,7 @@
 
 最后，下面这些与echarts配置项对应的属性也被加到了组件上，设置后将会直接覆盖options原有的对应属性，使用方式可参考[文档](http://echarts.baidu.com/option.html)
 ```
+title: Object
 legend: Object
 xAxis: Object
 yAxis: Object
@@ -61,8 +61,6 @@ series: [Object, Array]
 backgroundColor: [Object, String]
 textStyle: Object
 ```
-
-> 备注：如果某属性加上去之后没有生效，很可能是没有引入相应的模块，模块的位置可以参考此[文件](https://github.com/ecomfe/echarts/blob/master/index.js)
 
 
 ##### 另外一种是图表自身的属性，比如用户设置数据类型的`dataType`，这样的属性被置于settings内，每种图表的配置项不完全相同，具体参数参考下述图表文档中的配置项
