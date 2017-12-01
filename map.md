@@ -67,6 +67,37 @@
 </script>
 </script>
 
+#### 修改指标名称
+
+<vuep template="#change-metrics-name"></vuep>
+
+<script v-pre type="text/x-template" id="change-metrics-name">
+<template>
+  <ve-map :data="chartData" :settings="chartSettings"></ve-map>
+</template>
+
+<script>
+  module.exports = {
+    created: function () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '延庆区', 'GDP': 123 },
+          { '位置': '密云区', 'GDP': 1223 },
+          { '位置': '平谷区', 'GDP': 2123 },
+          { '位置': '海淀区', 'GDP': 4123 }
+        ]
+      }
+      this.chartSettings = {
+        labelMap: {
+          'GDP': '国内生产总值'
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### 设置选中模式
 
 <vuep template="#set-selection"></vuep>
@@ -207,7 +238,7 @@
 | --- | --- | --- | --- |
 | dimension | 维度 | String | 默认columns第一项为维度 |
 | metrics | 指标 | Array | 默认columns第二项为指标 |
-| position | 地图类型 | String | 默认为 `'china'` |
+| position | 位置 | String | 默认为 `'china'` |
 | selectData | 是否高亮显示数据对应位置 | Boolean | 默认为 `false` |
 | selectedMode | 地图选中模式 | Boolean，String | 默认为 `false`, 可选值有<br>`'single', 'multiple'` |
 | dataType | 指标数据类型 | Object | 内容为 指标-指标数据 <br>类型的键值对，支持<br>`'normal', 'KMB', 'percent'` |
