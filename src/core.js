@@ -83,6 +83,13 @@ export default {
         if (v.type && this.chartLib) this.chartHandler = this.chartLib[v.type]
         this.dataHandler(this.data)
       }
+    },
+
+    events: {
+      deep: true,
+      handler () {
+        this.createEventProxy()
+      }
     }
   },
 
@@ -229,13 +236,7 @@ export default {
       const themeName = this.themeName || (this.theme ? 'outer-theme' : 've-chart')
       this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.dataHandler(this.data)
-      if (this.events) this.bindEvents()
-    },
-
-    bindEvents () {
-      Object.keys(this.events).forEach(event => {
-        this.echarts.on(event, this.events[event])
-      })
+      this.createEventProxy()
     },
 
     addWatchToProps () {
@@ -255,11 +256,32 @@ export default {
 
     registerTheme () {
       echarts.registerTheme('outer-theme', this.theme)
+    },
+
+    createEventProxy () {
+      // 只要用户使用 on 方法绑定的事件都做一层代理，
+      // 是否真正执行相应的事件方法取决于该方法是否仍然存在 events 中
+      // 实现 events 的动态响应
+      const self = this
+      const keys = Object.keys(this.events || {})
+      keys.length && keys.forEach(ev => {
+        if (this.registeredEvents.indexOf(ev) === -1) {
+          this.registeredEvents.push(ev)
+          this.echarts.on(ev, (function (ev) {
+            return function (...args) {
+              if (ev in self.events) {
+                self.events[ev].apply(null, args)
+              }
+            }
+          })(ev))
+        }
+      })
     }
   },
 
   created () {
     this.echarts = null
+    this.registeredEvents = []
     this._once = {}
     this.addWatchToProps()
     if (this.theme) this.registerTheme()
