@@ -2,7 +2,7 @@
 
 #### 示例
 
-<!-- TODO: add demo here -->
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/mfagszmL/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 直角坐标系热力图
 
