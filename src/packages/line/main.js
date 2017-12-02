@@ -124,7 +124,9 @@ function getLineTooltip (args) {
     trigger: 'axis',
     formatter (items) {
       let tpl = []
-      tpl.push(`${items[0].name}<br>`)
+      const { name, axisValueLabel } = items[0]
+      const title = name || axisValueLabel
+      tpl.push(`${title}<br>`)
       items.forEach(item => {
         let showData = null
         const type = ~rightList.indexOf(item.seriesName)
