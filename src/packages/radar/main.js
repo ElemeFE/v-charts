@@ -1,6 +1,5 @@
 import { itemPoint } from '../../echarts-base'
 import { getFormated } from '../../utils'
-import 'echarts/lib/chart/radar'
 
 function getRadarLegend (rows, dimension, legendName) {
   let legendData = rows.map(row => row[dimension])

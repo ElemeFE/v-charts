@@ -1,6 +1,5 @@
 import { itemPoint } from '../../echarts-base'
 import { getFormated, clone } from '../../utils'
-import 'echarts/lib/chart/pie'
 
 const pieRadius = 100
 const ringRadius = [80, 100]

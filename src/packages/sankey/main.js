@@ -1,6 +1,5 @@
 import { getFormated } from '../../utils'
 import { itemPoint } from '../../echarts-base'
-import 'echarts/lib/chart/sankey'
 
 function getTooltip (args) {
   const {

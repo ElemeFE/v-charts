@@ -1,75 +1,76 @@
 import { itemPoint } from '../../echarts-base'
-import { getFormated } from '../../utils'
-import 'echarts/lib/chart/scatter'
+import { getFormated, isArray } from '../../utils'
+import { line } from '../line/main'
 
-function getScatterLegend (rows, dimension) {
-  const legendArray = Object.keys(rows[0])
-  return { data: legendArray }
-}
-
-function getScatterTooltip (rows, columns) {
+function getScatterLegend (dataLabels, legendName) {
   return {
-    formatter (data) {
-      const tpl = []
-      tpl.push(itemPoint(data.color))
-      tpl.push(`${data.seriesName}</br>`)
-      columns.forEach((column, index) => {
-        tpl.push(`${column}: ${data.data[index]}</br>`)
-      })
-      return tpl.join('')
+    data: dataLabels,
+    formatter (name) {
+      return legendName[name] != null ? legendName[name] : name
     }
   }
 }
 
-function getScatterXAxis (params, legend) {
-  const {
-    rows,
-    dimension,
-    xAxisName,
-    silent,
-    axisVisible,
-    xAxisType,
-    digit
-  } = params
-  const xAxisData = []
-
-  legend.data.forEach(key => {
-    rows[0][key].forEach(item => {
-      if (!~xAxisData.indexOf(item[dimension])) {
-        xAxisData.push(item[dimension])
+function getScatterTooltip (args) {
+  const { tooltipTrigger } = args
+  return {
+    trigger: tooltipTrigger,
+    formatter (item) {
+      if (isArray(item)) {
+        return item.map(i => getTooltipContent(i, args)).join('')
+      } else {
+        return getTooltipContent(item, args)
       }
-      xAxisData.sort((a, b) => (a - b))
+    }
+  }
+}
+
+function getTooltipContent (item, args) {
+  const { labelMap, columns, dataType, digit } = args
+  const tpl = []
+  const { color, seriesName, data: { value } } = item
+  tpl.push(`${itemPoint(color)} ${seriesName}<br>`)
+  value.forEach((d, i) => {
+    const name = labelMap[columns[i]] || columns[i]
+    const num = isNaN(d) ? d : getFormated(d, dataType[columns[i]], digit)
+    tpl.push(`${name}: ${num}<br>`)
+  })
+  return tpl.join('')
+}
+
+function getScatterXAxis (args) {
+  const { xAxisName, axisVisible, xAxisType, rows, dataLabels, dimension } = args
+  const data = []
+  dataLabels.forEach(dataLabel => {
+    const itemData = rows[dataLabel]
+    itemData.forEach(item => {
+      const name = item[dimension]
+      if (name && !~data.indexOf(name)) data.push(name)
     })
   })
-  console.log(xAxisData)
 
-  return {
+  return [{
     type: xAxisType,
     show: axisVisible,
-    data: xAxisData,
     name: xAxisName,
-    silent,
-    axisLabel: {
-      formatter (val) {
-        return getFormated(val, xAxisType, digit)
-      }
-    }
-  }
+    data
+  }]
 }
 
-function getScatterYAxis (params, legend) {
+function getScatterYAxis (args) {
   const {
     min,
     max,
-    yAxisName,
     scale,
-    yAxisType,
+    yAxisName,
+    dataType,
+    metrics,
     digit,
     axisVisible
-  } = params
+  } = args
 
   return {
-    type: yAxisType,
+    type: 'value',
     show: axisVisible,
     scale,
     min,
@@ -77,155 +78,160 @@ function getScatterYAxis (params, legend) {
     axisTick: { show: false },
     name: yAxisName,
     axisLabel: {
-      formatter (val) {
-        return getFormated(val, yAxisType, digit)
-      }
+      formatter (val) { return getFormated(val, dataType[metrics[0]], digit) }
     }
   }
 }
 
-function getScatterSeries (params, legendArray) {
+function getScatterSeries (args) {
   const {
     rows,
+    dataLabels,
     columns,
-    symbol,
-    symbolSizeMax,
-    symbolRotate,
-    largeThreshold,
-    cursor,
+    metrics,
+    dimension,
     label,
     itemStyle,
-    hoverAnimation,
-    legendHoverLink,
-    symbolSizeDim
-  } = params
-
-  const dataTypeArray = []
-  for (var i = 0; i < legendArray.data.length; i++) {
-    dataTypeArray.push([])
-  }
-
-  const sizeArray = []
-  let dimensionSizeIndex
-
-  Object.keys(rows[0]).forEach((key, index) => {
-    rows[0][key].forEach(row => {
-      dataTypeArray[index].push(columns.map((item, index) => {
-        if (item === symbolSizeDim) dimensionSizeIndex = index
-        return row[item]
-      }))
+    symbol,
+    symbolSizeMax,
+    symbolSize,
+    symbolRotate,
+    symbolOffset,
+    cursor
+  } = args
+  const extraMetrics = columns.filter(column => {
+    return !~metrics.indexOf(column) && column !== dimension
+  })
+  const numbers = []
+  dataLabels.forEach(dataLabel => {
+    rows[dataLabel].forEach(row => {
+      numbers.push(row[metrics[1]])
     })
   })
+  const maxNum = Math.max.apply(null, numbers)
 
-  dataTypeArray.forEach(series => {
-    series.forEach(serie => {
-      sizeArray.push(serie[dimensionSizeIndex])
+  const series = []
+  dataLabels.forEach(dataLabel => {
+    const result = []
+    const itemData = rows[dataLabel]
+    itemData.forEach(item => {
+      const itemResult = { value: [] }
+      itemResult.value.push(item[dimension], item[metrics[0]], item[metrics[1]])
+      extraMetrics.forEach(ext => { itemResult.value.push(item[ext]) })
+      itemResult.symbolSize = symbolSize || (item[metrics[1]] / maxNum) * symbolSizeMax
+      result.push(itemResult)
     })
-  })
-
-  const maxSize = sizeArray.sort((a, b) => { return b - a })[0]
-
-  const style = itemStyle || { normal: {
-    shadowBlur: 10,
-    shadowColor: 'rgba(25, 100, 150, 0.5)',
-    shadowOffsetY: 5
-  } }
-
-  const series = dataTypeArray.map((item, index) => {
-    return {
-      name: legendArray.data[index],
-      data: item,
+    series.push({
       type: 'scatter',
+      data: result,
+      name: dataLabel,
       label,
-      largeThreshold,
-      cursor,
+      itemStyle,
+      symbol,
       symbolRotate,
-      itemStyle: style,
-      hoverAnimation,
-      legendHoverLink,
-      symbolSize: function (data) {
-        return (data[dimensionSizeIndex] / (maxSize)) * symbolSizeMax
-      },
-      symbol: symbol
-    }
+      symbolOffset,
+      cursor
+    })
   })
   return series
 }
 
 const scatter = (columns, rows, settings, extra) => {
   const {
-    min = null,
-    max = null,
-    symbol = 'circle', // 散点的形状
-    scale = false, // 是否从零开始
-    hoverAnimation = true, // 是否支持hover动画
-    legendHoverLink = true,
-    symbolSizeMax = 60,
-    xAxisName = [],
-    yAxisName = [],
-    yAxisType = 'value',
+    dimension = columns[0],
+    metrics = [columns[1], columns[2]],
+    dataType = {},
     xAxisType = 'category',
-    digit = 2, // 是否保留两位小数
-    symbolRotate,
-    axisVisible = true,
-    symbolOffset = [0, 0],
-    largeThreshold = 2000,
-    cursor = 'pointer',
-    label,
-    itemStyle,
-    silent = false,
-    dimension = columns[0], // x轴（这个好像是不可配置的）
-    symbolSizeDim = columns[2] // 第几个数据控制散点的大小，可配置
-  } = settings
-
-  const { tooltipVisible, legendVisible } = extra
-
-  const xParams = {
-    rows,
-    dimension,
     xAxisName,
-    silent,
-    axisVisible,
-    xAxisType,
-    digit
-  }
-
-  const yParams = {
-    rows,
+    yAxisName,
+    digit = 2,
+    legendName = {},
+    labelMap = {},
+    tooltipTrigger = 'item',
+    axisVisible = true,
+    symbolSizeMax = 50,
+    symbol,
+    symbolSize,
+    symbolRotate,
+    symbolOffset,
+    cursor,
     min,
     max,
     scale,
-    digit,
-    yAxisName,
-    yAxisType,
-    dimension,
-    axisVisible
+    label,
+    itemStyle
+  } = settings
+
+  if (isArray(rows)) {
+    const lineSettings = Object.assign({}, settings, {
+      xAxisName: xAxisName ? [xAxisName] : undefined,
+      yAxisName: yAxisName ? [yAxisName] : undefined,
+      scale: scale ? [scale] : undefined,
+      min: min ? [min] : undefined,
+      max: max ? [max] : undefined,
+      dimension: dimension ? [dimension] : undefined
+    })
+    const options = line(columns, rows, lineSettings, extra)
+    options.series.forEach(item => {
+      Object.assign(item, {
+        type: 'scatter',
+        symbol,
+        symbolSize: symbolSize || 10,
+        symbolRotate,
+        symbolOffset,
+        cursor,
+        label,
+        itemStyle
+      })
+    })
+    return options
   }
 
-  const seriesParams = {
-    rows,
+  const { tooltipVisible, legendVisible } = extra
+  const dataLabels = Object.keys(rows)
+
+  const legend = legendVisible && getScatterLegend(dataLabels, legendName)
+  const tooltip = tooltipVisible && getScatterTooltip({
+    tooltipTrigger,
+    labelMap,
     columns,
-    symbol,
+    dataType,
+    digit
+  })
+  const xAxis = getScatterXAxis({
+    xAxisName,
+    axisVisible,
+    xAxisType,
+    dataLabels,
+    dimension,
+    rows
+  })
+  const yAxis = getScatterYAxis({
+    min,
+    max,
+    scale,
+    yAxisName,
+    dataType,
+    metrics,
+    digit,
+    axisVisible
+  })
+  const series = getScatterSeries({
+    rows,
+    dataLabels,
+    columns,
+    metrics,
     dimension,
     label,
-    symbolOffset,
-    largeThreshold,
-    cursor,
     itemStyle,
-    symbolRotate,
-    hoverAnimation,
-    legendHoverLink,
+    symbol,
     symbolSizeMax,
-    symbolSizeDim
-  }
-
-  const legend = legendVisible && getScatterLegend(rows, dimension)
-  const tooltip = tooltipVisible && getScatterTooltip(rows, columns)
-  const xAxis = getScatterXAxis(xParams, legend)
-  const yAxis = getScatterYAxis(yParams, legend)
-  const series = getScatterSeries(seriesParams, legend)
-  const options = { legend, tooltip, xAxis, yAxis, series }
-  return options
+    symbolSize,
+    symbolRotate,
+    symbolOffset,
+    cursor
+  })
+  return { legend, tooltip, xAxis, yAxis, series }
 }
 
 export { scatter }

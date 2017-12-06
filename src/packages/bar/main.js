@@ -1,6 +1,5 @@
 import { itemPoint } from '../../echarts-base'
 import { getFormated, getStackMap, clone } from '../../utils'
-import 'echarts/lib/chart/bar'
 import set from 'lodash-es/set'
 import get from 'lodash-es/get'
 // default opacity of bar while dim-axis type is 'value'

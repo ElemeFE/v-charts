@@ -13,12 +13,6 @@ import VeSankey from '../sankey'
 import VeHeatmap from '../heatmap'
 import VeScatter from '../scatter'
 
-import 'echarts/lib/chart/bar'
-import 'echarts/lib/chart/funnel'
-import 'echarts/lib/chart/line'
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/chart/radar'
-
 const components = [
   VeBar,
   VeHistogram,
