@@ -2,13 +2,17 @@
 
 散点图有两种：单维度多指标散点图和双维度多指标散点图。
 
-单维度多指标散点图示例：
+#### 单维度多指标散点图示例：
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/1xjfgz25/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-其中横轴为维度（日期），纵轴为指标（余额，数量，年龄）。
+横轴为维度（日期），纵轴为指标（余额，数量，年龄）。
 
-双维度多指标散点图示例：
+#### 双维度多指标散点图示例：
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/e0hbk316/3/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-其中图例和横轴分别为两个维度(地点，日期)，指标（余额，数量，年龄）展示在 纵轴，散点大小，visualMap 及 tooltip 中。其中，metrics 数组的第一项（默认为 columns[1]）展示为纵轴，metrics 数组的第一项（默认为 columns[1]）展示在纵轴，第二项（默认为 columns[2]）展示为散点大小，metrics 数组的第二项（默认为 columns[1]）展示在纵轴， visualMap 需特殊配置。
+图例和横轴分别为两个维度(地点，日期)，指标（余额，数量，年龄）展示在 纵轴，散点大小，visualMap 及 tooltip 中。
+
+其中，metrics 数组的第一项（默认为 columns[1]）展示为纵轴，metrics 数组的第一项（默认为 columns[1]）展示在纵轴，第二项（默认为 columns[2]）展示为散点大小，metrics 数组的第二项（默认为 columns[1]）展示在纵轴， visualMap 需特殊配置。
 
 visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视觉元素上，接受的是一个数字，代表数据的次序，其中，数据的排序为 dimension, metrics[0], metrics[1], columns 中的其他指标，在上图中的次序就是 日期，余额，数量，年龄，如果想要将年龄映射到视觉元素上，dimension 的值就是 3。
 
@@ -105,55 +109,6 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
       this.chartSettings = {
         dimension: '日期',
         metrics: ['年龄', '数量']
-      }
-    }
-  }
-</script>
-</script>
-
-#### visualMap 配置
-
-<vuep template="#set-visualMap"></vuep>
-
-<script v-pre type="text/x-template" id="set-visualMap">
-<template>
-  <ve-scatter :data="chartData" :grid="chartGrid" :visual-map="chartVisualMap" :settings="chartSettings"></ve-scatter>
-</template>
-
-<script>
-  // 使用前，需先引入 visualMap 的依赖
-  // import 'echarts/lib/component/visualMap'
-  module.exports = {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '余额', '数量', '年龄'],
-        rows: {
-          '上海': [
-            { '日期': '1-1', '余额': 123, '年龄': 3, '数量': 1244 },
-            { '日期': '1-2', '余额': 1223, '年龄': 6, '数量': 2344 },
-            { '日期': '1-3', '余额': 7123, '年龄': 9, '数量': 3245 },
-            { '日期': '1-4', '余额': 4123, '年龄': 12, '数量': 4355 },
-            { '日期': '1-5', '余额': 3123, '年龄': 15, '数量': 4564 },
-            { '日期': '1-6', '余额': 2323, '年龄': 20, '数量': 6537 }
-          ]
-        }
-      }
-      this.chartSettings = {
-        dimension: '日期',
-        metrics: ['年龄', '数量']
-      }
-      this.chartVisualMap = {
-        type: 'continuous',
-        dimension: 3,
-        min: 0,
-        max: 5000,
-        inRange: {
-          color: ['#19d4ae', '#5ab1ef']
-        },
-        bottom: 50
-      }
-      this.chartGrid = {
-        left: 30
       }
     }
   }
