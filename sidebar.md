@@ -14,6 +14,7 @@
   - [地图](/map)
   - [桑基图](/sankey)
   - [热力图](/heatmap)
+  - [散点图](/scatter)
 - 其他
   - [事件监听](/event)
   - [图表切换](/toggle)
