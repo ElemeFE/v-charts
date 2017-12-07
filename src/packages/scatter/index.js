@@ -1,12 +1,12 @@
 import echarts from '../../echarts-base'
-import 'echarts/lib/chart/funnel'
-import { funnel } from './main'
+import 'echarts/lib/chart/scatter'
+import { scatter } from './main'
 import Core from '../../core'
 export default {
-  name: 'VeFunnel',
+  name: 'VeScatter',
   mixins: [Core],
   created () {
-    this.chartHandler = funnel
+    this.chartHandler = scatter
     this.echartsLib = echarts
   }
 }

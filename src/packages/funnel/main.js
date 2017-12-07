@@ -1,6 +1,5 @@
 import { itemPoint } from '../../echarts-base'
 import { getFormated } from '../../utils'
-import 'echarts/lib/chart/funnel'
 
 function getFunnelTooltip (dataType, digit) {
   return {

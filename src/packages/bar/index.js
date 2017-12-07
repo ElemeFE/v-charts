@@ -1,4 +1,5 @@
 import echarts from '../../echarts-base'
+import 'echarts/lib/chart/bar'
 import { bar } from './main'
 import Core from '../../core'
 

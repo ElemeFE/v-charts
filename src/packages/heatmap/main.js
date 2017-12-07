@@ -1,8 +1,4 @@
 import { default as echarts, itemPoint, HEAT_MAP_COLOR, HEAT_BMAP_COLOR } from '../../echarts-base'
-import 'echarts/lib/chart/heatmap'
-import 'echarts/lib/component/visualMap'
-import 'echarts/extension/bmap/bmap'
-import 'echarts/lib/chart/map'
 import { getBmap, getMapJSON, getFormated } from '../../utils'
 
 function getAxisList (rows, label) {

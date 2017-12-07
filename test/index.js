@@ -17,7 +17,8 @@ import {
   VeChart,
   VeMap,
   VeSankey,
-  VeHeatmap
+  VeHeatmap,
+  VeScatter
 } from '../lib/index.esm'
 
 const comps = {
@@ -32,7 +33,8 @@ const comps = {
   chart: VeChart,
   map: VeMap,
   sankey: VeSankey,
-  heatmap: VeHeatmap
+  heatmap: VeHeatmap,
+  scatter: VeScatter
 }
 let box
 let vm = {}

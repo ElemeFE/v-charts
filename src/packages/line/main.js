@@ -1,6 +1,5 @@
 import { itemPoint } from '../../echarts-base'
 import { getFormated, getStackMap } from '../../utils'
-import 'echarts/lib/chart/line'
 
 function getLineXAxis (args) {
   const { dimension, rows, xAxisName, axisVisible, xAxisType } = args
