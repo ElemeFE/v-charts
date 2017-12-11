@@ -10,14 +10,15 @@ function getAxisList (rows, label) {
 }
 
 function getData (args) {
-  const { rows, innerXAxisList, innerYAxisList, xDim, yDim, metrics, type } = args
+  const { rows, innerXAxisList, innerYAxisList, xDim, yDim, metrics, type, extraMetrics } = args
   let result = null
   if (type === 'cartesian') {
     result = rows.map(row => {
       const xIndex = innerXAxisList.indexOf(row[xDim])
       const yIndex = innerYAxisList.indexOf(row[yDim])
       const value = metrics ? row[metrics] : 1
-      return [xIndex, yIndex, value]
+      const extraData = extraMetrics.map(m => row[m] || '-')
+      return [xIndex, yIndex, value].concat(extraData)
     })
   } else {
     result = rows.map(row => {
@@ -66,6 +67,7 @@ function getVisualMap (args) {
       orient: 'horizontal',
       left: 'center',
       bottom: 10,
+      dimension: 2,
       inRange: heatColor && { color: heatColor }
     }
   }
@@ -82,15 +84,17 @@ function getSeries (args) {
 }
 
 function getTooltip (args) {
-  const { dataType, innerXAxisList, innerYAxisList, digit } = args
+  const { dataType, innerXAxisList, innerYAxisList, digit, extraMetrics, metrics } = args
 
   return {
     trigger: 'item',
-    formatter ({ color, data: [xDim, yDim, value] }) {
+    formatter ({ color, data: [xDim, yDim, value, ...extraData] }) {
       const tpl = []
-      tpl.push(`${innerYAxisList[yDim]}<br>`)
-      tpl.push(`${itemPoint(color)} ${innerXAxisList[xDim]}: `)
-      tpl.push(getFormated(value, dataType, digit))
+      tpl.push(`${innerXAxisList[xDim]} ~ ${innerYAxisList[yDim]}<br>`)
+      tpl.push(`${itemPoint(color)} ${metrics}: ${getFormated(value, dataType, digit)}<br>`)
+      extraMetrics.forEach((m, index) => {
+        tpl.push(`${m}: ${extraData[index]}<br>`)
+      })
       return tpl.join('')
     }
   }
@@ -123,6 +127,13 @@ export const heatmap = (columns, rows, settings, status) => {
   let innerXAxisList = xAxisList
   let innerYAxisList = yAxisList
   let chartData = []
+  // add extraMetrics prop for data which only display in tooltip
+  const extraMetrics = []
+  const mainColumn = dimension.concat([metrics])
+  columns.forEach(column => {
+    if (!~mainColumn.indexOf(column)) extraMetrics.push(column)
+  })
+
   if (type === 'cartesian') {
     if (!innerXAxisList || !innerXAxisList.length) {
       innerXAxisList = getAxisList(rows, dimension[0])
@@ -137,7 +148,8 @@ export const heatmap = (columns, rows, settings, status) => {
       xDim: dimension[0],
       yDim: dimension[1],
       metrics,
-      type
+      type,
+      extraMetrics
     })
   } else {
     chartData = getData({
@@ -145,7 +157,8 @@ export const heatmap = (columns, rows, settings, status) => {
       xDim: dimension[0],
       yDim: dimension[1],
       metrics,
-      type
+      type,
+      extraMetrics
     })
   }
   const metricsList = metrics ? rows.map(row => row[metrics]) : [0, 5]
@@ -160,7 +173,9 @@ export const heatmap = (columns, rows, settings, status) => {
     dataType,
     innerXAxisList,
     innerYAxisList,
-    digit
+    digit,
+    extraMetrics,
+    metrics
   })
 
   const options = { visualMap, series }
@@ -177,7 +192,6 @@ export const heatmap = (columns, rows, settings, status) => {
       const geoAttr = Object.assign({ map: position }, geo)
       if (beforeRegisterMap) json = beforeRegisterMap(json)
       echarts.registerMap(position, json)
-      console.log(Object.assign({ geo: geoAttr }, options))
       return Object.assign({ geo: geoAttr }, options)
     })
   } else {
