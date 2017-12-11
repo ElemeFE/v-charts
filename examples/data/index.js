@@ -11,6 +11,7 @@ import map from './map'
 import sankey from './sankey'
 import heatmap from './heatmap'
 import scatter from './scatter'
+import candle from './candle'
 
 export default {
   bar,
@@ -25,5 +26,6 @@ export default {
   map,
   sankey,
   heatmap,
-  scatter
+  scatter,
+  candle
 }

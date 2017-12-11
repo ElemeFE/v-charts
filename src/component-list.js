@@ -13,5 +13,6 @@ module.exports = {
   VeBmap: { src: 'src/packages/bmap/index.js', dist: 'lib/bmap' },
   VeSankey: { src: 'src/packages/sankey/index.js', dist: 'lib/sankey' },
   Veheatmap: { src: 'src/packages/heatmap/index.js', dist: 'lib/heatmap' },
-  VeScatter: { src: 'src/packages/scatter/index.js', dist: 'lib/scatter' }
+  VeScatter: { src: 'src/packages/scatter/index.js', dist: 'lib/scatter' },
+  VeCandle: { src: 'src/packages/candle/index.js', dist: 'lib/candle' }
 }
