@@ -18,12 +18,12 @@ function getData (args) {
       const yIndex = innerYAxisList.indexOf(row[yDim])
       const value = metrics ? row[metrics] : 1
       const extraData = extraMetrics.map(m => row[m] || '-')
-      return [xIndex, yIndex, value].concat(extraData)
+      return { value: [xIndex, yIndex, value].concat(extraData) }
     })
   } else {
     result = rows.map(row => {
       const value = metrics ? row[metrics] : 1
-      return [row[xDim], row[yDim], value]
+      return { value: [row[xDim], row[yDim], value] }
     })
   }
   return result
@@ -88,13 +88,13 @@ function getTooltip (args) {
 
   return {
     trigger: 'item',
-    formatter ({ color, data: [xDim, yDim, value, ...extraData] }) {
+    formatter ({ color, data: { value: [xDim, yDim, value, ...extraData] } }) {
       const tpl = []
       tpl.push(`${innerXAxisList[xDim]} ~ ${innerYAxisList[yDim]}<br>`)
-      tpl.push(`${itemPoint(color)} ${metrics}: ${getFormated(value, dataType, digit)}<br>`)
       extraMetrics.forEach((m, index) => {
         tpl.push(`${m}: ${extraData[index]}<br>`)
       })
+      tpl.push(`${itemPoint(color)} ${metrics}: ${getFormated(value, dataType, digit)}<br>`)
       return tpl.join('')
     }
   }
