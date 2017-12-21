@@ -448,7 +448,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 | axisVisible | 是否显示坐标轴 | Boolean | - |
 | symbolSizeMax | 气泡最大值 | Number | 默认为50 |
 | symbol | 标记的图形 | String | 内容参考[文档](http://echarts.baidu.com/option.html#series-scatter.symbol) |
-| symbolSize | 标记的大小 | number, Array, Function | 内容参考[文档](number, Array, Function) |
+| symbolSize | 标记的大小 | number, Array, Function | 内容参考[文档](http://echarts.baidu.com/option.html#series-scatter.symbolSize) |
 | symbolRotate | 标记的旋转角度 | number | 内容参考[文档](http://echarts.baidu.com/option.html#series-scatter.symbolRotate) |
 | symbolOffset | 标记相对于原本位置的偏移 | Array | 内容参考[文档](http://echarts.baidu.com/option.html#series-scatter.symbolOffset) |
 | cursor | 鼠标悬浮时在图形元素上时鼠标的样式 | string | 内容参考[文档](http://echarts.baidu.com/option.html#series-scatter.cursor) |
