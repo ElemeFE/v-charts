@@ -1,6 +1,6 @@
 ### K线图
 
-<!-- TODO: online demo -->
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/g98g02ah/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 简单K线图
 
@@ -244,7 +244,7 @@
       }
       this.chartSettings = {
         showMA: true,
-        showVOL: true
+        showVol: true
       }
     }
   }
@@ -308,13 +308,14 @@
       }
       this.chartSettings = {
         showMA: true,
-        showVOL: true,
+        showVol: true,
         labelMap: {
           MA5: 'ma5'
         },
         legendName: {
           '日K': 'day k'
-        }
+        },
+        showDataZoom: true
       }
     }
   }
@@ -452,6 +453,8 @@
 
 #### settings 配置项
 
+| 配置项 | 简介 | 类型 | 备注 |
+| --- | --- | --- | --- |
 | dimension | 维度 | String | 默认为 columns[0] |
 | metrics | 指标 | Array | 默认为 [columns[1] ~ columns[5]] |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |

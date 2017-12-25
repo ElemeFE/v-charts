@@ -13,6 +13,7 @@ import VeSankey from '../sankey'
 import VeHeatmap from '../heatmap'
 import VeScatter from '../scatter'
 import VeCandle from '../candle'
+import VeGauge from '../gauge'
 
 const components = [
   VeBar,
@@ -29,7 +30,8 @@ const components = [
   VeSankey,
   VeHeatmap,
   VeScatter,
-  VeCandle
+  VeCandle,
+  VeGauge
 ]
 
 function install (Vue, _) {
@@ -57,5 +59,6 @@ export default {
   VeSankey,
   VeScatter,
   VeCandle,
+  VeGauge,
   install
 }
