@@ -3,6 +3,7 @@
     <ve-line
       :data="chartData"
       ref="chart"
+      :tooltipFormatter="tooltipFormatter"
       :settings="chartSettings"
       :width-change-delay="1500"
       :after-config="afterConfig">
@@ -39,6 +40,10 @@ export default {
     afterConfig (options) {
       // console.log(options)
       return options
+    },
+    tooltipFormatter () {
+      console.log(arguments)
+      return 1
     }
   },
 
