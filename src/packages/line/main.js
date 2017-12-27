@@ -112,7 +112,7 @@ function getLineYAxis (args) {
 }
 
 function getLineTooltip (args) {
-  const { axisSite, yAxisType, digit, labelMap, xAxisType } = args
+  const { axisSite, yAxisType, digit, labelMap, xAxisType, tooltipFormatter } = args
   const rightItems = axisSite.right || []
   const rightList = labelMap
     ? rightItems.map(item => {
@@ -122,6 +122,9 @@ function getLineTooltip (args) {
   return {
     trigger: 'axis',
     formatter (items) {
+      if (tooltipFormatter) {
+        return tooltipFormatter.apply(null, arguments)
+      }
       let tpl = []
       const { name, axisValueLabel } = items[0]
       const title = name || axisValueLabel
@@ -181,7 +184,7 @@ export const line = (columns, rows, settings, extra) => {
     lineStyle,
     areaStyle
   } = settings
-  const { tooltipVisible, legendVisible } = extra
+  const { tooltipVisible, legendVisible, tooltipFormatter } = extra
   let metrics = columns.slice()
 
   if (axisSite.left && axisSite.right) {
@@ -200,7 +203,8 @@ export const line = (columns, rows, settings, extra) => {
     yAxisType,
     digit,
     labelMap,
-    xAxisType
+    xAxisType,
+    tooltipFormatter
   })
   const xAxis = getLineXAxis({
     dimension,

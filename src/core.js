@@ -66,7 +66,8 @@ export default {
     dataEmpty: Boolean,
     extend: Object,
     judgeWidth: { type: Boolean, default: true },
-    widthChangeDelay: { type: Number, default: 300 }
+    widthChangeDelay: { type: Number, default: 300 },
+    tooltipFormatter: { type: Function }
   },
 
   watch: {
@@ -115,7 +116,8 @@ export default {
         tooltipVisible: this.tooltipVisible,
         legendVisible: this.legendVisible,
         echarts: this.echarts,
-        color: this.chartColor
+        color: this.chartColor,
+        tooltipFormatter: this.tooltipFormatter
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
