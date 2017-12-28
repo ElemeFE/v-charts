@@ -38,6 +38,7 @@ import VeSankey from '../../src/packages/sankey'
 import VeHeatmap from '../../src/packages/heatmap'
 import VeScatter from '../../src/packages/scatter'
 import VeCandle from '../../src/packages/candle'
+import VeGauge from '../../src/packages/gauge'
 import CHART_DATA from '../data'
 
 export default {
@@ -81,7 +82,8 @@ export default {
     VeSankey,
     VeHeatmap,
     VeScatter,
-    VeCandle
+    VeCandle,
+    VeGauge
   }
 }
 </script>

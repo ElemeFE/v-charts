@@ -12,6 +12,7 @@ import sankey from './sankey'
 import heatmap from './heatmap'
 import scatter from './scatter'
 import candle from './candle'
+import gauge from './gauge'
 
 export default {
   bar,
@@ -27,5 +28,6 @@ export default {
   sankey,
   heatmap,
   scatter,
-  candle
+  candle,
+  gauge
 }
