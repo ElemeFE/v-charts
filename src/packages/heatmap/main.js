@@ -114,6 +114,7 @@ export const heatmap = (columns, rows, settings, status) => {
     bmap,
     geo,
     key,
+    v = '2.0',
     position,
     positionJsonLink,
     beforeRegisterMap,
@@ -182,7 +183,7 @@ export const heatmap = (columns, rows, settings, status) => {
   if (type === 'bmap') {
     Object.assign(options.series[0], { coordinateSystem: 'bmap', pointSize, blurSize })
 
-    return getBmap(key).then(_ => {
+    return getBmap(key, v).then(_ => {
       return Object.assign({ bmap }, options)
     })
   } else if (type === 'map') {
