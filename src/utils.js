@@ -93,6 +93,24 @@ export const getBmap = (key, v) => {
   return mapPromise
 }
 
+export const getAmap = (key, v) => {
+  if (!mapPromise) {
+    mapPromise = new Promise((resolve, reject) => {
+      const callbackName = `amap${Date.now()}`
+      window[callbackName] = resolve
+      const script = document.createElement('script')
+      script.src = [
+        `http://webapi.amap.com/maps?v=${v}`,
+        `key=${key}`,
+        `callback=${callbackName}`
+      ].join('&')
+
+      document.body.appendChild(script)
+    })
+  }
+  return mapPromise
+}
+
 export const clone = (v) => JSON.parse(JSON.stringify(v))
 
 export const getType = (v) => {

@@ -1,5 +1,5 @@
 import { default as echarts, itemPoint, HEAT_MAP_COLOR, HEAT_BMAP_COLOR } from '../../echarts-base'
-import { getBmap, getMapJSON, getFormated } from '../../utils'
+import { getBmap, getAmap, getMapJSON, getFormated } from '../../utils'
 
 function getAxisList (rows, label) {
   const result = []
@@ -54,7 +54,7 @@ function getVisualMap (args) {
       bottom: 0,
       inRange: { color: heatColor || HEAT_MAP_COLOR }
     }
-  } else if (type === 'bmap') {
+  } else if (type === 'bmap' || type === 'amap') {
     extra = {
       show: false,
       orient: 'vertical',
@@ -112,6 +112,7 @@ export const heatmap = (columns, rows, settings, status) => {
     max,
     digit,
     bmap,
+    amap,
     geo,
     key,
     v = '2.0',
@@ -194,6 +195,12 @@ export const heatmap = (columns, rows, settings, status) => {
       if (beforeRegisterMap) json = beforeRegisterMap(json)
       echarts.registerMap(position, json)
       return Object.assign({ geo: geoAttr }, options)
+    })
+  } else if (type === 'amap') {
+    Object.assign(options.series[0], { coordinateSystem: 'amap', pointSize, blurSize })
+
+    return getAmap(key, v).then(_ => {
+      return Object.assign({ amap }, options)
     })
   } else {
     return Object.assign({ xAxis, yAxis, tooltip }, options)

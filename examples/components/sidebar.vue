@@ -27,7 +27,8 @@ const routerInfo = {
   '其他': [
     { name: '事件监听', url: '/eventer' },
     { name: '图表切换', url: '/toggle' },
-    { name: '百度地图', url: '/bmap' }
+    { name: '百度地图', url: '/bmap' },
+    { name: '高德地图', url: '/amap' }
   ]
 }
 
