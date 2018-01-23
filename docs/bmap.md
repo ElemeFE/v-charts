@@ -20,6 +20,7 @@
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | key | 百度地图 access_key | String | 可[由此](http://lbsyun.baidu.com/apiconsole/key)获取 |
+| v | 百度地图版本 | String | 默认2.0 |
 | bmap | 百度地图配置项 | Object | 参考[文档](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用)配置 |
 
 > 备注：百度地图在与其他地图搭配使用时，需要额外引入相应的 echarts 模块，例如使用热力图，则需
