@@ -17,6 +17,7 @@ export default {
     return {
       chartSettings: {
         key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
+        v: '3.0',
         bmap: {
           center: [120, 30],
           zoom: 14,

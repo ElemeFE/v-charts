@@ -75,14 +75,14 @@ export const getMapJSON = (position, positionJsonLink) => {
 
 let mapPromise = null
 
-export const getBmap = (key) => {
+export const getBmap = (key, v) => {
   if (!mapPromise) {
     mapPromise = new Promise((resolve, reject) => {
       const callbackName = `bmap${Date.now()}`
       window[callbackName] = resolve
       const script = document.createElement('script')
       script.src = [
-        'https://api.map.baidu.com/api?v=2.0',
+        `https://api.map.baidu.com/api?v=${v}`,
         `ak=${key}`,
         `callback=${callbackName}`
       ].join('&')
