@@ -3,12 +3,12 @@ import { getBmap } from '../../utils'
 export const bmap = (_, __, settings) => {
   const {
     key,
-    v = '2.0',
+    v,
     bmap
   } = settings
   if (!key) console.warn('settings.key must be a string.')
 
   return getBmap(key, v).then(_ => {
-    return { bmap }
+    return Object.assign({ bmap }, settings)
   })
 }

@@ -23,15 +23,35 @@ export default {
         v: '1.4.3',
         amap: {
           resizeEnable: true,
-          center: [116.397428, 39.90923],
+          center: [120.14322240845, 30.236064370321],
           zoom: 10
+        },
+        visualMap: {
+          min: 0,
+          max: 5,
+          calculable: true,
+          show: false,
+          orient: 'vertical',
+          left: 0,
+          bottom: 0,
+          inRange: { color: ['blue', 'blue', 'green', 'yellow', 'red'] }
         }
       },
       chartSeries: [
         {
-          type: 'scatter',
+          type: 'heatmap',
+          data: [
+            [120.14322240845, 30.236064370321, 1],
+            [120.14301682797, 30.236035316745, 1],
+            [120.14138577045, 30.236113748704, 1],
+            [120.1400398833, 30.235973050702, 1],
+            [120.13893453465, 30.23517220446, 1],
+            [120.1382899739, 30.234062922977, 1],
+            [120.13265960629, 30.231641351722, 1]
+          ],
           coordinateSystem: 'amap',
-          data: [[120, 30, 1]]
+          pointSize: 10,
+          blurSize: 5
         }
       ]
     }
@@ -39,46 +59,7 @@ export default {
 
   methods: {
     getMap (echarts) {
-      let district
-      const amap = echarts
-        .getModel()
-        .getComponent('amap')
-        .getAMap()
-
-      addQingDao()
-      function addQingDao () {
-        // 加载行政区划插件
-        window.AMap.service('AMap.DistrictSearch', function () {
-          var opts = {
-            subdistrict: 1, // 返回下一级行政区
-            extensions: 'all', // 返回行政区边界坐标组等具体信息
-            level: 'city' // 查询行政级别为 市
-          }
-          // 实例化DistrictSearch
-          district = new window.AMap.DistrictSearch(opts)
-          district.setLevel('district')
-          // 行政区查询
-          district.search('370200', function (status, result) {
-            var bounds = result.districtList[0].boundaries
-            var polygons = []
-            if (bounds) {
-              for (var i = 0, l = bounds.length; i < l; i++) {
-                // 生成行政区划polygon
-                var polygon = new window.AMap.Polygon({
-                  map: amap,
-                  strokeWeight: 1,
-                  path: bounds[i],
-                  fillOpacity: 0.7,
-                  fillColor: '#CCF3FF',
-                  strokeColor: '#CC66CC'
-                })
-                polygons.push(polygon)
-              }
-              amap.setFitView() // 地图自适应
-            }
-          })
-        })
-      }
+      echarts.getModel().getComponent('amap').getAMap()
     }
   },
 
