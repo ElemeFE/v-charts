@@ -6,6 +6,9 @@
       :after-set-option-once="getMap"
       :tooltip="{ show: true }">
     </ve-amap>
+    <p>
+      提示：因bmap和amap不能同时存在，如果页面错误，刷新页面试试
+    </p>
   </div>
 </template>
 
@@ -42,8 +45,8 @@ export default {
         .getComponent('amap')
         .getAMap()
 
-      addBeiJing()
-      function addBeiJing () {
+      addQingDao()
+      function addQingDao () {
         // 加载行政区划插件
         window.AMap.service('AMap.DistrictSearch', function () {
           var opts = {
@@ -55,7 +58,6 @@ export default {
           district = new window.AMap.DistrictSearch(opts)
           district.setLevel('district')
           // 行政区查询
-          console.log(district)
           district.search('370200', function (status, result) {
             var bounds = result.districtList[0].boundaries
             var polygons = []

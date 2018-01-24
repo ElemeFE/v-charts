@@ -6,6 +6,9 @@
       :after-set-option-once="getMap"
       :tooltip="{ show: true }">
     </ve-bmap>
+    <p>
+      提示：因bmap和amap不能同时存在，如果页面错误，刷新页面试试
+    </p>
   </div>
 </template>
 
