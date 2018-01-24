@@ -74,6 +74,7 @@ export const getMapJSON = (position, positionJsonLink) => {
 }
 
 let mapPromise = null
+let amapPromise = null
 
 export const getBmap = (key, v) => {
   if (!mapPromise) {
@@ -82,7 +83,7 @@ export const getBmap = (key, v) => {
       window[callbackName] = resolve
       const script = document.createElement('script')
       script.src = [
-        `https://api.map.baidu.com/api?v=${v}`,
+        `https://api.map.baidu.com/api?v=${v || '2.0'}`,
         `ak=${key}`,
         `callback=${callbackName}`
       ].join('&')
@@ -91,6 +92,24 @@ export const getBmap = (key, v) => {
     })
   }
   return mapPromise
+}
+
+export const getAmap = (key, v) => {
+  if (!amapPromise) {
+    amapPromise = new Promise((resolve, reject) => {
+      const callbackName = `amap${Date.now()}`
+      window[callbackName] = resolve
+      const script = document.createElement('script')
+      script.src = [
+        `http://webapi.amap.com/maps?v=${v || '1.4.3'}`,
+        `key=${key}`,
+        `callback=${callbackName}`
+      ].join('&')
+
+      document.body.appendChild(script)
+    })
+  }
+  return amapPromise
 }
 
 export const clone = (v) => JSON.parse(JSON.stringify(v))

@@ -11,6 +11,7 @@ module.exports = {
   VeChart: { src: 'src/packages/chart/index.js', dist: 'lib/chart' },
   VeMap: { src: 'src/packages/map/index.js', dist: 'lib/map' },
   VeBmap: { src: 'src/packages/bmap/index.js', dist: 'lib/bmap' },
+  VeAmap: { src: 'src/packages/amap/index.js', dist: 'lib/amap' },
   VeSankey: { src: 'src/packages/sankey/index.js', dist: 'lib/sankey' },
   Veheatmap: { src: 'src/packages/heatmap/index.js', dist: 'lib/heatmap' },
   VeScatter: { src: 'src/packages/scatter/index.js', dist: 'lib/scatter' },
