@@ -101,7 +101,7 @@ export const getAmap = (key, v) => {
       window[callbackName] = resolve
       const script = document.createElement('script')
       script.src = [
-        `http://webapi.amap.com/maps?v=${v || '1.4.3'}`,
+        `https://webapi.amap.com/maps?v=${v || '1.4.3'}`,
         `key=${key}`,
         `callback=${callbackName}`
       ].join('&')
