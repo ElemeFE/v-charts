@@ -9,6 +9,7 @@ import VeRadar from '../radar'
 import VeChart from '../chart'
 import VeMap from '../map'
 import VeBmap from '../bmap'
+import VeAmap from '../amap'
 import VeSankey from '../sankey'
 import VeHeatmap from '../heatmap'
 import VeScatter from '../scatter'
@@ -27,6 +28,7 @@ const components = [
   VeChart,
   VeMap,
   VeBmap,
+  VeAmap,
   VeSankey,
   VeHeatmap,
   VeScatter,
@@ -56,6 +58,7 @@ export default {
   VeChart,
   VeMap,
   VeBmap,
+  VeAmap,
   VeSankey,
   VeScatter,
   VeCandle,
