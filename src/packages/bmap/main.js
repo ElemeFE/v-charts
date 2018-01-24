@@ -9,6 +9,6 @@ export const bmap = (_, __, settings) => {
   if (!key) console.warn('settings.key must be a string.')
 
   return getBmap(key, v).then(_ => {
-    return Object.assign({ bmap }, settings)
+    return { bmap }
   })
 }

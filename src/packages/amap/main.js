@@ -8,6 +8,6 @@ export const amap = (_, __, settings) => {
   } = settings
   if (!key) console.warn('settings.key must be a string.')
   return getAmap(key, v).then(_ => {
-    return Object.assign({ amap }, settings)
+    return { amap }
   })
 }
