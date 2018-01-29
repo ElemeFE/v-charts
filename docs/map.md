@@ -254,5 +254,6 @@
 | itemStyle | 地图区域的多边形 图形样式 | Boolean, Object | 默认为true, 内容参考[文档](http://echarts.baidu.com/option.html#series-map.itemStyle) |
 | positionJsonLink | 地图数据源 | String | - |
 | beforeRegisterMap | 地图数据注册前执行的函数 | Function | 参数为地图数据，需返回地图数据 |
+| specialAreas | 地图中的位置配置 | Object | 将地图中的部分区域缩放到合适的位置，可以使得整个地图的显示更加好看, 用法参考[文档](http://echarts.baidu.com/api.html#echarts.registerMap) |
 
 > 备注: 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
