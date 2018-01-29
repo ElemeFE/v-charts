@@ -126,7 +126,8 @@ export const map = (columns, rows, settings, extra) => {
     mapGrid,
     itemStyle,
     positionJsonLink,
-    beforeRegisterMap
+    beforeRegisterMap,
+    specialAreas = {}
   } = settings
   let metrics = columns.slice()
   if (settings.metrics) {
@@ -161,7 +162,7 @@ export const map = (columns, rows, settings, extra) => {
 
   return getMapJSON(position, positionJsonLink).then(json => {
     if (beforeRegisterMap) json = beforeRegisterMap(json)
-    echarts.registerMap(position, json)
+    echarts.registerMap(position, json, specialAreas)
     return { series, tooltip, legend }
   })
 }
