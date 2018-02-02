@@ -1,25 +1,30 @@
 <template>
-  <div class="page-test" :style="{ width: chartWidth }">
+  <div class="page-test">
     <ve-line
       :data="chartData"
-      ref="chart"
-      :tooltipFormatter="tooltipFormatter"
-      :settings="chartSettings"
-      :width-change-delay="1500"
-      :after-config="afterConfig">
+      :theme="chartTheme"
+      ref="chart">
     </ve-line>
+    <button @click="changeTheme">切换主题</button>
   </div>
 </template>
 
 <script>
 import VeLine from '../../src/packages/line'
 import 'echarts/lib/component/toolbox'
+const CHART_THEMES = [
+  {
+    color: ['#000']
+  },
+  {
+    color: ['#0f0']
+  }
+]
 
 export default {
   data () {
-    this.chartSettings = {
-      xAxisType: 'value'
-    }
+    this.themeSign = false
+
     return {
       chartData: {
         columns: ['日期', '余额', '年龄'],
@@ -32,25 +37,15 @@ export default {
           { '日期': 120, '余额': 123, '年龄': 2000 }
         ]
       },
-      chartWidth: '0'
+      chartTheme: {}
     }
   },
 
   methods: {
-    afterConfig (options) {
-      // console.log(options)
-      return options
-    },
-    tooltipFormatter () {
-      console.log(arguments)
-      return 1
+    changeTheme () {
+      this.themeSign = !this.themeSign
+      this.chartTheme = CHART_THEMES[+this.themeSign]
     }
-  },
-
-  mounted () {
-    setTimeout(() => {
-      this.chartWidth = '100px'
-    }, 1000)
   },
 
   components: { VeLine }
