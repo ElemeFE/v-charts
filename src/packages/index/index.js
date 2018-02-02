@@ -15,6 +15,7 @@ import VeHeatmap from '../heatmap'
 import VeScatter from '../scatter'
 import VeCandle from '../candle'
 import VeGauge from '../gauge'
+import VeTree from '../tree'
 
 const components = [
   VeBar,
@@ -33,7 +34,8 @@ const components = [
   VeHeatmap,
   VeScatter,
   VeCandle,
-  VeGauge
+  VeGauge,
+  VeTree
 ]
 
 function install (Vue, _) {
@@ -63,5 +65,6 @@ export default {
   VeScatter,
   VeCandle,
   VeGauge,
+  VeTree,
   install
 }

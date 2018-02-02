@@ -13,6 +13,7 @@ import heatmap from './heatmap'
 import scatter from './scatter'
 import candle from './candle'
 import gauge from './gauge'
+import tree from './tree'
 
 export default {
   bar,
@@ -29,5 +30,6 @@ export default {
   heatmap,
   scatter,
   candle,
-  gauge
+  gauge,
+  tree
 }
