@@ -1,6 +1,6 @@
 {
   "name": "v-charts",
-  "version": "1.15.4",
+  "version": "1.15.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
