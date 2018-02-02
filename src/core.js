@@ -1,4 +1,4 @@
-import { color, default as echarts } from './echarts-base'
+import { color } from './echarts-base'
 import { getType, toKebab, isArray, isObject } from './utils'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
@@ -91,6 +91,17 @@ export default {
       handler () {
         this.createEventProxy()
       }
+    },
+
+    theme: {
+      deep: true,
+      handler (v) {
+        this.themeChange(v)
+      }
+    },
+
+    themeName (v) {
+      this.themeChange(v)
     }
   },
 
@@ -235,7 +246,7 @@ export default {
 
     init () {
       if (this.echarts) return
-      const themeName = this.themeName || (this.theme ? 'outer-theme' : 've-chart')
+      const themeName = this.themeName || this.theme || 've-chart'
       this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.dataHandler(this.data)
       this.createEventProxy()
@@ -256,10 +267,6 @@ export default {
       })
     },
 
-    registerTheme () {
-      echarts.registerTheme('outer-theme', this.theme)
-    },
-
     createEventProxy () {
       // 只要用户使用 on 方法绑定的事件都做一层代理，
       // 是否真正执行相应的事件方法取决于该方法是否仍然存在 events 中
@@ -278,6 +285,12 @@ export default {
           })(ev))
         }
       })
+    },
+
+    themeChange (theme) {
+      this.echarts.dispose()
+      this.echarts = null
+      this.init()
     }
   },
 
@@ -286,7 +299,6 @@ export default {
     this.registeredEvents = []
     this._once = {}
     this.addWatchToProps()
-    if (this.theme) this.registerTheme()
   },
 
   mounted () {
