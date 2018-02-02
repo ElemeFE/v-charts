@@ -250,6 +250,7 @@ export default {
       this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.dataHandler(this.data)
       this.createEventProxy()
+      window.addEventListener('resize', this.echarts.resize)
     },
 
     addWatchToProps () {
@@ -288,9 +289,14 @@ export default {
     },
 
     themeChange (theme) {
-      this.echarts.dispose()
+      this.clean()
       this.echarts = null
       this.init()
+    },
+
+    clean () {
+      window.removeEventListener('resize', this.echarts.resize)
+      this.echarts.dispose()
     }
   },
 
@@ -303,11 +309,9 @@ export default {
 
   mounted () {
     this.init()
-    window.addEventListener('resize', this.echarts.resize)
   },
 
   beforeDestroy () {
-    window.removeEventListener('resize', this.echarts.resize)
-    this.echarts.dispose()
+    this.clean()
   }
 }
