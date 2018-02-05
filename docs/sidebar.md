@@ -17,6 +17,7 @@
   - [散点图](/scatter)
   - [K线图](/candle)
   - [仪表盘](/gauge)
+  - [树图](/tree)
 - 其他
   - [事件监听](/event)
   - [图表切换](/toggle)

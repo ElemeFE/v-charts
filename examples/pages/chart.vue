@@ -39,6 +39,7 @@ import VeHeatmap from '../../src/packages/heatmap'
 import VeScatter from '../../src/packages/scatter'
 import VeCandle from '../../src/packages/candle'
 import VeGauge from '../../src/packages/gauge'
+import VeTree from '../../src/packages/tree'
 import CHART_DATA from '../data'
 
 export default {
@@ -83,7 +84,8 @@ export default {
     VeHeatmap,
     VeScatter,
     VeCandle,
-    VeGauge
+    VeGauge,
+    VeTree
   }
 }
 </script>
