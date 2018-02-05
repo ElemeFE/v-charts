@@ -17,5 +17,5 @@ module.exports = {
   VeScatter: { src: 'src/packages/scatter/index.js', dist: 'lib/scatter' },
   VeCandle: { src: 'src/packages/candle/index.js', dist: 'lib/candle' },
   VeGauge: { src: 'src/packages/gauge/index.js', dist: 'lib/gauge' },
-  VeTree: { src: 'src/packages/gauge/index.js', dist: 'lib/tree' }
+  VeTree: { src: 'src/packages/tree/index.js', dist: 'lib/tree' }
 }
