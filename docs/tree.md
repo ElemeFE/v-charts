@@ -2,7 +2,7 @@
 
 #### 示例
 
-<!-- <iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/5cLhkv9a/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
+<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/u1L4kxas/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 多树图
 
