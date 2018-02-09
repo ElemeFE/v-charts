@@ -6,6 +6,7 @@ branches:
   - master
 install:
   - yarn
+  - yarn add echarts
 script:
   - npm run build
   - npm run test
