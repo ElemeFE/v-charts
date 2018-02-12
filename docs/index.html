@@ -30,10 +30,18 @@
       loadSidebar: 'sidebar.md',
       ga: 'UA-104697795-1',
       homepage: 'install.md',
+      loadNavbar: true,
+      loadNavbar: 'navbar.md',
       plugins: [
         function (hook, vm) {
+          function i18n() {
+            return /^\/en\//.test(vm.route.path) ? 'Is this page helpful?' : '这个页面有帮助吗？'
+          }
+
           hook.doneEach(function () {
-            if (vm.shap) vm.shap.spa()
+            if (!vm.shap) return
+            vm.shap._vm.leadin = i18n()
+            vm.shap.spa()
           })
 
           hook.ready(function () {
@@ -41,6 +49,7 @@
               el: document.body.appendChild(document.createElement('div')),
               mode: 'suspension',
               key: '5a1674c7d1be5c004cc096df',
+              leadin: i18n(),
               formatter: function () { return vm.route.path }
             })
           })

@@ -218,8 +218,8 @@
 | dimension | 维度 | Array | 默认为 [columns[0], columns[1]] |
 | metrics | 指标 | String | 默认为 columns[2] |
 | dataType | 数据类型 | String | 可选值: KMB, normal, percent |
-| min | visual 中的最小值 | Number | 默认取指标中最小的数据 |
-| max | visual 中的最大值 | Number | 默认取指标中最大的数据 |
+| min | visualMap 中的最小值 | Number | 默认取指标中最小的数据 |
+| max | visualMap 中的最大值 | Number | 默认取指标中最大的数据 |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | key | 百度地图 access_key | String | 可[由此](http://lbsyun.baidu.com/apiconsole/key)获取 |
 | bmap | 百度地图配置项 | Object | 参考[文档](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用)配置 |
@@ -229,7 +229,7 @@
 | beforeRegisterMap | 地图数据注册前执行的函数 | Function | 参数为地图数据，需返回地图数据 |
 | pointSize | 点大小 | Number | 默认为 10 |
 | blurSize | 模糊大小 | Number | 默认为 5 |
-| heatColor | visual 中的最大值颜色区间 | Array | - |
+| heatColor | visualMap 中的最大值颜色区间 | Array | - |
 | yAxisName | y 轴名称 | String | - |
 | xAxisName | x 轴名称 | String | - |
 

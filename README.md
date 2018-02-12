@@ -1,4 +1,4 @@
-# V-Charts
+# v-charts
 
 [![Build Status](https://travis-ci.org/ElemeFE/v-charts.svg?branch=master)](https://travis-ci.org/ElemeFE/v-charts)
 [![NPM downloads](http://img.shields.io/npm/dm/v-charts.svg)](https://npmjs.org/package/v-charts)
