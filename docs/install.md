@@ -3,7 +3,7 @@
 #### npm安装
 
 ```
-npm i v-charts -S
+npm i v-charts echarts -S
 ```
 
 #### cdn
