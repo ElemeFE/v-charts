@@ -1,6 +1,6 @@
-### V-Charts属性
+### v-charts属性
 
-##### V-Charts 的属性分为两种，一种是全部图表都具有的属性，例如 `colors`, `grid` 等
+##### v-charts 的属性分为两种，一种是全部图表都具有的属性，例如 `colors`, `grid` 等
 
 `<ve-line :data="chartData" :colors="chartColors" :grid="chartGrid"></ve-line>`
 

@@ -2,6 +2,10 @@ iframe {
   border: 2px solid #eee;
 }
 
+th:first-child {
+  min-width: 140px;
+}
+
 .vuep {
   height: 460px;
 }
