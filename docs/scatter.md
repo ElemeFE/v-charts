@@ -12,7 +12,7 @@
 
 图例和横轴分别为两个维度(地点，日期)，指标（余额，数量，年龄）展示在 纵轴，散点大小，visualMap 及 tooltip 中。
 
-其中，metrics 数组的第一项（默认为 columns[1]）展示为纵轴，metrics 数组的第一项（默认为 columns[1]）展示在纵轴，第二项（默认为 columns[2]）展示为散点大小，metrics 数组的第二项（默认为 columns[1]）展示在纵轴， visualMap 需特殊配置。
+其中，metrics 数组的第一项（默认为 columns[1]）展示为纵轴，第二项（默认为 columns[2]）展示为散点大小， visualMap 需特殊配置。
 
 visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视觉元素上，接受的是一个数字，代表数据的次序，其中，数据的排序为 dimension, metrics[0], metrics[1], columns 中的其他指标，在上图中的次序就是 日期，余额，数量，年龄，如果想要将年龄映射到视觉元素上，dimension 的值就是 3。
 

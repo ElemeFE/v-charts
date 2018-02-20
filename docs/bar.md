@@ -106,7 +106,7 @@
 </script>
 </script>
 
-#### 设置legend别名漏斗图
+#### 设置legend别名
 
 <vuep template="#stacked-bar"></vuep>
 
@@ -215,9 +215,9 @@
 | stack | 堆叠选项 | Object | - |
 | digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
 | dataOrder | 设置数据排序方式 | Boolean, Object | 默认为false |
-| scale | 是否是脱离 0 值比例 | Array | 默认为[false, false]，表示左右<br>两个轴都不会脱离0值比例。<br>设置成 true 后坐标刻度不会<br>强制包含零刻度<br> |
-| min | 左右坐标轴最小值 | Array | - |
-| max | 左右坐标轴最大值 | Array | - |
+| scale | 是否是脱离 0 值比例 | Array | 默认为[false, false]，表示上下两个轴都不会脱离0值比例。设置成 true 后坐标刻度不会强制包含零刻度 |
+| min | 上下坐标轴最小值 | Array | - |
+| max | 上下坐标轴最大值 | Array | - |
 | labelMap | 设置指标的别名，同时作用于提示框和图例| Object | - |
 | legendName | 设置图表上方图例的别名 | Object | - |
 | label | 设置图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.label) |
