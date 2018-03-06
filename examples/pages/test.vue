@@ -3,6 +3,8 @@
     <ve-line
       :data="chartData"
       :theme="chartTheme"
+      @ready="chartReady($event, 1)"
+      @ready-once="chartReadyOnce($event, 1)"
       ref="chart">
     </ve-line>
     <button @click="changeTheme">切换主题</button>
@@ -45,6 +47,14 @@ export default {
     changeTheme () {
       this.themeSign = !this.themeSign
       this.chartTheme = CHART_THEMES[+this.themeSign]
+    },
+
+    chartReady () {
+      console.log('ready', arguments)
+    },
+
+    chartReadyOnce () {
+      console.log('ready-once', arguments)
     }
   },
 

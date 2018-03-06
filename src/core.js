@@ -210,6 +210,11 @@ export default {
 
       if (this.afterConfig) options = this.afterConfig(options)
       this.echarts.setOption(options, true)
+      this.$emit('ready', this.echarts)
+      if (!this._once['ready-once']) {
+        this._once['ready-once'] = true
+        this.$emit('ready-once', this.echarts)
+      }
       if (this.judgeWidth) this.judgeWidthHandler(options)
       if (this.afterSetOption) this.afterSetOption(this.echarts)
       if (this.afterSetOptionOnce && !this._once['afterSetOptionOnce']) {
