@@ -66,19 +66,30 @@ export const $get = (url) => {
   })
 }
 
-const MAP_URL_PREFIX = 'https://unpkg.com/echarts@3.6.2/map/json/'
+const mapPromise = {}
 
-export const getMapJSON = (position, positionJsonLink) => {
-  const link = positionJsonLink || `${MAP_URL_PREFIX}${position}.json`
-  return $get(link)
+export const getMapJSON = ({
+  position,
+  positionJsonLink,
+  beforeRegisterMapOnce,
+  mapURLProfix
+}) => {
+  const link = positionJsonLink || `${mapURLProfix}${position}.json`
+  if (!mapPromise[link]) {
+    mapPromise[link] = $get(link).then(res => {
+      if (beforeRegisterMapOnce) res = beforeRegisterMapOnce(res)
+      return res
+    })
+  }
+  return mapPromise[link]
 }
 
-let mapPromise = null
+let bmapPromise = null
 let amapPromise = null
 
 export const getBmap = (key, v) => {
-  if (!mapPromise) {
-    mapPromise = new Promise((resolve, reject) => {
+  if (!bmapPromise) {
+    bmapPromise = new Promise((resolve, reject) => {
       const callbackName = `bmap${Date.now()}`
       window[callbackName] = resolve
       const script = document.createElement('script')
@@ -91,7 +102,7 @@ export const getBmap = (key, v) => {
       document.body.appendChild(script)
     })
   }
-  return mapPromise
+  return bmapPromise
 }
 
 export const getAmap = (key, v) => {
