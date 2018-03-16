@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/elemefe/v-charts#readme",
   "peerDependencies": {
-    "echarts": "^3.8.3"
+    "echarts": ">3.8.3"
   },
   "dependencies": {
     "echarts-amap": "^1.0.0-rc.6"
