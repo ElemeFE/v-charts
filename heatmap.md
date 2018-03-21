@@ -227,6 +227,9 @@
 | position | 地图类型 | String | 默认为 `'china'` |
 | positionJsonLink | 地图数据源 | String | - |
 | beforeRegisterMap | 地图数据注册前执行的函数 | Function | 参数为地图数据，需返回地图数据 |
+| beforeRegisterMapOnce | 地图数据注册前执行的函数(仅执行一次) | Function | 参数为地图数据，需返回地图数据 |
+| specialAreas | 地图中的位置配置 | Object | 将地图中的部分区域缩放到合适的位置，可以使得整个地图的显示更加好看, 用法参考[文档](http://echarts.baidu.com/api.html#echarts.registerMap) |
+| mapURLProfix | 位置请求的 URL 前缀 | String | 默认为 `https://unpkg.com/echarts@3.6.2/map/json/` |
 | pointSize | 点大小 | Number | 默认为 10 |
 | blurSize | 模糊大小 | Number | 默认为 5 |
 | heatColor | visualMap 中的最大值颜色区间 | Array | - |

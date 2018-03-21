@@ -227,6 +227,9 @@
 | position | map location | String | default `'china'` |
 | positionJsonLink | data source of map | String | - |
 | beforeRegisterMap | trigger before map register | Function | parameter is map data, need to return map data |
+| beforeRegisterMapOnce | trigger before map register (only once) | Function | parameter is map data, need to return map data |
+| specialAreas | special location settings | Object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
+| mapURLProfix | url profix of map location | String | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
 | pointSize | size of heatmap point | Number | default `10` |
 | blurSize | size of heatmap point blur | Number | default `5` |
 | heatColor | color range of visualMap | Array | - |
