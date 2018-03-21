@@ -123,7 +123,10 @@ export const heatmap = (columns, rows, settings, status) => {
     blurSize = 5,
     heatColor,
     yAxisName,
-    xAxisName
+    xAxisName,
+    beforeRegisterMapOnce,
+    mapURLProfix = 'https://unpkg.com/echarts@3.6.2/map/json/',
+    specialAreas = {}
   } = settings
   const { tooltipVisible } = status
   let innerXAxisList = xAxisList
@@ -190,10 +193,15 @@ export const heatmap = (columns, rows, settings, status) => {
   } else if (type === 'map') {
     options.series[0].coordinateSystem = 'geo'
 
-    return getMapJSON(position, positionJsonLink).then(json => {
+    return getMapJSON({
+      position,
+      positionJsonLink,
+      beforeRegisterMapOnce,
+      mapURLProfix
+    }).then(json => {
       const geoAttr = Object.assign({ map: position }, geo)
       if (beforeRegisterMap) json = beforeRegisterMap(json)
-      echarts.registerMap(position, json)
+      echarts.registerMap(position, json, specialAreas)
       return Object.assign({ geo: geoAttr }, options)
     })
   } else if (type === 'amap') {
