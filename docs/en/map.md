@@ -253,5 +253,6 @@
 | beforeRegisterMapOnce | trigger before map register (only once) | Function | parameter is map data, need to return map data |
 | specialAreas | special location settings | Object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
 | mapURLProfix | url profix of map location | String | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
+| mapOrigin | map geojson | Object | - |
 
 > Remark: position default value is 'china',and also you can set 'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai' and so on, china province need add `province/` before province name.
