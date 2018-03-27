@@ -1,6 +1,8 @@
 import { default as echarts, itemPoint } from '../../echarts-base'
 import { getMapJSON, getFormated } from '../../utils'
 
+let registered = false
+
 function getTooltip (dataType, digit, dataStore, metrics, color, labelMap) {
   return {
     formatter (item) {
@@ -131,6 +133,7 @@ export const map = (columns, rows, settings, extra) => {
     mapURLProfix = 'https://unpkg.com/echarts@3.6.2/map/json/',
     specialAreas = {}
   } = settings
+  let mapOrigin = settings.mapOrigin
   let metrics = columns.slice()
   if (settings.metrics) {
     metrics = settings.metrics
@@ -162,14 +165,24 @@ export const map = (columns, rows, settings, extra) => {
   }
   const series = getSeries(seriesParams)
 
-  return getMapJSON({
-    position,
-    positionJsonLink,
-    beforeRegisterMapOnce,
-    mapURLProfix
-  }).then(json => {
-    if (beforeRegisterMap) json = beforeRegisterMap(json)
-    echarts.registerMap(position, json, specialAreas)
+  if (mapOrigin) {
+    if (beforeRegisterMap) mapOrigin = beforeRegisterMap(mapOrigin)
+    if (beforeRegisterMapOnce && !registered) {
+      registered = true
+      mapOrigin = beforeRegisterMapOnce(mapOrigin)
+    }
+    echarts.registerMap(position, mapOrigin, specialAreas)
     return { series, tooltip, legend }
-  })
+  } else {
+    return getMapJSON({
+      position,
+      positionJsonLink,
+      beforeRegisterMapOnce,
+      mapURLProfix
+    }).then(json => {
+      if (beforeRegisterMap) json = beforeRegisterMap(json)
+      echarts.registerMap(position, json, specialAreas)
+      return { series, tooltip, legend }
+    })
+  }
 }

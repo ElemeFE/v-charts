@@ -223,19 +223,20 @@ export default {
     },
 
     judgeWidthHandler (options) {
+      const { echarts, widthChangeDelay } = this
       if (this.$el.clientWidth) {
-        this.echarts.resize()
+        echarts && echarts.resize()
       } else {
         this.$nextTick(_ => {
           if (this.$el.clientWidth) {
-            this.echarts.resize()
+            echarts && echarts.resize()
           } else {
             setTimeout(_ => {
-              this.echarts.resize()
+              echarts && echarts.resize()
               if (!this.$el.clientWidth) {
                 console.warn(' Can\'t get dom width or height ')
               }
-            }, this.widthChangeDelay)
+            }, widthChangeDelay)
           }
         })
       }

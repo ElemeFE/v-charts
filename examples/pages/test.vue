@@ -10,6 +10,7 @@
 
 <script>
 import VeMap from '../../src/packages/map'
+import china from 'echarts/map/json/china.json'
 
 export default {
   data () {
@@ -26,7 +27,8 @@ export default {
         console.log('beforeRegisterMap')
         return map
       },
-      mapURLProfix: 'https://unpkg.com/echarts@3.6.2/map/json/'
+      // mapURLProfix: 'https://unpkg.com/echarts@3.6.2/map/json/'
+      mapOrigin: china
     }
     return {
       chartData: {

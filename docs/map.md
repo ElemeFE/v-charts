@@ -257,5 +257,6 @@
 | beforeRegisterMapOnce | 地图数据注册前执行的函数(仅执行一次) | Function | 参数为地图数据，需返回地图数据 |
 | specialAreas | 地图中的位置配置 | Object | 将地图中的部分区域缩放到合适的位置，可以使得整个地图的显示更加好看, 用法参考[文档](http://echarts.baidu.com/api.html#echarts.registerMap) |
 | mapURLProfix | 位置请求的 URL 前缀 | String | 默认为 `https://unpkg.com/echarts@3.6.2/map/json/` |
+| mapOrigin | 地图 geojson | Object | - |
 
 > 备注: 属性中的 position 默认为'china',可设置的类型有'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai'等，省份的position如例子中所示需要在前面加'province/'
