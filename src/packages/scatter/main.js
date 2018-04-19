@@ -172,6 +172,7 @@ const scatter = (columns, rows, settings, extra) => {
       dimension: dimension ? [dimension] : undefined
     })
     const options = line(columns, rows, lineSettings, extra)
+    if (!options || !options.series) return {}
     options.series.forEach(item => {
       Object.assign(item, {
         type: 'scatter',
