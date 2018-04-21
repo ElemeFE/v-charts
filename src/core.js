@@ -264,7 +264,7 @@ export default {
       Object.keys(this.$props).forEach(prop => {
         if (!~watchedVariable.indexOf(prop)) {
           const opts = {}
-          if (getType(this.$props[prop]) === '[object Object]') {
+          if (~['[object Object]', '[object Array]'].indexOf(getType(this.$props[prop]))) {
             opts.deep = true
           }
           this.$watch(prop, () => {
