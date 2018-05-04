@@ -34,8 +34,11 @@ Such attributes have
 | theme-name |  custom theme name | String | content is custom theme name which is registered globally |
 | loading | loading status | Boolean | default `false` |
 | data-empty | data empty status | Boolean | default `false` |
-| judge-width | whether to deal with chart width |  Boolean | default `true` |
+| judge-width | whether to deal with chart width |  Boolean | default `false` |
 | width-change-delay | container width change delay | Number | default `300` |
+| resizeable | whether to deal with window resize |  Boolean | default `true` |
+| resizeDelay | time delay of window resize handler | Number | default `200` |
+| changeDelay | delay of chart redraw callback while props change |  Number | default `0` |
 
 > Remark: before use `loading` and `data-empty` attributes, you need to import css by `import 'v-charts/lib/style.css'`
 

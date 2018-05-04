@@ -1,35 +1,24 @@
 <template>
   <div class="page-test">
-    <ve-map
+    <ve-line
       :data="chartData"
+      :loading="loading"
+      :mark-line="markLine"
+      :mark-point="markPoint"
+      :after-config="afterConfig"
       :settings="chartSettings">
-    </ve-map>
-    <button @click="toggle">切换</button>
+    </ve-line>
+    <button @click="loading = !loading">切换loading</button>
+    <button @click="markLine = markPoint = {}">切换markline</button>
   </div>
 </template>
 
 <script>
-import VeMap from '../../src/packages/map'
-import china from 'echarts/map/json/china.json'
+import VeLine from '../../src/packages/line'
 
 export default {
   data () {
-    this.chartSettings = {
-      position: 'china',
-      dataType: {
-        'GDP': 'KMB'
-      },
-      beforeRegisterMapOnce (map) {
-        console.log('beforeRegisterMapOnce')
-        return map
-      },
-      beforeRegisterMap (map) {
-        console.log('beforeRegisterMap')
-        return map
-      },
-      // mapURLProfix: 'https://unpkg.com/echarts@3.6.2/map/json/'
-      mapOrigin: china
-    }
+    this.chartSettings = {}
     return {
       chartData: {
         columns: ['位置', 'GDP'],
@@ -39,18 +28,20 @@ export default {
           { '位置': '上海', 'GDP': 2123 },
           { '位置': '浙江', 'GDP': 4123 }
         ]
-      }
+      },
+      loading: false,
+      markLine: {},
+      markPoint: {}
     }
   },
 
   methods: {
-    toggle () {
-      console.log('toggle')
-      const firstData = this.chartData.rows[0]
-      firstData['GDP'] = firstData['GDP'] === 123 ? 234 : 123
+    afterConfig (item) {
+      console.log('render')
+      return item
     }
   },
 
-  components: { VeMap }
+  components: { VeLine }
 }
 </script>
