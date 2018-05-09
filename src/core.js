@@ -2,6 +2,9 @@ import { color } from './echarts-base'
 import { getType, toKebab, isArray, isObject } from './utils'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
+import debounce from 'lodash-es/debounce'
+
+const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
 export default {
   render (h) {
@@ -65,16 +68,19 @@ export default {
     loading: Boolean,
     dataEmpty: Boolean,
     extend: Object,
-    judgeWidth: { type: Boolean, default: true },
+    judgeWidth: { type: Boolean, default: false },
     widthChangeDelay: { type: Number, default: 300 },
-    tooltipFormatter: { type: Function }
+    tooltipFormatter: { type: Function },
+    resizeable: { type: Boolean, default: true },
+    resizeDelay: { type: Number, default: 200 },
+    changeDelay: { type: Number, default: 0 }
   },
 
   watch: {
     data: {
       deep: true,
       handler (v) {
-        if (v) { this.dataHandler(v) }
+        if (v) { this.changeHandler() }
       }
     },
 
@@ -82,7 +88,7 @@ export default {
       deep: true,
       handler (v) {
         if (v.type && this.chartLib) this.chartHandler = this.chartLib[v.type]
-        this.dataHandler(this.data)
+        this.changeHandler()
       }
     },
 
@@ -120,8 +126,9 @@ export default {
   },
 
   methods: {
-    dataHandler (data) {
+    dataHandler () {
       if (!this.chartHandler) return
+      let data = this.data
       const { columns = [], rows = [] } = data
       const extra = {
         tooltipVisible: this.tooltipVisible,
@@ -254,21 +261,21 @@ export default {
       if (this.echarts) return
       const themeName = this.themeName || this.theme || 've-chart'
       this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
-      if (this.data) this.dataHandler(this.data)
+      if (this.data) this.changeHandler()
       this.createEventProxy()
-      window.addEventListener('resize', this.echarts.resize)
+      if (this.resizeable) window.addEventListener('resize', this.resizeHandler)
     },
 
     addWatchToProps () {
       const watchedVariable = this._watchers.map(watcher => watcher.expression)
       Object.keys(this.$props).forEach(prop => {
-        if (!~watchedVariable.indexOf(prop)) {
+        if (!~watchedVariable.indexOf(prop) && !~STATIC_PROPS.indexOf(prop)) {
           const opts = {}
           if (~['[object Object]', '[object Array]'].indexOf(getType(this.$props[prop]))) {
             opts.deep = true
           }
           this.$watch(prop, () => {
-            this.dataHandler(this.data)
+            this.changeHandler()
           }, opts)
         }
       })
@@ -301,7 +308,7 @@ export default {
     },
 
     clean () {
-      window.removeEventListener('resize', this.echarts.resize)
+      if (this.resizeable) window.removeEventListener('resize', this.resizeHandler)
       this.echarts.dispose()
     }
   },
@@ -310,6 +317,12 @@ export default {
     this.echarts = null
     this.registeredEvents = []
     this._once = {}
+    this.resizeHandler = debounce(_ => {
+      this.echarts && this.echarts.resize()
+    }, this.resizeDelay)
+    this.changeHandler = debounce(_ => {
+      this.dataHandler()
+    }, this.changeDelay)
     this.addWatchToProps()
   },
 
