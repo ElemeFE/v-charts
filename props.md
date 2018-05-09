@@ -34,8 +34,11 @@
 | theme-name | 自定义主题名称 | String | 内容为全局注册的自定义主题名称 |
 | loading | 加载状态 | Boolean | 默认为false |
 | data-empty | 暂无数据状态 | Boolean | 默认为false |
-| judge-width | 是否处理生成图表时的宽度问题 |  Boolean | 默认为 true |
+| judge-width | 是否处理生成图表时的宽度问题 |  Boolean | 默认为 false |
 | width-change-delay | 容器宽度变化的延迟 | Number | 默认为300 |
+| resizeable | 是否处理窗口 resize 事件 |  Boolean | 默认为 true |
+| resizeDelay | 窗口 resize 事件回调的延迟 | Number | 默认为200 |
+| changeDelay | 属性修改触发图表重绘回调的延迟 |  Number | 默认为0 |
 
 > 备注：使用loading和dataEmpty属性前需引入css `import 'v-charts/lib/style.css'`
 
