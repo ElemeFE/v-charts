@@ -121,7 +121,8 @@ export default {
         showMA: true,
         showVOL: true,
         labelMap: {
-          MA5: 'ma5'
+          MA5: 'ma5',
+          open: 'xxx'
         },
         legendName: {
           '日K': 'day k'

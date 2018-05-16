@@ -43,8 +43,9 @@ function getCandleTooltip (args) {
         if (componentSubType === 'candlestick') {
           tpl.push('<br>')
           metrics.slice(0, 4).forEach((m, i) => {
+            const name = labelMap[m] != null ? labelMap[m] : m
             const val = getFormated(data[i + 1], dataType, digit)
-            tpl.push(`- ${m}: ${val}<br>`)
+            tpl.push(`- ${name}: ${val}<br>`)
           })
         } else if (componentSubType === 'line') {
           const val = getFormated(data, dataType, digit)
