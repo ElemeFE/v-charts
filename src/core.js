@@ -225,7 +225,8 @@ export default {
       if (this.judgeWidth) this.judgeWidthHandler(options)
       if (this.afterSetOption) this.afterSetOption(this.echarts)
       if (this.afterSetOptionOnce && !this._once['afterSetOptionOnce']) {
-        this._once['afterSetOptionOnce'] = this.afterSetOptionOnce(this.echarts)
+        this._once['afterSetOptionOnce'] = true
+        this.afterSetOptionOnce(this.echarts)
       }
     },
 
