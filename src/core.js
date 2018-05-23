@@ -218,7 +218,6 @@ export default {
       }
 
       if (this.afterConfig) options = this.afterConfig(options)
-      console.log(this.setOptionOpts)
       this.echarts.setOption(options, this.setOptionOpts)
       this.$emit('ready', this.echarts)
       if (!this._once['ready-once']) {

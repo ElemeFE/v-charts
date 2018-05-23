@@ -70,7 +70,7 @@ function getLineSeries (args) {
 
     series.push(seriesItem)
   })
-  return series.length ? series : false
+  return series
 }
 
 function getLineYAxis (args) {
