@@ -1,24 +1,31 @@
 <template>
   <div class="page-test">
-    <ve-line
+    <ve-map
+      ref="chart"
       :data="chartData"
-      :loading="loading"
-      :mark-line="markLine"
-      :mark-point="markPoint"
-      :after-config="afterConfig"
-      :settings="chartSettings">
-    </ve-line>
-    <button @click="loading = !loading">切换loading</button>
-    <button @click="markLine = markPoint = {}">切换markline</button>
+      :settings="chartSettings"
+      :animation="anit"
+      :set-option-opts="false">
+    </ve-map>
+    <button @click="addData">addData</button>
   </div>
 </template>
 
 <script>
-import VeLine from '../../src/packages/line'
+import VeMap from '../../src/packages/map'
 
 export default {
   data () {
-    this.chartSettings = {}
+    this.chartSettings = {
+      position: 'china',
+      dataType: {
+        'GDP': 'KMB'
+      },
+      selectData: true
+    }
+    this.anit = {
+      animation: true
+    }
     return {
       chartData: {
         columns: ['位置', 'GDP'],
@@ -29,19 +36,30 @@ export default {
           { '位置': '浙江', 'GDP': 4123 }
         ]
       },
-      loading: false,
       markLine: {},
-      markPoint: {}
+      markArea: {}
     }
   },
 
   methods: {
-    afterConfig (item) {
-      console.log('render')
-      return item
+    addData () {
+      this.chartData = {
+        columns: ['位置', 'GDP'],
+        rows: [
+          { '位置': '吉林', 'GDP': 123 },
+          { '位置': '北京', 'GDP': 1223 },
+          { '位置': '上海', 'GDP': 2123 },
+          { '位置': '浙江', 'GDP': 4123 },
+          { '位置': '广东', 'GDP': 4123 },
+          { '位置': '福建', 'GDP': 4123 },
+          { '位置': '江西', 'GDP': 4123 },
+          { '位置': '河北', 'GDP': 4123 },
+          { '位置': '河南', 'GDP': 4123 }
+        ]
+      }
     }
   },
 
-  components: { VeLine }
+  components: { VeMap }
 }
 </script>

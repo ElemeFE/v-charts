@@ -1,8 +1,6 @@
 import { default as echarts, itemPoint } from '../../echarts-base'
 import { getMapJSON, getFormated } from '../../utils'
 
-let registered = false
-
 function getTooltip (dataType, digit, dataStore, metrics, color, labelMap) {
   return {
     formatter (item) {
@@ -108,6 +106,27 @@ function getLegendMap (args) {
   }
 }
 
+function registerMap (args, mapOrigin) {
+  const {
+    _once,
+    registerSign,
+    beforeRegisterMap,
+    beforeRegisterMapOnce,
+    registerSignOnce,
+    position,
+    specialAreas
+  } = args
+  if (!_once[registerSign]) {
+    if (beforeRegisterMap) mapOrigin = beforeRegisterMap(mapOrigin)
+    if (beforeRegisterMapOnce && !_once[registerSignOnce]) {
+      _once[registerSignOnce] = true
+      mapOrigin = beforeRegisterMapOnce(mapOrigin)
+    }
+    _once[registerSign] = true
+    echarts.registerMap(position, mapOrigin, specialAreas)
+  }
+}
+
 export const map = (columns, rows, settings, extra) => {
   const {
     position = 'china',
@@ -140,7 +159,7 @@ export const map = (columns, rows, settings, extra) => {
   } else {
     metrics.splice(columns.indexOf(dimension), 1)
   }
-  const { tooltipVisible, legendVisible, color } = extra
+  const { tooltipVisible, legendVisible, color, _once } = extra
   const dataStore = {}
   rows.forEach(row => { dataStore[row[dimension]] = row })
   const tooltip = tooltipVisible && getTooltip(dataType, digit, dataStore, metrics, color, labelMap)
@@ -164,14 +183,17 @@ export const map = (columns, rows, settings, extra) => {
     mapGrid
   }
   const series = getSeries(seriesParams)
-
+  const registerOptions = {
+    _once,
+    beforeRegisterMap,
+    beforeRegisterMapOnce,
+    registerSign: `MAP_REGISTER_${position}`,
+    registerSignOnce: `ONCE_MAP_REGISTER_${position}`,
+    position,
+    specialAreas
+  }
   if (mapOrigin) {
-    if (beforeRegisterMap) mapOrigin = beforeRegisterMap(mapOrigin)
-    if (beforeRegisterMapOnce && !registered) {
-      registered = true
-      mapOrigin = beforeRegisterMapOnce(mapOrigin)
-    }
-    echarts.registerMap(position, mapOrigin, specialAreas)
+    registerMap(registerOptions, mapOrigin)
     return { series, tooltip, legend }
   } else {
     return getMapJSON({
@@ -180,8 +202,7 @@ export const map = (columns, rows, settings, extra) => {
       beforeRegisterMapOnce,
       mapURLProfix
     }).then(json => {
-      if (beforeRegisterMap) json = beforeRegisterMap(json)
-      echarts.registerMap(position, json, specialAreas)
+      registerMap(registerOptions, json)
       return { series, tooltip, legend }
     })
   }

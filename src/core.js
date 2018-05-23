@@ -73,7 +73,8 @@ export default {
     tooltipFormatter: { type: Function },
     resizeable: { type: Boolean, default: true },
     resizeDelay: { type: Number, default: 200 },
-    changeDelay: { type: Number, default: 0 }
+    changeDelay: { type: Number, default: 0 },
+    setOptionOpts: { type: [Boolean, Object], default: true }
   },
 
   watch: {
@@ -135,7 +136,8 @@ export default {
         legendVisible: this.legendVisible,
         echarts: this.echarts,
         color: this.chartColor,
-        tooltipFormatter: this.tooltipFormatter
+        tooltipFormatter: this.tooltipFormatter,
+        _once: this._once
       }
       if (this.beforeConfig) data = this.beforeConfig(data)
 
@@ -216,7 +218,8 @@ export default {
       }
 
       if (this.afterConfig) options = this.afterConfig(options)
-      this.echarts.setOption(options, true)
+      console.log(this.setOptionOpts)
+      this.echarts.setOption(options, this.setOptionOpts)
       this.$emit('ready', this.echarts)
       if (!this._once['ready-once']) {
         this._once['ready-once'] = true
