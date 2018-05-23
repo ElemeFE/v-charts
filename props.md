@@ -39,6 +39,7 @@
 | resizeable | 是否处理窗口 resize 事件 |  Boolean | 默认为 true |
 | resizeDelay | 窗口 resize 事件回调的延迟 | Number | 默认为200 |
 | changeDelay | 属性修改触发图表重绘回调的延迟 |  Number | 默认为0 |
+| setOptionOpts | echarts setOption 的第二个参数 | Boolean, Object | 默认为true，内容参考[文档](http://echarts.baidu.com/api.html#echartsInstance.setOption) |
 
 > 备注：使用loading和dataEmpty属性前需引入css `import 'v-charts/lib/style.css'`
 

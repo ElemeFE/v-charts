@@ -39,6 +39,7 @@ Such attributes have
 | resizeable | whether to deal with window resize |  Boolean | default `true` |
 | resizeDelay | time delay of window resize handler | Number | default `200` |
 | changeDelay | delay of chart redraw callback while props change |  Number | default `0` |
+| setOptionOpts | the second parameter of echarts setOption | Boolean, Object | default `true`, content reference [docs](http://echarts.baidu.com/api.html#echartsInstance.setOption) |
 
 > Remark: before use `loading` and `data-empty` attributes, you need to import css by `import 'v-charts/lib/style.css'`
 
