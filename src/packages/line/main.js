@@ -237,8 +237,6 @@ export const line = (columns, rows, settings, extra) => {
     xAxisType,
     dimension
   })
-  if (!xAxis || !series) return false
-
   let options = { legend, xAxis, series, yAxis, tooltip }
   return options
 }
