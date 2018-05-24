@@ -4,8 +4,10 @@
       :settings="chartSettings"
       :series="chartSeries"
       :after-set-option-once="getMap"
-      :tooltip="{ show: true }">
+      :set-option-opts="false"
+      :mark-line="markLine">
     </ve-bmap>
+    <button @click="markLine = {}">toggle</button>
   </div>
 </template>
 
@@ -33,7 +35,8 @@ export default {
             [120, 30, 1]
           ]
         }
-      ]
+      ],
+      markLine: {}
     }
   },
 
