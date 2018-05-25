@@ -1,4 +1,4 @@
-# Attribute
+# Attributes
 
 ## Self attribute
 
@@ -35,7 +35,7 @@ All charts have properties such as `width`, `events` and so on.
 #### mark attribute
 
 The identification elements include: markLine, markArea, and markPoint. The usage of each type of map is slightly different. You can refer to the echarts documentation for implementation.
-It should be noted that the set of identity elements will be added to each metrics, such as a single-dimension multi-metrics line chart. The two lines will display the corresponding identification elements. If the settings are displayed on only one indicator line, you can use `extend`.
+It should be noted that the set of identity elements will be added to each metrics, such as a single-dimension multi-metrics line chart. The two lines will display the corresponding identification elements. If the settings are displayed on only one indicator line, you can use `extend` and set series.
 
 | attribute | intro | type |
 | ----- | --- |:----:|
