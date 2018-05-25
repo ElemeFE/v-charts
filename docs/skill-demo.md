@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         activeName: '1'
@@ -69,7 +69,7 @@ v-charts处理数据类型时默认保留两位有效数字，但是当数字较
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', 'value'],
@@ -101,7 +101,7 @@ v-charts处理数据类型时默认保留两位有效数字，但是当数字较
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', 'value'],

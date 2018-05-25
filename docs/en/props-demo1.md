@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -87,7 +87,7 @@
   // import modules first
   // import 'echarts/lib/component/markLine'
   // import 'echarts/lib/component/markPoint'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -137,7 +137,7 @@
 <script>
   // import modules first
   // import 'echarts/lib/component/visualMap'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -183,7 +183,7 @@
 <script>
   // import modules first
   // import 'echarts/lib/component/dataZoom'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -223,7 +223,7 @@
 <script>
   // import modules first
   // import 'echarts/lib/component/toolbox'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],
@@ -260,7 +260,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit'],

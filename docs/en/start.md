@@ -1,7 +1,5 @@
 ## v-charts
 
-When using [echarts](http://echarts.baidu.com) to generate charts, we often need to do cumbersome data scheme conversion, modify complex configuration items, v-charts precisely to solve this. v-charts is based on Vue2.x and echarts, just need to provide a friendly data scheme and set simple configuration items, you can easily generate common charts.
-
 ### Import v-charts
 
 #### Fully import

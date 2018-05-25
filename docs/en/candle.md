@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -134,7 +134,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -197,7 +197,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -261,7 +261,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -332,7 +332,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],
@@ -396,7 +396,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'open', 'close', 'lowest', 'highest', 'vol'],

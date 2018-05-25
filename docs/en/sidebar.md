@@ -1,7 +1,8 @@
-- Development
- - [Installation](/en/README)
+- Guide
+ - [Introduction](/en/README)
  - [Quick Start](/en/start)
  - [Attributes](/en/props)
+ - [Data](/en/data)
 - Components
   - [Line](/en/line)
   - [Histogram](/en/histogram)

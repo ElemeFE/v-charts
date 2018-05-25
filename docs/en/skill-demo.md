@@ -26,7 +26,7 @@ call the echarts resize function.
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         activeName: '1'
@@ -69,7 +69,7 @@ By default, v-charts retain two significant digits when working with data types,
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'value'],
@@ -101,7 +101,7 @@ Each chart has digit configuration items, set this attribute, so the smaller the
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'value'],

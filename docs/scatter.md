@@ -75,7 +75,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -125,7 +125,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -178,7 +178,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -243,7 +243,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -297,7 +297,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -347,7 +347,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],
@@ -399,7 +399,7 @@ visualMap 中的 dimension 属性用于设置数据的哪个指标映射到视�
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '余额', '数量', '年龄'],

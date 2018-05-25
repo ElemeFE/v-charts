@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       this.chartExtend = {
         series (v) {
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -109,7 +109,7 @@
 <script>
   // import css first
   // import 'v-charts/lib/style.css'
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -145,7 +145,7 @@
 <script>
   // import css first
   // import 'v-charts/lib/style.css'
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {
@@ -188,7 +188,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       return {
         chartData: {

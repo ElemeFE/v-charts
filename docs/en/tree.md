@@ -89,7 +89,7 @@
       }
     ]
   }
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['name', 'value'],
@@ -210,7 +210,7 @@
       }
     ]
   }
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['name', 'value'],
@@ -318,7 +318,7 @@
       }
     ]
   }
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['name', 'value'],
@@ -426,7 +426,7 @@
       }
     ]
   }
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['name', 'value'],

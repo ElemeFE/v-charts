@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -87,7 +87,7 @@
   // 使用前需先引入对应模块
   // import 'echarts/lib/component/markLine'
   // import 'echarts/lib/component/markPoint'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -137,7 +137,7 @@
 <script>
   // 使用前需先引入对应模块
   // import 'echarts/lib/component/visualMap'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -183,7 +183,7 @@
 <script>
   // 使用前需先引入对应模块
   // import 'echarts/lib/component/dataZoom'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -223,7 +223,7 @@
 <script>
   // 使用前需先引入对应模块
   // import 'echarts/lib/component/toolbox'
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
@@ -260,7 +260,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '成本', '利润'],
