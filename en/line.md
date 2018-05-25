@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
@@ -80,7 +80,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
@@ -112,7 +112,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'balance', 'age'],
@@ -147,7 +147,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['num', 'balance'],

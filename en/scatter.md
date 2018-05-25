@@ -77,7 +77,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -127,7 +127,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -180,7 +180,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -245,7 +245,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -299,7 +299,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -349,7 +349,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],
@@ -401,7 +401,7 @@ two dimension with multiple metrics scatter demo:
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['date', 'profit', 'number', 'age'],

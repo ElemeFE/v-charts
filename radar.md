@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '销售额-1季度', '销售额-2季度', '占比', '其他'],
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['日期', '销售额-1季度', '销售额-2季度', '占比', '其他'],

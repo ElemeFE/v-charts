@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['a', 'b', 'type', 'value'],
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['type', 'value'],
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['type', 'value'],
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['type', 'value'],

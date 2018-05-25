@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="//unpkg.com/element-ui@1.4.0/lib/theme-default/index.css">
-  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
+  <link rel="stylesheet" href="//unpkg.com/vuep-magic-patch/dist/vuep.css">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./style.min.css">
   <script>
@@ -24,6 +24,12 @@
 <body>
   <div id="app"></div>
   <script>
+    window.VUEP_FORM_RESOURCE = [
+      '<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"><\/script>',
+      '<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"><\/script>',
+      '<script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"><\/script>',
+      '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">'
+    ]
     window.$docsify = {
       name: 'v-charts',
       repo: 'https://github.com/elemefe/v-charts',
@@ -57,14 +63,15 @@
       ]
     }
   </script>
-  <script src="//unpkg.com/shap/sdk/Shap.umd.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-  <script src="//unpkg.com/vue/dist/vue.min.js"></script>
-  <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/ga.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/shap/sdk/Shap.umd.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="//unpkg.com/vuep-magic-patch@1.0.1/dist/vuep.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.js"></script>
   <script src="//cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
-  <script src="//unpkg.com/element-ui@1.4.0/lib/index.js"></script>
-  <script src="//unpkg.com/echarts/dist/extension/bmap.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/index.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
   <script src="./index.min.js"></script>
 </body>
 </html>

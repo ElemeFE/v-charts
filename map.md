@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['位置', 'GDP'],
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['位置', 'GDP'],
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['位置', 'GDP'],
@@ -111,7 +111,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     data () {
       this.chartData = {
         columns: ['位置', 'GDP'],
@@ -150,7 +150,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['位置', 'GDP'],
@@ -186,7 +186,7 @@
 </template>
 
 <script>
-  module.exports = {
+  export default {
     created: function () {
       this.chartData = {
         columns: ['位置', ' 人口'],
