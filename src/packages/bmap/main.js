@@ -4,13 +4,15 @@ export const bmap = (_, __, settings, extra) => {
   const {
     key,
     v,
-    bmap
+    bmap,
+    useOuterMap
   } = settings
   const { _once } = extra
   const registerSign = 'bmap_register'
-  if (!key) console.warn('settings.key must be a string.')
+  if (!key && !useOuterMap) console.warn('settings.key must be a string.')
   if (_once[registerSign]) return {}
   _once[registerSign] = true
+  if (useOuterMap) return { bmap }
   return getBmap(key, v).then(_ => {
     return { bmap }
   })

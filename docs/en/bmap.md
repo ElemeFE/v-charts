@@ -25,5 +25,9 @@ To make it easier to use the Baidu / Gauteng maps on echarts, v-charts package a
 | v | Bmap/Amap version | String | default 2.0(Bmap)/1.4.3(Amap) |
 | bmap | Bmap settings | Object | content reference [docs](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用) |
 | amap | Amap settings | Object | reference amap doc |
+| useOuterMap | 使用全局的地图依赖 | Boolean | 默认为 `false` |
 
-> Remark: Bmap / Amap Maps When used in conjunction with other maps, additional echarts modules are required, such as heatmap, to be used `import 'echarts/lib/chart/heatmap'`.
+> 1. Bmap / Amap Maps When used in conjunction with other maps, additional echarts modules are required, such as heatmap, to be used `import 'echarts/lib/chart/heatmap'`.
+> 2. if import bmap or amap source by use script tag, set useOuterMap `true`.<br>
+> bmap `<script src="https://api.map.baidu.com/api?v=2.0&ak=key"></script>`<br>
+> amap `<script src="https://webapi.amap.com/maps?v=1.4.3&key=key"></script>`
