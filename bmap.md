@@ -25,5 +25,9 @@
 | v | 百度/高德地图版本 | String | 默认2.0(百度)/1.4.3(高德) |
 | bmap | 百度地图配置项 | Object | 参考[文档](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用)配置 |
 | amap | 高德地图配置项 | Object | 参考高德地图文档配置 |
+| useOuterMap | 使用全局的地图依赖 | Boolean | - |
 
-> 备注：百度/高德地图在与其他地图搭配使用时，需要额外引入相应的 echarts 模块，例如使用热力图，则需要`import 'echarts/lib/chart/heatmap'`。
+> 1. 百度/高德地图在与其他地图搭配使用时，需要额外引入相应的 echarts 模块，例如使用热力图，则需要`import 'echarts/lib/chart/heatmap'`。
+> 2. 使用 script 引入百度地图或高德地图后，配置 useOuterMap 可以阻止组件对地图资源的引用<br>
+> 百度地图 `<script src="https://api.map.baidu.com/api?v=2.0&ak=key"></script>`<br>
+> 高德地图 `<script src="https://webapi.amap.com/maps?v=1.4.3&key=key"></script>`
