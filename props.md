@@ -59,7 +59,7 @@
 | 配置项 | 简介 | 类型 | 默认值 |
 | ----- | --- |:----:| --- |
 | loading | 加载状态 | boolean | false |
-| dataEmpty | 暂无数据状态 | boolean | false |
+| data-empty | 暂无数据状态 | boolean | false |
 ?> **使用时需先引入样式**
 <br>`import 'v-charts/lib/style.css'`
 
