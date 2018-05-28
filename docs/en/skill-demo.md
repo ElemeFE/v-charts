@@ -1,4 +1,4 @@
-### FAQ
+# FAQ
 
 #### The initial width of the container is unknown
 

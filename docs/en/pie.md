@@ -1,4 +1,4 @@
-### Pie
+# Pie
 
 #### Example
 
@@ -238,19 +238,19 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| dataType | data type of metrics | String | `'KMB'`, `'normal'`, `'percent'` |
-| selectedMode | mode of pie select | String | `'single'`, `'multiple'` , default `false` |
-| hoverAnimation | Whether to enable the zoom animation effects when hovering sectors | Boolean | default `true` |
-| radius | radius of pie | Number | - |
-| offsetY | y offset of pie | Number | - |
-| digit | digit of percent type data | Number | default `2` |
-| roseType | whether display as rose pie | String | `'radius', 'area'`, default `false` |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.label) |
-| labelLine | style of visual guide line. | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.labelLine) |
-| itemStyle | style of pie item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.itemStyle)  |
-| level | set while show multiple pie | Array | - |
-| limitShowNum | limit legend number | Number | - |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
+| selectedMode | mode of pie select | string | `'single'`, `'multiple'` , default `false` |
+| hoverAnimation | Whether to enable the zoom animation effects when hovering sectors | boolean | default `true` |
+| radius | radius of pie | number | - |
+| offsetY | y offset of pie | number | - |
+| digit | digit of percent type data | number | default `2` |
+| roseType | whether display as rose pie | string | `'radius', 'area'`, default `false` |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.label) |
+| labelLine | style of visual guide line. | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.labelLine) |
+| itemStyle | style of pie item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.itemStyle)  |
+| level | set while show multiple pie | array | - |
+| limitShowNum | limit legend number | number | - |
 
 > Remark. The value of level accepts a two-dimensional array, for example: `[['a', 'b'], ['c', 'd']]`, which means the inner layer displays the 'a' , 'b'` indicators plus the composition of the pie chart, the outer layer of' c ',' d'`indicators together ring chart.

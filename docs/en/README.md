@@ -20,7 +20,86 @@ npm i v-charts echarts -S
 
 #### Example
 
-<iframe width="100%" height="430" src="//jsfiddle.net/vue_echarts/hc4xhyva/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+[online demo](https://jsfiddle.net/vue_echarts/hc4xhyva)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>v-charts</title>
+</head>
+<body>
+  <div id="app">
+    <ve-line :data="chartData"></ve-line>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          chartData: {
+            columns: ['date', 'sales'],
+            rows: [
+              { 'date': '1月1日', 'sales': 123 },
+              { 'date': '1月2日', 'sales': 1223 },
+              { 'date': '1月3日', 'sales': 2123 },
+              { 'date': '1月4日', 'sales': 4123 },
+              { 'date': '1月5日', 'sales': 3123 },
+              { 'date': '1月6日', 'sales': 7123 }
+            ]
+          }
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+```
 
 #### Use a single chart component
-<iframe width="100%" height="430" src="//jsfiddle.net/vue_echarts/6h15xnxx/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+[online demo](https://jsfiddle.net/vue_echarts/6h15xnxx)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>v-charts</title>
+</head>
+<body>
+  <div id="app">
+    <ve-line :data="chartData"></ve-line>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/line.min.js"></script>
+  <!-- -------------------------------------------------△△△△------------ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
+  <script>
+    new Vue({
+      el: '#app',
+      data: function () {
+        return {
+          chartData: {
+            columns: ['date', 'sales'],
+            rows: [
+              { 'date': '1月1日', 'sales': 123 },
+              { 'date': '1月2日', 'sales': 1223 },
+              { 'date': '1月3日', 'sales': 2123 },
+              { 'date': '1月4日', 'sales': 4123 },
+              { 'date': '1月5日', 'sales': 3123 },
+              { 'date': '1月6日', 'sales': 7123 }
+            ]
+          }
+        }
+      },
+      components: { VeLine }
+    })
+  </script>
+</body>
+</html>
+```

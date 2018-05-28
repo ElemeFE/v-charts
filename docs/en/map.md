@@ -1,4 +1,4 @@
-### Map
+# Map
 
 #### Example
 
@@ -236,23 +236,23 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | Array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
-| position | location of map | String | default `'china'` |
-| selectData | whether highlight data location | Boolean | default `false` |
-| selectedMode | mode of map select | Boolean, String | `'single'`, `'multiple'`, default `false` |
-| dataType | data type of metrics | Object | content is `{ metricsName: dataType }`, support `'normal'`, `'KMB'`, `'percent'` |
-| digit | digit of percent type data | Number | default `2` |
-| zoom | zoom rate of current view-port | Number | default `1` |
-| center | center of current view-port, in longitude and latitude | Array | - |
-| mapGrid | grid of chart | Object | default <br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
-| label | label of chart | Boolean, Object | default `true`, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-map.label) |
-| itemStyle | style of map area | Boolean, Object | default `true`, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-map.itemStyle) |
-| positionJsonLink | data source of map | String | - |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
+| position | location of map | string | default `'china'` |
+| selectData | whether highlight data location | boolean | default `false` |
+| selectedMode | mode of map select | boolean, string | `'single'`, `'multiple'`, default `false` |
+| dataType | data type of metrics | object | content is `{ metricsName: dataType }`, support `'normal'`, `'KMB'`, `'percent'` |
+| digit | digit of percent type data | number | default `2` |
+| zoom | zoom rate of current view-port | number | default `1` |
+| center | center of current view-port, in longitude and latitude | array | - |
+| mapGrid | grid of chart | object | default <br>`{`<br>` left: auto,`<br>` right: auto,`<br>` top: auto,`<br>` bottom: auto`<br>` }` |
+| label | label of chart | boolean, object | default `true`, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-map.label) |
+| itemStyle | style of map area | boolean, object | default `true`, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-map.itemStyle) |
+| positionJsonLink | data source of map | string | - |
 | beforeRegisterMap | trigger before map register | Function | parameter is map data, need to return map data |
 | beforeRegisterMapOnce | trigger before map register (only once) | Function | parameter is map data, need to return map data |
-| specialAreas | special location settings | Object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
-| mapURLProfix | url profix of map location | String | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
-| mapOrigin | map geojson | Object | - |
+| specialAreas | special location settings | object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
+| mapURLProfix | url profix of map location | string | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
+| mapOrigin | map geojson | object | - |
 
 > Remark: position default value is 'china',and also you can set 'china'、'china-cities'、'china-contour'、'world'、'province/beijing'、'province/shanghai' and so on, china province need add `province/` before province name.

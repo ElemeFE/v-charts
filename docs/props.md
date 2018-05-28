@@ -38,13 +38,13 @@
 标识元素包括：markLine、markArea、markPoint，每个种类的图对应的使用方式略有不同，
 可以参考 echarts 文档中实现。需要注意的是，设置的标识元素会被增加到每一个指标上，例如一个
 单维度多指标折线图，两条线都会显示对应的标识元素，如果设置只在一个指标线上显示，可以使用 `extend`
-的自由配置。 
+属性，直接为 series 设置 mark* 来自由配置。 
 
 | 配置项 | 简介 | 类型 |
 | ----- | --- |:----:|
-| mark-line | 标线 | Object |
-| mark-area | 标点 | Object |
-| mark-point | 标志区域 | Object |
+| mark-line | 标线 | object |
+| mark-area | 标点 | object |
+| mark-point | 标志区域 | object |
 
 ?> **使用时需先引入对应的组件**
 <br>markLine -> `echarts/lib/component/markLine`
@@ -91,26 +91,26 @@ extend为对象类型，对象内的属性可以是函数，也可以对象，�
 与echarts配置项对应的属性也被加到了组件上，用于直接**覆盖**options原有的对应属性，使用方式可参考[文档](http://echarts.baidu.com/option.html)
 
 ```yaml
-grid: [Object, Array],
-colors: Array,
-visualMap: [Object, Array],
-dataZoom: [Object, Array],
-toolbox: [Object, Array],
-title: Object,
-legend: [Object, Array],
-xAxis: [Object, Array],
-yAxis: [Object, Array],
-radar: Object,
-tooltip: Object,
-axisPointer: Object,
-brush: [Object, Array],
-geo: Object,
-timeline: [Object, Array],
-graphic: [Object, Array],
-series: [Object, Array],
-backgroundColor: [Object, String],
-textStyle: Object,
-animation: Object
+grid: [object, array],
+colors: array,
+visualMap: [object, array],
+dataZoom: [object, array],
+toolbox: [object, array],
+title: object,
+legend: [object, array],
+xAxis: [object, array],
+yAxis: [object, array],
+radar: object,
+tooltip: object,
+axisPointer: object,
+brush: [object, array],
+geo: object,
+timeline: [object, array],
+graphic: [object, array],
+series: [object, array],
+backgroundColor: [object, string],
+textStyle: object,
+animation: object
 ```
 
 !> 如果某属性加上去之后没有生效，很可能是没有引入相应的模块，模块的位置可以参考此[文件](https://github.com/ecomfe/echarts/blob/master/index.js)

@@ -1,4 +1,4 @@
-### Tree
+# Tree
 
 #### Example
 
@@ -461,8 +461,8 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| seriesMap | series of each gauge | Object | - |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| seriesMap | series of each gauge | object | - |
 
 > 备注1:  by set `seriesMap`, you can set style for every tree, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-tree)

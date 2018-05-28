@@ -92,7 +92,7 @@ There are two configurations in the setting property of the chart:
 </script>
 </script>
 
-### Set metrics alias
+# Set metrics alias
 
 In some cases, the name of the indicator in the data is not what we want to show, and most charts have a uniform configuration in the setting attribute to solve this problem.
 

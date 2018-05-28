@@ -1,4 +1,4 @@
-### Waterfall
+# Waterfall
 
 #### Example
 
@@ -125,10 +125,10 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| dataType | data type of metrics | String | `'KMB'`, `'normal'`, `'percent'` |
-| totalNum | total number | Number | default display the sum of all data |
-| totalName | text of total | String | default `'总计'` |
-| remainName | text of remain | String | default `'其他'` |
-| digit | digit of percent type data | Number | default `2` |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
+| totalNum | total number | number | default display the sum of all data |
+| totalName | text of total | string | default `'总计'` |
+| remainName | text of remain | string | default `'其他'` |
+| digit | digit of percent type data | number | default `2` |

@@ -1,4 +1,4 @@
-### Funnel
+# Funnel
 
 #### Example
 
@@ -156,12 +156,12 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| dataType | data type of metrics | String | `'KMB'`, `'normal'`, `'percent'` |
-| sequence | custom data order | Array | defautthe order of the data |
-| ascending | whether display as pyramid | Boolean | default `false` |
-| digit | digit of percent type data | Number | default `2` |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.label) |
-| labelLine | visual guide line style of label | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.labelLine) |
-| itemStyle | style of funnel item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.itemStyle) |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
+| sequence | custom data order | array | defautthe order of the data |
+| ascending | whether display as pyramid | boolean | default `false` |
+| digit | digit of percent type data | number | default `2` |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.label) |
+| labelLine | visual guide line style of label | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.labelLine) |
+| itemStyle | style of funnel item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.itemStyle) |

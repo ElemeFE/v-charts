@@ -1,4 +1,4 @@
-### Line
+# Line
 
 #### Example
 
@@ -172,25 +172,25 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart data | Array | default `columns[0]` |
-| metrics | metrics of chart data | Array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
-| xAxisType | type of x axis | String | `'category'`/`'value'`/`'time'`/`'log'` |
-| yAxisType | type of left and right y-axis | Array |`'KMB'`/`'normal'`/`'percent'` |
-| yAxisName | title of left and right y-axis | Array | - |
-| axisSite | metrics in left or right | Object | - |
-| stack | stack option | Object | - |
-| area | whether display area | Boolean | default `false` |
-| scale | whether not to contain zero position of left and right y-axis | Array | default `[false, false]` |
-| min | min value of left and right y-axis | Array | - |
-| max | max value of left and right y-axis | Array | - |
-| nullAddZero | null convert to zero | Boolean | When set to true, if the corresponding data in the data is null or undefined, 0 is added to the chart|
-| digit | digit of percent type data | Number | default `2` |
-| labelMap | metrics alias | Object | effect both tooltip and legend |
-| legendName | legend alias | Object | only effect legend |
-| label | label of chart | Object | content reference [docs](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label) |
-| itemStyle | style of the symbol point of broken line | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.itemStyle) |
-| lineStyle | line style | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.lineStyle) |
-| areaStyle | style of area | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.areaStyle) |
+| dimension | dimension of chart data | array | default `columns[0]` |
+| metrics | metrics of chart data | array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
+| xAxisType | type of x axis | string | `'category'`/`'value'`/`'time'`/`'log'` |
+| yAxisType | type of left and right y-axis | array |`'KMB'`/`'normal'`/`'percent'` |
+| yAxisName | title of left and right y-axis | array | - |
+| axisSite | metrics in left or right | object | - |
+| stack | stack option | object | - |
+| area | whether display area | boolean | default `false` |
+| scale | whether not to contain zero position of left and right y-axis | array | default `[false, false]` |
+| min | min value of left and right y-axis | array | - |
+| max | max value of left and right y-axis | array | - |
+| nullAddZero | null convert to zero | boolean | When set to true, if the corresponding data in the data is null or undefined, 0 is added to the chart|
+| digit | digit of percent type data | number | default `2` |
+| labelMap | metrics alias | object | effect both tooltip and legend |
+| legendName | legend alias | object | only effect legend |
+| label | label of chart | object | content reference [docs](https://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.label) |
+| itemStyle | style of the symbol point of broken line | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.itemStyle) |
+| lineStyle | line style | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.lineStyle) |
+| areaStyle | style of area | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-line.areaStyle) |
 
 > Remark 1. `axisSite` object can set left and right, like the example, if you set `axisSite: { right: ['growthRate'] }`, data of growthRate will be set in right y-axis.
 

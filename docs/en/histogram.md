@@ -1,4 +1,4 @@
-### Histogram
+# Histogram
 
 #### Example
 
@@ -225,24 +225,24 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart data | Array | default `columns[0]` |
-| metrics | metrics of chart data | Array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
-| yAxisType | type of left and right y-axis | Array |`'KMB'`/`'normal'`/`'percent'` |
-| yAxisName | title of left and right y-axis | Array | - |
-| axisSite | metrics in left or right | Object | - |
-| stack | stack option | Object | - |
-| digit | digit of percent type data | Number | default `2` |
-| dataOrder | whether to sort data | Boolean, Object | default `false` |
-| scale | whether not to contain zero position of left and right y-axis | Array | default `[false, false]`|
-| min | min value of left and right y-axis | Array | - |
-| max | max value of left and right y-axis | Array | - |
-| labelMap | metrics alias | Object | effect both tooltip and legend |
-| legendName | legend alias | Object | only effect legend |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.label) |
-| itemStyle | style of bar item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.itemStyle) |
-| showLine | metrics which display as line | Array | - |
-| xAxisType | type of x-axis | String | `'category'`/`'value'`, default `'category'` |
-| opacity | opacity option | Number | - |
+| dimension | dimension of chart data | array | default `columns[0]` |
+| metrics | metrics of chart data | array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
+| yAxisType | type of left and right y-axis | array |`'KMB'`/`'normal'`/`'percent'` |
+| yAxisName | title of left and right y-axis | array | - |
+| axisSite | metrics in left or right | object | - |
+| stack | stack option | object | - |
+| digit | digit of percent type data | number | default `2` |
+| dataOrder | whether to sort data | boolean, object | default `false` |
+| scale | whether not to contain zero position of left and right y-axis | array | default `[false, false]`|
+| min | min value of left and right y-axis | array | - |
+| max | max value of left and right y-axis | array | - |
+| labelMap | metrics alias | object | effect both tooltip and legend |
+| legendName | legend alias | object | only effect legend |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.label) |
+| itemStyle | style of bar item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.itemStyle) |
+| showLine | metrics which display as line | array | - |
+| xAxisType | type of x-axis | string | `'category'`/`'value'`, default `'category'` |
+| opacity | opacity option | number | - |
 
 > Remark 1. `axisSite` object can set left and right, like the example, if you set `axisSite: { right: ['growthRate'] }`, data of growthRate will be set in right y-axis.
 

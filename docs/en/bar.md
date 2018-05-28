@@ -1,4 +1,4 @@
-### Bar
+# Bar
 
 #### Example
 
@@ -207,23 +207,23 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart data | Array | default `columns[0]` |
-| metrics | metrics of chart data | Array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
-| xAxisType | type of top and bottom x-axis | Array |`'KMB'`/`'normal'`/`'percent'` |
-| xAxisName | title of top and bottom x-axis | Array | - |
-| axisSite | metrics in top or bottom | Object | - |
-| stack | stack option | Object | - |
-| digit | digit of percent type data | Number | default `2` |
-| dataOrder | whether to sort data | Boolean, Object | default `false` |
-| scale | whether not to contain zero position of top and bottom y-axis | Array | default `[false, false]`|
-| min | min value of top and bottom x-axis | Array | - |
-| max | max value of top and bottom x-axis | Array | - |
-| labelMap | metrics alias | Object | effect both tooltip and legend |
-| legendName | legend alias | Object | only effect legend |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.label) |
-| itemStyle | style of bar item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.itemStyle) |
-| yAxisType | type of y-axis | String | `'category'`/`'value'`, default `'category'` |
-| opacity | opacity option | Number | - |
+| dimension | dimension of chart data | array | default `columns[0]` |
+| metrics | metrics of chart data | array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
+| xAxisType | type of top and bottom x-axis | array |`'KMB'`/`'normal'`/`'percent'` |
+| xAxisName | title of top and bottom x-axis | array | - |
+| axisSite | metrics in top or bottom | object | - |
+| stack | stack option | object | - |
+| digit | digit of percent type data | number | default `2` |
+| dataOrder | whether to sort data | boolean, object | default `false` |
+| scale | whether not to contain zero position of top and bottom y-axis | array | default `[false, false]`|
+| min | min value of top and bottom x-axis | array | - |
+| max | max value of top and bottom x-axis | array | - |
+| labelMap | metrics alias | object | effect both tooltip and legend |
+| legendName | legend alias | object | only effect legend |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.label) |
+| itemStyle | style of bar item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-bar.itemStyle) |
+| yAxisType | type of y-axis | string | `'category'`/`'value'`, default `'category'` |
+| opacity | opacity option | number | - |
 
 > Remark 1. `axisSite` object can set top and bottom, like the example, if you set `axisSite: { bottom: ['growthRate'] }`, data of growthRate will be set in bottom y-axis.
 

@@ -1,4 +1,4 @@
-### Gauge
+# Gauge
 
 <iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/oc7j28jo/1/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -330,12 +330,12 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | 默认 columns[0] |
-| metrics | metrics of chart | String | 默认 columns[1] |
-| dataType | data type of metrics | Object | - |
-| digit | digit of percent type data | Number | default `2` |
-| labelMap | metrics alias | Object | - |
-| seriesMap | series of each gauge | Object | - |
-| dataName | unit displayed on the dial | Object | - |
+| dimension | dimension of chart | string | 默认 columns[0] |
+| metrics | metrics of chart | string | 默认 columns[1] |
+| dataType | data type of metrics | object | - |
+| digit | digit of percent type data | number | default `2` |
+| labelMap | metrics alias | object | - |
+| seriesMap | series of each gauge | object | - |
+| dataName | unit displayed on the dial | object | - |
 
 > Remark: by set `seriesMap`, you can set style for every gauge, content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-gauge).

@@ -1,8 +1,6 @@
-## v-charts
+# Quick Start
 
-### Import v-charts
-
-#### Fully import
+### Fully import
 -----
 
 ```js
@@ -19,7 +17,7 @@ new Vue({
 })
 ```
 
-#### On demand
+### On demand
 -----
 
 Each chart component of v-charts is individually packaged under the lib folder

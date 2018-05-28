@@ -1,4 +1,4 @@
-### Ring
+# Ring
 
 #### Example
 
@@ -170,16 +170,16 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| dataType | data type of metrics | String | `'KMB'`, `'normal'`, `'percent'` |
-| selectedMode | mode of ring select | String | `'single'`, `'multiple'` , default `false` |
-| hoverAnimation | Whether to enable the zoom animation effects when hovering sectors | Boolean | default `true` |
-| radius | radius of ring | Array | - |
-| offsetY | y offset of ring | Number | - |
-| digit | digit of percent type data | Number | default `2` |
-| roseType | whether display as rose pie | String | `'radius', 'area'`, default `false` |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.label) |
-| labelLine | style of visual guide line. | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.labelLine) |
-| itemStyle | style of pie item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.itemStyle)  |
-| limitShowNum | limit legend number | Number | - |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
+| selectedMode | mode of ring select | string | `'single'`, `'multiple'` , default `false` |
+| hoverAnimation | Whether to enable the zoom animation effects when hovering sectors | boolean | default `true` |
+| radius | radius of ring | array | - |
+| offsetY | y offset of ring | number | - |
+| digit | digit of percent type data | number | default `2` |
+| roseType | whether display as rose pie | string | `'radius', 'area'`, default `false` |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.label) |
+| labelLine | style of visual guide line. | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.labelLine) |
+| itemStyle | style of pie item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-pie.itemStyle)  |
+| limitShowNum | limit legend number | number | - |

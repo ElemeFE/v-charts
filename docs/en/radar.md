@@ -1,4 +1,4 @@
-### Radar
+# Radar
 
 #### Example
 
@@ -78,11 +78,11 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | Array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
-| dataType | data type of metrics | Object | `'KMB'`, `'normal'`, `'percent'` |
-| digit | digit of percent type data | Number | default `2` |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.label) |
-| itemStyle | item style of the inflection point of the lines | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.itemStyle) |
-| lineStyle | line style | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.lineStyle) |
-| areaStyle | area filling style | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.areaStyle)  |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | array | defaut `[columns[1] ~ columns[columns.length - 1]]` |
+| dataType | data type of metrics | object | `'KMB'`, `'normal'`, `'percent'` |
+| digit | digit of percent type data | number | default `2` |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.label) |
+| itemStyle | item style of the inflection point of the lines | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.itemStyle) |
+| lineStyle | line style | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.lineStyle) |
+| areaStyle | area filling style | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-radar.areaStyle)  |
