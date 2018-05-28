@@ -28,3 +28,7 @@ th:first-child {
   color: #888;
   font-size: 14px;
 }
+
+.app-nav ul ul {
+  min-width: 90px;
+}
