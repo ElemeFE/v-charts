@@ -1,4 +1,4 @@
-# Attribute
+# Attributes
 
 ## Self attribute
 
@@ -35,7 +35,7 @@ All charts have properties such as `width`, `events` and so on.
 #### mark attribute
 
 The identification elements include: markLine, markArea, and markPoint. The usage of each type of map is slightly different. You can refer to the echarts documentation for implementation.
-It should be noted that the set of identity elements will be added to each metrics, such as a single-dimension multi-metrics line chart. The two lines will display the corresponding identification elements. If the settings are displayed on only one indicator line, you can use `extend`.
+It should be noted that the set of identity elements will be added to each metrics, such as a single-dimension multi-metrics line chart. The two lines will display the corresponding identification elements. If the settings are displayed on only one indicator line, you can use `extend` and set series.
 
 | attribute | intro | type |
 | ----- | --- |:----:|
@@ -86,26 +86,26 @@ For details about how to use it, refer to the following configuration examples
 The attributes corresponding to the echarts options item are also added to the component, which is used to directly **overwrite** the original corresponding attribute of the options. For usage, refer to [Document](http://echarts.baidu.com/option.html)
 
 ```yaml
-grid: [Object, Array],
-colors: Array,
-visualMap: [Object, Array],
-dataZoom: [Object, Array],
-toolbox: [Object, Array],
-title: Object,
-legend: [Object, Array],
-xAxis: [Object, Array],
-yAxis: [Object, Array],
-radar: Object,
-tooltip: Object,
-axisPointer: Object,
-brush: [Object, Array],
-geo: Object,
-timeline: [Object, Array],
-graphic: [Object, Array],
-series: [Object, Array],
-backgroundColor: [Object, String],
-textStyle: Object,
-animation: Object
+grid: [object, array],
+colors: array,
+visualMap: [object, array],
+dataZoom: [object, array],
+toolbox: [object, array],
+title: object,
+legend: [object, array],
+xAxis: [object, array],
+yAxis: [object, array],
+radar: object,
+tooltip: object,
+axisPointer: object,
+brush: [object, array],
+geo: object,
+timeline: [object, array],
+graphic: [object, array],
+series: [object, array],
+backgroundColor: [object, string],
+textStyle: object,
+animation: object
 ```
 
 !> If an attribute does not take effect after adding it, it is likely that the corresponding module is not imported. The location of the module can refer to this [file](https://github.com/ecomfe/echarts/blob/master/index.js)

@@ -1,4 +1,4 @@
-### Sankey
+# Sankey
 
 #### Example
 
@@ -50,11 +50,11 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | String | defaut `columns[1]` |
-| dataType | data type of metrics | Array | array[0] is type of sankey item, array[1] is type of sankey link line, support `'KMB'`, `'normal'`, `'percent'` |
-| links | links data between nodes | Array | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.links) |
-| digit | digit of percent type data | Number | default `2` |
-| label | label style of node | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.label) |
-| itemStyle | style of node rectangle in sankey graphs | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.itemStyle) |
-| lineStyle | line style of sankey graph | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.lineStyle) |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | string | defaut `columns[1]` |
+| dataType | data type of metrics | array | array[0] is type of sankey item, array[1] is type of sankey link line, support `'KMB'`, `'normal'`, `'percent'` |
+| links | links data between nodes | array | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.links) |
+| digit | digit of percent type data | number | default `2` |
+| label | label style of node | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.label) |
+| itemStyle | style of node rectangle in sankey graphs | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.itemStyle) |
+| lineStyle | line style of sankey graph | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-sankey.lineStyle) |
