@@ -1,8 +1,34 @@
-### 条形图
+# 条形图
 
 #### 示例
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/m1hdcmf4/10/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-bar"></vuep>
+
+<script v-pre type="text/x-template" id="simple-bar">
+<template>
+  <ve-bar :data="chartData"></ve-bar>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### 指定指标维度
 
@@ -15,21 +41,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '成本', '利润'],
-        rows: [
-          { '日期': '1月1号', '成本': 123, '利润': 3 },
-          { '日期': '1月2号', '成本': 1223, '利润': 6 },
-          { '日期': '1月3号', '成本': 2123, '利润': 90 },
-          { '日期': '1月4号', '成本': 4123, '利润': 12 },
-          { '日期': '1月5号', '成本': 3123, '利润': 15 },
-          { '日期': '1月6号', '成本': 7123, '利润': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
-        dimension: ['成本'],
-        metrics: ['利润']
+        dimension: ['日期'],
+        metrics: ['访问用户']
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+          ]
+        }
       }
     }
   }
@@ -47,23 +75,25 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '成本', '利润'],
-        rows: [
-          { '日期': '1月1号', '成本': 123, '利润': 3 },
-          { '日期': '1月2号', '成本': 1223, '利润': 6 },
-          { '日期': '1月3号', '成本': 2123, '利润': 90 },
-          { '日期': '1月4号', '成本': 4123, '利润': 12 },
-          { '日期': '1月5号', '成本': 3123, '利润': 15 },
-          { '日期': '1月6号', '成本': 7123, '利润': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
-        metrics: ['利润'],
+        metrics: ['访问用户'],
         dataOrder: {
-          label: '利润',
+          label: '访问用户',
           order: 'desc'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+          ]
         }
       }
     }
@@ -82,23 +112,25 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '成本', '利润'],
-        rows: [
-          { '日期': '1月1号', '成本': 123, '利润': 3 },
-          { '日期': '1月2号', '成本': 1223, '利润': 6 },
-          { '日期': '1月3号', '成本': 2123, '利润': 90 },
-          { '日期': '1月4号', '成本': 4123, '利润': 12 },
-          { '日期': '1月5号', '成本': 3123, '利润': 15 },
-          { '日期': '1月6号', '成本': 7123, '利润': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
-        xAxisType: ['KMB', 'percent'],
-        xAxisName: ['成本', '利润'],
+        xAxisType: ['KMB', 'KMB'],
+        xAxisName: ['下单用户', '访问用户'],
         axisSite: {
-          top: ['利润']
+          top: ['访问用户']
+        }
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293 }
+          ]
         }
       }
     }
@@ -108,30 +140,36 @@
 
 #### 设置legend别名
 
-<vuep template="#stacked-bar"></vuep>
+<vuep template="#set-alias"></vuep>
 
-<script v-pre type="text/x-template" id="stacked-bar">
+<script v-pre type="text/x-template" id="set-alias">
 <template>
   <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
 </template>
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '成本', '利润'],
-        rows: [
-          { '日期': '1月1号', '成本': 123, '利润': 300 },
-          { '日期': '1月2号', '成本': 1223, '利润': 600 },
-          { '日期': '1月3号', '成本': 2123, '利润': 9000 },
-          { '日期': '1月4号', '成本': 4123, '利润': 1200 },
-          { '日期': '1月5号', '成本': 3123, '利润': 1500 },
-          { '日期': '1月6号', '成本': 7123, '利润': 2000 }
-        ]
-      }
-      this.chartSettings =  {
+    data () {
+      this.chartSettings = {
+        labelMap: {
+          'PV': '访问用户',
+          'Order': '下单用户'
+        },
         legendName: {
-          '成本': '成本biubiu～'
+          '访问用户': '访问用户 total: 10000'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'PV', 'Order', 'OrderRate'],
+          rows: [
+            { 'date': '1/1', 'PV': 1393, 'Order': 1093, 'OrderRate': 0.32 },
+            { 'date': '1/2', 'PV': 3530, 'Order': 3230, 'OrderRate': 0.26 },
+            { 'date': '1/3', 'PV': 2923, 'Order': 2623, 'OrderRate': 0.76 },
+            { 'date': '1/4', 'PV': 1723, 'Order': 1423, 'OrderRate': 0.49 },
+            { 'date': '1/5', 'PV': 3792, 'Order': 3492, 'OrderRate': 0.323 },
+            { 'date': '1/6', 'PV': 4593, 'Order': 4293, 'OrderRate': 0.78 }
+          ]
         }
       }
     }
@@ -150,21 +188,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['日期', '成本', '利润'],
-        rows: [
-          { '日期': '1月1号', '成本': 123, '利润': 300 },
-          { '日期': '1月2号', '成本': 1223, '利润': 600 },
-          { '日期': '1月3号', '成本': 2123, '利润': 9000 },
-          { '日期': '1月4号', '成本': 4123, '利润': 1200 },
-          { '日期': '1月5号', '成本': 3123, '利润': 1500 },
-          { '日期': '1月6号', '成本': 7123, '利润': 2000 }
-        ]
-      }
+    data () {
       this.chartSettings =  {
         stack: {
-          'xxx': ['成本', '利润']
+          'xxx': ['访问用户', '下单用户']
+        }
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '下单率'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393, '下单用户': 1093, '下单率': 0.32 },
+            { '日期': '1/2', '访问用户': 3530, '下单用户': 3230, '下单率': 0.26 },
+            { '日期': '1/3', '访问用户': 2923, '下单用户': 2623, '下单率': 0.76 },
+            { '日期': '1/4', '访问用户': 1723, '下单用户': 1423, '下单率': 0.49 },
+            { '日期': '1/5', '访问用户': 3792, '下单用户': 3492, '下单率': 0.323 },
+            { '日期': '1/6', '访问用户': 4593, '下单用户': 4293, '下单率': 0.78 }
+          ]
         }
       }
     }
@@ -183,20 +223,22 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'resume', 'uplevel'],
-        rows: [
-          { 'date': 10, 'resume': 123, 'uplevel': 1213 },
-          { 'date': 11, 'resume': 1223, 'uplevel': 3116 },
-          { 'date': 12, 'resume': 2123, 'uplevel': 4119 },
-          { 'date': 20, 'resume': 4123, 'uplevel': 1112 },
-          { 'date': 21, 'resume': 3123, 'uplevel': 4115 },
-          { 'date': 25, 'resume': 7123, 'uplevel': 1212 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         yAxisType: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户'],
+          rows: [
+            { '日期': 1, '访问用户': 1393 },
+            { '日期': 2, '访问用户': 3530 },
+            { '日期': 5, '访问用户': 2923 },
+            { '日期': 10, '访问用户': 1723 },
+            { '日期': 15, '访问用户': 3792 },
+            { '日期': 36, '访问用户': 4593 }
+          ]
+        }
       }
     }
   }
@@ -207,23 +249,23 @@
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
-| dimension | 维度 | Array | 默认columns第一项为维度 |
-| metrics | 指标 | Array | 默认columns第二项起为指标 |
-| xAxisType | 上下坐标轴数据类型 | Array | 可选值: KMB, normal, percent |
-| xAxisName | 上下坐标轴标题 | Array | - |
-| axisSite | 指标所在的轴 | Object | 默认不在top轴的指标都在bottom轴 |
-| stack | 堆叠选项 | Object | - |
-| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
-| dataOrder | 设置数据排序方式 | Boolean, Object | 默认为false |
-| scale | 是否是脱离 0 值比例 | Array | 默认为[false, false]，表示上下两个轴都不会脱离0值比例。设置成 true 后坐标刻度不会强制包含零刻度 |
-| min | 上下坐标轴最小值 | Array | - |
-| max | 上下坐标轴最大值 | Array | - |
-| labelMap | 设置指标的别名，同时作用于提示框和图例| Object | - |
-| legendName | 设置图表上方图例的别名 | Object | - |
-| label | 设置图形上的文本标签 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.label) |
-| itemStyle | 图形样式 | Object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.itemStyle) |
-| yAxisType | 纵轴的类型 | String | 可选值'category'，'value'，默认为'category' |
-| opacity | 透明度 | Number | - |
+| dimension | 维度 | array | 默认columns第一项为维度 |
+| metrics | 指标 | array | 默认columns第二项起为指标 |
+| xAxisType | 上下坐标轴数据类型 | array | 可选值: KMB, normal, percent |
+| xAxisName | 上下坐标轴标题 | array | - |
+| axisSite | 指标所在的轴 | object | 默认不在top轴的指标都在bottom轴 |
+| stack | 堆叠选项 | object | - |
+| digit | 设置数据类型为percent时保留的位数 | number | 默认为2 |
+| dataOrder | 设置数据排序方式 | boolean, object | 默认为false |
+| scale | 是否是脱离 0 值比例 | array | 默认为[false, false]，表示上下两个轴都不会脱离0值比例。设置成 true 后坐标刻度不会强制包含零刻度 |
+| min | 上下坐标轴最小值 | array | - |
+| max | 上下坐标轴最大值 | array | - |
+| labelMap | 设置指标的别名，同时作用于提示框和图例| object | - |
+| legendName | 设置图表上方图例的别名 | object | - |
+| label | 设置图形上的文本标签 | object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.label) |
+| itemStyle | 图形样式 | object | 内容参考[文档](http://echarts.baidu.com/option.html#series-bar.itemStyle) |
+| yAxisType | 纵轴的类型 | string | 可选值'category'，'value'，默认为'category' |
+| opacity | 透明度 | number | - |
 
 > 备注1. axisSite 可以设置 top 和 bottom，例如示例所示 `axisSite: { top: ['占比'] }` 即将占比的数据置于上轴上。
 

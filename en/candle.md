@@ -1,4 +1,4 @@
-### Candle
+# Candle
 
 <iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/g98g02ah/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
@@ -455,21 +455,21 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default columns[0] |
-| metrics | metrics of chart | Array | default [columns[1] ~ columns[5]] |
-| digit | digit of percent type data | Number | default `2` |
-| itemStyle | style of candle item | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick.itemStyle) |
-| labelMap | metrics alias | Object | - |
-| legendName | legend alias | Object | - |
-| showMA | whether display MA | Boolean | 默认 为 false |
-| MA | MA option |  Array | default `[5, 10, 20, 30]` |
-| showVol | whether display Vol | Boolean |  default `false` |
-| downColor | rise color | String | default `#ec0000` |
-| upColor | fall color | String | default `#00da3c` |
-| showDataZoom | whether display dataRoom | Boolean | default `false` |
-| start | start of dataZoom | Number | default `50` |
-| end | end of dataZoom | Number | default `100` |
-| dataType | type of data display | String | `'KMB'`, `'normal'`, `'percent'` |
+| dimension | dimension of chart | string | default columns[0] |
+| metrics | metrics of chart | array | default [columns[1] ~ columns[5]] |
+| digit | digit of percent type data | number | default `2` |
+| itemStyle | style of candle item | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-candlestick.itemStyle) |
+| labelMap | metrics alias | object | - |
+| legendName | legend alias | object | - |
+| showMA | whether display MA | boolean | 默认 为 false |
+| MA | MA option |  array | default `[5, 10, 20, 30]` |
+| showVol | whether display Vol | boolean |  default `false` |
+| downColor | rise color | string | default `#ec0000` |
+| upColor | fall color | string | default `#00da3c` |
+| showDataZoom | whether display dataRoom | boolean | default `false` |
+| start | start of dataZoom | number | default `50` |
+| end | end of dataZoom | number | default `100` |
+| dataType | type of data display | string | `'KMB'`, `'normal'`, `'percent'` |
 
 > Remark 1: The values of metrics represent `['open', 'close', 'lowest', 'highest', 'vol']`, Where vol is an optional value.
 

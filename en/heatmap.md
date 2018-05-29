@@ -1,4 +1,4 @@
-### Heatmap
+# Heatmap
 
 #### Example
 
@@ -212,28 +212,28 @@
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| type | type of heatmap | String | `cartesian`, `map`, `bmap`, default `cartesian` |
-| dimension | dimension of chart | Array | default `[columns[0], columns[1]]` |
-| metrics | metrics of chart | String | default `columns[2]` |
-| xAxisList | x-axis data  | Array | default is dimension[0] data |
-| yAxisList | y-axis data | Array | default is dimension[1] data |
-| dataType | data type of metrics | String | `'KMB'`, `'normal'`, `'percent'` |
-| min | min number of visualMap | Number | defualt is min number of data |
-| max | max number of visualMap | Number | defualt is max number of data |
-| digit | digit of percent type data | Number | default `2` |
-| key | Bmap access_key | String | get [here](http://lbsyun.baidu.com/apiconsole/key) |
-| bmap | Bmap settings | Object | content reference [docs](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用) |
-| geo |  map settings |  Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#geo) |
-| position | map location | String | default `'china'` |
-| positionJsonLink | data source of map | String | - |
+| type | type of heatmap | string | `cartesian`, `map`, `bmap`, default `cartesian` |
+| dimension | dimension of chart | array | default `[columns[0], columns[1]]` |
+| metrics | metrics of chart | string | default `columns[2]` |
+| xAxisList | x-axis data  | array | default is dimension[0] data |
+| yAxisList | y-axis data | array | default is dimension[1] data |
+| dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
+| min | min number of visualMap | number | defualt is min number of data |
+| max | max number of visualMap | number | defualt is max number of data |
+| digit | digit of percent type data | number | default `2` |
+| key | Bmap access_key | string | get [here](http://lbsyun.baidu.com/apiconsole/key) |
+| bmap | Bmap settings | object | content reference [docs](https://github.com/ecomfe/echarts/tree/master/extension/bmap#使用) |
+| geo |  map settings |  object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#geo) |
+| position | map location | string | default `'china'` |
+| positionJsonLink | data source of map | string | - |
 | beforeRegisterMap | trigger before map register | Function | parameter is map data, need to return map data |
 | beforeRegisterMapOnce | trigger before map register (only once) | Function | parameter is map data, need to return map data |
-| specialAreas | special location settings | Object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
-| mapURLProfix | url profix of map location | String | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
-| pointSize | size of heatmap point | Number | default `10` |
-| blurSize | size of heatmap point blur | Number | default `5` |
-| heatColor | color range of visualMap | Array | - |
-| yAxisName | name of y-axis | String | - |
-| xAxisName | name of x-axis | String | - |
+| specialAreas | special location settings | object | content reference [docs](http://echarts.baidu.com/api.html#echarts.registerMap) |
+| mapURLProfix | url profix of map location | string | default  `https://unpkg.com/echarts@3.6.2/map/json/` |
+| pointSize | size of heatmap point | number | default `10` |
+| blurSize | size of heatmap point blur | number | default `5` |
+| heatColor | color range of visualMap | array | - |
+| yAxisName | name of y-axis | string | - |
+| xAxisName | name of x-axis | string | - |
 
 > Remark: if not set metrics, value will be 1 by default.

@@ -1,4 +1,4 @@
-### Scatter
+# Scatter
 
 
 There are two kinds of scatter: one dimension with multiple metrics scatter, two dimension with multiple metrics scatter.
@@ -437,25 +437,25 @@ two dimension with multiple metrics scatter demo:
 
 | attribute | description | type | remark |
 | --- | --- | --- | --- |
-| dimension | dimension of chart | String | default `columns[0]` |
-| metrics | metrics of chart | Array | default `[columns[0], columns[1]]` |
-| dataType | data type of metrics | Object | - |
-| xAxisType | type of x-axis | String | `'category'`, `'value'`, `'time'`, `'log'` |
-| xAxisName | title of x-axis | String | - |
-| yAxisName | title of y-axis | String | - |
-| digit | digit of percent type data | Number | default `2` |
-| labelMap | metrics alias | Object | - |
-| legendName | legend alias | Object | - |
-| tooltipTrigger | trigger type of tooltip | String | `'item'`, `'axis'` |
-| axisVisible | whether display axis | Boolean | - |
-| symbolSizeMax | max size of symbol | Number | default 50 |
-| symbol | symbol option | String | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbol) |
-| symbolSize | symbol size | number, Array, Function | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbolSize) |
+| dimension | dimension of chart | string | default `columns[0]` |
+| metrics | metrics of chart | array | default `[columns[0], columns[1]]` |
+| dataType | data type of metrics | object | - |
+| xAxisType | type of x-axis | string | `'category'`, `'value'`, `'time'`, `'log'` |
+| xAxisName | title of x-axis | string | - |
+| yAxisName | title of y-axis | string | - |
+| digit | digit of percent type data | number | default `2` |
+| labelMap | metrics alias | object | - |
+| legendName | legend alias | object | - |
+| tooltipTrigger | trigger type of tooltip | string | `'item'`, `'axis'` |
+| axisVisible | whether display axis | boolean | - |
+| symbolSizeMax | max size of symbol | number | default 50 |
+| symbol | symbol option | string | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbol) |
+| symbolSize | symbol size | number, array, Function | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbolSize) |
 | symbolRotate | symbol rotate angle | number | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbolRotate) |
-| symbolOffset | symbol offset relative to the previous position | Array | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbolOffset) |
+| symbolOffset | symbol offset relative to the previous position | array | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.symbolOffset) |
 | cursor | style of the mouse when the mouse is over the graphic element | string | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.cursor) |
-| scale | whether not to contain zero position of axis | Boolean | - |
-| min | min value of y-axis | Number | - |
-| max | max value of y-axis | Number | - |
-| label | label of chart | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.label) |
-| itemStyle | style of point | Object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.itemStyle) |
+| scale | whether not to contain zero position of axis | boolean | - |
+| min | min value of y-axis | number | - |
+| max | max value of y-axis | number | - |
+| label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.label) |
+| itemStyle | style of point | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-scatter.itemStyle) |

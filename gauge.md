@@ -1,6 +1,29 @@
-### 仪表盘
+# 仪表盘
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/oc7j28jo/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+#### 示例
+
+<vuep template="#simple-gauge"></vuep>
+
+<script v-pre type="text/x-template" id="simple-gauge">
+<template>
+  <ve-gauge :data="chartData"></ve-gauge>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['type', 'a', 'b', 'value'],
+          rows: [
+            { type: '速度', value: 80, a: 1, b: 2 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### 指标维度配置
 
@@ -13,16 +36,18 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['a', 'b', 'type', 'value'],
-        rows: [
-          { type: '速度', value: 80, a: 1, b: 2 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: 'type',
         metrics: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['a', 'b', 'type', 'value'],
+          rows: [
+            { type: '速度', value: 80, a: 1, b: 2 }
+          ]
+        }
       }
     }
   }
@@ -40,13 +65,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: '占比', value: 0.8 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dataType: {
           '占比': 'percent'
@@ -56,6 +75,14 @@
             min: 0,
             max: 1
           }
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: '占比', value: 0.8 }
+          ]
         }
       }
     }
@@ -74,19 +101,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'speed', value: 60 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         labelMap: {
           'speed': '速度'
         },
         dataName: {
           'speed': 'km/h'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 60 }
+          ]
         }
       }
     }
@@ -101,23 +130,15 @@
 <script v-pre type="text/x-template" id="set-style">
 <template>
   <ve-gauge
-  :data="chartData"
-  background-color="#000"
-  :settings="chartSettings">
+    :data="chartData"
+    background-color="#000"
+    :settings="chartSettings">
   </ve-gauge>
 </template>
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: '速度', value: 60 },
-          { type: '转速', value: 80 },
-          { type: '油表', value: 6000 },
-        ]
-      }
+    data () {
       this.chartSettings = {
         dataName: {
           '速度': 'km/h',
@@ -320,6 +341,16 @@
           }
         }
       }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: '速度', value: 60 },
+            { type: '转速', value: 80 },
+            { type: '油表', value: 6000 },
+          ]
+        }
+      }
     }
   }
 </script>
@@ -330,12 +361,12 @@
 
 | 配置项 | 简介 | 类型 | 备注 |
 | --- | --- | --- | --- |
-| dimension | 维度 | String | 默认 columns[0] |
-| metrics | 指标 | String | 默认 columns[1] |
-| dataType | 数据类型 | Object | - |
-| digit | 设置数据类型为percent时保留的位数 | Number | 默认为2 |
-| labelMap | 设置指标的别名 | Object | - |
-| seriesMap | 附加到 series 中的设置 | Object | - |
-| dataName | 表盘上显示的单位 | Object | - |
+| dimension | 维度 | string | 默认 columns[0] |
+| metrics | 指标 | string | 默认 columns[1] |
+| dataType | 数据类型 | object | - |
+| digit | 设置数据类型为percent时保留的位数 | number | 默认为2 |
+| labelMap | 设置指标的别名 | object | - |
+| seriesMap | 附加到 series 中的设置 | object | - |
+| dataName | 表盘上显示的单位 | object | - |
 
 > 备注1： 通过 seriesMap，可以为每一个仪表设置样式，具体样式的配置可以参考[文档](http://echarts.baidu.com/option.html#series-gauge)
