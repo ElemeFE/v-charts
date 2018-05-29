@@ -153,7 +153,7 @@
       this.visualMap = [
         {
           type: 'piecewise',
-          splitNumbwe: 5,
+          splitNumber: 5,
           min: 0,
           max: 60,
           right: 0,
@@ -278,4 +278,3 @@
   }
 </script>
 </script>
-

@@ -21,86 +21,8 @@ npm i v-charts echarts -S
 
 #### 全部引入
 
-[在线示例](https://jsfiddle.net/vue_echarts/aa7ojxyt)
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>v-charts</title>
-</head>
-<body>
-  <div id="app">
-    <ve-line :data="chartData"></ve-line>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
-  <script>
-    new Vue({
-      el: '#app',
-      data: function () {
-        return {
-          chartData: {
-            columns: ['日期', '销售额'],
-            rows: [
-              { '日期': '1月1日', '销售额': 123 },
-              { '日期': '1月2日', '销售额': 1223 },
-              { '日期': '1月3日', '销售额': 2123 },
-              { '日期': '1月4日', '销售额': 4123 },
-              { '日期': '1月5日', '销售额': 3123 },
-              { '日期': '1月6日', '销售额': 7123 }
-            ]
-          }
-        }
-      }
-    })
-  </script>
-</body>
-</html>
-```
+<iframe width="100%" height="430" src="//jsfiddle.net/vue_echarts/aa7ojxyt/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 #### 单独引入某个图
 
-[在线示例](https://jsfiddle.net/vue_echarts/jtvhj7jg)
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>v-charts</title>
-</head>
-<body>
-  <div id="app">
-    <ve-line :data="chartData"></ve-line>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/line.min.js"></script>
-  <!-- -------------------------------------------------△△△△------------ -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
-  <script>
-    new Vue({
-      el: '#app',
-      data: function () {
-        return {
-          chartData: {
-            columns: ['日期', '销售额'],
-            rows: [
-              { '日期': '1月1日', '销售额': 123 },
-              { '日期': '1月2日', '销售额': 1223 },
-              { '日期': '1月3日', '销售额': 2123 },
-              { '日期': '1月4日', '销售额': 4123 },
-              { '日期': '1月5日', '销售额': 3123 },
-              { '日期': '1月6日', '销售额': 7123 }
-            ]
-          }
-        }
-      },
-      components: { VeLine }
-    })
-  </script>
-</body>
-</html>
-```
+<iframe width="100%" height="430" src="//jsfiddle.net/jtvhj7jg/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

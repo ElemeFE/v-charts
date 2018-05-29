@@ -1,4 +1,6 @@
-## Quick Start
+## v-charts
+
+### Import v-charts
 
 #### Fully import
 -----

@@ -62,19 +62,12 @@
         }
       ]
     }
-    function getVuepText () {
-      window.VUEP_TEXT = window.location.hash.indexOf('#/en/')
-        ? '跳转至 JSFiddle 运行'
-        : 'Run on JSFiddle'
-    }
-    getVuepText()
-    window.addEventListener('popstate', getVuepText)
   </script>
   <script src="//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/shap/sdk/Shap.umd.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/vuep-magic-patch@1.0.3/dist/vuep.min.js"></script>
+  <script src="//unpkg.com/vuep-magic-patch@1.0.1/dist/vuep.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.js"></script>
   <script src="//cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/index.js"></script>
