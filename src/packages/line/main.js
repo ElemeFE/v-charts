@@ -1,5 +1,5 @@
 import { itemPoint } from '../../echarts-base'
-import { getFormated, getStackMap } from '../../utils'
+import { getFormated, getStackMap, isArray } from '../../utils'
 
 function getLineXAxis (args) {
   const { dimension, rows, xAxisName, axisVisible, xAxisType } = args
@@ -162,6 +162,8 @@ function getLegend (args) {
 }
 
 export const line = (columns, rows, settings, extra) => {
+  rows = isArray(rows) ? rows : []
+  columns = isArray(columns) ? columns : []
   const {
     axisSite = {},
     yAxisType = ['normal', 'normal'],
