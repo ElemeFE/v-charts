@@ -1,4 +1,4 @@
-import { isObject } from '../../utils'
+import { isObject } from 'utils-lite'
 
 function getTreeLegend (args) {
   const {

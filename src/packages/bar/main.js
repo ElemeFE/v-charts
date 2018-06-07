@@ -1,7 +1,6 @@
 import { itemPoint } from '../../echarts-base'
-import { getFormated, getStackMap, clone } from '../../utils'
-import set from 'lodash-es/set'
-import get from 'lodash-es/get'
+import { getFormated, getStackMap } from '../../utils'
+import { set, get, cloneDeep } from 'utils-lite'
 // default opacity of bar while dim-axis type is 'value'
 const VALUE_AXIS_OPACITY = 0.5
 
@@ -201,7 +200,7 @@ function getDims (rows, dimension) {
 }
 
 export const bar = (columns, rows, settings, extra) => {
-  const innerRows = clone(rows)
+  const innerRows = cloneDeep(rows)
   const {
     axisSite = {},
     dimension = [columns[0]],
@@ -294,7 +293,7 @@ export const bar = (columns, rows, settings, extra) => {
 }
 
 export const histogram = (columns, rows, settings, status) => {
-  const innerRows = clone(rows)
+  const innerRows = cloneDeep(rows)
   const {
     axisSite = {},
     dimension = [columns[0]],

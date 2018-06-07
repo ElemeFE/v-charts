@@ -123,18 +123,4 @@ export const getAmap = (key, v) => {
   return amapPromise
 }
 
-export const clone = (v) => JSON.parse(JSON.stringify(v))
-
-export const getType = (v) => {
-  return Object.prototype.toString.call(v)
-}
-
 export const toKebab = (v) => v.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-
-export const isArray = (v) => {
-  return getType(v) === '[object Array]'
-}
-
-export const isObject = (v) => {
-  return getType(v) === '[object Object]'
-}

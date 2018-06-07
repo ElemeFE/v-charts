@@ -1,5 +1,6 @@
 import { itemPoint } from '../../echarts-base'
-import { isArray, getFormated } from '../../utils'
+import { getFormated } from '../../utils'
+import { isArray } from 'utils-lite'
 
 const DEFAULT_MA = [5, 10, 20, 30]
 const DEFAULT_K_NAME = '日K'
