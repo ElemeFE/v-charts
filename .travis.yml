@@ -1,12 +1,11 @@
 language: node_js
 node_js:
-- stable
+  - stable
 branches:
   only:
   - master
 install:
   - yarn
-  - yarn add echarts
 script:
   - npm run build
   - npm run test

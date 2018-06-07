@@ -1,22 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const opn = require('opn')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-opn('http://localhost:8099')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
-  entry: {
-    app: './examples/main.js'
-  },
+  entry: './examples/main.js',
+  mode: 'development',
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'index.js',
-    publicPath: '/'
+    filename: 'index.js'
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -29,7 +26,8 @@ module.exports = {
     port: '8099',
     hot: true,
     contentBase: path.join(__dirname, 'dist'),
-    stats: 'errors-only'
+    stats: 'errors-only',
+    open: true
   },
   module: {
     rules: [
@@ -44,23 +42,20 @@ module.exports = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          sourceMap: true
-        }
+        loader: 'vue-loader'
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: 'img/[name].[hash:7].[ext]'
-        }
+        test: /\.less$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'less-loader'
+        ]
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('./src'), resolve('./examples')]
+        exclude: [resolve('node_modules')]
       },
       {
         test: /\.css$/,
@@ -69,21 +64,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../examples/favicon.ico')
-      }
-    ]),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './examples/index.html',
+      template: resolve('./examples/index.html'),
       inject: true
-    })
+    }),
+    new VueLoaderPlugin()
   ]
 }

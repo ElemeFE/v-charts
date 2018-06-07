@@ -3,8 +3,9 @@ const vue = require('rollup-plugin-vue')
 const resolve = require('rollup-plugin-node-resolve')
 const babel = require('rollup-plugin-babel')
 const eslint = require('rollup-plugin-eslint')
+const minify = require('uglify-es').minify
 const componentInfo = require('../src/component-list')
-const uglify = require('rollup-plugin-uglify')
+const uglify = require('rollup-plugin-uglify').uglify
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
 
@@ -63,22 +64,20 @@ function rollupFn (item) {
       plugins: ['external-helpers']
     })
   ]
-  if (item.min) plugins.push(uglify())
+  if (item.min) plugins.push(uglify({}, minify))
 
   rollup.rollup({
-    entry: item.src,
+    input: item.src,
     external: id => /^echarts/.test(id),
     plugins
   }).then(function (bundle) {
-    const dest = item.dist + item.suffix
-
-    bundle.write({
+    return bundle.write({
       format: item.type,
-      moduleName: item.globalName,
+      name: item.globalName,
       globals: {
         'echarts/lib/echarts': 'echarts'
       },
-      dest
+      file: item.dist + item.suffix
     })
   }).catch((e) => {
     console.log(e)
