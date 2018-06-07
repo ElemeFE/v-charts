@@ -1,7 +1,6 @@
 import App from './App'
 import Vue from 'vue'
 import router from './router'
-import 'normalize.css'
 
 import CodeSection from './components/code-section'
 

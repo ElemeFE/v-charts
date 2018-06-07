@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style lang="less">
+* {
+  padding: 0;
+  margin: 0;
+}
 html, body {
   height: 100%;
 }
@@ -70,5 +74,22 @@ html, body {
       }
     }
   }
+}
+button {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 6px 10px;
+  margin: 0;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #409eff;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
 }
 </style>
