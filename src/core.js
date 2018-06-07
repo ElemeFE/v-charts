@@ -1,15 +1,14 @@
 import { color } from './echarts-base'
-import { toKebab } from './utils'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
-import { getType, debounce, isArray, isObject } from 'utils-lite'
+import { getType, debounce, isArray, isObject, camelToKebab } from 'utils-lite'
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
 export default {
   render (h) {
     return h('div', {
-      class: [toKebab(this.$options.name || this.$options._componentTag)],
+      class: [camelToKebab(this.$options.name || this.$options._componentTag)],
       style: this.canvasStyle
     }, [
       h('div', {
