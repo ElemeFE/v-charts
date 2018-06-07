@@ -1,45 +1,26 @@
-export const numberFormat = (val, digits = 2) => {
-  if (isNaN(+val)) return val
+import numerify from 'numerify/lib/index.es'
+import { isFunction } from 'utils-lite'
 
-  let symbolMap = [
-    { value: 1E18, symbol: 'E' },
-    { value: 1E15, symbol: 'P' },
-    { value: 1E12, symbol: 'T' },
-    { value: 1E9, symbol: 'B' },
-    { value: 1E6, symbol: 'M' },
-    { value: 1E3, symbol: 'k' }
-  ]
+export const getFormated = (val, type, digit, defaultVal = '-') => {
+  if (isNaN(val)) return defaultVal
+  if (!type) return val
+  if (isFunction(type)) return type(val, numerify)
 
-  for (let i = 0; i < symbolMap.length; i++) {
-    if (Math.abs(val) >= symbolMap[i].value) {
-      return (val / symbolMap[i].value).toFixed(digits) + symbolMap[i].symbol
-    }
-  }
-
-  return val.toString()
-}
-
-export const formatTausends = (num) => {
-  return String(num).replace(/^(\s+|-)?\d+(?=.?\d*($|\s))/g, (m) => {
-    return m.replace(/(?=(?!\b)(\d{3})+$)/g, ',')
-  })
-}
-
-export const getFormated = (val, type, digit = 2, defaultVal = '-') => {
-  if (val == null || isNaN(val)) return defaultVal
+  digit = isNaN(digit) ? 0 : ++digit
+  const digitStr = `.[${new Array(digit).join(0)}]`
+  let formatter = type
   switch (type) {
-    case 'KMB': return numberFormat(val)
-    case 'percent': return `${parseFloat((val * 100).toFixed(digit))}%`
-    case 'normal': return formatTausends(val)
-    default: return val
+    case 'KMB':
+      formatter = digit ? `0,0${digitStr}a` : '0,0a'
+      break
+    case 'normal':
+      formatter = digit ? `0,0${digitStr}` : '0,0'
+      break
+    case 'percent':
+      formatter = digit ? `0,0${digitStr}%` : '0,0.[00]%'
+      break
   }
-}
-
-export const getLineKB = (s, v) => {
-  const result = []
-  result[0] = (s[1] - s[0]) / (v[1] - v[0])
-  result[1] = s[0] - result[0] * v[0]
-  return result
+  return numerify(val, formatter)
 }
 
 export const getStackMap = (stack) => {
@@ -122,5 +103,3 @@ export const getAmap = (key, v) => {
   }
   return amapPromise
 }
-
-export const toKebab = (v) => v.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()

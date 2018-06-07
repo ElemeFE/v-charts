@@ -68,14 +68,15 @@ function rollupFn (item) {
 
   rollup.rollup({
     input: item.src,
-    external: id => /^echarts/.test(id),
+    external: id => /^(echarts|numerify)/.test(id),
     plugins
   }).then(function (bundle) {
     return bundle.write({
       format: item.type,
       name: item.globalName,
       globals: {
-        'echarts/lib/echarts': 'echarts'
+        'echarts/lib/echarts': 'echarts',
+        'numerify/lib/index.es': 'numerify'
       },
       file: item.dist + item.suffix
     })
