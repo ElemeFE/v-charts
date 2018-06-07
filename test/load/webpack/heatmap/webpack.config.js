@@ -1,15 +1,14 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  entry: {
-    app: './index.js'
-  },
+  entry: './index.js',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'index.js',
-    publicPath: '/'
+    filename: 'index.js'
   },
   resolve: {
     extensions: ['.js', '.vue']
@@ -17,7 +16,8 @@ module.exports = {
   devServer: {
     port: '8180',
     hot: true,
-    stats: 'errors-only'
+    stats: 'errors-only',
+    open: true
   },
   module: {
     rules: [
@@ -36,16 +36,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
-    }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: '../index.html',
       inject: true
-    })
+    }),
+    new VueLoaderPlugin()
   ]
 }
