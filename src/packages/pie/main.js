@@ -1,5 +1,6 @@
 import { itemPoint } from '../../echarts-base'
-import { getFormated, clone } from '../../utils'
+import { getFormated } from '../../utils'
+import { cloneDeep } from 'utils-lite'
 
 const pieRadius = 100
 const ringRadius = [80, 100]
@@ -177,7 +178,7 @@ function getPieTooltip (args) {
 }
 
 export const pie = (columns, rows, settings, extra, isRing) => {
-  const innerRows = clone(rows)
+  const innerRows = cloneDeep(rows)
   const {
     dataType = 'normal',
     percentShow,

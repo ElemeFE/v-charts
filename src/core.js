@@ -1,8 +1,8 @@
 import { color } from './echarts-base'
-import { getType, toKebab, isArray, isObject } from './utils'
+import { toKebab } from './utils'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
-import debounce from 'lodash-es/debounce'
+import { getType, debounce, isArray, isObject } from 'utils-lite'
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
