@@ -127,3 +127,131 @@ v-charts 的数据由指标和维度组成。以一组常见的数据为例：
   }
 </script>
 </script>
+
+
+### 设置数据格式
+
+大部分情况下，我们需要对数据进行一些格式化，每种图表组件对数据格式的设置方式略有不同。
+例如 折线图使用 yAxisType, 饼图使用 dataType。基本的数据格式有 'normal' （千分位）、'KMB' （kmb 格式）、percent （百分比格式）；如果上述格式不能满足需求的话，还可以使用 [numerify](http://daxigua.me/numerify/) 的格式来配置显示，具体的格式支持和插件扩展写法可以参考
+numerify 文档；并且，为了支持更多未知的情况，格式的设置也支持使用回调函数的方式。以上三种方式
+的使用可以参考下面的示例。
+
+#### 基本类型
+
+<vuep template="#set-data-type"></vuep>
+
+<script v-pre type="text/x-template" id="set-data-type">
+<template>
+  <ve-scatter :data="chartData" :settings="chartSettings"></ve-scatter>
+</template>
+
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        dataType: {
+          '访问用户': 'KMB',
+          '年龄': 'percent',
+          '下单用户': 'normal'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户', '下单用户', '年龄'],
+          rows: {
+            '上海': [
+              { '日期': '1/1', '访问用户': 123, '年龄': 3, '下单用户': 1244 },
+              { '日期': '1/2', '访问用户': 1223, '年龄': 6, '下单用户': 2344 },
+              { '日期': '1/3', '访问用户': 7123, '年龄': 9, '下单用户': 3245 },
+              { '日期': '1/4', '访问用户': 4123, '年龄': 12, '下单用户': 4355 },
+              { '日期': '1/5', '访问用户': 3123, '年龄': 15, '下单用户': 4564 },
+              { '日期': '1/6', '访问用户': 2323, '年龄': 20, '下单用户': 6537 }
+            ],
+            '北京': [
+              { '日期': '1/1', '访问用户': 123, '年龄': 3, '下单用户': 1244 },
+              { '日期': '1/2', '访问用户': 1273, '年龄': 6, '下单用户': 2344 },
+              { '日期': '1/3', '访问用户': 3123, '年龄': 15, '下单用户': 4564 },
+              { '日期': '1/4', '访问用户': 2123, '年龄': 9, '下单用户': 3245 },
+              { '日期': '1/5', '访问用户': 4103, '年龄': 12, '下单用户': 4355 },
+              { '日期': '1/6', '访问用户': 7123, '年龄': 10, '下单用户': 3567 }
+            ],
+            '广州': [
+              { '日期': '1/1', '访问用户': 123, '年龄': 3, '下单用户': 1244 },
+              { '日期': '1/2', '访问用户': 1223, '年龄': 6, '下单用户': 2344 },
+              { '日期': '1/3', '访问用户': 2123, '年龄': 30, '下单用户': 3245 },
+              { '日期': '1/5', '访问用户': 4123, '年龄': 12, '下单用户': 4355 },
+              { '日期': '1/4', '访问用户': 5123, '年龄': 18, '下单用户': 4564 },
+              { '日期': '1/6', '访问用户': 3843, '年龄': 30, '下单用户': 4850 }
+            ]
+          }
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 使用 numerify 格式
+
+<vuep template="#set-data-format"></vuep>
+
+<script v-pre type="text/x-template" id="set-data-format">
+<template>
+  <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+</template>
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        yAxisType: ['0,0a']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'PV', 'Order'],
+          rows: [
+            { 'date': '2018-05-22', 'PV': 32371, 'Order': 19810 },
+            { 'date': '2018-05-23', 'PV': 12328, 'Order': 4398 },
+            { 'date': '2018-05-24', 'PV': 92381, 'Order': 52910 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### 使用回调函数
+
+
+<vuep template="#data-type"></vuep>
+
+<script v-pre type="text/x-template" id="data-type">
+<template>
+  <ve-pie :data="chartData" :settings="chartSettings"></ve-pie>
+</template>
+
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        dataType: function (v) {
+          return v + ' ￥'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['日期', '访问用户'],
+          rows: [
+            { '日期': '1/1', '访问用户': 1393 },
+            { '日期': '1/2', '访问用户': 3530 },
+            { '日期': '1/3', '访问用户': 2923 },
+            { '日期': '1/4', '访问用户': 1723 },
+            { '日期': '1/5', '访问用户': 3792 },
+            { '日期': '1/6', '访问用户': 4593 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
