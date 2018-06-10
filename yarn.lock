@@ -5825,7 +5825,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-numerify@1.2.5:
+numerify@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/numerify/-/numerify-1.2.5.tgz#d1a553817e633a2e2dc73dca84c91e5f6aa72311"
 
