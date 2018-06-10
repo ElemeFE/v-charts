@@ -14,6 +14,7 @@ npm i v-charts echarts -S
 ```html
 <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="//cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/numerify/lib/index.umd.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
 ```
@@ -34,6 +35,7 @@ npm i v-charts echarts -S
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/numerify/lib/index.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/index.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
   <script>
@@ -76,6 +78,7 @@ npm i v-charts echarts -S
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/numerify/lib/index.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/v-charts/lib/line.min.js"></script>
   <!-- -------------------------------------------------△△△△------------ -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
