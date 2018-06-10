@@ -30,8 +30,7 @@
     "vue": ">2.0.0"
   },
   "dependencies": {
-    "echarts-amap": "1.0.0-rc.6",
-    "numerify": "1.2.5"
+    "echarts-amap": "1.0.0-rc.6"
   },
   "devDependencies": {
     "autoprefixer": "^8.5.0",
@@ -70,6 +69,7 @@
     "karma-webpack": "^3.0.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "numerify": "^1.2.5",
     "phantomjs-prebuilt": "^2.1.16",
     "prismjs": "^1.14.0",
     "rollup": "^0.60.1",
