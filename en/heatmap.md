@@ -2,10 +2,6 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/mfagszmL/14/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-#### cartesian heatmap
-
 <vuep template="#cartesian-heatmap-chart"></vuep>
 
 <script v-pre type="text/x-template" id="cartesian-heatmap-chart">
@@ -15,21 +11,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['week', 'location', 'person'],
-        rows: [
-          { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
-          { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
-          { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
-          { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
-          { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
-          { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
-          { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
-          { 'week': 'Monday', 'location': 'Beijing', 'person': 700 },
-          { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 300 },
-          { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
-        ]
+    data () {
+      return {
+        chartData: {
+          columns: ['week', 'location', 'person'],
+          rows: [
+            { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
+            { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
+            { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
+            { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
+            { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
+            { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
+            { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
+            { 'week': 'Monday', 'location': 'Beijing', 'person': 700 },
+            { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 300 },
+            { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
+          ]
+        }
       }
     }
   }
@@ -47,25 +45,27 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['week', 'location', 'person'],
-        rows: [
-          { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
-          { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
-          { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
-          { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
-          { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
-          { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
-          { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
-          { 'week': 'Wednesday', 'location': 'Beijing', 'person': 700 },
-          { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 300 },
-          { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
-        ]
-      },
+    data () {
       this.chartSettings = {
         xAxisList: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', '星期六', '星期日'],
         yAxisList: ['Beijing', 'Shanghai', 'Hangzhou', 'Shenzhen', 'Changhcun', 'Nanjing', 'Jiangsu']
+      }
+      return {
+        chartData: {
+          columns: ['week', 'location', 'person'],
+          rows: [
+            { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
+            { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
+            { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
+            { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
+            { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
+            { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
+            { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
+            { 'week': 'Wednesday', 'location': 'Beijing', 'person': 700 },
+            { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 300 },
+            { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
+          ]
+        }
       }
     }
   }
@@ -83,22 +83,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['week', 'location', 'person'],
-        rows: [
-          { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
-          { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
-          { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
-          { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
-          { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
-          { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
-          { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
-          { 'week': 'Wednesday', 'location': 'Beijing', 'person': 700 },
-          { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 200 },
-          { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
-        ]
-      },
+    data () {
       this.chartGrid = {
         right: 100
       }
@@ -108,6 +93,23 @@
         type: 'piecewise',
         right: 0,
         top: '50%'
+      }
+      return {
+        chartData: {
+          columns: ['week', 'location', 'person'],
+          rows: [
+            { 'week': 'Monday', 'location': 'Beijing', 'person': 1000 },
+            { 'week': 'Tuesday', 'location': 'Shanghai', 'person': 400 },
+            { 'week': 'Wednesday', 'location': 'Hangzhou', 'person': 800 },
+            { 'week': 'Tuesday', 'location': 'Shenzhen', 'person': 200 },
+            { 'week': 'Wednesday', 'location': 'Changhcun', 'person': 100 },
+            { 'week': 'Friday', 'location': 'Nanjing', 'person': 300 },
+            { 'week': 'Thursday', 'location': 'Jiangsu', 'person': 800 },
+            { 'week': 'Wednesday', 'location': 'Beijing', 'person': 700 },
+            { 'week': 'Wednesday', 'location': 'Shanghai', 'person': 200 },
+            { 'week': 'Tuesday', 'location': 'Hangzhou', 'person': 500 }
+          ]
+        }
       }
     }
   }
@@ -125,22 +127,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['lat', 'lng', 'person'],
-        rows: [
-          { 'lat': 115.892151, 'lng': 28.676493, 'person': 1000 },
-          { 'lat': 117.000923, 'lng': 36.675807, 'person': 400 },
-          { 'lat': 113.665412, 'lng': 34.757975, 'person': 800 },
-          { 'lat': 114.298572, 'lng': 30.584355, 'person': 200 },
-          { 'lat': 112.982279, 'lng': 28.19409, 'person': 100 },
-          { 'lat': 113.280637, 'lng': 23.125178, 'person': 300 },
-          { 'lat': 110.33119, 'lng': 20.031971, 'person': 800 },
-          { 'lat': 104.065735, 'lng': 30.659462, 'person': 700 },
-          { 'lat': 108.948024, 'lng': 34.263161, 'person': 300 },
-          { 'lat': 103.823557, 'lng': 36.058039, 'person': 500 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         position: 'china',
         type: 'map',
@@ -161,6 +148,23 @@
           }
         }
       }
+      return {
+        chartData: {
+          columns: ['lat', 'lng', 'person'],
+          rows: [
+            { 'lat': 115.892151, 'lng': 28.676493, 'person': 1000 },
+            { 'lat': 117.000923, 'lng': 36.675807, 'person': 400 },
+            { 'lat': 113.665412, 'lng': 34.757975, 'person': 800 },
+            { 'lat': 114.298572, 'lng': 30.584355, 'person': 200 },
+            { 'lat': 112.982279, 'lng': 28.19409, 'person': 100 },
+            { 'lat': 113.280637, 'lng': 23.125178, 'person': 300 },
+            { 'lat': 110.33119, 'lng': 20.031971, 'person': 800 },
+            { 'lat': 104.065735, 'lng': 30.659462, 'person': 700 },
+            { 'lat': 108.948024, 'lng': 34.263161, 'person': 300 },
+            { 'lat': 103.823557, 'lng': 36.058039, 'person': 500 }
+          ]
+        }
+      }
     }
   }
 </script>
@@ -178,22 +182,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['lat', 'lng'],
-        rows: [
-          { 'lat': 120.14322240845, 'lng': 30.236064370321 },
-          { 'lat': 120.14301682797, 'lng': 30.236035316745 },
-          { 'lat': 120.14138577045, 'lng': 30.236113748704 },
-          { 'lat': 120.1400398833, 'lng': 30.235973050702 },
-          { 'lat': 120.13893453465, 'lng': 30.23517220446 },
-          { 'lat': 120.1382899739, 'lng': 30.234062922977 },
-          { 'lat': 120.13265960629, 'lng': 30.231641351722 },
-          { 'lat': 120.13170681763, 'lng': 30.229925745619 },
-          { 'lat': 120.13119614803, 'lng': 30.228996846637 },
-          { 'lat': 120.13023980134, 'lng': 30.228226570416 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         key: 'oBvDtR6nzWtVchkY4cLHtnah1VVZQKRK',
         bmap: {
@@ -202,6 +191,23 @@
           roam: true
         },
         type: 'bmap'
+      }
+      return {
+        chartData: {
+          columns: ['lat', 'lng'],
+          rows: [
+            { 'lat': 120.14322240845, 'lng': 30.236064370321 },
+            { 'lat': 120.14301682797, 'lng': 30.236035316745 },
+            { 'lat': 120.14138577045, 'lng': 30.236113748704 },
+            { 'lat': 120.1400398833, 'lng': 30.235973050702 },
+            { 'lat': 120.13893453465, 'lng': 30.23517220446 },
+            { 'lat': 120.1382899739, 'lng': 30.234062922977 },
+            { 'lat': 120.13265960629, 'lng': 30.231641351722 },
+            { 'lat': 120.13170681763, 'lng': 30.229925745619 },
+            { 'lat': 120.13119614803, 'lng': 30.228996846637 },
+            { 'lat': 120.13023980134, 'lng': 30.228226570416 }
+          ]
+        }
       }
     }
   }

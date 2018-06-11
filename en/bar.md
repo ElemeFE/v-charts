@@ -2,7 +2,33 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/m1hdcmf4/23/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-bar"></vuep>
+
+<script v-pre type="text/x-template" id="simple-bar">
+<template>
+  <ve-bar :data="chartData"></ve-bar>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -15,21 +41,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 90 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: ['cost'],
         metrics: ['profit']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
       }
     }
   }
@@ -47,23 +75,25 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 90 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         metrics: ['profit'],
         dataOrder: {
           label: 'profit',
           order: 'desc'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
         }
       }
     }
@@ -82,23 +112,25 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 90 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         xAxisType: ['KMB', 'percent'],
         xAxisName: ['cost', 'profit'],
         axisSite: {
           top: ['profit']
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
         }
       }
     }
@@ -108,30 +140,32 @@
 
 #### legend alias
 
-<vuep template="#stacked-bar"></vuep>
+<vuep template="#set-legend-alias"></vuep>
 
-<script v-pre type="text/x-template" id="stacked-bar">
+<script v-pre type="text/x-template" id="set-legend-alias">
 <template>
   <ve-bar :data="chartData" :settings="chartSettings"></ve-bar>
 </template>
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 300 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 600 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 9000 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 1200 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 1500 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 2000 }
-        ]
-      }
+    data () {
       this.chartSettings =  {
         legendName: {
-          'cost': 'costbiubiu～'
+          'cost': 'costmoney'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 300 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 600 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 9000 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 1200 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 1500 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 2000 }
+          ]
         }
       }
     }
@@ -150,21 +184,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 300 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 600 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 9000 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 1200 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 1500 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 2000 }
-        ]
-      }
+    data () {
       this.chartSettings =  {
         stack: {
           'xxx': ['cost', 'profit']
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 300 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 600 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 9000 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 1200 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 1500 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 2000 }
+          ]
         }
       }
     }
@@ -183,20 +219,22 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'resume', 'uplevel'],
-        rows: [
-          { 'date': 10, 'resume': 123, 'uplevel': 1213 },
-          { 'date': 11, 'resume': 1223, 'uplevel': 3116 },
-          { 'date': 12, 'resume': 2123, 'uplevel': 4119 },
-          { 'date': 20, 'resume': 4123, 'uplevel': 1112 },
-          { 'date': 21, 'resume': 3123, 'uplevel': 4115 },
-          { 'date': 25, 'resume': 7123, 'uplevel': 1212 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         yAxisType: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['date', 'resume', 'uplevel'],
+          rows: [
+            { 'date': 10, 'resume': 123, 'uplevel': 1213 },
+            { 'date': 11, 'resume': 1223, 'uplevel': 3116 },
+            { 'date': 12, 'resume': 2123, 'uplevel': 4119 },
+            { 'date': 20, 'resume': 4123, 'uplevel': 1112 },
+            { 'date': 21, 'resume': 3123, 'uplevel': 4115 },
+            { 'date': 25, 'resume': 7123, 'uplevel': 1212 }
+          ]
+        }
       }
     }
   }

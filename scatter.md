@@ -36,8 +36,6 @@
 
 #### 双维度多指标散点图示例：
 
-#### 指标维度配置
-
 <vuep template="#simple-multi-dims"></vuep>
 
 <script v-pre type="text/x-template" id="simple-multi-dims">

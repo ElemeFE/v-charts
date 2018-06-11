@@ -2,7 +2,30 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/tecfxdg9/68/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-waterfall"></vuep>
+
+<script v-pre type="text/x-template" id="simple-waterfall">
+<template>
+  <ve-waterfall :data="chartData"></ve-waterfall>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['action', 'time'],
+          rows: [
+            { 'action': 'eat', 'time': 4 },
+            { 'action': 'sleep', 'time': 10 },
+            { 'action': 'learn', 'time': 5 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -15,18 +38,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['action', 'time'],
-        rows: [
-          { 'action': 'eat', 'time': 4 },
-          { 'action': 'sleep', 'time': 10 },
-          { 'action': 'learn', 'time': 5 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: 'action',
         metrics: 'time'
+      }
+      return {
+        chartData: {
+          columns: ['action', 'time'],
+          rows: [
+            { 'action': 'eat', 'time': 4 },
+            { 'action': 'sleep', 'time': 10 },
+            { 'action': 'learn', 'time': 5 }
+          ]
+        }
       }
     }
   }
@@ -44,17 +69,19 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['action', 'time'],
-        rows: [
-          { 'action': 'eat', 'time': 0.1 },
-          { 'action': 'sleep', 'time': 0.2 },
-          { 'action': 'learn', 'time': 0.3 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         "dataType": "percent"
+      }
+      return {
+        chartData: {
+          columns: ['action', 'time'],
+          rows: [
+            { 'action': 'eat', 'time': 0.1 },
+            { 'action': 'sleep', 'time': 0.2 },
+            { 'action': 'learn', 'time': 0.3 }
+          ]
+        }
       }
     }
   }
@@ -72,18 +99,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['action', 'time'],
-        rows: [
-          { 'action': 'eat', 'time': 0.1 },
-          { 'action': 'sleep', 'time': 0.2 },
-          { 'action': 'learn', 'time': 0.3 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         labelMap: {
           'time': 't'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['action', 'time'],
+          rows: [
+            { 'action': 'eat', 'time': 0.1 },
+            { 'action': 'sleep', 'time': 0.2 },
+            { 'action': 'learn', 'time': 0.3 }
+          ]
         }
       }
     }
@@ -102,19 +131,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['action', 'time'],
-        rows: [
-          { 'action': 'eat', 'time': 4 },
-          { 'action': 'sleep', 'time': 10 },
-          { 'action': 'learn', 'time': 5 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         totalNum: 24,
         totalName: 'timeAll',
         remainName: 'timeRemain'
+      }
+      return {
+        chartData: {
+          columns: ['action', 'time'],
+          rows: [
+            { 'action': 'eat', 'time': 4 },
+            { 'action': 'sleep', 'time': 10 },
+            { 'action': 'learn', 'time': 5 }
+          ]
+        }
       }
     }
   }

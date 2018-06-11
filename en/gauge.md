@@ -1,6 +1,29 @@
 # Gauge
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/oc7j28jo/1/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+#### Example
+
+<vuep template="#simple-guage"></vuep>
+
+<script v-pre type="text/x-template" id="simple-guage">
+<template>
+  <ve-gauge :data="chartData"></ve-gauge>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 80, a: 1, b: 2 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -13,16 +36,18 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['a', 'b', 'type', 'value'],
-        rows: [
-          { type: 'speed', value: 80, a: 1, b: 2 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: 'type',
         metrics: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['a', 'b', 'type', 'value'],
+          rows: [
+            { type: 'speed', value: 80, a: 1, b: 2 }
+          ]
+        }
       }
     }
   }
@@ -40,13 +65,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'rate', value: 0.8 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dataType: {
           'rate': 'percent'
@@ -56,6 +75,14 @@
             min: 0,
             max: 1
           }
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'rate', value: 0.8 }
+          ]
         }
       }
     }
@@ -74,19 +101,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'speed', value: 60 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         labelMap: {
           'speed': 's'
         },
         dataName: {
           'speed': 'km/h'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 60 }
+          ]
         }
       }
     }
@@ -109,15 +138,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['type', 'value'],
-        rows: [
-          { type: 'speed', value: 60 },
-          { type: 'rotateSpeed', value: 80 },
-          { type: 'oilVolume', value: 6000 },
-        ]
-      }
+    data () {
       this.chartSettings = {
         dataName: {
           'speed': 'km/h',
@@ -318,6 +339,16 @@
               show: false
             }
           }
+        }
+      }
+      return {
+        chartData: {
+          columns: ['type', 'value'],
+          rows: [
+            { type: 'speed', value: 60 },
+            { type: 'rotateSpeed', value: 80 },
+            { type: 'oilVolume', value: 6000 },
+          ]
         }
       }
     }
