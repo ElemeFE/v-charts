@@ -2,7 +2,31 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/3hx08359/16/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-funnel"></vuep>
+
+<script v-pre type="text/x-template" id="simple-funnel">
+<template>
+  <ve-funnel :data="chartData"></ve-funnel>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['status', 'status1', 'value'],
+          rows: [
+            { 'status': 'display', 'status1': 'display1', 'value': 900 },
+            { 'status': 'visit', 'status1': 'visit1', 'value': 600 },
+            { 'status': 'click', 'status1': 'click1', 'value': 300 },
+            { 'status': 'order', 'status1': 'order1', 'value': 100 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -15,19 +39,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['status', 'status1', 'value'],
-        rows: [
-          { 'status': 'display', 'status1': 'display1', 'value': 900 },
-          { 'status': 'visit', 'status1': 'visit1', 'value': 600 },
-          { 'status': 'click', 'status1': 'click1', 'value': 300 },
-          { 'status': 'order', 'status1': 'order1', 'value': 100 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: 'status1',
         metrics: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['status', 'status1', 'value'],
+          rows: [
+            { 'status': 'display', 'status1': 'display1', 'value': 900 },
+            { 'status': 'visit', 'status1': 'visit1', 'value': 600 },
+            { 'status': 'click', 'status1': 'click1', 'value': 300 },
+            { 'status': 'order', 'status1': 'order1', 'value': 100 }
+          ]
+        }
       }
     }
   }
@@ -45,18 +71,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['status', 'value'],
-        rows: [
-          { 'status': 'display', 'value': 900 },
-          { 'status': 'visit', 'value': 600 },
-          { 'status': 'click', 'value': 300 },
-          { 'status': 'order', 'value': 100 }
-        ]
-      },
+    data () {
       this.chartSettings = {
         sequence: ['order', 'click', 'visit', 'display']
+      }
+      return {
+        chartData: {
+          columns: ['status', 'value'],
+          rows: [
+            { 'status': 'display', 'value': 900 },
+            { 'status': 'visit', 'value': 600 },
+            { 'status': 'click', 'value': 300 },
+            { 'status': 'order', 'value': 100 }
+          ]
+        }
       }
     }
   }
@@ -74,18 +102,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['status', 'value'],
-        rows: [
-          { 'status': 'display', 'value': 0.9 },
-          { 'status': 'visit', 'value': 0.6 },
-          { 'status': 'click', 'value': 0.3 },
-          { 'status': 'order', 'value': 0.1 }
-        ]
-      },
+    data () {
       this.chartSettings = {
         dataType: 'percent'
+      }
+      return {
+        chartData: {
+          columns: ['status', 'value'],
+          rows: [
+            { 'status': 'display', 'value': 0.9 },
+            { 'status': 'visit', 'value': 0.6 },
+            { 'status': 'click', 'value': 0.3 },
+            { 'status': 'order', 'value': 0.1 }
+          ]
+        }
       }
     }
   }
@@ -103,19 +133,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['status', 'value'],
-        rows: [
-          { 'status': 'display', 'value': 0.9 },
-          { 'status': 'visit', 'value': 0.6 },
-          { 'status': 'click', 'value': 0.3 },
-          { 'status': 'order', 'value': 0.1 }
-        ]
-      },
+    data () {
       this.chartSettings = {
         legendName: {
-          'order': 'orderbiubiu～'
+          'order': 'orderItem'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['status', 'value'],
+          rows: [
+            { 'status': 'display', 'value': 0.9 },
+            { 'status': 'visit', 'value': 0.6 },
+            { 'status': 'click', 'value': 0.3 },
+            { 'status': 'order', 'value': 0.1 }
+          ]
         }
       }
     }
@@ -134,18 +166,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['status', 'value'],
-        rows: [
-          { 'status': 'display', 'value': 900 },
-          { 'status': 'visit', 'value': 600 },
-          { 'status': 'click', 'value': 300 },
-          { 'status': 'order', 'value': 100 }
-        ]
-      },
+    data () {
       this.chartSettings = {
         ascending: true
+      }
+      return {
+        chartData: {
+          columns: ['status', 'value'],
+          rows: [
+            { 'status': 'display', 'value': 900 },
+            { 'status': 'visit', 'value': 600 },
+            { 'status': 'click', 'value': 300 },
+            { 'status': 'order', 'value': 100 }
+          ]
+        }
       }
     }
   }

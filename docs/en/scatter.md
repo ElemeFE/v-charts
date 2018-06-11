@@ -4,12 +4,86 @@
 There are two kinds of scatter: one dimension with multiple metrics scatter, two dimension with multiple metrics scatter.
 
 #### one dimension with multiple metrics scatter demo: 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/1xjfgz25/3/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<vuep template="#simple-single-dim"></vuep>
+
+<script v-pre type="text/x-template" id="simple-single-dim">
+<template>
+  <ve-scatter :data="chartData"></ve-scatter>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['date', 'PV', 'order', 'age'],
+          rows: [
+            { 'date': '1/1', 'PV': 123, 'age': 3, 'order': 1244 },
+            { 'date': '1/2', 'PV': 1223, 'age': 6, 'order': 2344 },
+            { 'date': '1/3', 'PV': 7123, 'age': 9, 'order': 3245 },
+            { 'date': '1/4', 'PV': 4123, 'age': 12, 'order': 4355 },
+            { 'date': '1/5', 'PV': 3123, 'age': 15, 'order': 4564 },
+            { 'date': '1/6', 'PV': 2323, 'age': 20, 'order': 6537 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 x-axis is dimension（date）, y-axis is metrics（profit, number, age）.
 
 #### two dimension with multiple metrics scatter demo: 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/e0hbk316/5/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+#### 双维度多指标散点图示例：
+
+<vuep template="#simple-multi-dims"></vuep>
+
+<script v-pre type="text/x-template" id="simple-multi-dims">
+<template>
+  <ve-scatter :data="chartData"></ve-scatter>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['date', 'PV', 'order', 'age'],
+          rows: {
+            'Shanghai': [
+              { 'date': '1/1', 'PV': 123, 'age': 3, 'order': 1244 },
+              { 'date': '1/2', 'PV': 1223, 'age': 6, 'order': 2344 },
+              { 'date': '1/3', 'PV': 7123, 'age': 9, 'order': 3245 },
+              { 'date': '1/4', 'PV': 4123, 'age': 12, 'order': 4355 },
+              { 'date': '1/5', 'PV': 3123, 'age': 15, 'order': 4564 },
+              { 'date': '1/6', 'PV': 2323, 'age': 20, 'order': 6537 }
+            ],
+            'Beijing': [
+              { 'date': '1/1', 'PV': 123, 'age': 3, 'order': 1244 },
+              { 'date': '1/2', 'PV': 1273, 'age': 6, 'order': 2344 },
+              { 'date': '1/3', 'PV': 3123, 'age': 15, 'order': 4564 },
+              { 'date': '1/4', 'PV': 2123, 'age': 9, 'order': 3245 },
+              { 'date': '1/5', 'PV': 4103, 'age': 12, 'order': 4355 },
+              { 'date': '1/6', 'PV': 7123, 'age': 10, 'order': 3567 }
+            ],
+            'Guangzhou': [
+              { 'date': '1/1', 'PV': 123, 'age': 3, 'order': 1244 },
+              { 'date': '1/2', 'PV': 1223, 'age': 6, 'order': 2344 },
+              { 'date': '1/3', 'PV': 2123, 'age': 30, 'order': 3245 },
+              { 'date': '1/5', 'PV': 4123, 'age': 12, 'order': 4355 },
+              { 'date': '1/4', 'PV': 5123, 'age': 18, 'order': 4564 },
+              { 'date': '1/6', 'PV': 3843, 'age': 30, 'order': 4850 }
+            ]
+          }
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 legend and x-axis show two dimension(location, date), metrics(profit, number, age) display on y-axis, point size, visualMap and tooltip.
 
@@ -78,39 +152,41 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         dimension: 'date',
         metrics: ['age', 'number']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
+        }
       }
     }
   }
@@ -128,41 +204,43 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         dataType: {
           'profit': 'KMB',
           'age': 'percent',
           'number': 'normal'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
         }
       }
     }
@@ -181,36 +259,7 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         label: {
           emphasis: {
@@ -230,6 +279,37 @@ two dimension with multiple metrics scatter demo:
           }
         }
       }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
+        }
+      }
     }
   }
 </script>
@@ -246,42 +326,44 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         legendName: {
           'China': 'China1'
         },
         labelMap: {
           'profit': 'balance'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 123, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
         }
       }
     }
@@ -300,39 +382,41 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         scale: true,
         max: 10000
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
+        }
       }
     }
   }
@@ -350,41 +434,43 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ],
-          'Japan': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
-            { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         symbol: 'rect',
         symbolSizeMax: 30,
         symbolRotate: 45,
         symbolOffset: [10, 10]
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ],
+            'Japan': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 2123, 'age': 30, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/04', 'profit': 5123, 'age': 18, 'number': 4564 },
+              { 'date': '01/06', 'profit': 3843, 'age': 30, 'number': 4850 }
+            ]
+          }
+        }
       }
     }
   }
@@ -402,30 +488,32 @@ two dimension with multiple metrics scatter demo:
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'profit', 'number', 'age'],
-        rows: {
-          'China': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
-            { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
-            { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
-          ],
-          'America': [
-            { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
-            { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
-            { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
-            { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
-            { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
-            { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
-          ]
-        }
-      }
+    data () {
       this.chartSettings = {
         tooltipTrigger: 'axis'
+      }
+      return {
+        chartData: {
+          columns: ['date', 'profit', 'number', 'age'],
+          rows: {
+            'China': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1223, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 7123, 'age': 9, 'number': 3245 },
+              { 'date': '01/04', 'profit': 4123, 'age': 12, 'number': 4355 },
+              { 'date': '01/05', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/06', 'profit': 2323, 'age': 20, 'number': 6537 }
+            ],
+            'America': [
+              { 'date': '01/01', 'profit': 1230, 'age': 3, 'number': 1244 },
+              { 'date': '01/02', 'profit': 1273, 'age': 6, 'number': 2344 },
+              { 'date': '01/03', 'profit': 3123, 'age': 15, 'number': 4564 },
+              { 'date': '01/04', 'profit': 2123, 'age': 9, 'number': 3245 },
+              { 'date': '01/05', 'profit': 4103, 'age': 12, 'number': 4355 },
+              { 'date': '01/06', 'profit': 7123, 'age': 10, 'number': 3567 }
+            ]
+          }
+        }
       }
     }
   }

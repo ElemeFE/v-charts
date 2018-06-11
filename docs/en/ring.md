@@ -2,7 +2,33 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/a0pep942/19/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-ring"></vuep>
+
+<script v-pre type="text/x-template" id="simple-ring">
+<template>
+  <ve-ring :data="chartData"></ve-ring>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -15,21 +41,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 90 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dimension: 'cost',
         metrics: 'profit'
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 90 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
       }
     }
   }
@@ -47,20 +75,22 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 9 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         roseType: 'radius'
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 9 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
       }
     }
   }
@@ -78,25 +108,27 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 9 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 },
-          { 'date': '01/07', 'cost': 4123, 'profit': 20 },
-          { 'date': '01/08', 'cost': 1123, 'profit': 20 },
-          { 'date': '01/09', 'cost': 5223, 'profit': 20 },
-          { 'date': '01/10', 'cost': 9123, 'profit': 20 },
-          { 'date': '01/11', 'cost': 4123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         limitShowNum: 5
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 9 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 },
+            { 'date': '01/07', 'cost': 4123, 'profit': 20 },
+            { 'date': '01/08', 'cost': 1123, 'profit': 20 },
+            { 'date': '01/09', 'cost': 5223, 'profit': 20 },
+            { 'date': '01/10', 'cost': 9123, 'profit': 20 },
+            { 'date': '01/11', 'cost': 4123, 'profit': 20 }
+          ]
+        }
       }
     }
   }
@@ -114,20 +146,22 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, 'profit': 3 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 6 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 9 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 12 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 15 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         dataType: 'KMB'
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, 'profit': 3 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 6 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 9 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 12 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 15 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 20 }
+          ]
+        }
       }
     }
   }
@@ -145,21 +179,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', '比率'],
-        rows: [
-          { 'date': '01/01', 'cost': 123, '比率': 0.1 },
-          { 'date': '01/02', 'cost': 1223, '比率': 0.2 },
-          { 'date': '01/03', 'cost': 2123, '比率': 0.3 },
-          { 'date': '01/04', 'cost': 4123, '比率': 0.4 },
-          { 'date': '01/05', 'cost': 3123, '比率': 0.5 },
-          { 'date': '01/06', 'cost': 7123, '比率': 0.6 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         radius: [100, 10],
         offsetY: 300
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', '比率'],
+          rows: [
+            { 'date': '01/01', 'cost': 123, '比率': 0.1 },
+            { 'date': '01/02', 'cost': 1223, '比率': 0.2 },
+            { 'date': '01/03', 'cost': 2123, '比率': 0.3 },
+            { 'date': '01/04', 'cost': 4123, '比率': 0.4 },
+            { 'date': '01/05', 'cost': 3123, '比率': 0.5 },
+            { 'date': '01/06', 'cost': 7123, '比率': 0.6 }
+          ]
+        }
       }
     }
   }
