@@ -2,7 +2,33 @@
 
 #### Example
 
-<iframe width="100%" height="470" src="//jsfiddle.net/vue_echarts/jepw6dy2/139/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-line"></vuep>
+
+<script v-pre type="text/x-template" id="simple-line">
+<template>
+  <ve-line :data="chartData"></ve-line>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
+          rows: [
+            { 'cost': 1523, 'date': '01/01', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 1223, 'date': '01/02', 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
+            { 'cost': 2123, 'date': '01/03', 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
+            { 'cost': 4123, 'date': '01/04', 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
+            { 'cost': 3123, 'date': '01/05', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 7123, 'date': '01/06', 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set metrics and dimension
 
@@ -15,21 +41,57 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
-        rows: [
-          { 'cost': 1523, 'date': '01/01', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'cost': 1223, 'date': '01/02', 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
-          { 'cost': 2123, 'date': '01/03', 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
-          { 'cost': 4123, 'date': '01/04', 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
-          { 'cost': 3123, 'date': '01/05', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'cost': 7123, 'date': '01/06', 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         metrics: ['cost', 'profit'],
         dimension: ['date']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
+          rows: [
+            { 'cost': 1523, 'date': '01/01', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 1223, 'date': '01/02', 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
+            { 'cost': 2123, 'date': '01/03', 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
+            { 'cost': 4123, 'date': '01/04', 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
+            { 'cost': 3123, 'date': '01/05', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 7123, 'date': '01/06', 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
+
+#### set metrics and dimension
+
+<vuep template="#set-metrics-dimension"></vuep>
+
+<script v-pre type="text/x-template" id="set-metrics-dimension">
+<template>
+  <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+</template>
+
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        metrics: ['cost', 'profit'],
+        dimension: ['date']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
+          rows: [
+            { 'cost': 1523, 'date': '01/01', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 1223, 'date': '01/02', 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
+            { 'cost': 2123, 'date': '01/03', 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
+            { 'cost': 4123, 'date': '01/04', 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
+            { 'cost': 3123, 'date': '01/05', 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'cost': 7123, 'date': '01/06', 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
+          ]
+        }
       }
     }
   }
@@ -48,22 +110,24 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
-        rows: [
-          { 'date': '01/01', 'cost': 1523, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         axisSite: { right: ['growthRate'] },
         yAxisType: ['KMB', 'percent'],
         yAxisName: ['number', 'rate']
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
+          rows: [
+            { 'date': '01/01', 'cost': 1523, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
+          ]
+        }
       }
     }
   }
@@ -81,21 +145,23 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
-        rows: [
-          { 'date': '01/01', 'cost': 1523, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'date': '01/02', 'cost': 1223, 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
-          { 'date': '01/03', 'cost': 2123, 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
-          { 'date': '01/04', 'cost': 4123, 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
-          { 'date': '01/05', 'cost': 3123, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
-          { 'date': '01/06', 'cost': 7123, 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         stack: { 'sell': ['cost', 'profit'] },
         area: true
+      }
+      return {
+        chartData: {
+          columns: ['date', 'cost', 'profit', 'growthRate', 'people'],
+          rows: [
+            { 'date': '01/01', 'cost': 1523, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'date': '01/02', 'cost': 1223, 'profit': 1523, 'growthRate': 0.345, 'people': 100 },
+            { 'date': '01/03', 'cost': 2123, 'profit': 1523, 'growthRate': 0.7, 'people': 100 },
+            { 'date': '01/04', 'cost': 4123, 'profit': 1523, 'growthRate': 0.31, 'people': 100 },
+            { 'date': '01/05', 'cost': 3123, 'profit': 1523, 'growthRate': 0.12, 'people': 100 },
+            { 'date': '01/06', 'cost': 7123, 'profit': 1523, 'growthRate': 0.65, 'people': 100 }
+          ]
+        }
       }
     }
   }
@@ -113,22 +179,24 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['date', 'balance', 'age'],
-        rows: [
-          { 'date': '01/01', 'balance': 123, 'age': 3 },
-          { 'date': '01/02', 'balance': 1223, 'age': 6 },
-          { 'date': '01/03', 'balance': 2123, 'age': 9 },
-          { 'date': '01/04', 'balance': 4123, 'age': 12 },
-          { 'date': '01/05', 'balance': 3123, 'age': 15 },
-          { 'date': '01/06', 'balance': 7123, 'age': 20 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         labelMap: {
           balance: 'b',
           age: 'a'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['date', 'balance', 'age'],
+          rows: [
+            { 'date': '01/01', 'balance': 123, 'age': 3 },
+            { 'date': '01/02', 'balance': 1223, 'age': 6 },
+            { 'date': '01/03', 'balance': 2123, 'age': 9 },
+            { 'date': '01/04', 'balance': 4123, 'age': 12 },
+            { 'date': '01/05', 'balance': 3123, 'age': 15 },
+            { 'date': '01/06', 'balance': 7123, 'age': 20 }
+          ]
         }
       }
     }
@@ -148,20 +216,22 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['num', 'balance'],
-        rows: [
-          { 'num': 1, 'balance': 123 },
-          { 'num': 10, 'balance': 1223 },
-          { 'num': 11, 'balance': 2123 },
-          { 'num': 100, 'balance': 4123 },
-          { 'num': 101, 'balance': 6123 },
-          { 'num': 120, 'balance': 7123 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         xAxisType: 'value'
+      }
+      return {
+        chartData: {
+          columns: ['num', 'balance'],
+          rows: [
+            { 'num': 1, 'balance': 123 },
+            { 'num': 10, 'balance': 1223 },
+            { 'num': 11, 'balance': 2123 },
+            { 'num': 100, 'balance': 4123 },
+            { 'num': 101, 'balance': 6123 },
+            { 'num': 120, 'balance': 7123 }
+          ]
+        }
       }
     }
   }

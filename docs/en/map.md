@@ -2,7 +2,31 @@
 
 #### Example
 
-<iframe width="100%" height="415" src="//jsfiddle.net/vue_echarts/1fwe4tt7/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-map"></vuep>
+
+<script v-pre type="text/x-template" id="simple-map">
+<template>
+  <ve-map :data="chartData"></ve-map>
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        chartData: {
+          columns: ['location', 'GDP'],
+          rows: [
+            { 'location': '吉林', 'GDP': 123, 'person': 123, 'area': 92134 },
+            { 'location': '北京', 'GDP': 1223, 'person': 2123, 'area': 29234 },
+            { 'location': '上海', 'GDP': 2123, 'person': 1243, 'area': 94234 },
+            { 'location': '浙江', 'GDP': 4123, 'person': 5123, 'area': 29234 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set dimension and metrics
 
@@ -15,22 +39,24 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['location', 'GDP'],
-        rows: [
-          { 'location': '吉林', 'GDP': 123, 'person': 123, 'area': 92134 },
-          { 'location': '北京', 'GDP': 1223, 'person': 2123, 'area': 29234 },
-          { 'location': '上海', 'GDP': 2123, 'person': 1243, 'area': 94234 },
-          { 'location': '浙江', 'GDP': 4123, 'person': 5123, 'area': 29234 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         position: 'china',
         dimension: 'location',
         metrics: ['person', 'area'],
         dataType: {
           'area': 'KMB'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['location', 'GDP'],
+          rows: [
+            { 'location': '吉林', 'GDP': 123, 'person': 123, 'area': 92134 },
+            { 'location': '北京', 'GDP': 1223, 'person': 2123, 'area': 29234 },
+            { 'location': '上海', 'GDP': 2123, 'person': 1243, 'area': 94234 },
+            { 'location': '浙江', 'GDP': 4123, 'person': 5123, 'area': 29234 }
+          ]
         }
       }
     }
@@ -49,18 +75,20 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['location', 'GDP'],
-        rows: [
-          { 'location': '延庆区', 'GDP': 123 },
-          { 'location': '密云区', 'GDP': 1223 },
-          { 'location': '平谷区', 'GDP': 2123 },
-          { 'location': '海淀区', 'GDP': 4123 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         position: 'province/beijing'
+      }
+      return {
+        chartData: {
+          columns: ['location', 'GDP'],
+          rows: [
+            { 'location': '延庆区', 'GDP': 123 },
+            { 'location': '密云区', 'GDP': 1223 },
+            { 'location': '平谷区', 'GDP': 2123 },
+            { 'location': '海淀区', 'GDP': 4123 }
+          ]
+        }
       }
     }
   }
@@ -78,19 +106,21 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['location', 'GDP'],
-        rows: [
-          { 'location': '延庆区', 'GDP': 123 },
-          { 'location': '密云区', 'GDP': 1223 },
-          { 'location': '平谷区', 'GDP': 2123 },
-          { 'location': '海淀区', 'GDP': 4123 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         labelMap: {
           'GDP': '国内生产总值'
+        }
+      }
+      return {
+        chartData: {
+          columns: ['location', 'GDP'],
+          rows: [
+            { 'location': '延庆区', 'GDP': 123 },
+            { 'location': '密云区', 'GDP': 1223 },
+            { 'location': '平谷区', 'GDP': 2123 },
+            { 'location': '海淀区', 'GDP': 4123 }
+          ]
         }
       }
     }
@@ -151,16 +181,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['location', 'GDP'],
-        rows: [
-          { 'location': '吉林', 'GDP': 123 },
-          { 'location': '北京', 'GDP': 1223 },
-          { 'location': '上海', 'GDP': 2123 },
-          { 'location': '浙江', 'GDP': 4123 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         position: 'china',
         label: false,
@@ -170,6 +191,17 @@
           }
         },
         zoom: 1.2
+      }
+      return {
+        chartData: {
+          columns: ['location', 'GDP'],
+          rows: [
+            { 'location': '吉林', 'GDP': 123 },
+            { 'location': '北京', 'GDP': 1223 },
+            { 'location': '上海', 'GDP': 2123 },
+            { 'location': '浙江', 'GDP': 4123 }
+          ]
+        }
       }
     }
   }
@@ -187,13 +219,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['location', ' person'],
-        rows: [
-          { 'location': '北区', ' person': 123 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         positionJsonLink: 'https://dn-quietcoder.qbox.me/HK_geo.json',
         position: 'HK',
@@ -225,6 +251,14 @@
             'Yau Tsim Mong':'油尖旺',
             'Yuen Long':'元朗'
           }
+        }
+      }
+      return {
+        chartData: {
+          columns: ['location', ' person'],
+          rows: [
+            { 'location': '北区', ' person': 123 }
+          ]
         }
       }
     }

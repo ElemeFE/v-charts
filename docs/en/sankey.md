@@ -2,7 +2,44 @@
 
 #### Example
 
-<iframe width="100%" height="450" src="//jsfiddle.net/vue_echarts/5cLhkv9a/2/embedded/result,html,js/?bodyColor=fff" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<vuep template="#simple-sankey"></vuep>
+
+<script v-pre type="text/x-template" id="simple-sankey">
+<template>
+  <ve-sankey :data="chartData" :settings="chartSettings"></ve-sankey>
+</template>
+
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        links: [
+          { source: 'front', target: 'list-a', value: 0.5 },
+          { source: 'front', target: 'list-b', value: 0.5 },
+          { source: 'list-a', target: 'content-a-1', value: 0.1 },
+          { source: 'list-a', target: 'content-a-2', value: 0.4 },
+          { source: 'list-b', target: 'content-b-1', value: 0.2 },
+          { source: 'list-b', target: 'content-b-2', value: 0.3 }
+        ]
+      }
+      return {
+        chartData: {
+          columns: ['page', 'pv'],
+          rows: [
+            { 'page': 'front', 'pv': 100000 },
+            { 'page': 'list-a', 'pv': 20000 },
+            { 'page': 'list-b', 'pv': 80000 },
+            { 'page': 'content-a-1', 'pv': 10000 },
+            { 'page': 'content-a-2', 'pv': 10000 },
+            { 'page': 'content-b-1', 'pv': 60000 },
+            { 'page': 'content-b-2', 'pv': 20000 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
 
 #### set type of data
 
@@ -15,19 +52,7 @@
 
 <script>
   export default {
-    created: function () {
-      this.chartData = {
-        columns: ['page', 'pv'],
-        rows: [
-          { 'page': 'front', 'pv': 100000 },
-          { 'page': 'list-a', 'pv': 20000 },
-          { 'page': 'list-b', 'pv': 80000 },
-          { 'page': 'content-a-1', 'pv': 10000 },
-          { 'page': 'content-a-2', 'pv': 10000 },
-          { 'page': 'content-b-1', 'pv': 60000 },
-          { 'page': 'content-b-2', 'pv': 20000 }
-        ]
-      }
+    data () {
       this.chartSettings = {
         links: [
           { source: 'front', target: 'list-a', value: 0.5 },
@@ -39,11 +64,24 @@
         ],
         dataType: ['KMB', 'percent']
       }
+      return {
+        chartData: {
+          columns: ['page', 'pv'],
+          rows: [
+            { 'page': 'front', 'pv': 100000 },
+            { 'page': 'list-a', 'pv': 20000 },
+            { 'page': 'list-b', 'pv': 80000 },
+            { 'page': 'content-a-1', 'pv': 10000 },
+            { 'page': 'content-a-2', 'pv': 10000 },
+            { 'page': 'content-b-1', 'pv': 60000 },
+            { 'page': 'content-b-2', 'pv': 20000 }
+          ]
+        }
+      }
     }
   }
 </script>
 </script>
-
 
 
 #### settings
