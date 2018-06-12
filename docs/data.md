@@ -255,3 +255,66 @@ numerify 文档；并且，为了支持更多未知的情况，格式的设置�
   }
 </script>
 </script>
+
+### 数据请求示例
+
+<vuep template="#get-data"></vuep>
+
+<script v-pre type="text/x-template" id="get-data">
+<template>
+  <div>
+    <button @click="getData">get Data</button>
+    <ve-line
+      :data="chartData"
+      :loading="loading"
+      :data-empty="dataEmpty"
+      :settings="chartSettings">
+    </ve-line>
+  </div>
+</template>
+<script>
+  const DATA_FROM_BACKEND = {
+    columns: ['date', 'PV', 'Order'],
+    rows: [
+      { 'date': '2018-05-22', 'PV': 32371, 'Order': 19810 },
+      { 'date': '2018-05-23', 'PV': 12328, 'Order': 4398 },
+      { 'date': '2018-05-24', 'PV': 92381, 'Order': 52910 }
+    ]
+  }
+  const EMPTY_DATA = {
+    columns: [],
+    rows: []
+  }
+  export default {
+    data () {
+      this.chartSettings = {
+        yAxisType: ['0,0a']
+      }
+      return {
+        chartData: {
+          columns: [],
+          rows: []
+        },
+        loading: false,
+        dataEmpty: false
+      }
+    },
+    methods: {
+      getData () {
+        this.loading = true
+        // ajax get data ....
+        setTimeout(() => {
+          this.chartData = this.chartData.rows.length
+            ? EMPTY_DATA
+            : DATA_FROM_BACKEND
+          this.dataEmpty = !this.chartData.rows.length
+          this.loading = false
+        }, 1000)
+      }
+    },
+    created () {
+      this.getData()
+    }
+  }
+</script>
+</script>
