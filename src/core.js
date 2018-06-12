@@ -15,11 +15,11 @@ export default {
         style: this.canvasStyle,
         ref: 'canvas'
       }),
-      h(Loading, {
-        style: { display: this.loading ? '' : 'none' }
-      }),
       h(DataEmpty, {
         style: { display: this.dataEmpty ? '' : 'none' }
+      }),
+      h(Loading, {
+        style: { display: this.loading ? '' : 'none' }
       }),
       this.$slots.default
     ])

@@ -16,7 +16,8 @@ export const TEST_ROUTES = [
   { path: '/judge-width', name: 'judge-width', component: () => import('./test/judge-width.vue') },
   { path: '/loading-empty', name: 'loading-empty', component: () => import('./test/loading-empty.vue') },
   { path: '/mark', name: 'mark', component: () => import('./test/mark.vue') },
-  { path: '/resize', name: 'resize', component: () => import('./test/resize.vue') }
+  { path: '/resize', name: 'resize', component: () => import('./test/resize.vue') },
+  { path: '/set-option', name: 'set-option', component: () => import('./test/set-option.vue') },
 ]
 
 export default new Router({
