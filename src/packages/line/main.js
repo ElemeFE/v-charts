@@ -8,7 +8,6 @@ function getLineXAxis (args) {
     type: xAxisType,
     nameLocation: 'middle',
     nameGap: 22,
-    boundaryGap: false,
     name: xAxisName[index] || '',
     axisTick: { show: true, lineStyle: { color: '#eee' } },
     data: rows.map(row => row[item]),
