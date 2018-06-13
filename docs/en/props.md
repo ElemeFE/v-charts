@@ -79,7 +79,7 @@ At the same time, in order to be more convenient to set the configuration items,
 - When the property is a function, set the return value of the function
 - When the attribute is an object, the corresponding configuration is merged if the corresponding attribute in the options is an object (eg: tooltip) or an array containing an object (eg: series), otherwise the corresponding configuration will be overwritten directly
 
-For details about how to use it, refer to the following configuration examples
+For details about how to use it, refer to the following configuration [examples](/en/props-demo2)
 
 #### echarts options attribute
 

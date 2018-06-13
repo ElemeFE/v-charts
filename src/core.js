@@ -1,7 +1,7 @@
 import { color } from './echarts-base'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
-import { getType, debounce, isArray, isObject, camelToKebab } from 'utils-lite'
+import { getType, debounce, isArray, isObject, camelToKebab, set } from 'utils-lite'
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
@@ -196,21 +196,25 @@ export default {
       // extend sub attribute
       if (this.extend) {
         Object.keys(this.extend).forEach(attr => {
-          if (typeof this.extend[attr] === 'function') {
+          const value = this.extend[attr]
+          if (~attr.indexOf('.')) {
+            // eg: a.b.c a.1.b
+            set(options, attr, value)
+          } else if (typeof value === 'function') {
             // get callback value
-            options[attr] = this.extend[attr](options[attr])
+            options[attr] = value(options[attr])
           } else {
             // mixin extend value
             if (isArray(options[attr]) && isObject(options[attr][0])) {
               // eg: [{ xx: 1 }, { xx: 2 }]
               options[attr].forEach((option, index) => {
-                options[attr][index] = Object.assign({}, option, this.extend[attr])
+                options[attr][index] = Object.assign({}, option, value)
               })
             } else if (isObject(options[attr])) {
               // eg: { xx: 1, yy: 2 }
-              options[attr] = Object.assign({}, options[attr], this.extend[attr])
+              options[attr] = Object.assign({}, options[attr], value)
             } else {
-              options[attr] = this.extend[attr]
+              options[attr] = value
             }
           }
         })

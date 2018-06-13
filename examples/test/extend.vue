@@ -5,6 +5,7 @@
   <div>
     <ve-line :data="chartData" :extend="extend"></ve-line>
     <ve-line :data="chartData" :extend="extend1"></ve-line>
+    <ve-line :data="chartData" :settings="settings" :extend="extend2"></ve-line>
   </div>
 </template>
 
@@ -22,6 +23,15 @@ export default {
       series (v) {
         v.map(item => { item.smooth = false })
         return v
+      }
+    }
+    this.extend2 = {
+      'series.1.smooth': false,
+      'series.0.symbol': 'rect'
+    }
+    this.settings = {
+      axisSite: {
+        right: ['下单用户']
       }
     }
     return {
