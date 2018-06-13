@@ -36,6 +36,12 @@
             trigger: 'none'
           }
         }
+        等同于
+        this.chartExtend = {
+          'series.0.barWidth': 10,
+          'series.1.barWidth': 10,
+          'tooltip.trigger': 'none'
+        }
       */
       return {
         chartData: {
