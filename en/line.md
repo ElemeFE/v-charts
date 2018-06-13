@@ -98,6 +98,45 @@
 </script>
 </script>
 
+#### xAxis label rotate
+
+<vuep template="#show-all-xaxis"></vuep>
+
+<script v-pre type="text/x-template" id="show-all-xaxis">
+<template>
+  <ve-line :data="chartData" :extend="extend"></ve-line>
+</template>
+
+<script>
+  export default {
+    data: function () {
+      this.extend = {
+        'xAxis.0.axisLabel.rotate': 45
+      }
+      return {
+        chartData: {
+          columns: ['date', 'PV', 'order', 'orderRate'],
+          rows: [
+            { 'date': '1/1', 'PV': 1393, 'order': 1093, 'orderRate': 0.32 },
+            { 'date': '1/2', 'PV': 3530, 'order': 3230, 'orderRate': 0.26 },
+            { 'date': '1/3', 'PV': 2923, 'order': 2623, 'orderRate': 0.76 },
+            { 'date': '1/4', 'PV': 1723, 'order': 1423, 'orderRate': 0.49 },
+            { 'date': '1/5', 'PV': 3792, 'order': 3492, 'orderRate': 0.323 },
+            { 'date': '1/6', 'PV': 4593, 'order': 4293, 'orderRate': 0.78 },
+            { 'date': '1/7', 'PV': 1393, 'order': 1093, 'orderRate': 0.32 },
+            { 'date': '1/8', 'PV': 3530, 'order': 3230, 'orderRate': 0.26 },
+            { 'date': '1/9', 'PV': 2923, 'order': 2623, 'orderRate': 0.76 },
+            { 'date': '1/10', 'PV': 1723, 'order': 1423, 'orderRate': 0.49 },
+            { 'date': '1/11', 'PV': 3792, 'order': 3492, 'orderRate': 0.323 },
+            { 'date': '1/12', 'PV': 4593, 'order': 4293, 'orderRate': 0.78 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### double y axis
 
 
