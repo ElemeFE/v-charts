@@ -2,9 +2,9 @@
 
 #### Example
 
-<vuep template="#simple-guage"></vuep>
+<vuep template="#simple-gauge"></vuep>
 
-<script v-pre type="text/x-template" id="simple-guage">
+<script v-pre type="text/x-template" id="simple-gauge">
 <template>
   <ve-gauge :data="chartData"></ve-gauge>
 </template>
