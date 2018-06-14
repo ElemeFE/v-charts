@@ -92,6 +92,9 @@ export default {
       }
     },
 
+    width: 'nextTickResize',
+    height: 'nextTickResize',
+
     events: {
       deep: true,
       handler () {
@@ -148,6 +151,10 @@ export default {
           this.optionsHandler(options)
         }
       }
+    },
+
+    nextTickResize () {
+      this.$nextTick(_ => { this.echarts.resize() })
     },
 
     resize () {
