@@ -8,7 +8,7 @@
 <vuep template="#container-width"></vuep>
 
 <script v-pre type="text/x-template" id="container-width">
-<template>
+<template> <!-- [_ https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/index.js,https://cdn.jsdelivr.net/npm/element-ui@1.4.0/lib/theme-default/index.css _] -->
   <el-tabs type="border-card" v-model="activeName">
     <el-tab-pane label="用户管理" name="1"> <!-- name 中的数字对应chart的ref -->
       <ve-line :data="chartData" ref="chart1"></ve-line>

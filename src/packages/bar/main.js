@@ -1,4 +1,4 @@
-import { itemPoint } from '../../echarts-base'
+import { itemPoint } from '../../constants'
 import { getFormated, getStackMap } from '../../utils'
 import { set, get, cloneDeep } from 'utils-lite'
 // default opacity of bar while dim-axis type is 'value'

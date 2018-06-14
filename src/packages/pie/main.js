@@ -1,4 +1,4 @@
-import { itemPoint } from '../../echarts-base'
+import { itemPoint } from '../../constants'
 import { getFormated } from '../../utils'
 import { cloneDeep } from 'utils-lite'
 

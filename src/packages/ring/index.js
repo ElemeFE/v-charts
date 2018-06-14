@@ -1,14 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts/lib/chart/pie'
 import { ring } from '../pie/main'
 import Core from '../../core'
-import numerify from 'numerify/lib/index.es'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeRing',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = ring
-    this.echartsLib = echarts
-  },
-  _numerify: numerify
-}
+    return {}
+  }
+})

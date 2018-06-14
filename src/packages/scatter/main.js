@@ -1,5 +1,5 @@
 import { isArray } from 'utils-lite'
-import { itemPoint } from '../../echarts-base'
+import { itemPoint } from '../../constants'
 import { getFormated } from '../../utils'
 import { line } from '../line/main'
 

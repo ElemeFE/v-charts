@@ -1,14 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts-amap'
 import { amap } from './main'
 import Core from '../../core'
-import numerify from 'numerify/lib/index.es'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeAmap',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = amap
-    this.echartsLib = echarts
-  },
-  _numerify: numerify
-}
+    return {}
+  }
+})

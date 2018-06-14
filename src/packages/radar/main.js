@@ -1,4 +1,4 @@
-import { itemPoint } from '../../echarts-base'
+import { itemPoint } from '../../constants'
 import { getFormated } from '../../utils'
 
 function getRadarLegend (rows, dimension, legendName) {

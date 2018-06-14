@@ -8,79 +8,53 @@ const componentInfo = require('../src/component-list')
 const uglify = require('rollup-plugin-uglify').uglify
 const autoprefixer = require('autoprefixer')
 const cssnano = require('cssnano')
+const path = require('path')
+const fs = require('fs')
+const { pkgTypeList, addons } = require('./config')
 
 let pkg = []
-const pkgTypeList = [
-  { type: 'cjs', min: false, suffix: '.common.js' },
-  { type: 'cjs', min: true, suffix: '.common.min.js' },
-  { type: 'umd', min: false, suffix: '.js' },
-  { type: 'umd', min: true, suffix: '.min.js' }
-]
 
 pkgTypeList.forEach(({ type, min, suffix }) => {
   Object.keys(componentInfo).forEach(name => {
     const { src, dist } = componentInfo[name]
-    pkg.push({
-      min,
-      type,
-      suffix,
-      globalName: name,
-      src,
-      dist
-    })
+    pkg.push({ min, type, suffix, globalName: name, src, dist })
   })
 })
 
-const addons = [
-  {
-    min: false,
-    type: 'es',
-    suffix: '.esm.js',
-    globalName: '',
-    src: 'src/index.es.js',
-    dist: 'lib/index'
-  }
-]
 pkg = pkg.concat(addons)
 
 pkg.forEach(item => { rollupFn(item) })
 
-function rollupFn (item) {
-  const vueSettings = item.min
+fs.mkdirSync(path.resolve(__dirname, '../lib'))
+
+async function rollupFn (item) {
+  const { min, dist, suffix, src: input, type: format, globalName: name } = item
+  const vueSettings = min
     ? { css: 'lib/style.min.css', postcss: [autoprefixer, cssnano] }
     : { css: 'lib/style.css', postcss: [autoprefixer] }
-
   const plugins = [
-    eslint({
-      throwError: true,
-      exclude: 'node_modules/**'
-    }),
+    eslint(),
     vue(vueSettings),
-    resolve({
-      extensions: ['.js', '.vue']
-    }),
-    babel({
-      exclude: 'node_modules/**',
-      plugins: ['external-helpers']
-    })
+    resolve({ extensions: ['.js', '.vue'] }),
+    babel({ plugins: ['external-helpers'] })
   ]
-  if (item.min) plugins.push(uglify({}, minify))
+  if (min) plugins.push(uglify({}, minify))
 
-  rollup.rollup({
-    input: item.src,
-    external: id => /^(echarts)/.test(id),
-    plugins
-  }).then(function (bundle) {
-    return bundle.write({
-      format: item.type,
-      name: item.globalName,
-      globals: {
-        'echarts/lib/echarts': 'echarts'
-      },
-      file: item.dist + item.suffix
-    })
-  }).catch((e) => {
-    console.log(e)
-    process.exit(1)
-  })
+  const distPath = '../' + dist + suffix
+  const isCommonjs = format === 'cjs'
+  let reg = isCommonjs
+    ? /(^(echarts|numerify|utils-lite)|(\/core|\/utils|\/constants)$)/
+    : /^(echarts)/
+  const external = id => reg.test(id)
+  const globals = { 'echarts/lib/echarts': 'echarts' }
+
+  const bundle = await rollup.rollup({ input, external, plugins })
+  let { code } = await bundle.generate({ format, name, globals })
+  if (isCommonjs) {
+    code = code.replace(
+      /require\('(.*)\/(utils|core|constants)'\)/g,
+      'require(\'./$2\')'
+    )
+  }
+  fs.writeFileSync(path.resolve(__dirname, distPath), code)
 }
