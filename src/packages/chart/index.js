@@ -6,6 +6,7 @@ import { funnel } from '../funnel/main'
 import { radar } from '../radar/main'
 import { waterfall } from '../waterfall/main'
 import Core from '../../core'
+import numerify from 'numerify/lib/index.es'
 export default {
   name: 'VeChart',
   mixins: [Core],
@@ -22,5 +23,6 @@ export default {
     }
     this.chartHandler = this.chartLib[this.settings.type]
     this.echartsLib = echarts
-  }
+  },
+  _numerify: numerify
 }
