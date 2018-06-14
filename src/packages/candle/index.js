@@ -6,6 +6,7 @@ import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/dataZoom'
 import { candle } from './main'
 import Core from '../../core'
+import numerify from 'numerify/lib/index.es'
 
 export default {
   name: 'VeCandle',
@@ -13,5 +14,6 @@ export default {
   created () {
     this.chartHandler = candle
     this.echartsLib = echarts
-  }
+  },
+  _numerify: numerify
 }

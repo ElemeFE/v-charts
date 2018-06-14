@@ -18,6 +18,7 @@ export const TEST_ROUTES = [
   { path: '/mark', name: 'mark', component: () => import('./test/mark.vue') },
   { path: '/resize', name: 'resize', component: () => import('./test/resize.vue') },
   { path: '/set-option', name: 'set-option', component: () => import('./test/set-option.vue') },
+  { path: '/number-format', name: 'number', component: () => import('./test/number-format.vue') },
 ]
 
 export default new Router({
