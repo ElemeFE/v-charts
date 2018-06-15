@@ -17,6 +17,10 @@ npm i v-charts echarts -S
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
 ```
 
+> 使用百度地图或高德地图时需要额外引入相应的模块
+> <br>`<script src="https://cdn.jsdelivr.net/npm/echarts-amap/dist/echarts-amap.min.js"></script>`
+> <br>`<script src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>`
+
 ### cdn示例
 
 #### 全部引入
