@@ -1,6 +1,6 @@
 {
   "name": "v-charts",
-  "version": "1.16.30",
+  "version": "1.17.0",
   "description": "Vue Echarts Components",
   "main": "lib/index.js",
   "scripts": {
