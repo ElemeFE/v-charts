@@ -1,4 +1,3 @@
-import echarts from '../../echarts-base'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/chart/line'
 import 'echarts/lib/chart/candlestick'
@@ -6,14 +5,10 @@ import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/dataZoom'
 import { candle } from './main'
 import Core from '../../core'
-import numerify from 'numerify/lib/index.es'
-
-export default {
+export default Object.assign({}, Core, {
   name: 'VeCandle',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = candle
-    this.echartsLib = echarts
-  },
-  _numerify: numerify
-}
+    return {}
+  }
+})

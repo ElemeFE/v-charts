@@ -1,8 +1,6 @@
 /* eslint-disable comma-dangle */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Install from './pages/install'
-import Chart from './pages/chart'
 
 Vue.use(Router)
 
@@ -23,7 +21,9 @@ export const TEST_ROUTES = [
 
 export default new Router({
   routes: [
-    { path: '/', name: '安装', component: Install },
-    { path: '/chart/:type', name: '图表', component: Chart }
+    { path: '/', name: '安装', component: () => import('./pages/install') },
+    { path: '/chart/:type', name: '图表', component: () => import('./pages/chart') },
+    { path: '/bmap', name: '百度地图', component: () => import('./pages/bmap') },
+    { path: '/amap', name: '高德地图', component: () => import('./pages/amap') },
   ].concat(TEST_ROUTES)
 })

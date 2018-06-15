@@ -1,7 +1,12 @@
-import { color } from './echarts-base'
+import echartsLib from 'echarts/lib/echarts'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/component/legend'
+
+import { DEFAULT_COLORS, DEFAULT_THEME } from './constants'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
 import { getType, debounce, isArray, isObject, camelToKebab, set } from 'utils-lite'
+import numerify from 'numerify/lib/index.es'
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 
@@ -124,7 +129,7 @@ export default {
     },
 
     chartColor () {
-      return this.colors || (this.theme && this.theme.color) || color
+      return this.colors || (this.theme && this.theme.color) || DEFAULT_COLORS
     }
   },
 
@@ -272,8 +277,8 @@ export default {
 
     init () {
       if (this.echarts) return
-      const themeName = this.themeName || this.theme || 've-chart'
-      this.echarts = this.echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
+      const themeName = this.themeName || this.theme || DEFAULT_THEME
+      this.echarts = echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.changeHandler()
       this.createEventProxy()
       if (this.resizeable) window.addEventListener('resize', this.resizeHandler)
@@ -345,5 +350,7 @@ export default {
 
   beforeDestroy () {
     this.clean()
-  }
+  },
+
+  _numerify: numerify
 }

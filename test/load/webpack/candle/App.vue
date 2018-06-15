@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import VeCandle from '../../../../lib/candle'
+import VeCandle from '../../../../lib/candle.common'
 
 export default {
   created: function () {

@@ -18,6 +18,11 @@ npm i v-charts echarts -S
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/v-charts/lib/style.min.css">
 ```
 
+> when using bmap or amap need to add additional modules
+> <br>`<script src="https://cdn.jsdelivr.net/npm/echarts-amap/dist/echarts-amap.min.js"></script>`
+> <br>`<script src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>`
+
+
 #### Example
 
 [online demo](https://jsfiddle.net/vue_echarts/hc4xhyva)

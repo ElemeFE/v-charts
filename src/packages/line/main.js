@@ -1,4 +1,4 @@
-import { itemPoint } from '../../echarts-base'
+import { itemPoint } from '../../constants'
 import { getFormated, getStackMap } from '../../utils'
 import { isArray } from 'utils-lite'
 

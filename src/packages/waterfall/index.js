@@ -1,14 +1,10 @@
-import echarts from '../../echarts-base'
 import 'echarts/lib/chart/bar'
 import { waterfall } from './main'
 import Core from '../../core'
-import numerify from 'numerify/lib/index.es'
-export default {
+export default Object.assign({}, Core, {
   name: 'VeWaterfall',
-  mixins: [Core],
-  created () {
+  data () {
     this.chartHandler = waterfall
-    this.echartsLib = echarts
-  },
-  _numerify: numerify
-}
+    return {}
+  }
+})
