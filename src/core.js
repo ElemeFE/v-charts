@@ -6,7 +6,7 @@ import { DEFAULT_COLORS, DEFAULT_THEME } from './constants'
 import Loading from './components/loading'
 import DataEmpty from './components/data-empty'
 import { getType, debounce, isArray, isObject, camelToKebab, set } from 'utils-lite'
-import numerify from 'numerify/lib/index.es'
+import numerify from 'numerify'
 
 const STATIC_PROPS = ['initOptions', 'loading', 'dataEmpty', 'judgeWidth', 'widthChangeDelay']
 

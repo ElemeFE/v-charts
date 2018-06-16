@@ -1,4 +1,4 @@
-import numerify from 'numerify/lib/index.es'
+import numerify from 'numerify'
 import { isFunction } from 'utils-lite'
 
 export const getFormated = (val, type, digit, defaultVal = '-') => {
