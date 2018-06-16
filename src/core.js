@@ -233,7 +233,9 @@ export default {
       }
 
       if (this.afterConfig) options = this.afterConfig(options)
-      this.echarts.setOption(options, this.setOptionOpts)
+      let setOptionOpts = this.setOptionOpts
+      if (this.settings.bmap || this.settings.amap) setOptionOpts = false
+      this.echarts.setOption(options, setOptionOpts)
       this.$emit('ready', this.echarts)
       if (!this._once['ready-once']) {
         this._once['ready-once'] = true

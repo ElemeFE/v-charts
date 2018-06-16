@@ -4,10 +4,10 @@
       :settings="chartSettings"
       :series="chartSeries"
       :after-set-option-once="getMap"
-      :set-option-opts="false"
       :mark-line="markLine">
     </ve-bmap>
     <button @click="markLine = {}">toggle</button>
+    <button @click="add">add</button>
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
           type: 'scatter',
           coordinateSystem: 'bmap',
           data: [
-            [120, 30, 1]
+            [120, 30.0000001, 5],
+            [120, 30.0000002, 5]
           ]
         }
       ],
@@ -45,6 +46,10 @@ export default {
     getMap (echarts) {
       const bmap = echarts.getModel().getComponent('bmap').getBMap()
       bmap.addControl(new window.BMap.MapTypeControl())
+    },
+
+    add () {
+      this.chartSeries[0].data.push([120, 30.2, 1])
     }
   },
 
