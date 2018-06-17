@@ -52,7 +52,7 @@ async function rollupFn (item) {
   let { code } = await bundle.generate({ format, name, globals })
   if (isCommonjs) {
     code = code.replace(
-      /require\('(.*)\/(utils|core|constants)'\)/g,
+      /require\(['"](..?\/)+(utils|core|constants)['"]\)/g,
       'require(\'./$2\')'
     )
   }
