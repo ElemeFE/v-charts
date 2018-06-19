@@ -60,6 +60,39 @@
 </script>
 </script>
 
+#### auto set order and filter data which value is 0
+
+<vuep template="#use-default-filter"></vuep>
+
+<script v-pre type="text/x-template" id="use-default-filter">
+<template>
+  <ve-funnel :data="chartData" :settings="chartSettings"></ve-funnel>
+</template>
+
+<script>
+  export default {
+    data () {
+      this.chartSettings = {
+        useDefaultOrder: true,
+        filterZero: true
+      }
+      return {
+        chartData: {
+          columns: ['status', 'value'],
+          rows: [
+            { 'status': 'display', 'value': 900 },
+            { 'status': 'visit', 'value': 100 },
+            { 'status': 'zeroValue', 'value': 0 },
+            { 'status': 'click', 'value': 300 },
+            { 'status': 'order', 'value': 200 }
+          ]
+        }
+      }
+    }
+  }
+</script>
+</script>
+
 #### custom order
 
 <vuep template="#custom-order-funnel"></vuep>
@@ -195,6 +228,8 @@
 | dataType | data type of metrics | string | `'KMB'`, `'normal'`, `'percent'` |
 | sequence | custom data order | array | defautthe order of the data |
 | ascending | whether display as pyramid | boolean | default `false` |
+| useDefaultOrder | auto sort data by metrics value | boolean | default `false` |
+| filterZero | whether filter data which value is 0 | boolean | default `false` |
 | digit | digit of percent type data | number | default `2` |
 | label | label of chart | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.label) |
 | labelLine | visual guide line style of label | object | content reference [docs](http://ecomfe.github.io/echarts-doc/public/en/option.html#series-funnel.labelLine) |
