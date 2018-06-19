@@ -49,3 +49,17 @@ export const itemPoint = (color) => {
     '"></span>'
   ].join('')
 }
+
+export const STATIC_PROPS = [
+  'initOptions', 'loading', 'dataEmpty',
+  'judgeWidth', 'widthChangeDelay'
+]
+
+export const ECHARTS_SETTINGS = [
+  'grid', 'dataZoom', 'visualMap',
+  'toolbox', 'title', 'legend',
+  'xAxis', 'yAxis', 'radar',
+  'tooltip', 'axisPointer', 'brush',
+  'geo', 'timeline', 'graphic',
+  'series', 'backgroundColor', 'textStyle'
+]
