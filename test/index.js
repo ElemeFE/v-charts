@@ -3,8 +3,6 @@ import Vue from 'vue'
 import chartData from '../examples/data/index.js'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
-
-window.Promise = require('es6-promise').Promise
 import {
   VeLine,
   VeBar,
@@ -22,6 +20,8 @@ import {
   VeCandle,
   VeGauge
 } from '../lib/index.esm'
+
+window.Promise = require('es6-promise').Promise
 
 const comps = {
   line: VeLine,

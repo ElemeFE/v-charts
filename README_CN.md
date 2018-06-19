@@ -26,41 +26,42 @@
 </p>
 
 <p align="center">
-  <a href="https://v-charts.js.org/#/en/">
-    Document
+  <a href="https://v-charts.js.org">
+    文档
   </a>
   <span> | </span>
   <a href="https://codesandbox.io/s/z69myovqzx">
-    Sample Project
+    示例项目
   </a>
   <span> | </span>
-  <a>
+  <a href="./README.md">
     English
   </a>
   <span> | </span>
-  <a href="./README_CN.md">
+  <a>
     中文
   </a>
 </p>
 
-> Chart components based on Vue2.x and Echarts
+> 基于 Vue2.x 封装的 Echarts 图表组件
 
-## Features
-- **Uniform data format:** Use an uniform data format that both convient for frontend and backend, and also easy to create and edit.
-- **Simplified configuration:** With simplified configuration items, complex requirements can be easily implemented.
-- **Simple customization:** Provide a variety of custom Echarts way, you can easily set the chart options.
+## 特性
 
-## Support
+- **统一的数据格式：** 使用对前后端都友好的数据格式，方便生成和修改。
+- **简化的配置项：** 通过简化的配置项，可以轻松实现复杂需求。
+- **定制简单：** 提供多种自定义 Echarts 方式，可以方便的设置图表配置项。
 
-Modern browsers and Internet Explorer 10+, include pc and mobile browser.
+## 支持性
 
-## Install
+支持所有现代浏览器及 IE10+ ，包括 pc 端和移动端。
+
+## 安装
 
 ```
 npm i v-charts echarts -S
 ```
 
-## Start
+## 快速上手
 ---
 
 ```html
@@ -75,14 +76,14 @@ import VeLine from 'v-charts/lib/line.common'
 export default {
   created () {
     this.chartData = {
-      columns: ['date', 'PV'],
+      columns: ['日期', '销售量'],
       rows: [
-        { 'date': '01-01', 'PV': 1231 },
-        { 'date': '01-02', 'PV': 1223 },
-        { 'date': '01-03', 'PV': 2123 },
-        { 'date': '01-04', 'PV': 4123 },
-        { 'date': '01-05', 'PV': 3123 },
-        { 'date': '01-06', 'PV': 7123 }
+        { '日期': '1月1日', '销售量': 123 },
+        { '日期': '1月2日', '销售量': 1223 },
+        { '日期': '1月3日', '销售量': 2123 },
+        { '日期': '1月4日', '销售量': 4123 },
+        { '日期': '1月5日', '销售量': 3123 },
+        { '日期': '1月6日', '销售量': 7123 }
       ]
     }
   },
@@ -92,11 +93,11 @@ export default {
 </script>
 ```
 
-## Changelog
+## 更新日志
 
 [中文](./CHANGELOG_CN.md) | [English](./CHANGELOG.md)
 
-## Contribution
+## 贡献
 
 [中文](./CONTRIBUTING_CN.md) | [English](./CONTRIBUTING.md)
 
