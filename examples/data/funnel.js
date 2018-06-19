@@ -16,6 +16,23 @@ export default {
       settings: {}
     },
     {
+      name: '使用默认顺序',
+      data: {
+        columns: ['状态', '数值'],
+        rows: [
+          { '状态': '展示', '数值': 900 },
+          { '状态': '访问', '数值': 100 },
+          { '状态': '零', '数值': 0 },
+          { '状态': '点击', '数值': 300 },
+          { '状态': '订单', '数值': 200 }
+        ]
+      },
+      settings: {
+        useDefaultOrder: true,
+        filterZero: true
+      }
+    },
+    {
       name: '定制维度顺序',
       data: {
         columns: ['状态', '数值'],
