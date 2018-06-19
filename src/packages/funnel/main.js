@@ -32,31 +32,39 @@ function getFunnelSeries (args) {
     ascending,
     label,
     labelLine,
-    itemStyle
+    itemStyle,
+    filterZero,
+    useDefaultOrder
   } = args
   let series = { type: 'funnel' }
-  rows.sort((a, b) => {
+  let innerRows = rows.sort((a, b) => {
     return sequence.indexOf(a[dimension]) - sequence.indexOf(b[dimension])
   })
 
+  if (filterZero) {
+    innerRows = innerRows.filter(row => {
+      return row[metrics]
+    })
+  }
+
   let falseFunnel = false
-  rows.some((row, index) => {
-    if (index && row[metrics] > rows[index - 1][metrics]) {
+  innerRows.some((row, index) => {
+    if (index && row[metrics] > innerRows[index - 1][metrics]) {
       falseFunnel = true
       return true
     }
   })
 
-  const step = 100 / rows.length
+  const step = 100 / innerRows.length
 
-  if (falseFunnel) {
-    series.data = rows.slice().reverse().map((row, index) => ({
+  if (falseFunnel && !useDefaultOrder) {
+    series.data = innerRows.slice().reverse().map((row, index) => ({
       name: row[dimension],
       value: (index + 1) * step,
       realValue: row[metrics]
     }))
   } else {
-    series.data = rows.map(row => ({
+    series.data = innerRows.map(row => ({
       name: row[dimension],
       value: row[metrics],
       realValue: row[metrics]
@@ -82,7 +90,9 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
     label,
     labelLine,
     legendName = {},
-    itemStyle
+    itemStyle,
+    filterZero,
+    useDefaultOrder
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics
@@ -95,7 +105,8 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
   }
 
   const tooltip = tooltipVisible && getFunnelTooltip(dataType, digit)
-  const seriesParams = {
+  const legend = legendVisible && getFunnelLegend({ data: sequence, legendName })
+  const series = getFunnelSeries({
     dimension,
     metrics,
     rows,
@@ -103,10 +114,10 @@ export const funnel = (outerColumns, outerRows, settings, extra) => {
     ascending,
     label,
     labelLine,
-    itemStyle
-  }
-  const legend = legendVisible && getFunnelLegend({ data: sequence, legendName })
-  const series = getFunnelSeries(seriesParams)
+    itemStyle,
+    filterZero,
+    useDefaultOrder
+  })
   const options = { tooltip, legend, series }
   return options
 }
