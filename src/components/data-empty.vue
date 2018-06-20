@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, .9);
   color: #888;
   font-size: 14px;
 }

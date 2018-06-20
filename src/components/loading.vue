@@ -20,7 +20,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.v-charts-mask-status {
+  filter: blur(1px);
 }
 
 .v-charts-component-loading .circular {

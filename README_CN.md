@@ -62,7 +62,6 @@ npm i v-charts echarts -S
 ```
 
 ## 快速上手
----
 
 ```html
 <template>
@@ -74,34 +73,34 @@ npm i v-charts echarts -S
 <script>
 import VeLine from 'v-charts/lib/line.common'
 export default {
-  created () {
-    this.chartData = {
-      columns: ['日期', '销售量'],
-      rows: [
-        { '日期': '1月1日', '销售量': 123 },
-        { '日期': '1月2日', '销售量': 1223 },
-        { '日期': '1月3日', '销售量': 2123 },
-        { '日期': '1月4日', '销售量': 4123 },
-        { '日期': '1月5日', '销售量': 3123 },
-        { '日期': '1月6日', '销售量': 7123 }
-      ]
+  components: { VeLine },
+  data () {
+    return {
+      chartData: {
+        columns: ['日期', '销售量'],
+        rows: [
+          { '日期': '1月1日', '销售量': 123 },
+          { '日期': '1月2日', '销售量': 1223 },
+          { '日期': '1月3日', '销售量': 2123 },
+          { '日期': '1月4日', '销售量': 4123 },
+          { '日期': '1月5日', '销售量': 3123 },
+          { '日期': '1月6日', '销售量': 7123 }
+        ]
+      }
     }
-  },
-
-  components: { VeLine }
+  }
 }
 </script>
 ```
 
 ## 更新日志
 
-[中文](./CHANGELOG_CN.md) | [English](./CHANGELOG.md)
+每个版本的详细修改可以参考 [release notes](https://github.com/ElemeFE/v-charts/releases) 或者 [ChangeLog](./CHANGELOG_CN.md)。
 
 ## 贡献
 
-[中文](./CONTRIBUTING_CN.md) | [English](./CONTRIBUTING.md)
-
+在发起一个 pull request 之前，请先阅读[贡献指南](./CONTRIBUTING_CN.md)。
 
 ## License
 
-MIT
+[MIT](http://opensource.org/licenses/MIT)
