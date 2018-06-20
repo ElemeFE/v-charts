@@ -1,5 +1,5 @@
 import numerify from 'numerify'
-import { isFunction } from 'utils-lite'
+import { isFunction, isObject, isArray, clone, arrDelArrItem } from 'utils-lite'
 
 export const getFormated = (val, type, digit, defaultVal = '-') => {
   if (isNaN(val)) return defaultVal
@@ -102,4 +102,58 @@ export const getAmap = (key, v) => {
     })
   }
   return amapPromise
+}
+
+export function axisSiteHandler (axisSite, axisGroup, metrics) {
+  axisSite = clone(axisSite)
+  if (!isArray(metrics)) metrics = [metrics]
+  const {
+    rightSide,
+    leftSide,
+    topSide,
+    bottomSide
+  } = axisGroup
+  ;[rightSide, topSide].forEach(side => {
+    side && side.forEach(name => {
+      if (axisSite[name]) {
+        metrics = arrDelArrItem(metrics, axisSite[name])
+      } else {
+        axisSite[name] = []
+      }
+    })
+  })
+  ;[leftSide, bottomSide].forEach(side => {
+    side && side.forEach(name => {
+      if (!axisSite[name]) {
+        axisSite[name] = metrics
+        metrics = []
+      } else {
+        axisSite[name] = axisSite[name].filter(item => ~metrics.indexOf(item))
+      }
+    })
+  })
+  return axisSite
+}
+
+export function optionsAddAttr (obj, target, item) {
+  if (!target) return
+  if (isObject(target)) {
+    Object.keys(target).forEach(key => {
+      optionsAddAttr(obj, key, target[key])
+    })
+    return
+  }
+  if (obj[target] && isArray(obj[target])) {
+    if (isArray(item)) {
+      obj[target] = obj[target].concat(item)
+    } else {
+      obj[target].push(item)
+    }
+  } else {
+    if (isArray(item)) {
+      obj[target] = item
+    } else {
+      obj[target] = [item]
+    }
+  }
 }

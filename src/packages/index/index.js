@@ -16,6 +16,7 @@ import VeScatter from '../scatter'
 import VeCandle from '../candle'
 import VeGauge from '../gauge'
 import VeTree from '../tree'
+import VeGraph from '../graph'
 
 const components = [
   VeBar,
@@ -66,5 +67,6 @@ export default {
   VeCandle,
   VeGauge,
   VeTree,
+  VeGraph,
   install
 }

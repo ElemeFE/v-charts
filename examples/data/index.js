@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import bar from './bar'
 import histogram from './histogram'
 import line from './line'
@@ -14,6 +15,7 @@ import scatter from './scatter'
 import candle from './candle'
 import gauge from './gauge'
 import tree from './tree'
+import graph from './graph'
 
 export default {
   bar,
@@ -31,5 +33,6 @@ export default {
   scatter,
   candle,
   gauge,
-  tree
+  tree,
+  graph,
 }

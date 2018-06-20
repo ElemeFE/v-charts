@@ -23,6 +23,9 @@ import {
 import setExtend from './modules/extend'
 import setMark from './modules/mark'
 import setAnimation from './modules/animation'
+import setLegend from './modules/legend'
+import setAxis from './modules/axis'
+import setTooltip from './modules/tooltip'
 
 export default {
   render (h) {
@@ -59,6 +62,8 @@ export default {
     colors: { type: Array },
     tooltipVisible: { type: Boolean, default: true },
     legendVisible: { type: Boolean, default: true },
+    xAxisVisible: { type: Boolean, default: true },
+    yAxisVisible: { type: Boolean, default: true },
     legendPosition: { type: String },
     markLine: { type: Object },
     markArea: { type: Object },
@@ -187,6 +192,21 @@ export default {
 
     optionsHandler (options) {
       // legend
+      if (options.v_legend) {
+        setLegend(options, { visible: this.legendVisible })
+      }
+      if (options.v_axis) {
+        setAxis(options, {
+          visible: {
+            x: this.xAxisVisible,
+            y: this.yAxisVisible
+          }
+        })
+      }
+      if (options.v_tooltip) {
+        setTooltip(options, this.tooltipVisible)
+      }
+      // legend position
       if (this.legendPosition && options.legend) {
         options.legend[this.legendPosition] = 10
         if (~['left', 'right'].indexOf(this.legendPosition)) {
