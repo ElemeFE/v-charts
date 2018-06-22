@@ -28,6 +28,7 @@ All charts have properties such as `width`, `events` and so on.
 | judge-width | whether to deal with chart width | boolean | false |
 | width-change-delay | container width change delay | number | 300 |
 | resizeable | whether to deal with window resize | boolean | true |
+| cancel-resize-check | whether to cancel container check while resizing | boolean | false |
 | resize-delay | time delay of window resize handler | number | 200 |
 | change-delay | delay of chart redraw callback while props change | number | 0 |
 | set-option-opts | the second parameter of echarts setOption, [doc](http://echarts.baidu.com/api.html#echartsInstance.setOption) | boolean<br>object | true |
