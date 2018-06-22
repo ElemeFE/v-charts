@@ -4,9 +4,8 @@
 
 ### Features
 
-* **core:** add resize checker ([5f8196d](https://github.com/ElemeFE/v-charts/commit/5f8196d))
-* **core:** module extend, mark, animation ([be23594](https://github.com/ElemeFE/v-charts/commit/be23594))
-* **style:** change mask status opacity and add blur ([7063c4a](https://github.com/ElemeFE/v-charts/commit/7063c4a))
+* **core:** 增加 resize 时的容器检测 ([5f8196d](https://github.com/ElemeFE/v-charts/commit/5f8196d))
+* **style:** 修改 loading 和 data-empty 样式 ([7063c4a](https://github.com/ElemeFE/v-charts/commit/7063c4a))
 
 
 
