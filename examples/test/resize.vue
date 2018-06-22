@@ -7,6 +7,11 @@
   -->
   <div>
     <ve-line :data="chartData"></ve-line>
+    <ve-line :data="chartData" :cancel-resize-check="false"></ve-line>
+    <button @click="resizeable = !resizeable">
+      change resizeable: {{ resizeable }}
+    </button>
+    <ve-line :data="chartData" :resizeable="resizeable"></ve-line>
     <button @click="change">change width height</button>
     <ve-line :data="chartData" :width="chartWidth" :height="chartHeight"></ve-line>
     <ve-line :data="chartData" :resizeable="false"></ve-line>
@@ -22,7 +27,8 @@ export default {
     return {
       chartData: LINE_DATA,
       chartWidth: '400px',
-      chartHeight: '400px'
+      chartHeight: '400px',
+      resizeable: true
     }
   },
   methods: {
