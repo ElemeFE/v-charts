@@ -91,7 +91,8 @@ export default {
     resizeable: { type: Boolean, default: true },
     resizeDelay: { type: Number, default: 200 },
     changeDelay: { type: Number, default: 0 },
-    setOptionOpts: { type: [Boolean, Object], default: true }
+    setOptionOpts: { type: [Boolean, Object], default: true },
+    cancelResizeCheck: Boolean
   },
 
   watch: {
@@ -121,7 +122,9 @@ export default {
       handler: 'themeChange'
     },
 
-    themeName: 'themeChange'
+    themeName: 'themeChange',
+
+    resizeable: 'resizeableHandler'
   },
 
   computed: {
@@ -163,9 +166,21 @@ export default {
       }
     },
 
-    nextTickResize () { this.$nextTick(this.echarts.resize) },
+    nextTickResize () { this.$nextTick(this.resize) },
 
-    resize () { this.echarts.resize() },
+    resize () {
+      if (!this.cancelResizeCheck) {
+        if (this.$el &&
+          this.$el.clientWidth &&
+          this.$el.clientHeight) {
+          this.echartsResize()
+        }
+      } else {
+        this.echartsResize()
+      }
+    },
+
+    echartsResize () { this.echarts && this.echarts.resize() },
 
     optionsHandler (options) {
       // legend
@@ -222,17 +237,17 @@ export default {
     },
 
     judgeWidthHandler (options) {
-      const { echarts, widthChangeDelay } = this
-      if (this.$el.clientWidth) {
-        echarts && echarts.resize()
+      const { widthChangeDelay, resize } = this
+      if (this.$el.clientWidth || this.$el.clientHeight) {
+        resize()
       } else {
         this.$nextTick(_ => {
-          if (this.$el.clientWidth) {
-            echarts && echarts.resize()
+          if (this.$el.clientWidth || this.$el.clientHeight) {
+            resize()
           } else {
             setTimeout(_ => {
-              echarts && echarts.resize()
-              if (!this.$el.clientWidth) {
+              resize()
+              if (!this.$el.clientWidth || !this.$el.clientHeight) {
                 console.warn(' Can\'t get dom width or height ')
               }
             }, widthChangeDelay)
@@ -241,13 +256,28 @@ export default {
       }
     },
 
+    resizeableHandler (resizeable) {
+      if (resizeable && !this._once.onresize) this.addResizeListener()
+      if (!resizeable && this._once.onresize) this.removeResizeListener()
+    },
+
     init () {
       if (this.echarts) return
       const themeName = this.themeName || this.theme || DEFAULT_THEME
       this.echarts = echartsLib.init(this.$refs.canvas, themeName, this.initOptions)
       if (this.data) this.changeHandler()
       this.createEventProxy()
-      if (this.resizeable) window.addEventListener('resize', this.resizeHandler)
+      if (this.resizeable) this.addResizeListener()
+    },
+
+    addResizeListener () {
+      window.addEventListener('resize', this.resizeHandler)
+      this._once.onresize = true
+    },
+
+    removeResizeListener () {
+      window.removeEventListener('resize', this.resizeHandler)
+      this._once.onresize = false
     },
 
     addWatchToProps () {
@@ -292,7 +322,7 @@ export default {
     },
 
     clean () {
-      if (this.resizeable) window.removeEventListener('resize', this.resizeHandler)
+      if (this.resizeable) this.removeResizeListener()
       this.echarts.dispose()
     }
   },
@@ -301,12 +331,8 @@ export default {
     this.echarts = null
     this.registeredEvents = []
     this._once = {}
-    this.resizeHandler = debounce(_ => {
-      this.echarts && this.echarts.resize()
-    }, this.resizeDelay)
-    this.changeHandler = debounce(_ => {
-      this.dataHandler && this.dataHandler()
-    }, this.changeDelay)
+    this.resizeHandler = debounce(this.resize, this.resizeDelay)
+    this.changeHandler = debounce(this.dataHandler, this.changeDelay)
     this.addWatchToProps()
   },
 
