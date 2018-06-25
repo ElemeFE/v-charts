@@ -1,3 +1,13 @@
+<a name="1.17.5"></a>
+## [1.17.5](https://github.com/ElemeFE/v-charts/compare/v1.17.4...v1.17.5) (2018-06-25)
+
+
+### Bug Fixes
+
+* **line:** line display error while use dataZoom ([6cdf155](https://github.com/ElemeFE/v-charts/commit/6cdf155)), closes [#394](https://github.com/ElemeFE/v-charts/issues/394) [#387](https://github.com/ElemeFE/v-charts/issues/387)
+
+
+
 <a name="1.17.4"></a>
 ## [1.17.4](https://github.com/ElemeFE/v-charts/compare/v1.17.3...v1.17.4) (2018-06-22)
 
