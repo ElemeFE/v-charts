@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-* **line:** line display error while use dataZoom ([6cdf155](https://github.com/ElemeFE/v-charts/commit/6cdf155)), closes [#394](https://github.com/ElemeFE/v-charts/issues/394) [#387](https://github.com/ElemeFE/v-charts/issues/387)
+* **line:** 修复折线图与缩放组件同时使用时的样式问题 ([6cdf155](https://github.com/ElemeFE/v-charts/commit/6cdf155)), closes [#394](https://github.com/ElemeFE/v-charts/issues/394) [#387](https://github.com/ElemeFE/v-charts/issues/387)
 
 
 
