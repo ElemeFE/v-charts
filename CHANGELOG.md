@@ -1,3 +1,13 @@
+<a name="1.17.6"></a>
+## [1.17.6](https://github.com/ElemeFE/v-charts/compare/v1.17.5...v1.17.6) (2018-06-26)
+
+
+### Features
+
+* **core:** add notSetUnchange prop ([48d4346](https://github.com/ElemeFE/v-charts/commit/48d4346))
+
+
+
 <a name="1.17.5"></a>
 ## [1.17.5](https://github.com/ElemeFE/v-charts/compare/v1.17.4...v1.17.5) (2018-06-25)
 
