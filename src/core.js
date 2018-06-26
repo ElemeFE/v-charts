@@ -7,7 +7,9 @@ import {
   debounce,
   camelToKebab,
   isArray,
-  isObject
+  isObject,
+  cloneDeep,
+  isEqual
 } from 'utils-lite'
 
 import Loading from './components/loading'
@@ -92,7 +94,8 @@ export default {
     resizeDelay: { type: Number, default: 200 },
     changeDelay: { type: Number, default: 0 },
     setOptionOpts: { type: [Boolean, Object], default: true },
-    cancelResizeCheck: Boolean
+    cancelResizeCheck: Boolean,
+    notSetUnchange: Array
   },
 
   watch: {
@@ -216,11 +219,29 @@ export default {
       // change inited echarts settings
       if (this.extend) setExtend(options, this.extend)
       if (this.afterConfig) options = this.afterConfig(options)
-      // setOption
       let setOptionOpts = this.setOptionOpts
+      // map chart not merge
       if ((this.settings.bmap || this.settings.amap) &&
         !isObject(setOptionOpts)) {
         setOptionOpts = false
+      }
+      // exclude unchange options
+      if (this.notSetUnchange && this.notSetUnchange.length) {
+        this.notSetUnchange.forEach(item => {
+          const value = options[item]
+          if (value) {
+            if (isEqual(value, this._store[item])) {
+              options[item] = undefined
+            } else {
+              this._store[item] = cloneDeep(value)
+            }
+          }
+        })
+        if (isObject(setOptionOpts)) {
+          setOptionOpts.notMerge = false
+        } else {
+          setOptionOpts = false
+        }
       }
       this.echarts.setOption(options, setOptionOpts)
       this.$emit('ready', this.echarts)
@@ -331,6 +352,7 @@ export default {
     this.echarts = null
     this.registeredEvents = []
     this._once = {}
+    this._store = {}
     this.resizeHandler = debounce(this.resize, this.resizeDelay)
     this.changeHandler = debounce(this.dataHandler, this.changeDelay)
     this.addWatchToProps()
