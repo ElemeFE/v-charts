@@ -33,6 +33,9 @@
 | resize-delay | 窗口 resize 事件回调的延迟 | number | 200 |
 | change-delay | 属性修改触发图表重绘回调的延迟 | number | 0 |
 | set-option-opts | echarts setOption 的第二个参数, [参考文档](http://echarts.baidu.com/api.html#echartsInstance.setOption) | boolean<br>object | true |
+| not-set-unchange | 未发生变化时不参加 setOption 的属性 | array | - |
+
+?> 在使用 dataZoom 组件时，数据发生改变会引起 dataZoom 的重置，在组件上设置 `:not-set-unchange="['dataZoom']"` 即可解决这个问题。
 
 #### 增加标识元素的属性
 
