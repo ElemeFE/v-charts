@@ -4,7 +4,7 @@
 
 ### Features
 
-* **core:** add notSetUnchange prop ([48d4346](https://github.com/ElemeFE/v-charts/commit/48d4346))
+* **core:** 增加 notSetUnchange 属性 ([48d4346](https://github.com/ElemeFE/v-charts/commit/48d4346))
 
 
 
