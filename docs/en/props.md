@@ -32,6 +32,9 @@ All charts have properties such as `width`, `events` and so on.
 | resize-delay | time delay of window resize handler | number | 200 |
 | change-delay | delay of chart redraw callback while props change | number | 0 |
 | set-option-opts | the second parameter of echarts setOption, [doc](http://echarts.baidu.com/api.html#echartsInstance.setOption) | boolean<br>object | true |
+| not-set-unchange | Don't participate in setOption if it doesn't change | array | - |
+
+?> When using the dataZoom component, changes to the data will cause the dataZoom to be reset. Setting `:not-set-unchange="['dataZoom']"` on the component will solve the problem.
 
 #### mark attribute
 

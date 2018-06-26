@@ -17,6 +17,7 @@ export const TEST_ROUTES = [
   { path: '/resize', name: 'resize', component: () => import('./test/resize.vue') },
   { path: '/set-option', name: 'set-option', component: () => import('./test/set-option.vue') },
   { path: '/number-format', name: 'number', component: () => import('./test/number-format.vue') },
+  { path: '/data-zoom', name: 'data-zoom', component: () => import('./test/data-zoom.vue') },
 ]
 
 export default new Router({
