@@ -176,7 +176,7 @@
   export default {
     data () {
       this.chartSettings = {
-        radius: [100, 10],
+        radius: [10, 100],
         offsetY: 300
       }
       return {
