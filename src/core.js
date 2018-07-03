@@ -204,7 +204,7 @@ export default {
         })
       }
       if (options.v_tooltip) {
-        setTooltip(options, this.tooltipVisible)
+        setTooltip(options, { visible: this.tooltipVisible })
       }
       // legend position
       if (this.legendPosition && options.legend) {

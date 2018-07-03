@@ -4,18 +4,17 @@ export default function (options, config) {
   const {
     v_legend: {
       legendName,
-      labelMap
-    },
-    v_category: category
+      labelMap,
+      category
+    }
   } = options
-  const { visible } = config
   if (!legendName && !labelMap) return { data: category }
   const data = labelMap
     ? category.map(item => getFnAndObjValue(labelMap, item))
     : category
   options.legend = {
     data,
-    show: !(visible === false),
+    show: config.visible,
     formatter (name) {
       return legendName ? getFnAndObjValue(legendName, name) : name
     }

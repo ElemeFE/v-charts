@@ -121,10 +121,10 @@ export function graph (columns, rows, settings, extra) {
   })
   const options = {
     series,
-    v_category: innerCategorys,
     v_legend: {
       legendName,
-      labelMap
+      labelMap,
+      category: innerCategorys
     },
     v_tooltip: {
       digit,
