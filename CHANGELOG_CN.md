@@ -1,3 +1,13 @@
+<a name="1.17.7"></a>
+## [1.17.7](https://github.com/ElemeFE/v-charts/compare/v1.17.6...v1.17.7) (2018-07-10)
+
+
+### Bug Fixes
+
+* **heatmap:** display error while data us empty ([9e6b16a](https://github.com/ElemeFE/v-charts/commit/9e6b16a))
+
+
+
 <a name="1.17.6"></a>
 ## [1.17.6](https://github.com/ElemeFE/v-charts/compare/v1.17.5...v1.17.6) (2018-06-26)
 
