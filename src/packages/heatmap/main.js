@@ -41,7 +41,7 @@ function getAxis (list, name) {
 }
 
 function getVisualMap (args) {
-  const { innerMin: min, innerMax: max, type, heatColor } = args
+  const { innerMin: min, innerMax: max, type, heatColor, series } = args
   let result = {
     min,
     max,
@@ -55,6 +55,7 @@ function getVisualMap (args) {
       bottom: 0,
       inRange: { color: heatColor || HEAT_MAP_COLOR }
     }
+    if (!series[0].data.length) extra.show = false
   } else if (type === 'bmap' || type === 'amap') {
     extra = {
       show: false,
@@ -167,14 +168,15 @@ export const heatmap = (columns, rows, settings, status) => {
       extraMetrics
     })
   }
-  const metricsList = metrics ? rows.map(row => row[metrics]) : [0, 5]
+  let metricsList = metrics ? rows.map(row => row[metrics]) : [0, 5]
+  if (!metricsList.length) metricsList = [0]
   const innerMin = min || Math.min.apply(null, metricsList)
   const innerMax = max || Math.max.apply(null, metricsList)
 
   const xAxis = getAxis(innerXAxisList, xAxisName)
   const yAxis = getAxis(innerYAxisList, yAxisName)
-  const visualMap = getVisualMap({ innerMin, innerMax, type, heatColor })
   const series = getSeries({ chartData })
+  const visualMap = getVisualMap({ innerMin, innerMax, type, heatColor, series })
   const tooltip = tooltipVisible && getTooltip({
     dataType,
     innerXAxisList,
@@ -193,7 +195,6 @@ export const heatmap = (columns, rows, settings, status) => {
     })
   } else if (type === 'map') {
     options.series[0].coordinateSystem = 'geo'
-
     return getMapJSON({
       position,
       positionJsonLink,
