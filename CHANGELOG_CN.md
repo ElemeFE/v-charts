@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-* **heatmap:** display error while data us empty ([9e6b16a](https://github.com/ElemeFE/v-charts/commit/9e6b16a))
+* **heatmap:** 修复地图热力图在数据为空时的报错 ([9e6b16a](https://github.com/ElemeFE/v-charts/commit/9e6b16a))
 
 
 
