@@ -1,3 +1,13 @@
+<a name="1.17.8"></a>
+## [1.17.8](https://github.com/ElemeFE/v-charts/compare/v1.17.7...v1.17.8) (2018-07-11)
+
+
+### Features
+
+* **core:** add hooks params of options and Echarts ([e4ef7bd](https://github.com/ElemeFE/v-charts/commit/e4ef7bd))
+
+
+
 <a name="1.17.7"></a>
 ## [1.17.7](https://github.com/ElemeFE/v-charts/compare/v1.17.6...v1.17.7) (2018-07-10)
 
