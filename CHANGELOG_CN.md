@@ -4,7 +4,7 @@
 
 ### Features
 
-* **core:** add hooks params of options and Echarts ([e4ef7bd](https://github.com/ElemeFE/v-charts/commit/e4ef7bd))
+* **core:** 增加 options and Echarts 到钩子函数中 ([e4ef7bd](https://github.com/ElemeFE/v-charts/commit/e4ef7bd))
 
 
 
