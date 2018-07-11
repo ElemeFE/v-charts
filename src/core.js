@@ -244,16 +244,16 @@ export default {
         }
       }
       this.echarts.setOption(options, setOptionOpts)
-      this.$emit('ready', this.echarts)
+      this.$emit('ready', this.echarts, options, echartsLib)
       if (!this._once['ready-once']) {
         this._once['ready-once'] = true
-        this.$emit('ready-once', this.echarts)
+        this.$emit('ready-once', this.echarts, options, echartsLib)
       }
       if (this.judgeWidth) this.judgeWidthHandler(options)
-      if (this.afterSetOption) this.afterSetOption(this.echarts)
+      if (this.afterSetOption) this.afterSetOption(this.echarts, options, echartsLib)
       if (this.afterSetOptionOnce && !this._once['afterSetOptionOnce']) {
         this._once['afterSetOptionOnce'] = true
-        this.afterSetOptionOnce(this.echarts)
+        this.afterSetOptionOnce(this.echarts, options, echartsLib)
       }
     },
 
