@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-* **core:** load error while change data ([3517aa5](https://github.com/ElemeFE/v-charts/commit/3517aa5))
+* **core:** 修复在组件被销毁时改编数据触发的报错 ([3517aa5](https://github.com/ElemeFE/v-charts/commit/3517aa5))
 
 
 
