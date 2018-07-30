@@ -1,3 +1,13 @@
+<a name="1.17.9"></a>
+## [1.17.9](https://github.com/ElemeFE/v-charts/compare/v1.17.8...v1.17.9) (2018-07-30)
+
+
+### Bug Fixes
+
+* **core:** load error while change data ([3517aa5](https://github.com/ElemeFE/v-charts/commit/3517aa5))
+
+
+
 <a name="1.17.8"></a>
 ## [1.17.8](https://github.com/ElemeFE/v-charts/compare/v1.17.7...v1.17.8) (2018-07-11)
 
