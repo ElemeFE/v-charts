@@ -243,6 +243,7 @@ export default {
           setOptionOpts = false
         }
       }
+      if (this._isDestroyed) return
       this.echarts.setOption(options, setOptionOpts)
       this.$emit('ready', this.echarts, options, echartsLib)
       if (!this._once['ready-once']) {

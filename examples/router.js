@@ -6,6 +6,7 @@ Vue.use(Router)
 
 export const TEST_ROUTES = [
   { path: '/columns-rows', name: 'data', component: () => import('./test/columns-rows.vue') },
+  { path: '/load', name: 'load', component: () => import('./test/load.vue') },
   { path: '/custom-props', name: 'options', component: () => import('./test/custom-props.vue') },
   { path: '/events', name: 'events', component: () => import('./test/events.vue') },
   { path: '/extend', name: 'extend', component: () => import('./test/extend.vue') },
