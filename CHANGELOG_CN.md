@@ -4,7 +4,7 @@
 
 ### Features
 
-* **map:** hide map of no value part ([b2b0f39](https://github.com/ElemeFE/v-charts/commit/b2b0f39))
+* **map:** 隐藏地图中无数据部分的提示 ([b2b0f39](https://github.com/ElemeFE/v-charts/commit/b2b0f39))
 
 
 
