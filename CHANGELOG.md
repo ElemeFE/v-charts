@@ -1,3 +1,13 @@
+<a name="1.17.10"></a>
+## [1.17.10](https://github.com/ElemeFE/v-charts/compare/v1.17.9...v1.17.10) (2018-08-10)
+
+
+### Features
+
+* **map:** hide map of no value part ([b2b0f39](https://github.com/ElemeFE/v-charts/commit/b2b0f39))
+
+
+
 <a name="1.17.9"></a>
 ## [1.17.9](https://github.com/ElemeFE/v-charts/compare/v1.17.8...v1.17.9) (2018-07-30)
 
