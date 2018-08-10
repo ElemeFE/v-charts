@@ -81,7 +81,7 @@ export default {
       },
       settings: {
         position: 'USA',
-        positionJsonLink: 'https://dn-quietcoder.qbox.me/USA.json',
+        positionJsonLink: 'https://unpkg.com/v-charts-custom-maps@0.2.1/usa.json',
         specialAreas: {
           Alaska: {
             left: -131,
@@ -110,7 +110,7 @@ export default {
         ]
       },
       settings: {
-        positionJsonLink: 'https://dn-quietcoder.qbox.me/HK_geo.json',
+        positionJsonLink: 'https://unpkg.com/v-charts-custom-maps@0.2.1/hk-geo.json',
         position: 'HK',
         beforeRegisterMap (json) {
           // edit data here such as:

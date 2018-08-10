@@ -6,6 +6,7 @@ function getTooltip (dataType, digit, dataStore, metrics, color, labelMap) {
   return {
     formatter (item) {
       let tpl = []
+      if (!item.name) return ''
       tpl.push(`${item.name}<br>`)
       metrics.forEach((label, index) => {
         let title = labelMap[label] != null ? labelMap[label] : label
