@@ -95,7 +95,8 @@ export default {
     changeDelay: { type: Number, default: 0 },
     setOptionOpts: { type: [Boolean, Object], default: true },
     cancelResizeCheck: Boolean,
-    notSetUnchange: Array
+    notSetUnchange: Array,
+    log: Boolean
   },
 
   watch: {
@@ -244,6 +245,7 @@ export default {
         }
       }
       if (this._isDestroyed) return
+      if (this.log) console.log(options)
       this.echarts.setOption(options, setOptionOpts)
       this.$emit('ready', this.echarts, options, echartsLib)
       if (!this._once['ready-once']) {
