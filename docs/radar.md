@@ -122,5 +122,4 @@
 | symbolOffset | 标记相对于原本位置的偏移 | Array | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbolOffset)  |
 
 
-
 > 备注：dataType中直接设置对应维度的数据类型，例如示例的`{ '占比': 'percent' }`，即将占比数据设置为百分比类型
