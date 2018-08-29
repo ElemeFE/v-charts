@@ -71,7 +71,12 @@ function getRadarSeries (args) {
     itemStyle,
     lineStyle,
     labelMap,
-    areaStyle
+    areaStyle,
+    symbol,
+    symbolSize,
+    symbolRotate,
+    symbolKeepAspect,
+    symbolOffset
   } = args
   let radarIndexObj = {}
   radar.indicator.forEach((item, index) => {
@@ -103,6 +108,11 @@ function getRadarSeries (args) {
   if (itemStyle) result.itemStyle = itemStyle
   if (lineStyle) result.lineStyle = lineStyle
   if (areaStyle) result.areaStyle = areaStyle
+  if (symbol) result.symbol = symbol
+  if (symbolSize) result.symbolSize = symbolSize
+  if (symbolRotate) result.symbolRotate = symbolRotate
+  if (symbolKeepAspect) result.symbolKeepAspect = symbolKeepAspect
+  if (symbolOffset) result.symbolOffset = symbolOffset
   return [result]
 }
 
@@ -116,7 +126,12 @@ export const radar = (columns, rows, settings, extra) => {
     label,
     itemStyle,
     lineStyle,
-    areaStyle
+    areaStyle,
+    symbol,
+    symbolSize,
+    symbolRotate,
+    symbolKeepAspect,
+    symbolOffset
   } = settings
   const { tooltipVisible, legendVisible } = extra
   let metrics = columns.slice()
@@ -137,7 +152,12 @@ export const radar = (columns, rows, settings, extra) => {
     itemStyle,
     lineStyle,
     labelMap,
-    areaStyle
+    areaStyle,
+    symbol,
+    symbolSize,
+    symbolRotate,
+    symbolKeepAspect,
+    symbolOffset
   })
   const options = { legend, tooltip, radar, series }
   return options

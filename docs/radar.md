@@ -115,6 +115,11 @@
 | itemStyle | 折线拐点标志的样式 | object | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.itemStyle) |
 | lineStyle | 线条样式 | object | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.lineStyle) |
 | areaStyle | 区域填充样式 | object | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.areaStyle)  |
+| symbol | 标记的图形 | string | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbol)  |
+| symbolSize | 标记的大小 | number, Array, Function | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbolSize)  |
+| symbolRotate | 标记的旋转角度 | number | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbolRotate)  |
+| symbolKeepAspect | 是否在缩放时保持该图形的长宽比 | boolean | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbolKeepAspect)  |
+| symbolOffset | 标记相对于原本位置的偏移 | Array | 内容参考[文档](http://echarts.baidu.com/option.html#series-radar.symbolOffset)  |
 
 
 > 备注：dataType中直接设置对应维度的数据类型，例如示例的`{ '占比': 'percent' }`，即将占比数据设置为百分比类型
