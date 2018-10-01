@@ -25,7 +25,7 @@
 | tooltip-visible | 是否显示提示框 | boolean | true |
 | legend-visible | 是否显示图例 | boolean | true |
 | theme | 自定义主题 | object | - |
-| theme-name | 自定义主题名称 | object | - |
+| theme-name | 自定义主题名称 | string | - |
 | judge-width | 是否处理生成图表时的宽度问题 | boolean | false |
 | width-change-delay | 容器宽度变化的延迟 | number | 300 |
 | resizeable | 是否处理窗口 resize 事件 | boolean | true |
