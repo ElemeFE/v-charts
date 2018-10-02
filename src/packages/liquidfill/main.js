@@ -39,11 +39,17 @@ function getSeries (args) {
     metrics,
     seriesMap,
     rows,
-    direction
+    wave
   } = args
 
+  let itemWave = wave
+  let len = 0
+  if (isArray(seriesMap)) {
+    len = seriesMap.length
+  }
+
   const results = []
-  rows.forEach(item => {
+  rows.forEach((item, index) => {
     let data = []
     let layers = []
     let result = {
@@ -52,39 +58,33 @@ function getSeries (args) {
 
     let name = item[dimension]
     let val = Number(item[metrics])
-    let itemMap = isObject(seriesMap[name]) ? seriesMap[name] : {}
+    let itemMap = {}
+
+    if (isArray(seriesMap)) {
+      if (!seriesMap[index]) {
+        itemMap = seriesMap[len - 1]
+      } else {
+        itemMap = seriesMap[index]
+      }
+    }
+    if (isObject(seriesMap[name])) {
+      itemMap = seriesMap[name]
+    }
+
+    if (isArray(wave) && isArray(wave[0])) {
+      itemWave = isArray(wave[index]) ? wave[index] : wave[wave.length - 1]
+    }
 
     // 根据传入的数据(rows)和额外配置(seriesMap)的数据组合data
-    if (!isNaN(val)) {
-      data.push({ value: val })
-      if (itemMap['wave'] && isArray(itemMap['wave'])) {
-        layers = itemMap['wave'].filter(num => typeof num === 'number' && val > num).sort((a, b) => a < b).map(val => ({ value: val }))
-        data = data.concat(layers)
-        delete itemMap['wave']
-      }
+    data.push({ value: val })
+    if (itemWave.length) {
+      layers = itemWave.map(val => ({ value: val }))
+      data = data.concat(layers)
     }
 
     result = Object.assign(result, { data, name }, itemMap)
     results.push(result)
   })
-
-  if (results.length > 1) {
-    const radius = Number(50 / results.length)
-    results.forEach((res, index) => {
-      if (!res.center) {
-        res.center = direction === 'row' ? [(radius + index * radius * 2) + '%', '50%'] : ['50%', (radius + index * radius * 2) + '%']
-      }
-      if (!res.label) {
-        res.label = {
-          fontSize: radius * 1.6
-        }
-      }
-
-      if (res.label && !res.label.fontSize) {
-        res.label.fontSize = radius * 1.6
-      }
-    })
-  }
 
   return results
 }
@@ -96,7 +96,7 @@ export const liquidfill = (columns, rows, settings, extra) => {
     seriesMap = {},
     dataType = 'percent',
     digit = 2,
-    direction = 'row' // row和column可选，如果是row，则多个水球图横向排列，否则纵向排列
+    wave = []
   } = settings
 
   const {
@@ -114,8 +114,8 @@ export const liquidfill = (columns, rows, settings, extra) => {
     columns,
     dimension,
     metrics,
-    direction,
-    seriesMap
+    seriesMap,
+    wave
   })
 
   return {

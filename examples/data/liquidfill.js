@@ -23,16 +23,17 @@ export default {
         }]
       },
       settings: {
+        wave: [0.5, 0.3, 0.1],
         seriesMap: {
           '上海': {
-            wave: [0.5, 0.3, 0.1],
-            color: ['red', 'green', 'yellow']
+            color: ['red', 'green', 'yellow'],
+            waveAnimation: false
           }
         }
       }
     },
     {
-      name: '多个水球图(默认横向排列)',
+      name: '多个水球图',
       data: {
         columns: ['city', 'percent'],
         rows: [{
@@ -43,48 +44,50 @@ export default {
           percent: 0.4
         }, {
           city: '成都',
-          percent: 0.7
+          percent: 0.9
         }]
       },
       settings: {
-        seriesMap: {
-          '上海': {
-            wave: [0.5, 0.3, 0.1],
+        wave: [[0.5, 0.3, 0.1], [0.3, 0.2], []],
+        seriesMap: [
+          {
             color: ['red', 'green', 'yellow'],
             label: {
               formatter (options) {
-                return options.seriesName + ': ' + options.value
+                const {
+                  seriesName,
+                  data: {
+                    value
+                  }
+                } = options
+                return `${seriesName}\n${value}`
               },
               fontSize: 30
-            }
-          }
-        }
-      }
-    },
-    {
-      name: '多个水球图(纵向排列)',
-      data: {
-        columns: ['city', 'percent'],
-        rows: [{
-          city: '上海',
-          percent: 0.6
-        }, {
-          city: '广州',
-          percent: 0.4
-        }]
-      },
-      settings: {
-        direction: 'column',
-        seriesMap: {
-          '上海': {
-            wave: [0.5, 0.3, 0.1],
-            color: ['red', 'green', 'yellow'],
-            radius: '40%'
+            },
+            center: ['18%', '50%'],
+            radius: '50%',
+            waveAnimation: false
           },
-          '广州': {
-            radius: '40%'
+          {
+            label: {
+              formatter (options) {
+                return `${options.seriesName}\n${options.data.value}`
+              },
+              fontSize: 30
+            },
+            center: ['50%', '50%'],
+            radius: '50%',
+            waveAnimation: false
+          },
+          {
+            label: {
+              fontSize: 30
+            },
+            center: ['70%', '50%'],
+            radius: '50%',
+            waveAnimation: false
           }
-        }
+        ]
       }
     },
     {
