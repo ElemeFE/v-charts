@@ -40,6 +40,7 @@ import VeScatter from '../../src/packages/scatter'
 import VeCandle from '../../src/packages/candle'
 import VeGauge from '../../src/packages/gauge'
 import VeTree from '../../src/packages/tree'
+import VeLiquidfill from '../../src/packages/liquidfill'
 import CHART_DATA from '../data'
 
 export default {
@@ -85,7 +86,8 @@ export default {
     VeScatter,
     VeCandle,
     VeGauge,
-    VeTree
+    VeTree,
+    VeLiquidfill
   }
 }
 </script>

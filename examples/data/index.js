@@ -14,6 +14,7 @@ import scatter from './scatter'
 import candle from './candle'
 import gauge from './gauge'
 import tree from './tree'
+import liquidfill from './liquidfill'
 
 export default {
   bar,
@@ -31,5 +32,6 @@ export default {
   scatter,
   candle,
   gauge,
-  tree
+  tree,
+  liquidfill
 }

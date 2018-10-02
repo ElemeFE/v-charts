@@ -19,4 +19,5 @@ module.exports = {
   VeCandle: { src: 'src/packages/candle/index.js', dist: 'lib/candle' },
   VeGauge: { src: 'src/packages/gauge/index.js', dist: 'lib/gauge' },
   VeTree: { src: 'src/packages/tree/index.js', dist: 'lib/tree' },
+  VeLiquidfill: { src: 'src/packages/liquidfill/index.js', dist: 'lib/liquidfill' }
 }
