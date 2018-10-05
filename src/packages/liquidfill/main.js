@@ -43,15 +43,10 @@ function getSeries (args) {
   } = args
 
   let itemWave = wave
-  let len = 0
-  if (isArray(seriesMap)) {
-    len = seriesMap.length
-  }
+  let len = isArray(seriesMap) ? seriesMap.length : 0
 
-  const results = []
-  rows.forEach((item, index) => {
+  return rows.slice().map((item, index) => {
     let data = []
-    let layers = []
     let result = {
       type: 'liquidFill'
     }
@@ -61,13 +56,8 @@ function getSeries (args) {
     let itemMap = {}
 
     if (isArray(seriesMap)) {
-      if (!seriesMap[index]) {
-        itemMap = seriesMap[len - 1]
-      } else {
-        itemMap = seriesMap[index]
-      }
-    }
-    if (isObject(seriesMap[name])) {
+      itemMap = !seriesMap[index] ? seriesMap[len - 1] : seriesMap[index]
+    } else if (isObject(seriesMap[name])) {
       itemMap = seriesMap[name]
     }
 
@@ -77,16 +67,13 @@ function getSeries (args) {
 
     // 根据传入的数据(rows)和额外配置(seriesMap)的数据组合data
     data.push({ value: val })
-    if (itemWave.length) {
-      layers = itemWave.map(val => ({ value: val }))
-      data = data.concat(layers)
+    if (itemWave && itemWave.length) {
+      data = data.concat(itemWave.map(val => ({ value: val })))
     }
 
     result = Object.assign(result, { data, name }, itemMap)
-    results.push(result)
+    return result
   })
-
-  return results
 }
 
 export const liquidfill = (columns, rows, settings, extra) => {

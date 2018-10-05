@@ -26,8 +26,7 @@ export default {
         wave: [0.5, 0.3, 0.1],
         seriesMap: {
           '上海': {
-            color: ['red', 'green', 'yellow'],
-            waveAnimation: false
+            color: ['red', 'green', 'yellow']
           }
         }
       }
@@ -65,8 +64,7 @@ export default {
               fontSize: 30
             },
             center: ['18%', '50%'],
-            radius: '50%',
-            waveAnimation: false
+            radius: '50%'
           },
           {
             label: {
@@ -76,16 +74,14 @@ export default {
               fontSize: 30
             },
             center: ['50%', '50%'],
-            radius: '50%',
-            waveAnimation: false
+            radius: '50%'
           },
           {
             label: {
               fontSize: 30
             },
-            center: ['70%', '50%'],
-            radius: '50%',
-            waveAnimation: false
+            center: ['80%', '50%'],
+            radius: '50%'
           }
         ]
       }
