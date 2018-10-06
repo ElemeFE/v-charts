@@ -20,6 +20,7 @@
   - [Gauge](/en/gauge)
   - [Tree](/en/tree)
   - [Bmap/Amap](/en/bmap)
+  - [Liquidfill](/en/liquidfill)
 - Other
   - [Event](/en/event)
   - [Attribute demos(1)](/en/props-demo1)

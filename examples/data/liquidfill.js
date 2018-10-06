@@ -8,7 +8,7 @@ export default {
         columns: ['city', 'percent'],
         rows: [{
           city: '上海',
-          percent: 0.6
+          percent: 0.633333
         }]
       },
       settings: {}
@@ -109,10 +109,13 @@ export default {
         columns: ['city', 'percent'],
         rows: [{
           city: '上海',
-          percent: 0.6
+          percent: 0.6,
+          val: 0.8
         }]
       },
       settings: {
+        dimension: 'city',
+        metrics: 'val',
         seriesMap: {
           '上海': {
             color: ['red'],
