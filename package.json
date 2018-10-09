@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "echarts-amap": "1.0.0-rc.6",
+    "echarts-liquidfill": "^2.0.2",
     "numerify": "1.2.9",
     "utils-lite": "0.1.10"
   },
