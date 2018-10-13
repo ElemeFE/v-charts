@@ -15,6 +15,7 @@ import candle from './candle'
 import gauge from './gauge'
 import tree from './tree'
 import liquidfill from './liquidfill'
+import wordcloud from './wordcloud'
 
 export default {
   bar,
@@ -33,5 +34,6 @@ export default {
   candle,
   gauge,
   tree,
-  liquidfill
+  liquidfill,
+  wordcloud
 }

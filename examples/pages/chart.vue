@@ -41,6 +41,7 @@ import VeCandle from '../../src/packages/candle'
 import VeGauge from '../../src/packages/gauge'
 import VeTree from '../../src/packages/tree'
 import VeLiquidfill from '../../src/packages/liquidfill'
+import VeWordcloud from '../../src/packages/wordcloud'
 import CHART_DATA from '../data'
 
 export default {
@@ -87,7 +88,8 @@ export default {
     VeCandle,
     VeGauge,
     VeTree,
-    VeLiquidfill
+    VeLiquidfill,
+    VeWordcloud
   }
 }
 </script>
