@@ -221,7 +221,7 @@
   export default {
     data () {
       this.chartSettings = {
-        positionJsonLink: 'https://dn-quietcoder.qbox.me/HK_geo.json',
+        positionJsonLink: 'https://unpkg.com/v-charts-custom-maps@0.2.1/hk-geo.json',
         position: 'HK',
         beforeRegisterMap (json) {
           // edit data here such as:
