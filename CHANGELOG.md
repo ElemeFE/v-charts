@@ -5,9 +5,9 @@
 ### Features
 
 * **core:** add log prop to comp ([7abca27](https://github.com/ElemeFE/v-charts/commit/7abca27))
-* 完善水球图的配置settings中关于seriesMap和wave的配置项 ([3e82c6f](https://github.com/ElemeFE/v-charts/commit/3e82c6f))
-* 增加词云图的封装 ([30ddf30](https://github.com/ElemeFE/v-charts/commit/30ddf30))
-* 增加水球图 ([391d62d](https://github.com/ElemeFE/v-charts/commit/391d62d))
+* Improve the configuration of the seriesMap and wave in the configuration settings of the water polo map ([3e82c6f](https://github.com/ElemeFE/v-charts/commit/3e82c6f))
+* add wordcloud chart ([30ddf30](https://github.com/ElemeFE/v-charts/commit/30ddf30))
+* add liquidfill chart ([391d62d](https://github.com/ElemeFE/v-charts/commit/391d62d))
 
 
 
