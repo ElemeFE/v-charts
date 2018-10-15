@@ -1,3 +1,16 @@
+<a name="1.18.0"></a>
+# [1.18.0](https://github.com/ElemeFE/v-charts/compare/v1.17.10...v1.18.0) (2018-10-15)
+
+
+### Features
+
+* **core:** add log prop to comp ([7abca27](https://github.com/ElemeFE/v-charts/commit/7abca27))
+* 完善水球图的配置settings中关于seriesMap和wave的配置项 ([3e82c6f](https://github.com/ElemeFE/v-charts/commit/3e82c6f))
+* 增加词云图的封装 ([30ddf30](https://github.com/ElemeFE/v-charts/commit/30ddf30))
+* 增加水球图 ([391d62d](https://github.com/ElemeFE/v-charts/commit/391d62d))
+
+
+
 <a name="1.17.10"></a>
 ## [1.17.10](https://github.com/ElemeFE/v-charts/compare/v1.17.9...v1.17.10) (2018-08-10)
 
