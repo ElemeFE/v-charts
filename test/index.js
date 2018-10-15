@@ -18,7 +18,9 @@ import {
   VeHeatmap,
   VeScatter,
   VeCandle,
-  VeGauge
+  VeGauge,
+  VeLiquidfill,
+  VeWordcloud
 } from '../lib/index.esm'
 
 window.Promise = require('es6-promise').Promise
@@ -38,7 +40,9 @@ const comps = {
   heatmap: VeHeatmap,
   scatter: VeScatter,
   candle: VeCandle,
-  gauge: VeGauge
+  gauge: VeGauge,
+  liquidfill: VeLiquidfill,
+  wordcloud: VeWordcloud
 }
 let box
 let vm = {}

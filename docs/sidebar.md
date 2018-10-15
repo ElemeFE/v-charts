@@ -20,6 +20,7 @@
   - [仪表盘](/gauge)
   - [树图](/tree)
   - [水球图](/liquidfill)
+  - [词云图](/wordcloud)
 - 其他
   - [事件监听](/event)
   - [图表切换](/toggle)

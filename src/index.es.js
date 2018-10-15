@@ -17,6 +17,7 @@ import VeCandle from './packages/candle'
 import VeGauge from './packages/gauge'
 import VeTree from './packages/tree'
 import VeLiquidfill from './packages/liquidfill'
+import VeWordcloud from './packages/wordcloud'
 
 const components = [
   VeBar,
@@ -37,7 +38,8 @@ const components = [
   VeCandle,
   VeGauge,
   VeTree,
-  VeLiquidfill
+  VeLiquidfill,
+  VeWordcloud
 ]
 
 function install (Vue, _) {
@@ -66,5 +68,6 @@ export {
   VeGauge,
   VeTree,
   VeLiquidfill,
+  VeWordcloud,
   install
 }
