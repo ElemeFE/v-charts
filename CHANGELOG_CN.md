@@ -1,3 +1,13 @@
+<a name="1.19.0"></a>
+# [1.19.0](https://github.com/ElemeFE/v-charts/compare/v1.18.0...v1.19.0) (2018-11-02)
+
+
+### Bug Fixes
+
+* **pie:** support multi pie item ([0a99bd2](https://github.com/ElemeFE/v-charts/commit/0a99bd2))
+
+
+
 <a name="1.18.0"></a>
 # [1.18.0](https://github.com/ElemeFE/v-charts/compare/v1.17.10...v1.18.0) (2018-10-15)
 
