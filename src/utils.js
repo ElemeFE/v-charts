@@ -103,3 +103,11 @@ export const getAmap = (key, v) => {
   }
   return amapPromise
 }
+
+export function setArrayValue (arr, index, value) {
+  if (arr[index] !== undefined) {
+    arr[index].push(value)
+  } else {
+    arr[index] = [value]
+  }
+}

@@ -1,5 +1,5 @@
 import { itemPoint } from '../../constants'
-import { getFormated } from '../../utils'
+import { getFormated, setArrayValue } from '../../utils'
 import { cloneDeep } from 'utils-lite'
 
 const pieRadius = 100
@@ -33,16 +33,14 @@ function getPieSeries (args) {
   let rowsTemp = []
   if (level) {
     level.forEach((levelItems, index) => {
-      levelItems.forEach(item => { levelTemp[item] = index })
+      levelItems.forEach(item => { setArrayValue(levelTemp, item, index) })
     })
     innerRows.forEach(row => {
       const itemLevel = levelTemp[row[dimension]]
-      if (itemLevel !== undefined) {
-        if (rowsTemp[itemLevel]) {
-          rowsTemp[itemLevel].push(row)
-        } else {
-          rowsTemp[itemLevel] = [row]
-        }
+      if (itemLevel && itemLevel.length) {
+        itemLevel.forEach(levelItem => {
+          setArrayValue(rowsTemp, levelItem, row)
+        })
       }
     })
   } else {
