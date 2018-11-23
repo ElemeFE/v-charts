@@ -63,28 +63,7 @@
       plugins: [
         EditOnGithubPlugin.create(
           'https://github.com/ElemeFE/v-charts/blob/master/docs/'
-        ),
-        function (hook, vm) {
-          function i18n() {
-            return /^\/en\//.test(vm.route.path) ? 'Is this page helpful?' : '这个页面有帮助吗？'
-          }
-
-          hook.doneEach(function () {
-            if (!vm.shap) return
-            vm.shap._vm.leadin = i18n()
-            vm.shap.spa()
-          })
-
-          hook.ready(function () {
-            vm.shap = new Shap({
-              el: document.body.appendChild(document.createElement('div')),
-              mode: 'suspension',
-              key: '5a1674c7d1be5c004cc096df',
-              leadin: i18n(),
-              formatter: function () { return vm.route.path }
-            })
-          })
-        }
+        )
       ]
     }
     function getVuepText () {
@@ -100,7 +79,6 @@
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/ga.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/shap/sdk/Shap.umd.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/vuep-magic-patch@1.0.10/dist/vuep.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
