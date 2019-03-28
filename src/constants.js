@@ -12,8 +12,8 @@ export const DEFAULT_THEME = {
   },
   grid: {
     containLabel: true,
-    left: 10,
-    right: 10
+    left: '10%',
+    right: '10%'
   }
 }
 
