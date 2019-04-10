@@ -312,8 +312,10 @@ export default {
           if (~['[object Object]', '[object Array]'].indexOf(getType(this.$props[prop]))) {
             opts.deep = true
           }
-          this.$watch(prop, () => {
-            this.changeHandler()
+          this.$watch(prop, (val, oldVal) => {
+            if (val !== oldVal) {
+              this.changeHandler()
+            }
           }, opts)
         }
       })
