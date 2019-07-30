@@ -87,10 +87,15 @@ function getPieSeries (args) {
         }
       }
     }
-    seriesItem.data = dataRows.map(row => ({
-      name: row[dimension],
-      value: row[metrics]
-    }))
+    seriesItem.data = dataRows.map(row => {
+      let { [dimension]: d, [metrics]: m, ...rest } = row
+
+      return {
+        name: d,
+        value: m,
+        rest: Object.keys(rest).length === 0 ? null : rest
+      }
+    })
     series.push(seriesItem)
   })
   if (limitShowNum && limitShowNum < series[0].data.length) {
