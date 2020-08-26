@@ -43,7 +43,7 @@
   </a>
 </p>
 
-> Chart components based on Vue2.x and Echarts
+> Chart components based on Vue2.x and Apache ECharts (incubating)
 
 ## Features
 - **Uniform data format:** Use an uniform data format that both convient for frontend and backend, and also easy to create and edit.

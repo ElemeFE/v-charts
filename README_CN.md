@@ -43,7 +43,7 @@
   </a>
 </p>
 
-> 基于 Vue2.x 封装的 Echarts 图表组件
+> 基于 Vue2.x 封装的 Apache ECharts (incubating) 图表组件
 
 ## 特性
 
