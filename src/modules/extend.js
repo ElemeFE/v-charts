@@ -14,7 +14,7 @@ export default function (options, extend) {
       if (isArray(options[attr]) && isObject(options[attr][0])) {
         // eg: [{ xx: 1 }, { xx: 2 }]
         options[attr].forEach((option, index) => {
-          options[attr][index] = Object.assign({}, option, value)
+          options[attr][index] = Object.assign({}, option, value[index])
         })
       } else if (isObject(options[attr])) {
         // eg: { xx: 1, yy: 2 }
